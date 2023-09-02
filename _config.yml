@@ -28,7 +28,9 @@ twitter_username: attilagyorffy
 github_username:  attilagyorffy
 
 # Build settings
-theme: minima
+# theme: minima
+remote_theme: alshedivat/al-folio
+
 plugins:
   - jekyll-feed
 
