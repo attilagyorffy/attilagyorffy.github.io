@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64">
+  <rect width="64" height="64" rx="12" fill="rgb(26,26,30)"/>
+  <text x="32" y="42"
+        font-family="Inter, sans-serif"
+        font-size="28"
+        text-anchor="middle"
+        fill="rgb(153,153,153)">
+    AG
+    <!-- Fade out (1.5 s), stay dim (2 s), fade in (1.5 s) -->
+    <animate attributeName="opacity"
+             values="1;0.2;0.2;1"
+             keyTimes="0;0.3;0.7;1"
+             dur="5s"
+             repeatCount="indefinite"/>
+  </text>
+</svg>

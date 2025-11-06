@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Attila Györffy</title>
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            id="favicon"
+            href="images/favicon-active.svg"
+        />
+        <style>
+            :root {
+                --bg-color: rgb(26, 26, 30);
+                --text-color: rgb(153, 153, 153);
+                --link-color: #666666;
+            }
+            body {
+                font-family:
+                    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+                    monospace;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+                background-color: var(--bg-color);
+                color: var(--text-color);
+                line-height: 1.6;
+            }
+            ul {
+                list-style: none;
+                padding: 0;
+                font-size: 12px;
+            }
+            a {
+                color: var(--link-color);
+                text-decoration: none;
+                border-bottom: 1px dotted rgba(102, 102, 102, 0.3);
+                padding-bottom: 2px;
+            }
+            a:visited {
+                color: var(--link-color);
+            }
+            .container {
+                display: flex;
+                flex-direction: column;
+                padding: 2rem;
+                max-width: 450px;
+            }
+            h1 {
+                font-weight: 300;
+                margin: 0 0 2rem 0;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                opacity: 0;
+                animation: fadeInUp 0.8s ease-out 0.7s forwards;
+            }
+            p {
+                margin: 0 0 2rem 0;
+                line-height: 1.7;
+                opacity: 0;
+                animation: fadeInUp 0.8s ease-out forwards;
+            }
+            p:nth-of-type(1) {
+                animation-delay: 0.9s;
+            }
+            p:nth-of-type(2) {
+                animation-delay: 1.1s;
+            }
+            p:nth-of-type(3) {
+                animation-delay: 1.3s;
+            }
+            ul {
+                margin: 0;
+            }
+            li {
+                margin-bottom: 0.5rem;
+            }
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translate(-20px, 20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translate(0, 0);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container" itemscope itemtype="https://schema.org/Person">
+            <h1 itemprop="name">Attila Györffy</h1>
+            <p itemprop="description">
+                Lifelong learner software engineer with the
+                <a href="https://www.youtube.com/watch?v=w4RLfVxTGH4"
+                    >scout mindset</a
+                >. Partially Scandinavian.
+            </p>
+            <p>
+                Latest blog post:
+                <a
+                    href="https://www.scout.engineer/p/the-need-of-protocols-over-platforms"
+                    itemprop="url"
+                    >Protocols Over Platforms: The Quiet Revolt of the Digital
+                    Self</a
+                >
+            </p>
+            <p>
+                You can follow me on
+                <a href="https://twitter.com/attilagyorffy" itemprop="sameAs"
+                    ><s>Twitter</s> X</a
+                >,
+                <a href="https://fosstodon.org/@attila" itemprop="sameAs"
+                    >Mastodon</a
+                >,
+                <a
+                    href="https://bsky.app/profile/attilagyorffy.bsky.social"
+                    itemprop="sameAs"
+                    >Bluesky</a
+                >,
+                <a
+                    href="https://linkedin.com/in/attilagyorffy"
+                    itemprop="sameAs"
+                    >LinkedIn</a
+                >,
+                <a href="https://github.com/attilagyorffy" itemprop="sameAs"
+                    >GitHub</a
+                >.
+            </p>
+        </div>
+        <script>
+            const faviconActive = "images/favicon-active.svg";
+            const faviconInactive = "images/favicon-inactive.svg";
+
+            const favicon = document.getElementById("favicon");
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    favicon.href = faviconInactive;
+                } else {
+                    favicon.href = faviconActive;
+                }
+            });
+        </script>
+    </body>
+</html>
