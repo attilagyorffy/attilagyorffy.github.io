@@ -88,6 +88,26 @@
                     transform: translate(0, 0);
                 }
             }
+            #trivia-text {
+                will-change: contents;
+                transform: translateZ(0);
+                backface-visibility: hidden;
+            }
+            .cursor {
+                opacity: 0;
+                will-change: opacity;
+                transform: translateZ(0);
+            }
+            @keyframes blink {
+                0%,
+                50% {
+                    opacity: 1;
+                }
+                51%,
+                100% {
+                    opacity: 0;
+                }
+            }
         </style>
     </head>
     <body>
@@ -97,7 +117,8 @@
                 Lifelong learner software engineer with the
                 <a href="https://www.youtube.com/watch?v=w4RLfVxTGH4"
                     >scout mindset</a
-                >. Partially Scandinavian.
+                >. <span id="trivia-text">Partially Scandinavian.</span
+                ><span id="cursor" class="cursor">|</span>
             </p>
             <p>
                 Latest blog post:
@@ -144,6 +165,97 @@
                     favicon.href = faviconActive;
                 }
             });
+
+            // Hardware-accelerated animated typing effect for trivia text
+            const triviaTexts = [
+                "Partially Scandinavian.",
+                "Maker of puns.",
+                "Budapest based.",
+                "Has a distinctive laugh.",
+            ];
+
+            let currentIndex = 0;
+            let isDeleting = false;
+            let currentText = triviaTexts[0];
+            let displayedText = triviaTexts[0];
+            const triviaElement = document.getElementById("trivia-text");
+            const typingSpeed = 100; // ms per character when typing
+            const deletingSpeed = 50; // ms per character when deleting
+            const pauseBeforeDelete = 2000; // ms to pause before starting to delete
+            const pauseBeforeType = 300; // ms to pause before starting to type new text
+
+            let lastUpdateTime = 0;
+            let animationStartTime = 0;
+            let isPaused = false;
+            let pauseDuration = 0;
+
+            function updateTrivia(timestamp) {
+                if (animationStartTime === 0) {
+                    animationStartTime = timestamp;
+                }
+
+                const elapsed = timestamp - lastUpdateTime;
+
+                if (isPaused) {
+                    if (elapsed >= pauseDuration) {
+                        isPaused = false;
+                        lastUpdateTime = timestamp;
+                    }
+                    requestAnimationFrame(updateTrivia);
+                    return;
+                }
+
+                const speed = isDeleting ? deletingSpeed : typingSpeed;
+
+                if (elapsed >= speed) {
+                    if (!isDeleting) {
+                        // Typing mode - add characters
+                        if (displayedText.length < currentText.length) {
+                            displayedText = currentText.substring(
+                                0,
+                                displayedText.length + 1,
+                            );
+                            triviaElement.textContent = displayedText;
+                            lastUpdateTime = timestamp;
+                        } else {
+                            // Finished typing, wait before deleting
+                            isPaused = true;
+                            pauseDuration = pauseBeforeDelete;
+                            isDeleting = true;
+                            lastUpdateTime = timestamp;
+                        }
+                    } else {
+                        // Deleting mode - remove characters
+                        if (displayedText.length > 0) {
+                            displayedText = displayedText.substring(
+                                0,
+                                displayedText.length - 1,
+                            );
+                            triviaElement.textContent = displayedText;
+                            lastUpdateTime = timestamp;
+                        } else {
+                            // Finished deleting, move to next text
+                            isPaused = true;
+                            pauseDuration = pauseBeforeType;
+                            isDeleting = false;
+                            currentIndex =
+                                (currentIndex + 1) % triviaTexts.length;
+                            currentText = triviaTexts[currentIndex];
+                            lastUpdateTime = timestamp;
+                        }
+                    }
+                }
+
+                requestAnimationFrame(updateTrivia);
+            }
+
+            // Start the animation after initial delay
+            setTimeout(() => {
+                const cursor = document.getElementById("cursor");
+                cursor.style.opacity = "1";
+                cursor.style.animation = "blink 1s step-end infinite";
+                requestAnimationFrame(updateTrivia);
+            }, 15000); // Wait 15 seconds after page load
         </script>
     </body>
 </html>
