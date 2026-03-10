@@ -12,8 +12,8 @@
         />
         <style>
             :root {
-                --bg-color: rgb(26, 26, 30);
-                --text-color: rgb(153, 153, 153);
+                --bg-color: oklch(19% 0.012 269);
+                --text-color: oklch(84% 0.012 269);
                 --link-color: #666666;
             }
             body {
@@ -99,11 +99,15 @@
                 transform: translateZ(0);
             }
             @keyframes blink {
-                0%,
-                50% {
+                0% {
+                    opacity: 0;
+                }
+                15% {
                     opacity: 1;
                 }
-                51%,
+                65% {
+                    opacity: 1;
+                }
                 100% {
                     opacity: 0;
                 }
@@ -170,17 +174,46 @@
                 "Maker of puns.",
                 "Budapest based.",
                 "Has a distinctive laugh.",
+                "Keeps a homelab humming.",
+                "Was on Last.fm before you.",
+                "Learning Rust.",
+                "Wrote code for the UK government. It worked.",
+                "Deployed one of Hungary's first Rails apps.",
+                "20+ years of shipping software.",
+                "Builds audio apps for local music.",
+                "Knows what OPNsense is. Voluntarily.",
+                "Runs Prometheus at home. On purpose.",
+                "Has opinions about monorepos.",
+                "Built self-healing systems. Still working on that personally.",
+                "Once worked for a company that recycled everything except the codebase.",
             ];
 
-            let currentIndex = 0;
-            let isDeleting = false;
-            let currentText = triviaTexts[0];
-            let displayedText = triviaTexts[0];
+            for (let i = triviaTexts.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [triviaTexts[i], triviaTexts[j]] = [
+                    triviaTexts[j],
+                    triviaTexts[i],
+                ];
+            }
+
+            const mid = Math.floor(triviaTexts.length / 2);
+            triviaTexts.splice(
+                mid,
+                0,
+                "Is anyone reading these anyway?",
+                "Hello? ...Just me?",
+                "Anyway. There's more.",
+            );
+
             const triviaElement = document.getElementById("trivia-text");
+            let currentIndex = -1;
+            let isDeleting = false;
+            let currentText = triviaElement.textContent;
+            let displayedText = triviaElement.textContent;
             const typingSpeed = 100; // ms per character when typing
             const deletingSpeed = 50; // ms per character when deleting
-            const pauseBeforeDelete = 2000; // ms to pause before starting to delete
-            const pauseBeforeType = 300; // ms to pause before starting to type new text
+            const pauseBeforeDelete = 3500; // ms to pause before starting to delete
+            const pauseBeforeType = 1200; // ms to pause before starting to type new text
 
             let lastUpdateTime = 0;
             let animationStartTime = 0;
@@ -247,13 +280,17 @@
                 requestAnimationFrame(updateTrivia);
             }
 
-            // Start the animation after initial delay
+            // Show cursor early
             setTimeout(() => {
                 const cursor = document.getElementById("cursor");
                 cursor.style.opacity = "1";
-                cursor.style.animation = "blink 1s step-end infinite";
+                cursor.style.animation = "blink 1.6s ease-in-out infinite";
+            }, 8000); // Wait 8 seconds after page load
+
+            // Start trivia cycling later
+            setTimeout(() => {
                 requestAnimationFrame(updateTrivia);
-            }, 15000); // Wait 15 seconds after page load
+            }, 12000); // Wait 12 seconds after page load
         </script>
     </body>
 </html>
