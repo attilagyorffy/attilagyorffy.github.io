@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>About — Attila Györffy</title>
+        <meta
+            name="description"
+            content="Product engineer and technologist with two decades of experience. Understanding before acting, first-principles thinking, and the scout mindset."
+        />
+        <meta name="author" content="Attila Györffy" />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            id="favicon"
+            href="/images/favicon-active.svg"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz@0,8..60;1,8..60&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body>
+        <div class="page">
+            <nav class="top-bar">
+                <a href="/" class="nav-home">&larr; Home</a>
+            </nav>
+
+            <h1>About</h1>
+
+            <div class="post-body">
+                <p class="lead">
+                    I&rsquo;m Attila Gy&ouml;rffy, a product engineer and
+                    technologist.
+                </p>
+
+                <p>
+                    I have spent two decades building systems across fintech,
+                    infrastructure, and developer platforms.
+                </p>
+
+                <p>
+                    I&rsquo;ve spent much of my career stepping into complex
+                    systems &mdash; legacy services, distributed architectures,
+                    organizational workflows &mdash; where the first task is
+                    not to solve anything, but to understand the terrain. The
+                    most costly mistakes I&rsquo;ve seen didn&rsquo;t come from
+                    lack of talent; they came from acting with an incomplete
+                    map.
+                </p>
+
+                <h2>The Scout Mindset</h2>
+
+                <p>
+                    This approach draws inspiration from
+                    <a href="https://www.youtube.com/watch?v=w4RLfVxTGH4&amp;ref=scout.engineer" target="_blank" rel="noopener noreferrer">Julia Galef&rsquo;s
+                    <em>scout mindset</em></a>: the habit of seeking an
+                    accurate map of reality, even when it&rsquo;s
+                    inconvenient. A scout wants to understand how things truly
+                    work before deciding what to build. Applied to software,
+                    scout engineering is a way of working that blends
+                    curiosity, clarity, and intellectual honesty:
+                </p>
+
+                <ul class="takeaway">
+                    <li>
+                        <strong>Understand before acting.</strong> A scout
+                        engineer wants to know the real constraints, failure
+                        modes, and incentives &mdash; not just the surface
+                        behavior.
+                    </li>
+                    <li>
+                        <strong>Think from first principles.</strong> Instead
+                        of blindly following patterns others have built for
+                        you, the goal is to reason from the fundamentals of
+                        the problem.
+                    </li>
+                    <li>
+                        <strong>Stay curious across disciplines.</strong> Good
+                        engineering touches product, architecture, human
+                        systems, and sometimes even society.
+                    </li>
+                    <li>
+                        <strong>Be willing to update your map.</strong>
+                        Getting something wrong isn&rsquo;t a failure;
+                        it&rsquo;s data. The skill is in adjusting quickly and
+                        transparently.
+                    </li>
+                </ul>
+
+                <p>
+                    This site collects field notes from practicing that
+                    mindset &mdash; technical insights, engineering patterns,
+                    and reflections on how technology shapes society.
+                </p>
+            </div>
+
+            <footer class="page-footer">
+            </footer>
+        </div>
+
+        <script>
+            const faviconActive = "/images/favicon-active.svg";
+            const faviconInactive = "/images/favicon-inactive.svg";
+            const favicon = document.getElementById("favicon");
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    favicon.href = faviconInactive;
+                } else {
+                    favicon.href = faviconActive;
+                }
+            });
+        </script>
+    </body>
+</html>
