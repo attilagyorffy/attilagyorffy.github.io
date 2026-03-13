@@ -10,46 +10,32 @@
             id="favicon"
             href="images/favicon-active.svg"
         />
+        <link rel="stylesheet" href="/css/style.css" />
         <style>
-            @font-face {
-                font-family: "IBM Plex Mono";
-                src: url("fonts/ibm-plex-mono.woff2") format("woff2");
-                font-weight: 400;
-                font-style: normal;
-            }
-
-            :root {
-                --bg-color: oklch(19% 0.012 269);
-                --text-color: oklch(84% 0.012 269);
-                --link-color: #666666;
-            }
             body {
                 font-family:
                     "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo,
                     Monaco, Consolas, monospace;
                 font-weight: 400;
+                line-height: 1.6;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 min-height: 100vh;
-                margin: 0;
-                background-color: var(--bg-color);
-                color: var(--text-color);
-                line-height: 1.6;
+            }
+            .container a {
+                color: var(--color-accent);
+                border-bottom: 1px dotted var(--color-subtle);
+                padding-bottom: 2px;
+                transition: border-color 0.2s ease;
+            }
+            .container a:hover {
+                border-bottom-color: var(--color-heading);
             }
             ul {
                 list-style: none;
                 padding: 0;
                 font-size: 12px;
-            }
-            a {
-                color: var(--link-color);
-                text-decoration: none;
-                border-bottom: 1px dotted rgba(102, 102, 102, 0.3);
-                padding-bottom: 2px;
-            }
-            a:visited {
-                color: var(--link-color);
             }
             .container {
                 display: flex;
@@ -58,6 +44,7 @@
                 max-width: 450px;
             }
             h1 {
+                font-family: inherit;
                 font-weight: 400;
                 margin: 0 0 2rem 0;
                 letter-spacing: 0.05em;
@@ -80,21 +67,14 @@
             p:nth-of-type(3) {
                 animation-delay: 1.3s;
             }
+            p:nth-of-type(4) {
+                animation-delay: 1.5s;
+            }
             ul {
                 margin: 0;
             }
             li {
                 margin-bottom: 0.5rem;
-            }
-            @keyframes fadeInUp {
-                from {
-                    opacity: 0;
-                    transform: translate(-20px, 20px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translate(0, 0);
-                }
             }
             #trivia-text {
                 will-change: contents;
@@ -132,15 +112,13 @@
                 ><span id="cursor" class="cursor">|</span>
             </p>
             <p>
-                Latest blog post:
-                <a
-                    href="https://blog.audiqa.app/announcing-audiqa/"
-                    itemprop="url"
-                    >Hello, world — Building Audiqa in public</a
-                >
+                I sometimes
+                <a href="/blog/">rant and write</a>, have
+                <a href="/thoughts/">opinions</a>, and maintain a few
+                <a href="/projects/">open source projects</a>.
             </p>
             <p>
-                You can follow me on
+                You can find me on
                 <a href="https://twitter.com/attilagyorffy" itemprop="sameAs"
                     ><s>Twitter</s> X</a
                 >,
