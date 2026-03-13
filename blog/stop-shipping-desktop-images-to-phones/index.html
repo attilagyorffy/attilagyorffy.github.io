@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Stop Shipping Desktop Images to Phones — Attila Györffy</title>
+        <meta
+            name="description"
+            content="How to generate a picture element in Rails so browsers stop loading comically oversized images on tiny screens."
+        />
+        <meta name="author" content="Attila Györffy" />
+        <link
+            rel="canonical"
+            href="https://www.attilagyorffy.com/blog/stop-shipping-desktop-images-to-phones/"
+        />
+        <meta
+            property="og:title"
+            content="Stop Shipping Desktop Images to Phones"
+        />
+        <meta
+            property="og:description"
+            content="How to generate a picture element in Rails so browsers stop loading comically oversized images on tiny screens."
+        />
+        <meta property="og:type" content="article" />
+        <meta
+            property="og:url"
+            content="https://www.attilagyorffy.com/blog/stop-shipping-desktop-images-to-phones/"
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            id="favicon"
+            href="/images/favicon-active.svg"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz@0,8..60;1,8..60&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body>
+        <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+            <filter id="highlighter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.03 0.06" numOctaves="5" seed="2" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </svg>
+        <div class="page page--wide">
+            <nav class="top-bar">
+                <a href="/" class="nav-home">&larr; Home</a>
+                <a href="/blog/" class="nav-writings">&larr; Writings</a>
+            </nav>
+
+            <article itemscope itemtype="https://schema.org/BlogPosting">
+                    <div class="author-col">
+                        <div class="avatar">
+                            <img
+                                src="/images/avatar.jpg"
+                                alt="Attila Györffy"
+                                width="52"
+                                height="52"
+                            />
+                        </div>
+                        <div class="author-meta">
+                            <div class="author-name" itemprop="author">
+                                Attila Györffy
+                            </div>
+                            <div class="author-role">Software Engineer</div>
+                            <div class="post-label">3 min read</div>
+                        </div>
+                    </div>
+                    <div class="title-col">
+                        <h1 itemprop="headline">
+                            Stop Shipping Desktop Images to Phones
+                        </h1>
+                        <p class="subtitle">
+                            Because shipping a 4000-pixel hero image to a phone
+                            on 3G is not a personality trait.
+                        </p>
+                    </div>
+                    <div class="date-col">
+                        <time datetime="2017-06-11" itemprop="datePublished"
+                            >Jun 11, 2017</time
+                        >
+                    </div>
+
+                <div class="post-body" itemprop="articleBody">
+                    <p class="lead">
+                        Right, quick tip. You know how every website you've
+                        ever built probably loads the same massive image
+                        regardless of whether the user is on a 27-inch iMac
+                        or a phone being held together with optimism and a
+                        cracked screen protector? Yeah, let's fix that. Here's
+                        how to generate a <code>&lt;picture&gt;</code> element
+                        in Rails that tells the browser to stop being an idiot
+                        and load the right image for the right screen.
+                    </p>
+
+                    <p>
+                        The <code>&lt;picture&gt;</code> element is one of
+                        those HTML features that's been around long enough that
+                        you have absolutely no excuse for not using it. It lets
+                        you specify multiple image sources with media queries,
+                        and the browser picks the first one that matches. It's
+                        like a buffet, but the browser only takes what it can
+                        actually eat. Revolutionary concept, I know.
+                    </p>
+
+                    <p>
+                        So here's a helper you can drop into your Rails app.
+                        Takes about thirty seconds to write, saves your users
+                        from downloading photographs the size of small
+                        countries:
+                    </p>
+
+                    <pre><code class="language-ruby"># application_helper.rb
+module ApplicationHelper
+  def responsive_image_tag(image, options = {})
+    content_tag(:picture) do
+      concat content_tag(:source, nil, media: '(max-width: 768px)', srcset: image.url(:thumbnail_mobile))
+      concat content_tag(:source, nil, media: '(max-width: 960px)', srcset: image.url(:thumbnail_tablet))
+      concat image_tag(image.url(:thumbnail_desktop), options)
+    end
+  end
+end</code></pre>
+
+                    <p>
+                        That's it. That's the whole thing. You wrap your
+                        <code>&lt;source&gt;</code> elements inside a
+                        <code>&lt;picture&gt;</code> tag, slap some media
+                        queries on them, and the browser does the rest. The
+                        media queries here are standard breakpoints &mdash;
+                        768px for mobile, 960px for tablets &mdash; but
+                        obviously you can change those to whatever arbitrary
+                        numbers your designer has decided are gospel this week.
+                    </p>
+
+                    <p>
+                        <mark>A <code>&lt;picture&gt;</code> element can take any
+                        number of <code>&lt;source&gt;</code> children and
+                        will load the first one that matches the current
+                        screen.</mark> That's the beauty of it. You're not doing
+                        any clever JavaScript viewport detection nonsense.
+                        You're not loading all three images and hiding two of
+                        them with CSS like some sort of bandwidth arsonist.
+                        The browser genuinely only fetches the one it needs.
+                    </p>
+
+                    <p>
+                        Now, the <code>image</code> argument I'm passing into
+                        this helper is a
+                        <a href="https://github.com/carrierwaveuploader/carrierwave" target="_blank" rel="noopener noreferrer">CarrierWave</a>
+                        uploader object. If you're not familiar, CarrierWave
+                        lets you define different <em>versions</em> of an
+                        uploaded image &mdash; so one upload gives you a mobile
+                        thumbnail, a tablet thumbnail, and a desktop version,
+                        each at the appropriate resolution. The
+                        <code>.url(:thumbnail_mobile)</code> calls are just
+                        fetching the URL for each version. If you're using
+                        ActiveStorage or Shrine or whatever the cool kids have
+                        moved onto this month, the principle is exactly the
+                        same &mdash; you just swap in the equivalent method
+                        calls.
+                    </p>
+
+                    <p>
+                        The fallback <code>image_tag</code> at the bottom is
+                        your standard <code>&lt;img&gt;</code> element. It's
+                        what loads when the browser doesn't support
+                        <code>&lt;picture&gt;</code>, which at this point
+                        basically means Internet Explorer, and if your users
+                        are still on IE, responsive images are the least of
+                        their problems. Or yours.
+                    </p>
+
+                    <p>
+                        If you want to go deeper on the
+                        <code>&lt;picture&gt;</code> element &mdash; and you
+                        should, because it's genuinely one of the better things
+                        to happen to HTML since they stopped trying to make
+                        <code>&lt;marquee&gt;</code> a thing &mdash; have a
+                        look at the
+                        <a href="https://developer.mozilla.org/en/docs/Web/HTML/Element/picture" target="_blank" rel="noopener noreferrer">MDN documentation</a>
+                        and the
+                        <a href="http://caniuse.com/picture/embed/" target="_blank" rel="noopener noreferrer">Can I Use</a>
+                        page for current browser support. Spoiler: it's
+                        basically everything.
+                    </p>
+
+                    <ul class="takeaway">
+                        <li>
+                            Use the <code>&lt;picture&gt;</code> element with
+                            <code>&lt;source&gt;</code> children and media
+                            queries to serve the right image for the right
+                            screen
+                        </li>
+                        <li>
+                            Wrap it in a Rails helper so you write it once
+                            instead of copy-pasting HTML like it's 2004
+                        </li>
+                        <li>
+                            The browser only downloads the matching source, so
+                            your users on mobile stop subsidising your
+                            enthusiasm for 4K photography
+                        </li>
+                    </ul>
+                </div>
+
+                <footer class="post-footer">
+                    <p>
+                        If you're still serving full-resolution desktop
+                        images to phones, I'm not angry, just disappointed.
+                        Come find me on
+                        <a href="https://bsky.app/profile/attilagyorffy.com" target="_blank" rel="noopener noreferrer">Bluesky</a>,
+                        <a href="https://fosstodon.org/@attila" target="_blank" rel="noopener noreferrer">Mastodon</a>,
+                        <a href="https://twitter.com/attilagyorffy" target="_blank" rel="noopener noreferrer"><s>Twitter</s>&nbsp;X</a>,
+                        or even
+                        <a href="https://linkedin.com/in/attilagyorffy" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        if you fancy discussing image optimisation in a
+                        place where people list "synergy" as a skill. Code
+                        lives on
+                        <a href="https://github.com/attilagyorffy" target="_blank" rel="noopener noreferrer">GitHub</a>,
+                        as always.
+                    </p>
+                </footer>
+            </article>
+
+            <aside class="sidebar-label" aria-hidden="true">
+                <span>Code</span>
+                <span class="sidebar-arrow">&darr;</span>
+            </aside>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/ruby.min.js"></script>
+        <script>
+            hljs.highlightAll();
+
+            // Draw per-line highlight rects behind <mark> elements
+            function drawHighlights() {
+                document.querySelectorAll(".highlight-stroke").forEach(el => el.remove());
+                document.querySelectorAll("mark").forEach((mark) => {
+                    const p = mark.closest("p");
+                    if (!p) return;
+                    if (getComputedStyle(p).position === "static") {
+                        p.style.position = "relative";
+                    }
+                    const rects = mark.getClientRects();
+                    const pRect = p.getBoundingClientRect();
+                    for (const r of rects) {
+                        const stroke = document.createElement("span");
+                        stroke.className = "highlight-stroke";
+                        stroke.style.top = (r.top - pRect.top - 1) + "px";
+                        stroke.style.left = (r.left - pRect.left - 5) + "px";
+                        stroke.style.width = (r.width + 10) + "px";
+                        stroke.style.height = (r.height + 2) + "px";
+                        p.appendChild(stroke);
+                    }
+                });
+            }
+            // Wait for fadeIn animations to settle before measuring
+            setTimeout(drawHighlights, 1200);
+            window.addEventListener("resize", drawHighlights);
+
+            const faviconActive = "/images/favicon-active.svg";
+            const faviconInactive = "/images/favicon-inactive.svg";
+            const favicon = document.getElementById("favicon");
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    favicon.href = faviconInactive;
+                } else {
+                    favicon.href = faviconActive;
+                }
+            });
+        </script>
+    </body>
+</html>

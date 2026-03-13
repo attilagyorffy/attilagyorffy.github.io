@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ansible Hangs on FreeBSD and Nobody Tells You — Attila Györffy</title>
+        <meta
+            name="description"
+            content="FreeBSD does not ship Python, and Ansible does not ship patience. Here is how to bootstrap pkg without hanging forever."
+        />
+        <meta name="author" content="Attila Györffy" />
+        <link
+            rel="canonical"
+            href="https://www.attilagyorffy.com/blog/ansible-hangs-on-freebsd-and-nobody-tells-you/"
+        />
+        <meta
+            property="og:title"
+            content="Ansible Hangs on FreeBSD and Nobody Tells You"
+        />
+        <meta
+            property="og:description"
+            content="FreeBSD does not ship Python, and Ansible does not ship patience. Here is how to bootstrap pkg without hanging forever."
+        />
+        <meta property="og:type" content="article" />
+        <meta
+            property="og:url"
+            content="https://www.attilagyorffy.com/blog/ansible-hangs-on-freebsd-and-nobody-tells-you/"
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            id="favicon"
+            href="/images/favicon-active.svg"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz@0,8..60;1,8..60&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body>
+        <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+            <filter id="highlighter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.03 0.06" numOctaves="5" seed="2" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </svg>
+        <div class="page page--wide">
+            <nav class="top-bar">
+                <a href="/" class="nav-home">&larr; Home</a>
+                <a href="/blog/" class="nav-writings">&larr; Writings</a>
+            </nav>
+
+            <article itemscope itemtype="https://schema.org/BlogPosting">
+                    <div class="author-col">
+                        <div class="avatar">
+                            <img
+                                src="/images/avatar.jpg"
+                                alt="Attila Györffy"
+                                width="52"
+                                height="52"
+                            />
+                        </div>
+                        <div class="author-meta">
+                            <div class="author-name" itemprop="author">
+                                Attila Györffy
+                            </div>
+                            <div class="author-role">Software Engineer</div>
+                            <div class="post-label">2 min read</div>
+                        </div>
+                    </div>
+                    <div class="title-col">
+                        <h1 itemprop="headline">
+                            Ansible Hangs on FreeBSD and Nobody Tells You
+                        </h1>
+                        <p class="subtitle">
+                            Because FreeBSD ships without Python and
+                            Ansible has no idea what to do about it.
+                        </p>
+                    </div>
+                    <div class="date-col">
+                        <time datetime="2016-12-09" itemprop="datePublished"
+                            >Dec 9, 2016</time
+                        >
+                    </div>
+
+                <div class="post-body" itemprop="articleBody">
+                    <p class="lead">
+                        Right. So FreeBSD does not come with Python
+                        preinstalled. Let that sink in. You have got
+                        Ansible on your control machine, ready to
+                        automate the world, and the target system is
+                        just sitting there like a bloke at a pub who
+                        does not speak the language. Ansible needs
+                        Python. FreeBSD does not have Python. Nobody
+                        told either of them about this arrangement
+                        beforehand.
+                    </p>
+
+                    <p>
+                        Now, you would think, "Fine, I will just use
+                        <code>pkg</code> to install Python and get on
+                        with my life." And you would be wrong. Because
+                        the first time you invoke <code>pkg</code> on a
+                        fresh FreeBSD box, it pulls this little stunt:
+                    </p>
+
+                    <pre><code class="language-bash">The package management tool is not yet installed on your system.
+Do you want to fetch and install it now? [y/N]:</code></pre>
+
+                    <p>
+                        A yes-or-no prompt. On a system you are trying
+                        to manage <em>programmatically</em>. Brilliant.
+                        And here is the best part: this happens even if
+                        you pass the <code>-y</code> flag. You are
+                        standing there telling <code>pkg</code>, "Yes,
+                        mate, I want this, I explicitly said yes," and
+                        <code>pkg</code> is ignoring you like a bouncer
+                        who has already decided you are not getting in.
+                        <mark>Ansible will just hang there on your control
+                        machine, waiting forever for a prompt that no
+                        human will ever answer.</mark>
+                    </p>
+
+                    <p>
+                        The fix is absurdly simple once you know it
+                        exists, which of course you do not until you
+                        have wasted twenty minutes staring at a frozen
+                        terminal wondering if the internet is broken.
+                        You set the <code>ASSUME_ALWAYS_YES</code>
+                        environment variable to <code>yes</code> and
+                        use the <code>raw</code> module because,
+                        remember, there is no Python yet, so none of
+                        Ansible's nice modules work:
+                    </p>
+
+                    <pre><code class="language-bash">$ ansible freebsd -m raw -a "setenv ASSUME_ALWAYS_YES yes; pkg install -y python27"</code></pre>
+
+                    <p>
+                        That is it. That is the whole trick. An
+                        environment variable. Not a secret flag, not a
+                        kernel patch, not a blood sacrifice to the BSD
+                        daemon. Just an environment variable that tells
+                        <code>pkg</code> to stop asking stupid questions
+                        and get on with installing things like a proper
+                        package manager.
+                    </p>
+
+                    <ul class="takeaway">
+                        <li>
+                            FreeBSD has no Python out of the box, so use
+                            Ansible's <code>raw</code> module to
+                            bootstrap it
+                        </li>
+                        <li>
+                            The <code>-y</code> flag does not suppress
+                            the initial <code>pkg</code> bootstrap
+                            prompt &mdash; you need
+                            <code>ASSUME_ALWAYS_YES=yes</code>
+                        </li>
+                        <li>
+                            Once Python is installed, normal Ansible
+                            modules work and you can stop living like an
+                            animal
+                        </li>
+                    </ul>
+                </div>
+
+                <footer class="post-footer">
+                    <p>
+                        If you have also been personally victimised by
+                        a package manager that ignores its own flags,
+                        come commiserate. I'm on
+                        <a href="https://bsky.app/profile/attilagyorffy.com" target="_blank" rel="noopener noreferrer">Bluesky</a>,
+                        <a href="https://fosstodon.org/@attila" target="_blank" rel="noopener noreferrer">Mastodon</a>,
+                        <a href="https://twitter.com/attilagyorffy" target="_blank" rel="noopener noreferrer"><s>Twitter</s>&nbsp;X</a>,
+                        and technically
+                        <a href="https://linkedin.com/in/attilagyorffy" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
+                        though I cannot imagine discussing FreeBSD
+                        bootstrap quirks there with a straight face.
+                        The rest of the damage is on
+                        <a href="https://github.com/attilagyorffy" target="_blank" rel="noopener noreferrer">GitHub</a>.
+                    </p>
+                </footer>
+            </article>
+
+            <aside class="sidebar-label" aria-hidden="true">
+                <span>Code</span>
+                <span class="sidebar-arrow">&darr;</span>
+            </aside>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+        <script>
+            hljs.highlightAll();
+
+            // Draw per-line highlight rects behind <mark> elements
+            function drawHighlights() {
+                document.querySelectorAll(".highlight-stroke").forEach(el => el.remove());
+                document.querySelectorAll("mark").forEach((mark) => {
+                    const p = mark.closest("p");
+                    if (!p) return;
+                    if (getComputedStyle(p).position === "static") {
+                        p.style.position = "relative";
+                    }
+                    const rects = mark.getClientRects();
+                    const pRect = p.getBoundingClientRect();
+                    for (const r of rects) {
+                        const stroke = document.createElement("span");
+                        stroke.className = "highlight-stroke";
+                        stroke.style.top = (r.top - pRect.top - 1) + "px";
+                        stroke.style.left = (r.left - pRect.left - 5) + "px";
+                        stroke.style.width = (r.width + 10) + "px";
+                        stroke.style.height = (r.height + 2) + "px";
+                        p.appendChild(stroke);
+                    }
+                });
+            }
+            // Wait for fadeIn animations to settle before measuring
+            setTimeout(drawHighlights, 1200);
+            window.addEventListener("resize", drawHighlights);
+
+            const faviconActive = "/images/favicon-active.svg";
+            const faviconInactive = "/images/favicon-inactive.svg";
+            const favicon = document.getElementById("favicon");
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    favicon.href = faviconInactive;
+                } else {
+                    favicon.href = faviconActive;
+                }
+            });
+        </script>
+    </body>
+</html>

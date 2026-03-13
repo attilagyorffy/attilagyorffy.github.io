@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>npm's Progress Bar Halves Your Install Speed — Attila Györffy</title>
+        <meta
+            name="description"
+            content="Your npm is a noisy, slow mess out of the box. A few lines in ~/.npmrc can shut it up and make it twice as fast."
+        />
+        <meta name="author" content="Attila Györffy" />
+        <link
+            rel="canonical"
+            href="https://www.attilagyorffy.com/blog/npm-progress-bar-halves-your-install-speed/"
+        />
+        <meta
+            property="og:title"
+            content="npm's Progress Bar Halves Your Install Speed"
+        />
+        <meta
+            property="og:description"
+            content="Your npm is a noisy, slow mess out of the box. A few lines in ~/.npmrc can shut it up and make it twice as fast."
+        />
+        <meta property="og:type" content="article" />
+        <meta
+            property="og:url"
+            content="https://www.attilagyorffy.com/blog/npm-progress-bar-halves-your-install-speed/"
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            id="favicon"
+            href="/images/favicon-active.svg"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz@0,8..60;1,8..60&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body>
+        <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+            <filter id="highlighter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.03 0.06" numOctaves="5" seed="2" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </svg>
+        <div class="page page--wide">
+            <nav class="top-bar">
+                <a href="/" class="nav-home">&larr; Home</a>
+                <a href="/blog/" class="nav-writings">&larr; Writings</a>
+            </nav>
+
+            <article itemscope itemtype="https://schema.org/BlogPosting">
+                    <div class="author-col">
+                        <div class="avatar">
+                            <img
+                                src="/images/avatar.jpg"
+                                alt="Attila Györffy"
+                                width="52"
+                                height="52"
+                            />
+                        </div>
+                        <div class="author-meta">
+                            <div class="author-name" itemprop="author">
+                                Attila Györffy
+                            </div>
+                            <div class="author-role">Software Engineer</div>
+                            <div class="post-label">3 min read</div>
+                        </div>
+                    </div>
+                    <div class="title-col">
+                        <h1 itemprop="headline">
+                            npm's Progress Bar Halves Your Install Speed
+                        </h1>
+                        <p class="subtitle">
+                            Because out of the box, npm behaves like a toddler
+                            with a megaphone in a library.
+                        </p>
+                    </div>
+                    <div class="date-col">
+                        <time datetime="2016-06-05" itemprop="datePublished"
+                            >Jun 5, 2016</time
+                        >
+                    </div>
+
+                <div class="post-body" itemprop="articleBody">
+                    <p class="lead">
+                        It has come to my attention that some of you are
+                        just&hellip; running <code>npm</code> as-is. Raw. Out
+                        of the box. Like buying a car and never adjusting the
+                        mirrors. I don't know who needs to hear this, but your
+                        package manager can be told to behave like a proper
+                        UNIX citizen instead of a hyperactive carnival barker
+                        narrating every file it touches.
+                    </p>
+
+                    <p>
+                        What do I mean by that? Well, let me show you my
+                        <code>~/.npmrc</code> configuration, the small file
+                        that separates civilised developers from the animals:
+                    </p>
+
+                    <pre><code>progress=false
+spin=false
+loglevel=error
+init.author.name=Attila Gyorffy
+init.author.email=attila@example.com
+init.author.url=https://attilagyorffy.com
+//registry.npmjs.org/:_password=thisissecret
+//registry.npmjs.org/:username=attilagyorffy
+//registry.npmjs.org/:email=attila@example.com
+//registry.npmjs.org/:always-auth=true</code></pre>
+
+                    <p>
+                        <code>~/.npmrc</code> is loaded and interpreted every
+                        single time you run an <code>npm</code> command. Every.
+                        Single. Time. So you might as well make it do something
+                        useful instead of just sitting there collecting dust
+                        like that gym membership you bought in January.
+                    </p>
+
+                    <h2>The progress bar: a masterclass in self-sabotage</h2>
+
+                    <p>
+                        The first two parameters, <code>spin</code> and
+                        <code>progress</code>, turn off npm's beloved progress
+                        bar. "But I like the progress bar!" you say. Yeah, well,
+                        I like beer, but I don't drink it while operating heavy
+                        machinery. <mark>Turning off the progress bar results in
+                        installs that are roughly twice as fast.</mark> Let that
+                        sink in. The tool that is supposed to tell you how long
+                        things are taking is literally making things take longer.
+                        It's like hiring a bloke to time your 100-metre sprint
+                        and he tackles you at the 50.
+                    </p>
+
+                    <p>
+                        Don't take my word for it. Go read
+                        <a href="https://github.com/npm/npm/issues/11283" target="_blank" rel="noopener noreferrer">the famous GitHub issue</a>
+                        about it. But first, get yourself some popcorn and a
+                        cold drink, because the comment thread is the sort of
+                        beautiful disaster you usually have to pay Netflix for.
+                    </p>
+
+                    <h2>The Rule of Silence, or: shut up, npm</h2>
+
+                    <p>
+                        The <code>loglevel</code> parameter tells npm to be
+                        less noisy. If you believe command-line tools should
+                        follow the Unix Rule of Silence &mdash; when a program
+                        has nothing surprising to say, it should say
+                        nothing &mdash; then this one's for you. Programs
+                        should be unobtrusive. They should do their job and
+                        keep their mouths shut, like a good butler or a
+                        competent plumber.
+                    </p>
+
+                    <p>
+                        Now, setting <code>loglevel=error</code> won't stop npm
+                        from being a little too chatty. It's still going to
+                        mutter things at you like a drunk uncle at Christmas
+                        dinner. But it's an improvement. And here's the truly
+                        beautiful part: even if you set the log level to
+                        <code>silent</code> &mdash; the highest possible level
+                        of "please, for the love of God, stop talking" &mdash;
+                        npm will <em>still</em> report some unnecessary
+                        information. Because of course it will. It's npm. Asking
+                        it to be quiet is like asking a seagull not to steal
+                        your chips.
+                    </p>
+
+                    <h2>The rest: module author business</h2>
+
+                    <p>
+                        The remaining lines in that config are for module
+                        authors. The <code>init.author.*</code> fields save you
+                        from typing your own name every time you run
+                        <code>npm init</code>, which, if you think about it, is
+                        absurd that you'd have to do in the first place. "Who
+                        are you?" asks the tool. Mate, we've been over this. I'm
+                        the same person I was three minutes ago when I ran it for
+                        the last package.
+                    </p>
+
+                    <p>
+                        The registry authentication lines
+                        (<code>_password</code>, <code>username</code>,
+                        <code>email</code>, <code>always-auth</code>) handle
+                        authenticating with the npm registry. Nothing
+                        glamorous, but necessary if you want to publish
+                        packages without npm asking you to prove you exist
+                        every single time.
+                    </p>
+
+                    <h2 class="conclusion">Go forth and configure</h2>
+
+                    <p>
+                        Look, the above isn't exactly a PhD thesis in systems
+                        administration. It's a handful of lines in a dotfile.
+                        But it's the difference between a CLI that respects your
+                        time and one that's actively wasting it while showing
+                        you a pretty animation of itself wasting it.
+                    </p>
+
+                    <p>
+                        Also, have a look at the
+                        <a href="https://docs.npmjs.com/misc/config" target="_blank" rel="noopener noreferrer">full npm config documentation</a>.
+                        There are more knobs to turn than you'd expect, and you
+                        might find something else worth tweaking. It's a bit
+                        like rummaging through the settings menu on your telly
+                        &mdash; mostly pointless, but every now and then you
+                        find a gem that makes you wonder why it wasn't on by
+                        default.
+                    </p>
+
+                    <ul class="takeaway">
+                        <li>
+                            Turn off <code>progress</code> and
+                            <code>spin</code> for dramatically faster installs
+                        </li>
+                        <li>
+                            Set <code>loglevel=error</code> to make npm behave
+                            like a respectable UNIX tool
+                        </li>
+                        <li>
+                            Pre-fill <code>init.author.*</code> so you never
+                            have to introduce yourself to your own computer
+                            again
+                        </li>
+                    </ul>
+
+                    <p>
+                        Your <code>~/.npmrc</code> is right there, waiting.
+                        It takes thirty seconds to configure and it'll save you
+                        from years of watching a progress bar that's actively
+                        sabotaging you. If that's not a strong enough sales
+                        pitch, I don't know what to tell you. Maybe you enjoy
+                        suffering. Maybe you think the progress bar is pretty.
+                        Either way, don't come crying to me when your
+                        <code>npm install</code> takes twice as long as it
+                        should because a little animated bar is chewing through
+                        your CPU cycles for absolutely no reason.
+                    </p>
+                </div>
+
+                <footer class="post-footer">
+                    <p>
+                        If you've made it this far and you're still
+                        running npm without an <code>.npmrc</code>, I
+                        admire your commitment to chaos. Come find me
+                        on
+                        <a href="https://bsky.app/profile/attilagyorffy.com" target="_blank" rel="noopener noreferrer">Bluesky</a>,
+                        <a href="https://fosstodon.org/@attila" target="_blank" rel="noopener noreferrer">Mastodon</a>,
+                        <a href="https://twitter.com/attilagyorffy" target="_blank" rel="noopener noreferrer"><s>Twitter</s>&nbsp;X</a>,
+                        and technically
+                        <a href="https://linkedin.com/in/attilagyorffy" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
+                        though discussing npm configuration on LinkedIn
+                        feels like bringing a keg to a board meeting.
+                        The code is on
+                        <a href="https://github.com/attilagyorffy" target="_blank" rel="noopener noreferrer">GitHub</a>,
+                        where my progress bars are mercifully silent.
+                    </p>
+                </footer>
+            </article>
+
+            <aside class="sidebar-label" aria-hidden="true">
+                <span>Code</span>
+                <span class="sidebar-arrow">&darr;</span>
+            </aside>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+
+            // Draw per-line highlight rects behind <mark> elements
+            function drawHighlights() {
+                document.querySelectorAll(".highlight-stroke").forEach(el => el.remove());
+                document.querySelectorAll("mark").forEach((mark) => {
+                    const p = mark.closest("p");
+                    if (!p) return;
+                    if (getComputedStyle(p).position === "static") {
+                        p.style.position = "relative";
+                    }
+                    const rects = mark.getClientRects();
+                    const pRect = p.getBoundingClientRect();
+                    for (const r of rects) {
+                        const stroke = document.createElement("span");
+                        stroke.className = "highlight-stroke";
+                        stroke.style.top = (r.top - pRect.top - 1) + "px";
+                        stroke.style.left = (r.left - pRect.left - 5) + "px";
+                        stroke.style.width = (r.width + 10) + "px";
+                        stroke.style.height = (r.height + 2) + "px";
+                        p.appendChild(stroke);
+                    }
+                });
+            }
+            // Wait for fadeIn animations to settle before measuring
+            setTimeout(drawHighlights, 1200);
+            window.addEventListener("resize", drawHighlights);
+
+            const faviconActive = "/images/favicon-active.svg";
+            const faviconInactive = "/images/favicon-inactive.svg";
+            const favicon = document.getElementById("favicon");
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    favicon.href = faviconInactive;
+                } else {
+                    favicon.href = faviconActive;
+                }
+            });
+        </script>
+    </body>
+</html>

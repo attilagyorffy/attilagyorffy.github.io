@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Why Your Ember Promises Fail Silently — Attila Györffy</title>
+        <meta
+            name="description"
+            content="Ember's RSVP promise library swallows errors by default. A five-line initializer surfaces them in the console and saves you hours of confused debugging."
+        />
+        <meta name="author" content="Attila Györffy" />
+        <link
+            rel="canonical"
+            href="https://www.attilagyorffy.com/blog/why-your-ember-promises-fail-silently/"
+        />
+        <meta
+            property="og:title"
+            content="Why Your Ember Promises Fail Silently"
+        />
+        <meta
+            property="og:description"
+            content="Ember's RSVP promise library swallows errors by default. A five-line initializer surfaces them in the console and saves you hours of confused debugging."
+        />
+        <meta property="og:type" content="article" />
+        <meta
+            property="og:url"
+            content="https://www.attilagyorffy.com/blog/why-your-ember-promises-fail-silently/"
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            id="favicon"
+            href="/images/favicon-active.svg"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz@0,8..60;1,8..60&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body>
+        <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+            <filter id="highlighter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.03 0.06" numOctaves="5" seed="2" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </svg>
+        <div class="page page--wide">
+            <nav class="top-bar">
+                <a href="/" class="nav-home">&larr; Home</a>
+                <a href="/blog/" class="nav-writings">&larr; Writings</a>
+            </nav>
+
+            <article itemscope itemtype="https://schema.org/BlogPosting">
+                    <div class="author-col">
+                        <div class="avatar">
+                            <img
+                                src="/images/avatar.jpg"
+                                alt="Attila Györffy"
+                                width="52"
+                                height="52"
+                            />
+                        </div>
+                        <div class="author-meta">
+                            <div class="author-name" itemprop="author">
+                                Attila Györffy
+                            </div>
+                            <div class="author-role">Software Engineer</div>
+                            <div class="post-label">3 min read</div>
+                        </div>
+                    </div>
+                    <div class="title-col">
+                        <h1 itemprop="headline">
+                            Why Your Ember Promises Fail Silently
+                        </h1>
+                        <p class="subtitle">
+                            RSVP swallows unhandled rejections by default.
+                            A five-line initializer fixes that.
+                        </p>
+                    </div>
+                    <div class="date-col">
+                        <time datetime="2014-08-07" itemprop="datePublished"
+                            >Aug 7, 2014</time
+                        >
+                    </div>
+
+                <div class="post-body" itemprop="articleBody">
+                    <p class="lead">
+                        So you write a model hook. You fetch some data. It
+                        works beautifully. You feel like a genius. Then
+                        something breaks &mdash; a dodgy response, a missing
+                        property, an exception buried six layers deep in a
+                        <code>then</code> chain &mdash; and your Ember app
+                        just… does nothing. No error. No stack trace. The page
+                        sits there half-rendered like a website having an
+                        existential crisis. Brilliant.
+                    </p>
+
+                    <p>
+                        The villain here is
+                        <a href="https://github.com/tildeio/rsvp.js/" target="_blank" rel="noopener noreferrer">RSVP</a>,
+                        the promise library Ember uses under the hood. RSVP
+                        dutifully follows the Promises/A+ spec, which &mdash;
+                        in its infinite wisdom &mdash; says that if a promise
+                        is rejected and nobody's listening, the error should
+                        just be quietly thrown in the bin. Not logged. Not
+                        surfaced. Binned. That's not a bug, that's the spec
+                        working as designed: <mark>unhandled
+                        rejections vanish into the void</mark>.
+                    </p>
+
+                    <p>
+                        What this means in the real world is that any uncaught
+                        exception inside a promise chain &mdash; a typo, a null
+                        reference, a failed assertion &mdash; produces
+                        absolutely zero output. Nothing. You're flying blind.
+                        So you do what any rational person does: you start
+                        plastering <code>console.log</code> statements
+                        everywhere like crime scene tape, toggling breakpoints,
+                        muttering profanities, and slowly losing the will to
+                        live while trying to figure out which promise ate your
+                        error for lunch. You can easily burn an hour on this
+                        before you realize you've been debugging the wrong
+                        bloody layer the entire time.
+                    </p>
+
+                    <h2>The fix</h2>
+
+                    <p>
+                        Here's the thing though &mdash; RSVP actually has a
+                        global event hook for exactly this situation. It's been
+                        sitting there the whole time, waiting for you to notice
+                        it, like a fire extinguisher you walk past every day.
+                        You subscribe to an <code>'error'</code> event that
+                        fires whenever a promise is rejected and nobody catches
+                        it. Stick it in an Ember initializer, and suddenly every
+                        swallowed error shows up in your console like it always
+                        should have:
+                    </p>
+
+                    <pre><code class="language-javascript">// app/initializers/rsvp-error-reporting.js
+
+import Ember from 'ember';
+
+export default {
+  name: 'ember-rsvp-error-reporting',
+
+  initialize: function (container, application) {
+    Ember.RSVP.on('error', function(reason) {
+      console.group('Ember.RSVP error:')
+      console.info(reason);
+      console.groupEnd();
+    });
+  }
+};</code></pre>
+
+                    <p>
+                        That's it. That's the whole thing. The initializer runs
+                        once when your Ember app boots, calls
+                        <code>Ember.RSVP.on('error', ...)</code> to register a
+                        global listener, and then just sits there doing its job
+                        like a responsible adult. Whenever a promise rejects
+                        without a handler, RSVP fires the callback with the
+                        rejection reason &mdash; typically an <code>Error</code>
+                        object with a message and stack trace. The
+                        <code>console.group</code> wrapper keeps it all neatly
+                        collapsed in DevTools so your console doesn't look like
+                        someone vomited stack traces all over it.
+                    </p>
+
+                    <p>
+                        Without this fix, a failing API call in a route's
+                        <code>model</code> hook gives you a blank page and a
+                        spotless console &mdash; the debugging equivalent of a
+                        crime scene that's been wiped clean. With it, you get a
+                        grouped log entry with the full error and stack trace
+                        pointing straight at the problem like a helpful witness.
+                        <mark>The difference is between spending five
+                        seconds reading an error message and spending an hour
+                        guessing.</mark>
+                    </p>
+
+                    <p>
+                        Drop this file into any Ember CLI project, forget it
+                        exists, and get on with your life. Honestly, the fact
+                        that this isn't in every Ember app's boilerplate from
+                        day one is a minor tragedy of the JavaScript ecosystem.
+                    </p>
+
+                    <ul class="takeaway">
+                        <li>Register an <code>Ember.RSVP.on('error', ...)</code> listener in an initializer</li>
+                        <li>Every swallowed promise rejection becomes immediately visible in the console</li>
+                        <li>Add this to every Ember project from day one — it costs nothing and saves hours</li>
+                    </ul>
+                </div>
+
+                <footer class="post-footer">
+                    <p>
+                        Got opinions on promises, error handling, or Ember in
+                        general? Come find me on
+                        <a href="https://bsky.app/profile/attilagyorffy.com" target="_blank" rel="noopener noreferrer">Bluesky</a>,
+                        <a href="https://fosstodon.org/@attila" target="_blank" rel="noopener noreferrer">Mastodon</a>,
+                        <a href="https://twitter.com/attilagyorffy" target="_blank" rel="noopener noreferrer"><s>Twitter</s>&nbsp;X</a>,
+                        or
+                        <a href="https://linkedin.com/in/attilagyorffy" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+                        You can also browse my other projects on
+                        <a href="https://github.com/attilagyorffy" target="_blank" rel="noopener noreferrer">GitHub</a>.
+                    </p>
+                </footer>
+            </article>
+
+            <aside class="sidebar-label" aria-hidden="true">
+                <span>Code</span>
+                <span class="sidebar-arrow">&darr;</span>
+            </aside>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+        <script>
+            hljs.highlightAll();
+
+            // Draw per-line highlight rects behind <mark> elements
+            function drawHighlights() {
+                document.querySelectorAll(".highlight-stroke").forEach(el => el.remove());
+                document.querySelectorAll("mark").forEach((mark) => {
+                    const p = mark.closest("p");
+                    if (!p) return;
+                    if (getComputedStyle(p).position === "static") {
+                        p.style.position = "relative";
+                    }
+                    const rects = mark.getClientRects();
+                    const pRect = p.getBoundingClientRect();
+                    for (const r of rects) {
+                        const stroke = document.createElement("span");
+                        stroke.className = "highlight-stroke";
+                        stroke.style.top = (r.top - pRect.top - 1) + "px";
+                        stroke.style.left = (r.left - pRect.left - 5) + "px";
+                        stroke.style.width = (r.width + 10) + "px";
+                        stroke.style.height = (r.height + 2) + "px";
+                        p.appendChild(stroke);
+                    }
+                });
+            }
+            // Wait for fadeIn animations to settle before measuring
+            setTimeout(drawHighlights, 1200);
+            window.addEventListener("resize", drawHighlights);
+
+            const faviconActive = "/images/favicon-active.svg";
+            const faviconInactive = "/images/favicon-inactive.svg";
+            const favicon = document.getElementById("favicon");
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    favicon.href = faviconInactive;
+                } else {
+                    favicon.href = faviconActive;
+                }
+            });
+        </script>
+    </body>
+</html>

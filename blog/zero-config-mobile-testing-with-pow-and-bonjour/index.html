@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Zero-Config Mobile Testing with Pow and Bonjour — Attila Györffy</title>
+        <meta
+            name="description"
+            content="pow-mDNS uses Bonjour to make your Pow apps accessible from phones, tablets, and other computers on the local network -- no IP addresses, no extra servers."
+        />
+        <meta name="author" content="Attila Györffy" />
+        <link
+            rel="canonical"
+            href="https://www.attilagyorffy.com/blog/zero-config-mobile-testing-with-pow-and-bonjour/"
+        />
+        <meta
+            property="og:title"
+            content="Zero-Config Mobile Testing with Pow and Bonjour"
+        />
+        <meta
+            property="og:description"
+            content="pow-mDNS uses Bonjour to make your Pow apps accessible from phones, tablets, and other computers on the local network -- no IP addresses, no extra servers."
+        />
+        <meta property="og:type" content="article" />
+        <meta
+            property="og:url"
+            content="https://www.attilagyorffy.com/blog/zero-config-mobile-testing-with-pow-and-bonjour/"
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            id="favicon"
+            href="/images/favicon-active.svg"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz@0,8..60;1,8..60&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body>
+        <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+            <filter id="highlighter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.03 0.06" numOctaves="5" seed="2" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </svg>
+        <div class="page page--wide">
+            <nav class="top-bar">
+                <a href="/" class="nav-home">&larr; Home</a>
+                <a href="/blog/" class="nav-writings">&larr; Writings</a>
+            </nav>
+
+            <article itemscope itemtype="https://schema.org/BlogPosting">
+                    <div class="author-col">
+                        <div class="avatar">
+                            <img
+                                src="/images/avatar.jpg"
+                                alt="Attila Györffy"
+                                width="52"
+                                height="52"
+                            />
+                        </div>
+                        <div class="author-meta">
+                            <div class="author-name" itemprop="author">
+                                Attila Györffy
+                            </div>
+                            <div class="author-role">Software Engineer</div>
+                            <div class="post-label">5 min read</div>
+                        </div>
+                    </div>
+                    <div class="title-col">
+                        <h1 itemprop="headline">
+                            Zero-Config Mobile Testing with Pow and Bonjour
+                        </h1>
+                        <p class="subtitle">
+                            pow-mDNS uses Bonjour to make your Pow apps
+                            accessible from phones, tablets, and other
+                            computers on the local network -- no IP addresses,
+                            no extra servers.
+                        </p>
+                    </div>
+                    <div class="date-col">
+                        <time datetime="2014-12-11" itemprop="datePublished"
+                            >Dec 11, 2014</time
+                        >
+                    </div>
+
+                <div class="post-body" itemprop="articleBody">
+                    <p class="lead">
+                        Here's how testing on real devices usually goes: you
+                        look up your IP address, forget it immediately, type it
+                        wrong twice, spin up a second server on port 3000, and
+                        then your phone still can't see anything because the
+                        universe hates you. I got tired of this ritual, so I
+                        built <strong>pow-mDNS</strong>. Install it with
+                        <code>npm install -g pow-mdns</code>, and every Pow app
+                        on your machine becomes visible to any phone, tablet, or
+                        computer on the same network. Zero configuration. Like
+                        magic, except it actually works.
+                    </p>
+
+                    <h2>The problem</h2>
+
+                    <p>
+                        If you've ever touched a Rails app, you probably know
+                        Pow -- the beautifully lazy zero-config Rack server
+                        where you symlink your app into
+                        <code>$HOME/.pow/</code> and suddenly it's available at
+                        a <code>.dev</code> domain. No running
+                        <code>rails server</code>, no port numbers, no
+                        nonsense. You symlink it and it works. It's the closest
+                        thing to sorcery that Ruby developers have ever
+                        experienced.
+                    </p>
+
+                    <p>
+                        Here's the catch, though -- and there's always a catch.
+                        Pow's magic relies on a local DNS resolver that routes
+                        everything to <code>127.0.0.1</code>. That resolver
+                        only exists on your machine. So those lovely
+                        <code>.dev</code> domains? Completely invisible to
+                        everything else on the network. Your iPhone can't see
+                        them. Your iPad can't see them. Your colleague's laptop
+                        certainly can't see them. It's like throwing a party
+                        and forgetting to send out the address.
+                    </p>
+
+                    <p>
+                        Basecamp's
+                        <a href="http://xip.io/" target="_blank" rel="noopener noreferrer">xip.io</a>
+                        was one workaround: a clever public wildcard DNS
+                        service that lets you hit
+                        <code>myapp.192.168.1.107.xip.io</code> from any
+                        device on the same network. And look, it works. But you
+                        need to know your current IP address, which changes
+                        every time you switch networks or your DHCP lease
+                        decides to renew itself. So now you're running
+                        <code>ifconfig</code> every twenty minutes like some
+                        kind of network archaeologist. That's not zero-config.
+                        That's just config with extra steps.
+                    </p>
+
+                    <h2>How pow-mDNS solves it</h2>
+
+                    <p>
+                        The answer was sitting right under our noses the whole
+                        time: mDNS -- multicast DNS, the protocol behind
+                        Apple's
+                        <a href="https://developer.apple.com/bonjour/index.html" target="_blank" rel="noopener noreferrer">Bonjour</a>.
+                        mDNS resolves hostnames to IP addresses on local
+                        networks without a dedicated name server. It's the same
+                        technology that lets your Mac magically find printers,
+                        AirPlay devices, and other computers without you lifting
+                        a finger. And if it can find a printer -- which,
+                        frankly, is a miracle every time -- there's no reason it
+                        can't advertise a web app.
+                    </p>
+
+                    <p>
+                        pow-mDNS uses Bonjour to advertise each of your Pow
+                        apps as an HTTP service on the local network. Combined
+                        with xip.io for the actual DNS resolution, any
+                        Bonjour-capable device on the network can discover and
+                        access your apps without you ever typing an IP address.
+                        The IP lookup, the xip.io domain construction -- all
+                        that tedious rubbish you were doing by hand? pow-mDNS
+                        does it for you. You're welcome.
+                    </p>
+
+                    <p>
+                        Look, I'm not going to stand here and pretend I
+                        reinvented networking. Most of the heavy lifting belongs
+                        to Pow, xip.io, and mDNS. What pow-mDNS does is wire
+                        them together into a single command so that <mark>the developer experience
+                        actually matches the promise of zero-configuration</mark>.
+                        Because apparently someone had to do the plumbing, and
+                        that someone was me.
+                    </p>
+
+                    <h2>Why not use existing tools?</h2>
+
+                    <p>
+                        Yeah, tools like GhostLab and Adobe Edge Inspect exist.
+                        They solve the same problem -- synchronized cross-device
+                        testing -- and they work fine for a lot of people. But
+                        they're closed-source commercial products that want your
+                        money, and some of them need a proprietary agent
+                        installed on each device, which is roughly as fun as a
+                        tax audit. I wanted something open source, stitched
+                        together from freely available parts (Pow and xip.io
+                        are both open source), that just bloody works out of
+                        the box. No license key. No phoning home. No guilt.
+                    </p>
+
+                    <h2>What comes next</h2>
+
+                    <p>
+                        pow-mDNS is one piece of a larger toolkit, and now that
+                        the hardest problem (getting off the couch to build it)
+                        is solved, here's what's next:
+                    </p>
+
+                    <ul>
+                        <li>
+                            <strong>Baking LiveReload in</strong> — automatically
+                            refreshing browsers on all connected devices when files
+                            change
+                        </li>
+                        <li>
+                            <strong>Selective advertising</strong> — choosing which
+                            Pow applications to advertise on the network
+                        </li>
+                        <li>
+                            <strong>Creating an OS X menu bar app</strong> — a
+                            native interface for managing pow-mDNS
+                        </li>
+                        <li>
+                            <strong>Decentralised access</strong> — enabling access
+                            to applications across different networks
+                        </li>
+                    </ul>
+
+                    <p>
+                        The source is on
+                        <a href="https://github.com/liquid/pow-mdns" target="_blank" rel="noopener noreferrer">GitHub</a>.
+                        Install it, point your phone at the network, and for
+                        the love of all that is holy, stop memorizing IP
+                        addresses. Life's too short.
+                    </p>
+
+                    <ul class="takeaway">
+                        <li>Install with <code>npm install -g pow-mdns</code> to advertise Pow apps via Bonjour</li>
+                        <li>Any device on the same network can discover and access your apps without IP addresses</li>
+                        <li>Combine Pow, xip.io, and mDNS into a single zero-config workflow</li>
+                    </ul>
+                </div>
+
+                <footer class="post-footer">
+                    <p>
+                        If you've read this far and you're as excited about
+                        zero-configuration tooling as I am, let's connect.
+                        I'm on
+                        <a href="https://bsky.app/profile/attilagyorffy.com" target="_blank" rel="noopener noreferrer">Bluesky</a>,
+                        <a href="https://fosstodon.org/@attila" target="_blank" rel="noopener noreferrer">Mastodon</a>,
+                        <a href="https://twitter.com/attilagyorffy" target="_blank" rel="noopener noreferrer"><s>Twitter</s>&nbsp;X</a>,
+                        and occasionally
+                        <a href="https://linkedin.com/in/attilagyorffy" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+                        You can also find pow-mDNS and my other projects on
+                        <a href="https://github.com/attilagyorffy" target="_blank" rel="noopener noreferrer">GitHub</a>,
+                        where I continue to build tools that
+                        Just Work™.
+                    </p>
+                </footer>
+            </article>
+        </div>
+
+        <script>
+            // Draw per-line highlight rects behind <mark> elements
+            function drawHighlights() {
+                document.querySelectorAll(".highlight-stroke").forEach(el => el.remove());
+                document.querySelectorAll("mark").forEach((mark) => {
+                    const p = mark.closest("p");
+                    if (!p) return;
+                    if (getComputedStyle(p).position === "static") {
+                        p.style.position = "relative";
+                    }
+                    const rects = mark.getClientRects();
+                    const pRect = p.getBoundingClientRect();
+                    for (const r of rects) {
+                        const stroke = document.createElement("span");
+                        stroke.className = "highlight-stroke";
+                        stroke.style.top = (r.top - pRect.top - 1) + "px";
+                        stroke.style.left = (r.left - pRect.left - 5) + "px";
+                        stroke.style.width = (r.width + 10) + "px";
+                        stroke.style.height = (r.height + 2) + "px";
+                        p.appendChild(stroke);
+                    }
+                });
+            }
+            setTimeout(drawHighlights, 1200);
+            window.addEventListener("resize", drawHighlights);
+
+            const faviconActive = "/images/favicon-active.svg";
+            const faviconInactive = "/images/favicon-inactive.svg";
+            const favicon = document.getElementById("favicon");
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    favicon.href = faviconInactive;
+                } else {
+                    favicon.href = faviconActive;
+                }
+            });
+        </script>
+    </body>
+</html>

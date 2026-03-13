@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Testing ActiveModel::Serializer with RSpec — Attila Györffy</title>
+        <meta
+            name="description"
+            content="How to unit-test ActiveModel::Serializer objects with RSpec now that the adapter layer has changed how serialization works."
+        />
+        <meta name="author" content="Attila Györffy" />
+        <link
+            rel="canonical"
+            href="https://www.attilagyorffy.com/blog/testing-activemodel-serializer-with-rspec/"
+        />
+        <meta
+            property="og:title"
+            content="Testing ActiveModel::Serializer with RSpec"
+        />
+        <meta
+            property="og:description"
+            content="How to unit-test ActiveModel::Serializer objects with RSpec now that the adapter layer has changed how serialization works."
+        />
+        <meta property="og:type" content="article" />
+        <meta
+            property="og:url"
+            content="https://www.attilagyorffy.com/blog/testing-activemodel-serializer-with-rspec/"
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            id="favicon"
+            href="/images/favicon-active.svg"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz@0,8..60;1,8..60&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body>
+        <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+            <filter id="highlighter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.03 0.06" numOctaves="5" seed="2" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </svg>
+        <div class="page page--wide">
+            <nav class="top-bar">
+                <a href="/" class="nav-home">&larr; Home</a>
+                <a href="/blog/" class="nav-writings">&larr; Writings</a>
+            </nav>
+
+            <article itemscope itemtype="https://schema.org/BlogPosting">
+                    <div class="author-col">
+                        <div class="avatar">
+                            <img
+                                src="/images/avatar.jpg"
+                                alt="Attila Györffy"
+                                width="52"
+                                height="52"
+                            />
+                        </div>
+                        <div class="author-meta">
+                            <div class="author-name" itemprop="author">
+                                Attila Györffy
+                            </div>
+                            <div class="author-role">Software Engineer</div>
+                            <div class="post-label">3 min read</div>
+                        </div>
+                    </div>
+                    <div class="title-col">
+                        <h1 itemprop="headline">
+                            Testing ActiveModel::Serializer with RSpec
+                        </h1>
+                        <p class="subtitle">
+                            How to unit-test ActiveModel::Serializer objects
+                            with RSpec now that the adapter layer has changed
+                            how serialization works.
+                        </p>
+                    </div>
+                    <div class="date-col">
+                        <time datetime="2015-01-24" itemprop="datePublished"
+                            >Jan 24, 2015</time
+                        >
+                    </div>
+
+                <div class="post-body" itemprop="articleBody">
+                    <p class="lead">
+                        Nobody tests their serializers. Be honest. You've got
+                        model specs, controller specs, maybe even some request
+                        specs if you're feeling virtuous — but serializers? They
+                        just sit there between your models and your API, quietly
+                        mangling data, and <mark>when they break the failure
+                        mode is not a 500 error but a subtly wrong JSON payload</mark>
+                        that breezes past every test you've written and blows up
+                        in a client's face on a Friday afternoon. Testing them
+                        in isolation catches that before you ruin your weekend.
+                    </p>
+
+                    <p>
+                        So the brilliant minds behind
+                        <a href="https://github.com/rails-api/active_model_serializers" target="_blank" rel="noopener noreferrer">ActiveModel::Serializer</a>
+                        decided what we really needed was another abstraction.
+                        Because why have one layer when you can have two? Enter
+                        the Adapter. Now a serializer defines <em>what</em> gets
+                        serialized (the attributes on the model), while an
+                        adapter controls <em>how</em> it gets serialized. Want a
+                        flat JSON response for one endpoint and a
+                        <a href="http://jsonapi.org/" target="_blank" rel="noopener noreferrer">JSONAPI</a>-compliant
+                        envelope for another? Same serializer, different adapter.
+                        It's actually a decent idea, which is rare enough in the
+                        Ruby ecosystem that it deserves a standing ovation.
+                    </p>
+
+                    <p>
+                        The catch — because there's always a catch — is that
+                        <code>ActionController::Serialization</code> no longer
+                        calls <code>to_json</code> on serializer objects directly.
+                        That'd be too simple. Instead, serializers get wrapped in
+                        an adapter via
+                        <code>ActiveModel::Serializer::Adapter.create</code>,
+                        which takes a serializer instance and returns whatever
+                        adapter your config says you want
+                        (<code>ActiveModel::Serializer.config.adapter</code> --
+                        in my case, <code>:json_api</code>, because I enjoy pain).
+                    </p>
+
+                    <p>
+                        Here's what this whole song and dance looks like when
+                        you actually fire up a console:
+                    </p>
+
+                    <pre><code class="language-ruby">profile = Profile.first
+# => #<Profile _id: 544d2cc466756b966b010000, name: "Liquid", permalink: "liquid">
+
+serializer = ProfileSerializer.new(profile)
+# => #<ProfileSerializer:0x007fbeda323de0 @_routes=nil, @object=#<Profile _id: 544d2cc466756b966b010000, name: "Liquid", permalink: "liquid">, @root=false, @meta=nil, @meta_key=nil>
+
+adapter = ActiveModel::Serializer::Adapter.create(serializer)
+# => #<ActiveModel::Serializer::Adapter::JsonApi:0x007fbedd8c3cc0 @serializer=#<ProfileSerializer:0x007fbeda323de0 @_routes=nil, @object=#<Profile _id: 544d2cc466756b966b010000, name: "Liquid", permalink: "liquid">, @root=true, @meta=nil, @meta_key=nil>, @options={}, @hash={}, @top={}, @fieldset=nil>
+
+adapter.as_json
+# => {:profiles=>{:id=>"liquid", :name=>"Liquid"}</code></pre>
+
+                    <p>
+                        So if you had nice, tidy serializer specs that just
+                        called <code>to_json</code> and went home early —
+                        congratulations, they're all lying to you now. You need
+                        to go through the adapter layer to test the actual output
+                        your API produces, or you're essentially testing a thing
+                        that doesn't exist.
+                    </p>
+
+                    <p>Right. So given a serializer like this:</p>
+
+                    <pre><code class="language-ruby">class ProfileSerializer < ActiveModel::Serializer
+
+  attributes :id, :name
+
+  def id
+    object.permalink
+  end
+end</code></pre>
+
+                    <p>
+                        Here's the spec that actually works. It wraps the
+                        serializer in an adapter — exactly the way Rails does it
+                        — and asserts against the resulting JSON. Full
+                        serialization pipeline, no controller, no routes, no
+                        mucking about. Just the truth:
+                    </p>
+
+                    <pre><code class="language-ruby">require 'rails_helper'
+
+RSpec.describe ProfileSerializer, :type => :serializer do
+
+  context 'Individual Resource Representation' do
+    let(:resource) { build(:profile) }
+
+    let(:serializer) { ProfileSerializer.new(resource) }
+    let(:serialization) { ActiveModel::Serializer::Adapter.create(serializer) }
+
+    subject do
+      # I'm using a JSONAPI adapter, which means my profile is wrapped in a
+      # top level `profiles` object.
+      JSON.parse(serialization.to_json)['profiles']
+    end
+
+    it 'has an id that matches #permalink' do
+      expect(subject['id']).to eql(resource.permalink)
+    end
+
+    it 'has a name' do
+      expect(subject['name']).to eql(resource.name)
+    end
+  end
+end</code></pre>
+
+                    <p>
+                        Why bother? Because these specs are stupidly fast — we're
+                        talking milliseconds — and each one <mark>catches
+                        attribute-mapping bugs that controller tests gloss
+                        over</mark>. They'll scream at you the second someone
+                        adds a field to the model and conveniently forgets to
+                        expose it in the API. Which is everyone. Everyone forgets.
+                        For more on the adapter rewrite and its glorious
+                        indirection, see the
+                        <a href="http://github.com/rails-api/active_model_serializers" target="_blank" rel="noopener noreferrer">ActiveModel::Serializers project on GitHub</a>.
+                    </p>
+
+                    <ul class="takeaway">
+                        <li>Wrap serializers in <code>ActiveModel::Serializer::Adapter.create</code> to test the actual output your API produces</li>
+                        <li>Serializer specs run in milliseconds and catch attribute-mapping bugs that controller tests miss</li>
+                        <li>Always test through the adapter layer — calling <code>to_json</code> directly no longer matches what the controller sends</li>
+                    </ul>
+                </div>
+
+                <footer class="post-footer">
+                    <p>
+                        If you've read this far and have opinions on testing
+                        serializers, I'd be glad to hear them. I'm on
+                        <a href="https://bsky.app/profile/attilagyorffy.com" target="_blank" rel="noopener noreferrer">Bluesky</a>,
+                        <a href="https://fosstodon.org/@attila" target="_blank" rel="noopener noreferrer">Mastodon</a>,
+                        <a href="https://twitter.com/attilagyorffy" target="_blank" rel="noopener noreferrer"><s>Twitter</s>&nbsp;X</a>,
+                        and nominally on
+                        <a href="https://linkedin.com/in/attilagyorffy" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
+                        though discussing RSpec edge cases there feels
+                        like wearing a suit to a hackathon. You can also
+                        find my projects on
+                        <a href="https://github.com/attilagyorffy" target="_blank" rel="noopener noreferrer">GitHub</a>,
+                        where the specs always pass. Eventually.
+                    </p>
+                </footer>
+            </article>
+
+            <aside class="sidebar-label" aria-hidden="true">
+                <span>Code</span>
+                <span class="sidebar-arrow">&darr;</span>
+            </aside>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/ruby.min.js"></script>
+        <script>
+            hljs.highlightAll();
+
+            // Draw per-line highlight rects behind <mark> elements
+            function drawHighlights() {
+                document.querySelectorAll(".highlight-stroke").forEach(el => el.remove());
+                document.querySelectorAll("mark").forEach((mark) => {
+                    const p = mark.closest("p");
+                    if (!p) return;
+                    if (getComputedStyle(p).position === "static") {
+                        p.style.position = "relative";
+                    }
+                    const rects = mark.getClientRects();
+                    const pRect = p.getBoundingClientRect();
+                    for (const r of rects) {
+                        const stroke = document.createElement("span");
+                        stroke.className = "highlight-stroke";
+                        stroke.style.top = (r.top - pRect.top - 1) + "px";
+                        stroke.style.left = (r.left - pRect.left - 5) + "px";
+                        stroke.style.width = (r.width + 10) + "px";
+                        stroke.style.height = (r.height + 2) + "px";
+                        p.appendChild(stroke);
+                    }
+                });
+            }
+            // Wait for fadeIn animations to settle before measuring
+            setTimeout(drawHighlights, 1200);
+            window.addEventListener("resize", drawHighlights);
+
+            const faviconActive = "/images/favicon-active.svg";
+            const faviconInactive = "/images/favicon-inactive.svg";
+            const favicon = document.getElementById("favicon");
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    favicon.href = faviconInactive;
+                } else {
+                    favicon.href = faviconActive;
+                }
+            });
+        </script>
+    </body>
+</html>

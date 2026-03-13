@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Run the W3C Validator Locally with Docker — Attila Györffy</title>
+        <meta
+            name="description"
+            content="The W3C markup validator is indispensable, but depending on a remote service for your test suite is fragile. Run it locally in a Docker container instead."
+        />
+        <meta name="author" content="Attila Györffy" />
+        <link
+            rel="canonical"
+            href="https://www.attilagyorffy.com/blog/run-the-w3c-validator-locally-with-docker/"
+        />
+        <meta
+            property="og:title"
+            content="Run the W3C Validator Locally with Docker"
+        />
+        <meta
+            property="og:description"
+            content="The W3C markup validator is indispensable, but depending on a remote service for your test suite is fragile. Run it locally in a Docker container instead."
+        />
+        <meta property="og:type" content="article" />
+        <meta
+            property="og:url"
+            content="https://www.attilagyorffy.com/blog/run-the-w3c-validator-locally-with-docker/"
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            id="favicon"
+            href="/images/favicon-active.svg"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz@0,8..60;1,8..60&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body>
+        <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+            <filter id="highlighter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.03 0.06" numOctaves="5" seed="2" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </svg>
+        <div class="page page--wide">
+            <nav class="top-bar">
+                <a href="/" class="nav-home">&larr; Home</a>
+                <a href="/blog/" class="nav-writings">&larr; Writings</a>
+            </nav>
+
+            <article itemscope itemtype="https://schema.org/BlogPosting">
+                    <div class="author-col">
+                        <div class="avatar">
+                            <img
+                                src="/images/avatar.jpg"
+                                alt="Attila Györffy"
+                                width="52"
+                                height="52"
+                            />
+                        </div>
+                        <div class="author-meta">
+                            <div class="author-name" itemprop="author">
+                                Attila Györffy
+                            </div>
+                            <div class="author-role">Software Engineer</div>
+                            <div class="post-label">3 min read</div>
+                        </div>
+                    </div>
+                    <div class="title-col">
+                        <h1 itemprop="headline">
+                            Run the W3C Validator Locally with Docker
+                        </h1>
+                        <p class="subtitle">
+                            The W3C markup validator is indispensable, but
+                            depending on a remote service for your test suite
+                            is fragile. Run it locally in a Docker container
+                            instead.
+                        </p>
+                    </div>
+                    <div class="date-col">
+                        <time datetime="2016-01-06" itemprop="datePublished"
+                            >Jan 6, 2016</time
+                        >
+                    </div>
+
+                <div class="post-body" itemprop="articleBody">
+                    <p class="lead">
+                        Browsers are enablers. They look at your mangled
+                        nightmare of a document, quietly fix it behind your
+                        back, and render something that looks close enough.
+                        Not a word of complaint. Which is exactly why <mark>invalid HTML tends to
+                        hide real bugs</mark>: forms that silently bin your
+                        users' data, nesting so broken it looks fine in Chrome
+                        but implodes in Safari, unclosed tags that swallow
+                        entire sections on mobile. If your markup doesn't
+                        validate, something is wrong, and you really want
+                        to find that out in your test suite, not when a
+                        customer emails you a screenshot at 2am.
+                    </p>
+
+                    <p>
+                        In the Rails world, the
+                        <a href="https://github.com/unboxed/be_valid_asset" target="_blank" rel="noopener noreferrer"><code>be_valid_asset</code></a>
+                        gem does the right thing here: it ships your rendered
+                        markup off to the official W3C validator and fails your
+                        spec if it comes back dodgy. Brilliant idea, one tiny
+                        problem: <mark>it depends
+                        on a live internet connection to a remote service you
+                        do not control</mark>. So you're on a train, or a coffee
+                        shop with Wi-Fi held together by prayers, or a plane
+                        where the internet costs twelve dollars and doesn't
+                        actually work, and suddenly your entire test suite is
+                        red for reasons that have absolutely nothing to do with
+                        your code. Lovely.
+                    </p>
+
+                    <p>
+                        Now, the W3C Validator Service
+                        <a href="https://validator.w3.org/docs/install.html" target="_blank" rel="noopener noreferrer">can be installed locally</a>,
+                        but getting it running natively on macOS is the kind
+                        of afternoon you don't get back. Docker, on the other
+                        hand, makes it stupidly easy.
+                    </p>
+
+                    <h2>Running the validator in Docker</h2>
+
+                    <p>
+                        Peter Mescalchin, absolute legend, has already done
+                        the hard work and packaged the whole thing into a
+                        ready-made
+                        <a href="https://hub.docker.com/r/magnetikonline/html5validator/" target="_blank" rel="noopener noreferrer">html5validator Docker container</a>.
+                        Just fire it up with a port forward so your test
+                        suite can talk to it:
+                    </p>
+
+                    <pre><code class="language-bash">$ docker run -d -p 8888:80 magnetikonline/html5validator</code></pre>
+
+                    <p>
+                        That pulls the image (first time only, relax), starts
+                        the container in the background, and maps port 8888 on
+                        your machine to the Apache service inside. Once it's
+                        up, open <code>http://localhost:8888</code> in your
+                        browser and bask in the glory of a W3C validator that
+                        lives on your own bloody laptop. The API endpoint you
+                        actually care about is at the <code>/check</code> path:
+                    </p>
+
+                    <p>
+                        <code>http://localhost:8888/check</code>
+                    </p>
+
+                    <h2>Configure BeValidAsset to use the local container</h2>
+
+                    <p>
+                        Here's the beautiful part: <code>be_valid_asset</code>
+                        already accepts a custom validator host, so pointing
+                        it at your shiny local container is literally one line
+                        of configuration. One. Line.
+                    </p>
+
+                    <pre><code class="language-ruby"># in spec/support/be_valid_asset.rb
+BeValidAsset::Configuration.markup_validator_host = 'http://192.168.99.100:32770'</code></pre>
+
+                    <p>
+                        If you want to get fancy with more configuration,
+                        knock yourself out and check the
+                        <a href="https://github.com/unboxed/be_valid_asset" target="_blank" rel="noopener noreferrer">README</a>.
+                    </p>
+
+                    <ul class="takeaway">
+                        <li>Run the W3C validator locally with <code>docker run -d -p 8888:80 magnetikonline/html5validator</code></li>
+                        <li>Point <code>be_valid_asset</code> at <code>localhost:8888</code> to remove the internet dependency from your test suite</li>
+                        <li>Your tests should never break because of someone else's server</li>
+                    </ul>
+
+                    <p>
+                        <em>Full disclosure, because I'm not a monster:
+                        <code>be_valid_asset</code> was built by yours truly
+                        and my colleagues at
+                        <a href="http://unboxed.co/" target="_blank" rel="noopener noreferrer">Unboxed</a>.
+                        The Docker container was built by Peter Mescalchin
+                        (<a href="http://magnetikonline.com/" target="_blank" rel="noopener noreferrer">@magnetikonline</a>),
+                        who saved us all from a very boring afternoon.</em>
+                    </p>
+                </div>
+
+                <footer class="post-footer">
+                    <p>
+                        If valid markup matters to you as much as it does
+                        to me, let's talk about it. Find me on
+                        <a href="https://bsky.app/profile/attilagyorffy.com" target="_blank" rel="noopener noreferrer">Bluesky</a>,
+                        <a href="https://fosstodon.org/@attila" target="_blank" rel="noopener noreferrer">Mastodon</a>,
+                        <a href="https://twitter.com/attilagyorffy" target="_blank" rel="noopener noreferrer"><s>Twitter</s>&nbsp;X</a>,
+                        or
+                        <a href="https://linkedin.com/in/attilagyorffy" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+                        You can also browse my other projects on
+                        <a href="https://github.com/attilagyorffy" target="_blank" rel="noopener noreferrer">GitHub</a>,
+                        where I occasionally validate things
+                        before pushing them.
+                    </p>
+                </footer>
+            </article>
+
+            <aside class="sidebar-label" aria-hidden="true">
+                <span>Code</span>
+                <span class="sidebar-arrow">&darr;</span>
+            </aside>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/ruby.min.js"></script>
+        <script>
+            hljs.highlightAll();
+
+            // Draw per-line highlight rects behind <mark> elements
+            function drawHighlights() {
+                document.querySelectorAll(".highlight-stroke").forEach(el => el.remove());
+                document.querySelectorAll("mark").forEach((mark) => {
+                    const p = mark.closest("p");
+                    if (!p) return;
+                    if (getComputedStyle(p).position === "static") {
+                        p.style.position = "relative";
+                    }
+                    const rects = mark.getClientRects();
+                    const pRect = p.getBoundingClientRect();
+                    for (const r of rects) {
+                        const stroke = document.createElement("span");
+                        stroke.className = "highlight-stroke";
+                        stroke.style.top = (r.top - pRect.top - 1) + "px";
+                        stroke.style.left = (r.left - pRect.left - 5) + "px";
+                        stroke.style.width = (r.width + 10) + "px";
+                        stroke.style.height = (r.height + 2) + "px";
+                        p.appendChild(stroke);
+                    }
+                });
+            }
+            // Wait for fadeIn animations to settle before measuring
+            setTimeout(drawHighlights, 1200);
+            window.addEventListener("resize", drawHighlights);
+
+            const faviconActive = "/images/favicon-active.svg";
+            const faviconInactive = "/images/favicon-inactive.svg";
+            const favicon = document.getElementById("favicon");
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    favicon.href = faviconInactive;
+                } else {
+                    favicon.href = faviconActive;
+                }
+            });
+        </script>
+    </body>
+</html>
