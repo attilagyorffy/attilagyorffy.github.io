@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Projects — Attila Györffy</title>
+        <meta
+            name="description"
+            content="Open source projects, homelab tools, and the occasional act of stubbornness preserved in code."
+        />
+        <meta name="author" content="Attila Györffy" />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            id="favicon"
+            href="/images/favicon-active.svg"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz@0,8..60;1,8..60&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body class="projects">
+        <div class="page">
+            <nav class="top-bar">
+                <a href="/" class="nav-home">&larr; Home</a>
+            </nav>
+
+            <h1>Projects</h1>
+
+            <p class="intro">
+                A curated selection of things I've built, patched, ported, or
+                stubbornly maintained long after the world moved on. Some solve
+                real problems. Others exist purely because I was annoyed enough
+                to write code about it.
+            </p>
+
+            <h2>Music &amp; Audio</h2>
+            <ul class="project-list">
+                <li class="project-item">
+                    <a
+                        href="https://audiqa.app"
+                        class="project-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <div class="project-name">Audiqa</div>
+                        <div class="project-summary">
+                            Everyone&rsquo;s renting their music now. Good for
+                            them. Some of us still own ours and would like a
+                            proper app to manage it &mdash; one that&rsquo;s
+                            fast, local-first, and doesn&rsquo;t phone home
+                            every time you press play.
+                        </div>
+                    </a>
+                </li>
+                <li class="project-item">
+                    <a
+                        href="https://github.com/attilagyorffy/chromaprint-next"
+                        class="project-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <div class="project-name">
+                            Chromaprint, rewritten in Rust
+                        </div>
+                        <div class="project-summary">
+                            Other people wrote Rust ports of Chromaprint. They
+                            produce the wrong fingerprints. This one produces
+                            bit-identical output to the C reference and beats it
+                            by 4% on throughput &mdash; despite the C version
+                            using Apple&rsquo;s hardware-accelerated vDSP.
+                            You&rsquo;re welcome.
+                        </div>
+                    </a>
+                </li>
+                <li class="project-item">
+                    <a
+                        href="https://github.com/attilagyorffy/lastfm-history"
+                        class="project-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <div class="project-name">Last.fm History Exporter</div>
+                        <div class="project-summary">
+                            Downloads every scrobble you&rsquo;ve ever made to
+                            JSON &mdash; artist, album, track, timestamp, the
+                            lot. Has retry logic because Last.fm&rsquo;s API
+                            will absolutely drop your connection after three
+                            hours and pretend nothing happened.
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
+            <h2>AI</h2>
+            <ul class="project-list">
+                <li class="project-item">
+                    <a
+                        href="https://github.com/attilagyorffy/apple-mail-mcp"
+                        class="project-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <div class="project-name">
+                            Apple Mail.app MCP Server
+                        </div>
+                        <div class="project-summary">
+                            Lets AI assistants read your email without sending a
+                            single token to anyone else&rsquo;s server.
+                            Everything stays on your machine. One Go binary, no
+                            dependencies, and an audit log because if
+                            something&rsquo;s reading my inbox, I&rsquo;d like
+                            receipts.
+                        </div>
+                    </a>
+                </li>
+                <li class="project-item">
+                    <a
+                        href="https://github.com/attilagyorffy/ai-summarizer"
+                        class="project-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <div class="project-name">URL Summarizer</div>
+                        <div class="project-summary">
+                            Give it a URL, it gives you the gist. No UI, no
+                            browser extension, no twelve-step onboarding flow.
+                            Just a CLI that reads a page and tells you what it
+                            says so you don&rsquo;t have to.
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
+            <h2>Observability</h2>
+            <ul class="project-list">
+                <li class="project-item">
+                    <a
+                        href="https://github.com/attilagyorffy/prometheus-exporter-nvidia-gpu"
+                        class="project-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <div class="project-name">
+                            NVIDIA GPU Prometheus Exporter
+                        </div>
+                    </a>
+                    <a
+                        href="https://github.com/attilagyorffy/prometheus-exporter-adguard-home"
+                        class="project-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <div class="project-name">
+                            AdGuard Home Prometheus Exporter
+                        </div>
+                    </a>
+                    <div class="project-summary">
+                        Two Prometheus exporters for homelab gear that deserves
+                        a dashboard. The GPU one scrapes nvidia-smi, the AdGuard
+                        one actually follows the official exporter guidelines
+                        &mdash; which, apparently, was too much to ask of the
+                        existing alternatives.
+                    </div>
+                </li>
+            </ul>
+
+            <h2>Developer Tools</h2>
+            <ul class="project-list">
+                <li class="project-item">
+                    <a
+                        href="https://github.com/attilagyorffy/pow-mdns"
+                        class="project-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <div class="project-name">Pow Bonjour Advertiser</div>
+                        <div class="project-summary">
+                            Broadcasts your Pow dev server over Bonjour so every
+                            device on the network just finds it. Written because
+                            testing on an iPad meant looking up your IP address
+                            every time DHCP felt like reinventing itself.
+                        </div>
+                    </a>
+                </li>
+                <li class="project-item">
+                    <a
+                        href="https://github.com/attilagyorffy/capybara-ember"
+                        class="project-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <div class="project-name">
+                            Ember.js extension for Capybara
+                        </div>
+                        <div class="project-summary">
+                            Poltergeist clicked buttons before Ember was ready,
+                            so tests either failed randomly or passed for the
+                            wrong reasons. This gem monkey-patches the click to
+                            wait for the run loop. Require it and your tests
+                            start behaving like adults.
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
+            <footer class="page-footer">
+                <p>
+                    These are the ones that survived. There&rsquo;s a whole
+                    graveyard of abandoned prototypes and questionable decisions
+                    on
+                    <a href="https://github.com/attilagyorffy">GitHub</a>. Dig
+                    through it if you like. Don&rsquo;t say I didn&rsquo;t warn
+                    you.
+                </p>
+            </footer>
+        </div>
+
+        <script>
+            const faviconActive = "/images/favicon-active.svg";
+            const faviconInactive = "/images/favicon-inactive.svg";
+            const favicon = document.getElementById("favicon");
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    favicon.href = faviconInactive;
+                } else {
+                    favicon.href = faviconActive;
+                }
+            });
+        </script>
+    </body>
+</html>
