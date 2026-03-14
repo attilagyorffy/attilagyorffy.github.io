@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Photos — Attila Györffy</title>
+        <meta
+            name="description"
+            content="Travel photography. Sicily, Slovenia, and wherever the camera goes next."
+        />
+        <meta name="author" content="Attila Györffy" />
+        <meta name="fediverse:creator" content="@attila@fosstodon.org" />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            id="favicon"
+            href="/images/favicon-active.svg"
+        />
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body>
+        <div class="page">
+            <nav class="top-bar">
+                <a href="/" class="nav-home">&larr; Home</a>
+            </nav>
+
+            <h1>Photos</h1>
+
+            <p class="intro">
+                Places I&rsquo;ve been, things I saw, moments I pointed a camera
+                at instead of just being present. Shot on a Canon EOS 100D that
+                refuses to die.
+            </p>
+
+            <ul class="album-list">
+                <li class="album-item">
+                    <a href="/photos/2025-sicily/" class="album-link">
+                        <img
+                            src="/photos/2025-sicily/web/thumb/073.webp"
+                            alt="Cover photo from Sicily, 2025"
+                            class="album-cover"
+                            loading="lazy"
+                        />
+                        <div class="album-info">
+                            <div class="album-title">Sicily</div>
+                            <div class="album-meta">
+                                2025 &middot; 105 photos
+                            </div>
+                            <div class="album-summary">
+                                Baroque churches, volcanic soil, and the kind of
+                                light that makes everything look like a film
+                                still.
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="album-item">
+                    <a href="/photos/2025-slovenia/" class="album-link">
+                        <img
+                            src="/photos/2025-slovenia/web/thumb/018.webp"
+                            alt="Cover photo from Slovenia, 2025"
+                            class="album-cover"
+                            loading="lazy"
+                        />
+                        <div class="album-info">
+                            <div class="album-title">Slovenia</div>
+                            <div class="album-meta">
+                                2025 &middot; 20 photos
+                            </div>
+                            <div class="album-summary">
+                                Alpine greens, glacial rivers, and a country that
+                                deserves more than a Wikipedia paragraph.
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
+            <footer class="page-footer">
+                <p>
+                    All photos shot on film-era glass and edited with patience.
+                    No AI upscaling, no filters, no presets named after cities
+                    I&rsquo;ve never been to.
+                </p>
+            </footer>
+        </div>
+
+        <script>
+            const faviconActive = "/images/favicon-active.svg";
+            const faviconInactive = "/images/favicon-inactive.svg";
+            const favicon = document.getElementById("favicon");
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    favicon.href = faviconInactive;
+                } else {
+                    favicon.href = faviconActive;
+                }
+            });
+        </script>
+    </body>
+</html>
