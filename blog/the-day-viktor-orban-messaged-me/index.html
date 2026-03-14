@@ -286,6 +286,30 @@
             setTimeout(drawHighlights, 1200);
             window.addEventListener("resize", drawHighlights);
 
+            // Smooth-scroll footnote links with custom easing
+            document.querySelectorAll('a[href^="#"]').forEach(a => {
+                a.addEventListener("click", e => {
+                    const target = document.getElementById(a.getAttribute("href").slice(1));
+                    if (!target) return;
+                    e.preventDefault();
+                    const start = window.scrollY;
+                    const end = target.getBoundingClientRect().top + start - 24;
+                    const distance = end - start;
+                    const duration = 1800;
+                    let t0;
+                    function step(ts) {
+                        if (!t0) t0 = ts;
+                        const p = Math.min((ts - t0) / duration, 1);
+                        // ease-in-out quintic — slow start, gentle peak, long settle
+                        const ease = p < 0.5 ? 16*p*p*p*p*p : 1 - Math.pow(-2*p + 2, 5) / 2;
+                        window.scrollTo(0, start + distance * ease);
+                        if (p < 1) requestAnimationFrame(step);
+                        else history.pushState(null, "", "#" + target.id);
+                    }
+                    requestAnimationFrame(step);
+                });
+            });
+
             const faviconActive = "/images/favicon-active.svg";
             const faviconInactive = "/images/favicon-inactive.svg";
             const favicon = document.getElementById("favicon");
