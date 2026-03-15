@@ -810,7 +810,7 @@ article .site-footer {
     letter-spacing: 0.06em;
     text-transform: uppercase;
     margin: 0.5rem 0 0 0;
-    color: var(--color-subtle);
+    color: color-mix(in oklch, var(--color-subtle), var(--color-fg) 35%);
 }
 
 .album-summary {
