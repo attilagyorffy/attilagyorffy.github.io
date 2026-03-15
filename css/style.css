@@ -178,7 +178,11 @@ h2:first-of-type {
    Listing: shared item patterns
    ========================================================================== */
 
-.post-list,
+.post-list {
+    padding: 0;
+    margin: 0 0 3rem 0;
+}
+
 .project-list,
 .tweet-list {
     list-style: none;
@@ -188,25 +192,41 @@ h2:first-of-type {
 
 .post-item,
 .project-item {
+    position: relative;
     margin-bottom: 0;
-    padding: 1.4rem 0;
+    padding: 2rem 0;
     border-bottom: 1px solid var(--color-subtle);
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.5s forwards;
 }
 
-.post-item:last-child,
+.post-item:last-of-type,
 .project-item:last-child {
     border-bottom: none;
 }
 
 .post-link,
+.post-link:visited {
+    color: var(--color-accent);
+    transition: color 0.2s ease;
+}
+
+.post-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.post-item:hover {
+    transform: translateX(4px);
+    transition: transform 0.2s ease;
+}
+
 .project-link {
     display: block;
     transition: transform 0.2s ease;
 }
 
-.post-link:hover,
 .project-link:hover {
     transform: translateX(4px);
 }
@@ -222,6 +242,7 @@ h2:first-of-type {
 }
 
 .post-summary {
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
     font-size: 0.95rem;
     line-height: 1.6;
     margin: 0.3rem 0 0 0;

@@ -16,16 +16,12 @@
             id="favicon"
             href="/images/favicon-active.svg"
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz@0,8..60;1,8..60&display=swap"
-            rel="stylesheet"
-        />
+        <link rel="preload" href="/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="/fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin />
         <link rel="stylesheet" href="/css/style.css" />
     </head>
     <body>
-        <div class="page">
+        <main class="page">
             <nav class="top-bar">
                 <a href="/" class="nav-home">&larr; Home</a>
             </nav>
@@ -42,320 +38,271 @@
                 stick around. You've already made worse decisions today.
             </p>
 
-            <h2>2026</h2>
-            <ul class="post-list">
-                <li class="post-item">
-                    <a
-                        href="/blog/stop-naming-go-constructors-new/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+            <section class="post-list">
+                <h2>2026</h2>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/stop-naming-go-constructors-new/" class="post-link">
                             Stop Naming Your Go Constructors New
-                        </div>
-                        <div class="post-summary">
-                            A grown man loses his mind over a three-letter word
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        A grown man loses his mind over a three-letter word
                             in a function name. Turns out he has a point, but
                             still.
-                        </div>
-                    </a>
-                </li>
-            </ul>
+                    </p>
+                </article>
+            </section>
 
-            <h2>2025</h2>
-            <ul class="post-list">
-                <li class="post-item">
-                    <a
-                        href="/blog/the-day-viktor-orban-messaged-me/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+            <section class="post-list">
+                <h2>2025</h2>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/the-day-viktor-orban-messaged-me/" class="post-link">
                             The Day &ldquo;Viktor Orb&aacute;n&rdquo; Messaged Me
-                        </div>
-                        <div class="post-summary">
-                            A chatbot wearing the Prime Minister&rsquo;s face
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        A chatbot wearing the Prime Minister&rsquo;s face
                             slides into your DMs. The marketing funnel is
                             automated, the GDPR violations are artisanal.
-                        </div>
-                    </a>
-                </li>
-                <li class="post-item">
-                    <a
-                        href="/blog/when-one-company-breaks-half-the-internet-goes-with-it/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+                    </p>
+                </article>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/when-one-company-breaks-half-the-internet-goes-with-it/" class="post-link">
                             When One Company Breaks, Half the Internet Goes with It
-                        </div>
-                        <div class="post-summary">
-                            Cloudflare&rsquo;s security guard got a dodgy guest
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        Cloudflare&rsquo;s security guard got a dodgy guest
                             list and decided to turn everyone away. Half the
                             Internet watched from the car park.
-                        </div>
-                    </a>
-                </li>
-            </ul>
+                    </p>
+                </article>
+            </section>
 
-            <h2>2022</h2>
-            <ul class="post-list">
-                <li class="post-item">
-                    <a
-                        href="/blog/the-quiet-revolt-of-the-digital-self/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+            <section class="post-list">
+                <h2>2022</h2>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/the-quiet-revolt-of-the-digital-self/" class="post-link">
                             The Quiet Revolt of the Digital Self
-                        </div>
-                        <div class="post-summary">
-                            One billionaire bought a platform and everyone
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        One billionaire bought a platform and everyone
                             suddenly remembered they don&rsquo;t own anything
                             online. A look at protocols, portability, and the
                             quiet work of building something better.
-                        </div>
-                    </a>
-                </li>
-            </ul>
+                    </p>
+                </article>
+            </section>
 
-            <h2>2017</h2>
-            <ul class="post-list">
-                <li class="post-item">
-                    <a
-                        href="/blog/stop-shipping-desktop-images-to-phones/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+            <section class="post-list">
+                <h2>2017</h2>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/stop-shipping-desktop-images-to-phones/" class="post-link">
                             Stop Shipping Desktop Images to Phones
-                        </div>
-                        <div class="post-summary">
-                            Shipping a 4000-pixel hero image to a phone on 3G is
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        Shipping a 4000-pixel hero image to a phone on 3G is
                             not a personality trait. Here's a Rails helper that
                             uses the picture element like a grown-up.
-                        </div>
-                    </a>
-                </li>
-            </ul>
+                    </p>
+                </article>
+            </section>
 
-            <h2>2016</h2>
-            <ul class="post-list">
-                <li class="post-item">
-                    <a
-                        href="/blog/ansible-hangs-on-freebsd-and-nobody-tells-you/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+            <section class="post-list">
+                <h2>2016</h2>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/ansible-hangs-on-freebsd-and-nobody-tells-you/" class="post-link">
                             Ansible Hangs on FreeBSD and Nobody Tells You
-                        </div>
-                        <div class="post-summary">
-                            FreeBSD doesn't ship Python. Ansible needs Python.
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        FreeBSD doesn't ship Python. Ansible needs Python.
                             One environment variable stops the whole thing from
                             hanging forever.
-                        </div>
-                    </a>
-                </li>
-                <li class="post-item">
-                    <a
-                        href="/blog/stop-typing-full-git-urls/"
-                        class="post-link"
-                    >
-                        <div class="post-title">Stop Typing Full Git URLs</div>
-                        <div class="post-summary">
-                            Life is too short to type git@github.com: like a
+                    </p>
+                </article>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/stop-typing-full-git-urls/" class="post-link">
+                            Stop Typing Full Git URLs
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        Life is too short to type git@github.com: like a
                             caveman. A few lines in .gitconfig and you're
                             cloning with gh:user/repo.
-                        </div>
-                    </a>
-                </li>
-                <li class="post-item">
-                    <a
-                        href="/blog/replacing-openssl-with-libressl-on-freebsd/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+                    </p>
+                </article>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/replacing-openssl-with-libressl-on-freebsd/" class="post-link">
                             Replacing OpenSSL with LibreSSL on FreeBSD
-                        </div>
-                        <div class="post-summary">
-                            Heartbleed happened because OpenSSL had its own
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        Heartbleed happened because OpenSSL had its own
                             custom allocator that hid buffer overflows from
                             every tool designed to catch them. Here's how to rip
                             it out.
-                        </div>
-                    </a>
-                </li>
-                <li class="post-item">
-                    <a
-                        href="/blog/postgres-refuses-your-not-null-migration/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+                    </p>
+                </article>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/postgres-refuses-your-not-null-migration/" class="post-link">
                             Postgres Refuses Your NOT NULL Migration
-                        </div>
-                        <div class="post-summary">
-                            Postgres is smarter than your migration and it's not
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        Postgres is smarter than your migration and it's not
                             going to pretend otherwise. Add the column,
                             backfill, then add the constraint.
-                        </div>
-                    </a>
-                </li>
-                <li class="post-item">
-                    <a
-                        href="/blog/every-ember-phoenix-tutorial-was-wrong/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+                    </p>
+                </article>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/every-ember-phoenix-tutorial-was-wrong/" class="post-link">
                             Every Ember-Phoenix Tutorial Was Wrong
-                        </div>
-                        <div class="post-summary">
-                            Every existing tutorial was either broken or
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        Every existing tutorial was either broken or
                             ignoring the conventions both frameworks ship with.
                             So I built one from scratch.
-                        </div>
-                    </a>
-                </li>
-                <li class="post-item">
-                    <a
-                        href="/blog/npm-progress-bar-halves-your-install-speed/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+                    </p>
+                </article>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/npm-progress-bar-halves-your-install-speed/" class="post-link">
                             npm's Progress Bar Halves Your Install Speed
-                        </div>
-                        <div class="post-summary">
-                            Out of the box, npm behaves like a toddler with a
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        Out of the box, npm behaves like a toddler with a
                             megaphone. A few lines in .npmrc make it twice as
                             fast and half as annoying.
-                        </div>
-                    </a>
-                </li>
-                <li class="post-item">
-                    <a
-                        href="/blog/your-freebsd-files-are-readable-by-everyone/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+                    </p>
+                </article>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/your-freebsd-files-are-readable-by-everyone/" class="post-link">
                             Your FreeBSD Files Are Readable by Everyone
-                        </div>
-                        <div class="post-summary">
-                            Your database credentials, API keys, and deployment
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        Your database credentials, API keys, and deployment
                             scripts are world-readable by default. Three digits
                             in one config file fix it. You're welcome.
-                        </div>
-                    </a>
-                </li>
-                <li class="post-item">
-                    <a
-                        href="/blog/run-the-w3c-validator-locally-with-docker/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+                    </p>
+                </article>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/run-the-w3c-validator-locally-with-docker/" class="post-link">
                             Run the W3C Validator Locally with Docker
-                        </div>
-                        <div class="post-summary">
-                            The W3C validator requires the internet, which is
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        The W3C validator requires the internet, which is
                             exactly the thing that isn't working when you need
                             it. So we put a validator in a container.
-                        </div>
-                    </a>
-                </li>
-            </ul>
+                    </p>
+                </article>
+            </section>
 
-            <h2>2015</h2>
-            <ul class="post-list">
-                <li class="post-item">
-                    <a
-                        href="/blog/stop-naming-all-your-callbacks-cb/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+            <section class="post-list">
+                <h2>2015</h2>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/stop-naming-all-your-callbacks-cb/" class="post-link">
                             Stop Naming All Your Callbacks cb
-                        </div>
-                        <div class="post-summary">
-                            Everyone names their callbacks "cb" and then spends
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        Everyone names their callbacks "cb" and then spends
                             forty minutes debugging why the wrong one fires. Two
                             words fix it. You're looking for "next."
-                        </div>
-                    </a>
-                </li>
-                <li class="post-item">
-                    <a
-                        href="/blog/testing-activemodel-serializer-with-rspec/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+                    </p>
+                </article>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/testing-activemodel-serializer-with-rspec/" class="post-link">
                             Testing ActiveModel::Serializer with RSpec
-                        </div>
-                        <div class="post-summary">
-                            They rewrote the serializer gem and broke how you
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        They rewrote the serializer gem and broke how you
                             test it. Here's how to wire up adapters so your
                             specs actually test what your API sends.
-                        </div>
-                    </a>
-                </li>
-            </ul>
+                    </p>
+                </article>
+            </section>
 
-            <h2>2014</h2>
-            <ul class="post-list">
-                <li class="post-item">
-                    <a
-                        href="/blog/zero-config-mobile-testing-with-pow-and-bonjour/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+            <section class="post-list">
+                <h2>2014</h2>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/zero-config-mobile-testing-with-pow-and-bonjour/" class="post-link">
                             Zero-Config Mobile Testing with Pow and Bonjour
-                        </div>
-                        <div class="post-summary">
-                            I wanted to load my Rails app on an iPad without
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        I wanted to load my Rails app on an iPad without
                             looking up my IP address every five minutes. So I
                             made mDNS do it for me.
-                        </div>
-                    </a>
-                </li>
-                <li class="post-item">
-                    <a
-                        href="/blog/debugging-ember-apps-in-end-to-end-tests/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+                    </p>
+                </article>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/debugging-ember-apps-in-end-to-end-tests/" class="post-link">
                             Debugging Ember Apps in End-to-End Tests
-                        </div>
-                        <div class="post-summary">
-                            Your Capybara test fails, the browser closes, and
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        Your Capybara test fails, the browser closes, and
                             all you've got is "expected true, got false."
                             Loading Ember Inspector into Selenium changes
                             everything.
-                        </div>
-                    </a>
-                </li>
-                <li class="post-item">
-                    <a
-                        href="/blog/why-your-ember-promises-fail-silently/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+                    </p>
+                </article>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/why-your-ember-promises-fail-silently/" class="post-link">
                             Why Your Ember Promises Fail Silently
-                        </div>
-                        <div class="post-summary">
-                            Something breaks in an Ember promise and you get...
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        Something breaks in an Ember promise and you get...
                             nothing. A blank page, a clean console, and a slow
                             descent into madness. Four lines fix it.
-                        </div>
-                    </a>
-                </li>
-                <li class="post-item">
-                    <a
-                        href="/blog/when-brew-install-node-required-5-5gb-of-xcode/"
-                        class="post-link"
-                    >
-                        <div class="post-title">
+                    </p>
+                </article>
+                <article class="post-item">
+                    <h3 class="post-title">
+                        <a href="/blog/when-brew-install-node-required-5-5gb-of-xcode/" class="post-link">
                             When brew install node required 5.5GB of Xcode
-                        </div>
-                        <div class="post-summary">
-                            Apple released Yosemite and broke the compiler.
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        Apple released Yosemite and broke the compiler.
                             Installing a JavaScript runtime now required
                             downloading an entire IDE. A love letter to 2014.
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
+                    </p>
+                </article>
+            </section>
+
+            <footer class="page-footer">
+                <p>
+                    Written by <a href="/about/">Attila Gy&ouml;rffy</a>.
+                </p>
+            </footer>
+        </main>
 
         <script>
             const faviconActive = "/images/favicon-active.svg";
