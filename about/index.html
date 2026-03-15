@@ -9,18 +9,15 @@
             content="Product engineer and technologist with two decades of experience. Understanding before acting, first-principles thinking, and the scout mindset."
         />
         <meta name="author" content="Attila Györffy" />
+        <meta name="fediverse:creator" content="@attila@fosstodon.org" />
         <link
             rel="icon"
             type="image/svg+xml"
             id="favicon"
             href="/images/favicon-active.svg"
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz@0,8..60;1,8..60&display=swap"
-            rel="stylesheet"
-        />
+        <link rel="preload" href="/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="/fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin />
         <link rel="stylesheet" href="/css/style.css" />
     </head>
     <body>
@@ -33,50 +30,43 @@
 
             <div class="post-body">
                 <p class="lead">
-                    I&rsquo;m Attila Gy&ouml;rffy, a product engineer and
-                    technologist.
+                    I&rsquo;m Attila Gy&ouml;rffy, a product engineer with
+                    two decades of experience building systems across fintech,
+                    infrastructure, and developer platforms. I work primarily
+                    with Ruby, Rails, and Go, and I&rsquo;m currently
+                    deepening my work in Rust.
                 </p>
 
                 <p>
-                    I have spent two decades building systems across fintech,
-                    infrastructure, and developer platforms.
-                </p>
-
-                <p>
-                    I&rsquo;ve spent much of my career stepping into complex
-                    systems &mdash; legacy services, distributed architectures,
-                    organizational workflows &mdash; where the first task is
-                    not to solve anything, but to understand the terrain. The
-                    most costly mistakes I&rsquo;ve seen didn&rsquo;t come from
-                    lack of talent; they came from acting with an incomplete
-                    map.
+                    Most of my career has been about stepping into complex
+                    systems and understanding them before changing anything.
+                    The costliest mistakes I&rsquo;ve seen came from acting
+                    with an incomplete map &mdash; not from lack of talent.
+                    I care about observability, reliability, and mentoring
+                    teams to build codebases that get better over years, not
+                    just sprints.
                 </p>
 
                 <h2>The Scout Mindset</h2>
 
                 <p>
-                    This approach draws inspiration from
+                    My approach draws inspiration from
                     <a href="https://www.youtube.com/watch?v=w4RLfVxTGH4&amp;ref=scout.engineer" target="_blank" rel="noopener noreferrer">Julia Galef&rsquo;s
-                    <em>scout mindset</em></a>: the habit of seeking an
-                    accurate map of reality, even when it&rsquo;s
-                    inconvenient. A scout wants to understand how things truly
-                    work before deciding what to build. Applied to software,
-                    scout engineering is a way of working that blends
-                    curiosity, clarity, and intellectual honesty:
+                    <em>scout mindset</em></a>: seeking an accurate map of
+                    reality, even when it&rsquo;s inconvenient. Applied to
+                    software, it means:
                 </p>
 
                 <ul class="takeaway">
                     <li>
-                        <strong>Understand before acting.</strong> A scout
-                        engineer wants to know the real constraints, failure
-                        modes, and incentives &mdash; not just the surface
-                        behavior.
+                        <strong>Understand before acting.</strong> Know the
+                        real constraints, failure modes, and incentives
+                        &mdash; not just the surface behavior.
                     </li>
                     <li>
-                        <strong>Think from first principles.</strong> Instead
-                        of blindly following patterns others have built for
-                        you, the goal is to reason from the fundamentals of
-                        the problem.
+                        <strong>Think from first principles.</strong> Reason
+                        from the fundamentals of the problem, not from
+                        patterns inherited without question.
                     </li>
                     <li>
                         <strong>Stay curious across disciplines.</strong> Good
@@ -86,19 +76,40 @@
                     <li>
                         <strong>Be willing to update your map.</strong>
                         Getting something wrong isn&rsquo;t a failure;
-                        it&rsquo;s data. The skill is in adjusting quickly and
-                        transparently.
+                        it&rsquo;s data.
                     </li>
                 </ul>
 
+                <h2>Beyond Work</h2>
+
                 <p>
-                    This site collects field notes from practicing that
-                    mindset &mdash; technical insights, engineering patterns,
-                    and reflections on how technology shapes society.
+                    Outside of work, I maintain a homelab running TrueNAS,
+                    OPNsense, Prometheus, and Grafana &mdash; because
+                    apparently monitoring things is a hobby now. I build
+                    <a href="https://blog.audiqa.app">audio-focused applications</a> for local music collections,
+                    explore self-hosting and <a href="/blog/the-quiet-revolt-of-the-digital-self/">open protocols</a>, and occasionally
+                    take <a href="/photos/">photographs</a>.
+                </p>
+
+                <p>
+                    This site collects field notes from all of it &mdash;
+                    technical insights, engineering patterns, and
+                    <a href="/thoughts/">reflections</a>
+                    on how technology shapes the way we work and live. You can
+                    also find my full professional background on
+                    my <a href="/cv/">CV</a>.
                 </p>
             </div>
 
             <footer class="page-footer">
+                <p>
+                    Find me on
+                    <a href="https://twitter.com/attilagyorffy"><s>Twitter</s> X</a>,
+                    <a href="https://fosstodon.org/@attila" rel="me">Mastodon</a>,
+                    <a href="https://bsky.app/profile/attilagyorffy.com">Bluesky</a>,
+                    <a href="https://linkedin.com/in/attilagyorffy">LinkedIn</a>,
+                    <a href="https://github.com/attilagyorffy">GitHub</a>.
+                </p>
             </footer>
         </div>
 
