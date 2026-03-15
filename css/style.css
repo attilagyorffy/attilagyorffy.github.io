@@ -1,3 +1,56 @@
+/*
+ * Component catalog
+ * =================
+ *
+ * Layout shells
+ *   .page                 Standard content width (720px)
+ *   .page--wide           Article width (1100px)
+ *   .page--gallery        Gallery width (1400px)
+ *
+ * Navigation
+ *   .top-bar              Horizontal nav bar
+ *   .top-bar--stacked     Vertical multi-link variant (articles, galleries, CV)
+ *
+ * Page header
+ *   h1                    Page title
+ *   h2                    Section divider (listing pages)
+ *   .intro                Lead paragraph below page title
+ *
+ * Article grid            Three-column blog post layout
+ *   .article-grid         Grid container (200px | 1fr | auto)
+ *   .author-col           Avatar + author metadata
+ *   .title-col            Headline + subtitle
+ *   .date-col             Publication date
+ *   .sidebar-label        Fixed vertical label (right edge)
+ *
+ * Prose                   Serif body content (articles, about, CV)
+ *   .prose                Container — sets font-family, grid-column, max-width
+ *   .prose h2             In-article section heading (mono, no uppercase)
+ *   .prose ul.takeaway    Callout box with accent border
+ *   .prose ol.footnotes   Numbered footnote list
+ *   mark                  Highlighted text (paired with .highlight-stroke rects)
+ *
+ * Item cards              Listing-page entries
+ *   .post-item            Blog post card (stretched-link pattern)
+ *   .project-item         Project card
+ *   .tweet-item           Tweet/quote card
+ *   .album-item           Photo album card with cover grid
+ *
+ * Site footer
+ *   .site-footer          Shared footer (pages + articles)
+ *
+ * Photos
+ *   .photo-grid           Masonry column layout (3 → 2 → 1 cols)
+ *   .lightbox             Full-screen image viewer overlay
+ *
+ * Syntax highlighting     highlight.js token colors (hljs-*)
+ *
+ * Scripts (external)
+ *   /js/favicon.js        Visibility-change favicon swap (all pages)
+ *   /js/highlights.js     hljs init + mark-highlight rects (articles)
+ *   /js/lightbox.js       Lightbox navigation + touch/keyboard (galleries)
+ */
+
 /* ==========================================================================
    Fonts
    ========================================================================== */
