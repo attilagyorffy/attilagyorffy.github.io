@@ -428,7 +428,7 @@ mark {
 
 /* Article grid */
 
-article[itemscope] {
+.article-grid {
     display: grid;
     grid-template-columns: 200px 1fr auto;
     column-gap: 2.5rem;
@@ -1087,7 +1087,7 @@ pre code.hljs {
         padding: 2rem 2rem 3rem;
     }
 
-    article[itemscope] {
+    .article-grid {
         grid-template-columns: 1fr;
         margin-top: 3rem;
         column-gap: 0;
