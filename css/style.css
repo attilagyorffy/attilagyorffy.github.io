@@ -435,7 +435,7 @@ mark {
 
 /* Article grid */
 
-article {
+article[itemscope] {
     display: grid;
     grid-template-columns: 200px 1fr auto;
     column-gap: 2.5rem;
@@ -796,7 +796,7 @@ pre code.hljs {
 }
 
 .hljs-comment {
-    color: var(--color-subtle);
+    color: color-mix(in oklch, var(--color-fg) 40%, var(--color-bg));
 }
 
 .hljs-title {
@@ -1122,7 +1122,7 @@ pre code.hljs {
         padding: 2rem 2rem 3rem;
     }
 
-    article {
+    article[itemscope] {
         grid-template-columns: 1fr;
         margin-top: 3rem;
         column-gap: 0;
