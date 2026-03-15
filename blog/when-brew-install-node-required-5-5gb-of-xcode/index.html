@@ -220,18 +220,7 @@
             // Wait for fadeIn animations to settle before measuring
             setTimeout(drawHighlights, 1200);
             window.addEventListener("resize", drawHighlights);
-
-            const faviconActive = "/images/favicon-active.svg";
-            const faviconInactive = "/images/favicon-inactive.svg";
-            const favicon = document.getElementById("favicon");
-
-            document.addEventListener("visibilitychange", () => {
-                if (document.hidden) {
-                    favicon.href = faviconInactive;
-                } else {
-                    favicon.href = faviconActive;
-                }
-            });
         </script>
+        <script src="/js/favicon.js"></script>
     </body>
 </html>
