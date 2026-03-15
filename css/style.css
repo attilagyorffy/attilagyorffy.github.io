@@ -385,18 +385,36 @@ h2:first-of-type {
     margin-top: 5rem;
     padding-top: 2.5rem;
     border-top: 1px solid var(--color-subtle);
-    font-size: 0.85rem;
     letter-spacing: 0.06em;
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.6s forwards;
 }
 
-.page-footer a {
-    transition: color 0.2s ease;
+.page-footer p {
+    line-height: 1.75;
+    margin: 0 0 2.5rem 0;
+    letter-spacing: 0;
+    font-size: 0.9rem;
 }
 
-.page-footer a:hover {
+.page-footer p,
+.page-footer p a {
+    color: color-mix(in oklch, var(--color-subtle), var(--color-fg) 35%);
+}
+
+.page-footer p a {
+    text-decoration: underline;
+    text-decoration-color: var(--color-subtle);
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+    transition:
+        text-decoration-color 0.4s ease,
+        color 0.2s ease;
+}
+
+.page-footer p a:hover {
     color: var(--color-fg);
+    text-decoration-color: var(--color-fg);
 }
 
 /* ==========================================================================
