@@ -849,7 +849,7 @@ pre code.hljs {
 }
 
 .album-item {
-    padding: 2.5rem 0;
+    padding: 3.5rem 0;
     border-bottom: 1px solid var(--color-subtle);
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.5s forwards;
@@ -868,6 +868,12 @@ pre code.hljs {
     transform: translateX(4px);
 }
 
+.album-covers {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.4rem;
+}
+
 .album-cover {
     width: 100%;
     aspect-ratio: 3 / 2;
@@ -877,7 +883,7 @@ pre code.hljs {
 }
 
 .album-info {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 }
 
 .album-title {
@@ -891,13 +897,15 @@ pre code.hljs {
     font-size: 0.75rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    margin: 0.2rem 0 0 0;
+    margin: 0.5rem 0 0 0;
+    color: var(--color-subtle);
 }
 
 .album-summary {
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
     font-size: 0.95rem;
     line-height: 1.6;
-    margin: 0.3rem 0 0 0;
+    margin: 0.6rem 0 0 0;
 }
 
 /* ==========================================================================
@@ -1229,5 +1237,13 @@ pre code.hljs {
         border-left: none;
         border-right: none;
         font-size: 0.85rem;
+    }
+
+    .album-covers {
+        grid-template-columns: 1fr;
+    }
+
+    .album-covers .album-cover:nth-child(n + 2) {
+        display: none;
     }
 }
