@@ -45,6 +45,13 @@
  *
  * Syntax highlighting     highlight.js token colors (hljs-*)
  *
+ * Design tokens
+ *   --font-*              Typography stacks
+ *   --space-{2..17}       Fluid spacing scale (0.25 rem – 8 rem, clamp + vi)
+ *   --page-pad-*          Page shell padding (y / x / b)
+ *   --text-*              Fluid font-size scale (0.68 rem – 2.5 rem)
+ *   --color-*             Foreground / background / accent colours
+ *
  * Scripts (external)
  *   /js/favicon.js        Visibility-change favicon swap (all pages)
  *   /js/highlights.js     hljs init + mark-highlight rects (articles)
@@ -114,6 +121,49 @@
         monospace;
     --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
 
+    /* Spacing — fixed */
+    --space-2:  0.25rem;
+    --space-4:  0.5rem;
+
+    /* Spacing — fluid (scale with viewport) */
+    --space-5:  clamp(0.6rem,  0.5rem + 0.25vi,  0.85rem);
+    --space-6:  clamp(0.85rem, 0.7rem + 0.4vi,   1rem);
+    --space-7:  clamp(1rem,    0.8rem + 0.5vi,    1.25rem);
+    --space-8:  clamp(1.25rem, 1rem + 0.6vi,      1.5rem);
+    --space-9:  clamp(1.5rem,  1.1rem + 0.8vi,    1.8rem);
+    --space-10: clamp(1.75rem, 1.25rem + 1vi,     2rem);
+    --space-11: clamp(2rem,    1.4rem + 1.2vi,    2.5rem);
+    --space-12: clamp(2.5rem,  1.5rem + 1.5vi,    3rem);
+    --space-13: clamp(2.5rem,  1.5rem + 2vi,      3.5rem);
+    --space-14: clamp(3rem,    1.75rem + 2.5vi,   4rem);
+    --space-15: clamp(3rem,    1.5rem + 3vi,      5rem);
+    --space-16: clamp(3rem,    1.25rem + 3.5vi,   6rem);
+    --space-17: clamp(3rem,    1rem + 4vi,        8rem);
+
+    /* Page shell padding */
+    --page-pad-y: clamp(1.5rem, 1rem + 1.2vi,     3rem);
+    --page-pad-x: clamp(1.25rem, 0.75rem + 1.5vi, 3.5rem);
+    --page-pad-b: clamp(2.5rem, 1.5rem + 2vi,     5rem);
+
+    /* Typography — fixed small sizes */
+    --text-xs:    0.68rem;
+    --text-sm:    0.72rem;
+    --text-meta:  0.75rem;
+    --text-ui:    0.85rem;
+    --text-note:  0.9rem;
+    --text-fn:    0.92rem;
+    --text-code:  0.95rem;
+
+    /* Typography — fluid */
+    --text-body:    clamp(1rem,    0.95rem + 0.15vi, 1.05rem);
+    --text-prose:   clamp(1.05rem, 0.95rem + 0.25vi, 1.15rem);
+    --text-lead:    clamp(1.15rem, 1rem + 0.35vi,    1.3rem);
+    --text-intro:   clamp(1rem,    0.9rem + 0.25vi,  1.1rem);
+    --text-card:    clamp(1.1rem,  1rem + 0.25vi,    1.2rem);
+    --text-section: clamp(1rem,    0.95rem + 0.2vi,  1.1rem);
+    --text-prose-h: clamp(1.5rem,  1.3rem + 0.5vi,   1.7rem);
+    --text-h1:      clamp(1.65rem, 1.2rem + 1.5vi,   2.5rem);
+
     --color-bg: #f7f7f7;
     --color-fg: #1a1a1a;
     --color-heading: var(--color-fg);
@@ -178,7 +228,7 @@ a:visited {
 .page {
     max-width: 720px;
     margin: 0 auto;
-    padding: 3rem 3.5rem 5rem;
+    padding: var(--page-pad-y) var(--page-pad-x) var(--page-pad-b);
 }
 
 .page--wide {
@@ -199,12 +249,12 @@ a:visited {
 
 .top-bar {
     display: flex;
-    font-size: 0.85rem;
+    font-size: var(--text-ui);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 6rem;
+    margin-bottom: var(--space-16);
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.2s forwards;
 }
@@ -213,7 +263,7 @@ a:visited {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    margin-bottom: 4rem;
+    margin-bottom: var(--space-14);
     gap: 0.3rem;
 }
 
@@ -235,23 +285,23 @@ a:visited {
    ========================================================================== */
 
 h1 {
-    font-size: 2.5rem;
+    font-size: var(--text-h1);
     font-weight: 400;
     letter-spacing: -0.01em;
     line-height: 1.2;
-    margin: 0 0 4rem 0;
+    margin: 0 0 var(--space-14) 0;
     color: var(--color-heading);
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.3s forwards;
 }
 
 h2 {
-    font-size: 1.1rem;
+    font-size: var(--text-section);
     font-weight: 400;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    margin: 4rem 0 1.8rem 0;
-    padding-bottom: 0.6rem;
+    margin: var(--space-14) 0 var(--space-10) 0;
+    padding-bottom: var(--space-5);
     border-bottom: 1px solid var(--color-subtle);
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.4s forwards;
@@ -263,9 +313,9 @@ h2:first-of-type {
 
 
 .intro {
-    font-size: 1.1rem;
+    font-size: var(--text-intro);
     line-height: 1.75;
-    margin: 0 0 4rem 0;
+    margin: 0 0 var(--space-14) 0;
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.35s forwards;
 }
@@ -277,9 +327,9 @@ h2:first-of-type {
 .article-grid {
     display: grid;
     grid-template-columns: 200px 1fr auto;
-    column-gap: 2.5rem;
+    column-gap: var(--space-11);
     align-items: start;
-    margin-top: 8rem;
+    margin-top: var(--space-17);
 }
 
 .author-col {
@@ -292,7 +342,7 @@ h2:first-of-type {
 .title-col {
     grid-column: 2;
     grid-row: 1;
-    margin-bottom: 4rem;
+    margin-bottom: var(--space-14);
     gap: 0.3rem;
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.4s forwards;
@@ -308,7 +358,7 @@ h2:first-of-type {
 }
 
 .date-col time {
-    font-size: 1rem;
+    font-size: var(--text-body);
 }
 
 /* Author column */
@@ -329,41 +379,42 @@ h2:first-of-type {
 }
 
 .author-name {
-    font-size: 0.72rem;
+    display: block;
+    font-size: var(--text-sm);
     letter-spacing: 0.14em;
     text-transform: uppercase;
     font-weight: 700;
-    margin-bottom: 0.25rem;
+    margin-bottom: var(--space-2);
     color: var(--color-heading);
 }
 
 .author-role {
-    font-size: 0.72rem;
+    font-size: var(--text-sm);
     letter-spacing: 0.14em;
     text-transform: uppercase;
     line-height: 1.5;
 }
 
 .post-label {
-    font-size: 0.72rem;
+    font-size: var(--text-sm);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    margin-top: 2rem;
+    margin-top: var(--space-10);
 }
 
 /* Title column */
 
 .title-col h1 {
-    font-size: 2.5rem;
+    font-size: var(--text-h1);
     font-weight: 400;
     line-height: 1.25;
-    margin: 0 0 1.25rem 0;
+    margin: 0 0 var(--space-7) 0;
     color: var(--color-heading);
     letter-spacing: -0.01em;
 }
 
 .subtitle {
-    font-size: 1.2rem;
+    font-size: var(--text-card);
     line-height: 1.6;
     margin: 0;
 }
@@ -372,20 +423,20 @@ h2:first-of-type {
 
 .sidebar-label {
     position: fixed;
-    right: 2.5rem;
+    right: var(--space-11);
     top: 50%;
     writing-mode: vertical-rl;
-    font-size: 0.68rem;
+    font-size: var(--text-xs);
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--color-subtle);
     display: flex;
     align-items: flex-start;
-    gap: 0.6rem;
+    gap: var(--space-5);
 }
 
 .sidebar-arrow {
-    font-size: 0.85rem;
+    font-size: var(--text-ui);
     letter-spacing: 0;
 }
 
@@ -442,14 +493,14 @@ mark {
 }
 
 .prose p {
-    font-size: 1.15rem;
+    font-size: var(--text-prose);
     line-height: 1.85;
-    margin: 0 0 1.75rem 0;
+    margin: 0 0 var(--space-9) 0;
     color: var(--color-fg);
 }
 
 .prose p.lead {
-    font-size: 1.3rem;
+    font-size: var(--text-lead);
     line-height: 1.7;
     color: var(--color-fg);
 }
@@ -459,9 +510,9 @@ mark {
 .prose h2 {
     font-family: var(--font-mono); /* override prose serif */
     font-weight: 400;
-    font-size: 1.7rem;
-    margin: 4rem 0 1.5rem 0;
-    padding-top: 2.5rem;
+    font-size: var(--text-prose-h);
+    margin: var(--space-14) 0 var(--space-8) 0;
+    padding-top: var(--space-11);
     color: var(--color-heading);
     letter-spacing: -0.01em;
     text-transform: none;
@@ -472,7 +523,7 @@ mark {
 }
 
 .prose h2.conclusion {
-    font-size: 1.85rem;
+    font-size: clamp(1.6rem, 1.4rem + 0.55vi, 1.85rem);
 }
 
 .prose h2 + .role-period {
@@ -488,9 +539,9 @@ mark {
 .prose ul.takeaway {
     background: var(--surface-callout);
     border-left: 3px solid var(--color-accent);
-    padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+    padding: var(--space-8) var(--space-8) var(--space-8) var(--space-11);
     border-radius: 2px;
-    margin: 2rem 0;
+    margin: var(--space-10) 0;
 }
 
 .prose ul.takeaway li {
@@ -506,16 +557,16 @@ mark {
 
 .prose ol.footnotes {
     list-style: decimal;
-    padding-left: 1.75rem;
-    margin-top: 3rem;
-    padding-top: 1.5rem;
+    padding-left: var(--space-9);
+    margin-top: var(--space-12);
+    padding-top: var(--space-8);
     border-top: 1px solid var(--color-subtle);
-    font-size: 0.92rem;
+    font-size: var(--text-fn);
 }
 
 .prose ol.footnotes li {
-    padding-left: 0.5rem;
-    margin-bottom: 1rem;
+    padding-left: var(--space-4);
+    margin-bottom: var(--space-6);
 }
 
 .prose ol.footnotes li::before {
@@ -544,10 +595,10 @@ mark {
     background: var(--surface-callout);
     border: 1px solid var(--color-subtle);
     border-radius: 4px;
-    padding: 1.5rem 1.75rem;
-    margin: 2rem 0;
+    padding: var(--space-8) var(--space-9);
+    margin: var(--space-10) 0;
     overflow-x: auto;
-    font-size: 0.95rem;
+    font-size: var(--text-code);
     line-height: 1.65;
     -webkit-overflow-scrolling: touch;
 }
@@ -577,14 +628,14 @@ mark {
 .prose ul {
     list-style: none;
     padding-left: 0;
-    font-size: 1.15rem;
-    margin: 0 0 1.75rem 0;
+    font-size: var(--text-prose);
+    margin: 0 0 var(--space-9) 0;
 }
 
 .prose li {
-    margin-bottom: 0.6rem;
+    margin-bottom: var(--space-5);
     line-height: 1.85;
-    padding-left: 1.75rem;
+    padding-left: var(--space-9);
     position: relative;
     color: var(--color-fg);
 }
@@ -603,12 +654,12 @@ mark {
 /* CV: role metadata */
 
 .prose p.role-skills {
-    font-size: 1rem;
+    font-size: var(--text-body);
     color: color-mix(in oklch, var(--color-fg) 50%, var(--color-subtle));
     letter-spacing: 0.01em;
     line-height: 1.7;
-    margin-top: -0.5rem;
-    padding-bottom: 2.5rem;
+    margin-top: calc(-1 * var(--space-4));
+    padding-bottom: var(--space-11);
 }
 
 .role-skills:last-of-type {
@@ -621,7 +672,7 @@ mark {
 
 .post-list {
     padding: 0;
-    margin: 0 0 3rem 0;
+    margin: 0 0 var(--space-12) 0;
 }
 
 .project-list,
@@ -635,7 +686,7 @@ mark {
 .project-item {
     position: relative;
     margin-bottom: 0;
-    padding: 2rem 0;
+    padding: var(--space-10) 0;
     border-bottom: 1px solid var(--color-subtle);
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.5s forwards;
@@ -675,7 +726,7 @@ mark {
 /* Blog listing */
 
 .post-title {
-    font-size: 1.2rem;
+    font-size: var(--text-card);
     font-weight: 400;
     line-height: 1.4;
     color: var(--color-heading);
@@ -684,7 +735,7 @@ mark {
 
 .post-summary {
     font-family: var(--font-serif);
-    font-size: 0.95rem;
+    font-size: var(--text-code);
     line-height: 1.6;
     margin: 0.3rem 0 0 0;
 }
@@ -692,7 +743,7 @@ mark {
 /* Projects listing */
 
 .project-name {
-    font-size: 1.2rem;
+    font-size: var(--text-card);
     font-weight: 400;
     line-height: 1.4;
     color: var(--color-accent);
@@ -700,14 +751,14 @@ mark {
 }
 
 .project-meta {
-    font-size: 0.75rem;
+    font-size: var(--text-meta);
     letter-spacing: 0.06em;
     margin: 0.2rem 0 0 0;
 }
 
 .project-summary {
     font-family: var(--font-serif);
-    font-size: 0.95rem;
+    font-size: var(--text-code);
     line-height: 1.6;
     margin: 0.3rem 0 0 0;
 }
@@ -715,7 +766,7 @@ mark {
 /* Thoughts/tweets listing */
 
 .tweet-item {
-    padding: 2rem 0;
+    padding: var(--space-10) 0;
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.5s forwards;
 }
@@ -749,7 +800,7 @@ mark {
     color: color-mix(in oklch, var(--color-subtle), var(--color-fg) 35%);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-bottom: 0.35rem;
+    margin-bottom: var(--space-2);
     display: block;
 }
 
@@ -758,8 +809,8 @@ mark {
    ========================================================================== */
 
 .site-footer {
-    margin-top: 5rem;
-    padding-top: 2.5rem;
+    margin-top: var(--space-15);
+    padding-top: var(--space-11);
     border-top: 1px solid var(--color-subtle);
     letter-spacing: 0.06em;
     opacity: 0;
@@ -768,9 +819,9 @@ mark {
 
 .site-footer p {
     line-height: 1.75;
-    margin: 0 0 2.5rem 0;
+    margin: 0 0 var(--space-11) 0;
     letter-spacing: 0;
-    font-size: 0.9rem;
+    font-size: var(--text-note);
 }
 
 .site-footer p,
@@ -798,7 +849,7 @@ mark {
 article .site-footer {
     grid-column: 2;
     max-width: 720px;
-    font-size: 0.85rem;
+    font-size: var(--text-ui);
     animation-delay: 0.8s;
 }
 
@@ -813,7 +864,7 @@ article .site-footer {
 }
 
 .album-item {
-    padding: 3.5rem 0;
+    padding: var(--space-13) 0;
     border-bottom: 1px solid var(--color-subtle);
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.5s forwards;
@@ -835,7 +886,7 @@ article .site-footer {
 .album-covers {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 0.4rem;
+    gap: var(--space-4);
 }
 
 .album-cover {
@@ -847,11 +898,11 @@ article .site-footer {
 }
 
 .album-info {
-    margin-top: 1.5rem;
+    margin-top: var(--space-8);
 }
 
 .album-title {
-    font-size: 1.2rem;
+    font-size: var(--text-card);
     font-weight: 400;
     color: var(--color-heading);
     line-height: 1.4;
@@ -859,18 +910,18 @@ article .site-footer {
 }
 
 .album-meta {
-    font-size: 0.75rem;
+    font-size: var(--text-meta);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    margin: 0.5rem 0 0 0;
+    margin: var(--space-4) 0 0 0;
     color: color-mix(in oklch, var(--color-subtle), var(--color-fg) 35%);
 }
 
 .album-summary {
     font-family: var(--font-serif);
-    font-size: 0.95rem;
+    font-size: var(--text-code);
     line-height: 1.6;
-    margin: 0.6rem 0 0 0;
+    margin: var(--space-5) 0 0 0;
 }
 
 /* ==========================================================================
@@ -879,11 +930,11 @@ article .site-footer {
 
 .photo-grid {
     columns: 3;
-    column-gap: 1rem;
+    column-gap: var(--space-6);
 }
 
 .photo-item {
-    margin: 0 0 1rem 0;
+    margin: 0 0 var(--space-6) 0;
     break-inside: avoid;
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.5s forwards;
@@ -911,7 +962,7 @@ article .site-footer {
     line-height: 1.7;
     max-width: 600px;
     text-align: center;
-    margin: 1.25rem auto 0;
+    margin: var(--space-7) auto 0;
     font-family: var(--font-serif);
     letter-spacing: 0.01em;
     min-height: calc(2 * 1.7 * 1.05rem);
@@ -966,14 +1017,14 @@ article .site-footer {
 
 .lightbox-close {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
+    top: var(--space-8);
+    right: var(--space-8);
     background: none;
     border: none;
     color: var(--color-fg);
     font-size: 2rem;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: var(--space-4);
     line-height: 1;
     z-index: 1001;
     transition:
@@ -996,7 +1047,7 @@ article .site-footer {
     color: var(--color-fg);
     font-size: 1.5rem;
     cursor: pointer;
-    padding: 1rem;
+    padding: var(--space-6);
     z-index: 1001;
     font-family: inherit;
     letter-spacing: 0.08em;
@@ -1016,20 +1067,20 @@ article .site-footer {
 }
 
 .lightbox-prev {
-    left: 1rem;
+    left: var(--space-6);
 }
 
 .lightbox-next {
-    right: 1rem;
+    right: var(--space-6);
 }
 
 .lightbox-counter {
     position: absolute;
-    bottom: 1.5rem;
+    bottom: var(--space-8);
     left: 50%;
     transform: translateX(-50%);
     color: var(--color-fg);
-    font-size: 0.75rem;
+    font-size: var(--text-meta);
     letter-spacing: 0.08em;
     font-family: var(--font-mono);
 }
@@ -1100,10 +1151,6 @@ pre code.hljs {
 
 /* Gallery: tablet */
 @media (max-width: 920px) {
-    .page--gallery {
-        padding: 2rem 2rem 3rem;
-    }
-
     .photo-grid {
         columns: 2;
     }
@@ -1111,10 +1158,6 @@ pre code.hljs {
 
 /* Gallery: mobile */
 @media (max-width: 540px) {
-    .page--gallery {
-        padding: 1.5rem 1.25rem 2.5rem;
-    }
-
     .photo-grid {
         columns: 1;
     }
@@ -1125,15 +1168,10 @@ pre code.hljs {
     }
 }
 
-/* Blog post: tablet */
+/* Blog post: tablet (grid collapse) */
 @media (max-width: 920px) {
-    .page--wide {
-        padding: 2rem 2rem 3rem;
-    }
-
     .article-grid {
         grid-template-columns: 1fr;
-        margin-top: 3rem;
         column-gap: 0;
     }
 
@@ -1151,8 +1189,8 @@ pre code.hljs {
     .author-col {
         display: flex;
         align-items: flex-start;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
+        gap: var(--space-7);
+        margin-bottom: var(--space-9);
     }
 
     .avatar {
@@ -1172,15 +1210,7 @@ pre code.hljs {
     .date-col {
         text-align: left;
         order: -1;
-        margin-bottom: 1rem;
-    }
-
-    .title-col {
-        margin-bottom: 2.5rem;
-    }
-
-    .title-col h1 {
-        font-size: 2rem;
+        margin-bottom: var(--space-7);
     }
 
     .sidebar-label {
@@ -1190,36 +1220,13 @@ pre code.hljs {
 
 /* All pages: mobile */
 @media (max-width: 540px) {
-    .page {
-        padding: 1.5rem 1.25rem 2.5rem;
-    }
-
-    h1 {
-        font-size: 2rem;
-        margin-bottom: 2.5rem;
-    }
-
-    .top-bar {
-        margin-bottom: 3rem;
-    }
-
-    .title-col h1 {
-        font-size: 1.65rem;
-    }
-
-    .prose p,
-    .prose li {
-        font-size: 1.05rem;
-    }
-
     .prose pre {
-        padding: 1.25rem;
         margin-left: -0.25rem;
         margin-right: -0.25rem;
         border-radius: 0;
         border-left: none;
         border-right: none;
-        font-size: 0.85rem;
+        font-size: var(--text-ui);
     }
 
     .album-covers {
