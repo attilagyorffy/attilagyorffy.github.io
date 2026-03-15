@@ -512,6 +512,14 @@ article {
     font-size: 1.85rem;
 }
 
+.post-body h2 + .role-period {
+    margin-top: 0;
+}
+
+.post-body p.role-period {
+    color: color-mix(in oklch, var(--color-fg) 50%, var(--color-subtle));
+}
+
 /* Takeaway callout */
 
 .post-body ul.takeaway {
@@ -636,6 +644,21 @@ article {
 
 .post-body em {
     font-style: italic;
+}
+
+/* CV: role metadata and skills */
+
+.post-body p.role-skills {
+    font-size: 1rem;
+    color: color-mix(in oklch, var(--color-fg) 50%, var(--color-subtle));
+    letter-spacing: 0.01em;
+    line-height: 1.7;
+    margin-top: -0.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.role-skills:last-of-type {
+    padding-bottom: 0;
 }
 
 /* Sidebar label */
