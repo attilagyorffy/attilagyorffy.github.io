@@ -353,33 +353,10 @@ h2:first-of-type {
 }
 
 /* ==========================================================================
-   Outro & Page footer (listing pages)
+   Site footer
    ========================================================================== */
 
-/*.outro {
-    font-size: 0.9rem;
-    line-height: 1.75;
-    letter-spacing: 0;
-    margin: 5rem 0 0 0;
-    padding-top: 2.5rem;
-    border-top: 1px solid var(--color-subtle);
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out 0.6s forwards;
-}
-
-.outro a {
-    text-decoration: underline;
-    text-decoration-color: var(--color-subtle);
-    text-underline-offset: 0.2em;
-    text-decoration-thickness: 1px;
-    transition: text-decoration-color 0.4s ease;
-}
-
-.outro a:hover {
-    text-decoration-color: var(--color-subtle);
-}*/
-
-.page-footer {
+.site-footer {
     margin-top: 5rem;
     padding-top: 2.5rem;
     border-top: 1px solid var(--color-subtle);
@@ -388,19 +365,19 @@ h2:first-of-type {
     animation: fadeIn 0.6s ease-out 0.6s forwards;
 }
 
-.page-footer p {
+.site-footer p {
     line-height: 1.75;
     margin: 0 0 2.5rem 0;
     letter-spacing: 0;
     font-size: 0.9rem;
 }
 
-.page-footer p,
-.page-footer p a {
+.site-footer p,
+.site-footer p a {
     color: color-mix(in oklch, var(--color-subtle), var(--color-fg) 35%);
 }
 
-.page-footer p a {
+.site-footer p a {
     text-decoration: underline;
     text-decoration-color: var(--color-subtle);
     text-underline-offset: 0.2em;
@@ -410,7 +387,7 @@ h2:first-of-type {
         color 0.2s ease;
 }
 
-.page-footer p a:hover {
+.site-footer p a:hover {
     color: var(--color-fg);
     text-decoration-color: var(--color-fg);
 }
@@ -759,45 +736,13 @@ article[itemscope] {
     letter-spacing: 0;
 }
 
-/* Post footer (blog articles) */
+/* Footer in article grid context */
 
-.post-footer {
+article .site-footer {
     grid-column: 2;
     max-width: 720px;
-    margin: 5rem 0 0;
-    padding-top: 2.5rem;
-    border-top: 1px solid var(--color-subtle);
     font-size: 0.85rem;
-    letter-spacing: 0.06em;
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out 0.8s forwards;
-}
-
-.post-footer p {
-    line-height: 1.75;
-    margin: 0 0 2.5rem 0;
-    letter-spacing: 0;
-    font-size: 0.9rem;
-}
-
-.post-footer p a {
-    text-decoration: underline;
-    text-decoration-color: var(--color-subtle);
-    text-underline-offset: 0.2em;
-    text-decoration-thickness: 1px;
-    transition:
-        text-decoration-color 0.4s ease,
-        color 0.2s ease;
-}
-
-.post-footer p,
-.post-footer p a {
-    color: color-mix(in oklch, var(--color-subtle), var(--color-fg) 35%);
-}
-
-.post-footer p a:hover {
-    color: var(--color-fg);
-    text-decoration-color: var(--color-fg);
+    animation-delay: 0.8s;
 }
 
 /* ==========================================================================
@@ -1152,7 +1097,7 @@ pre code.hljs {
     .title-col,
     .date-col,
     .post-body,
-    .post-footer {
+    .site-footer {
         grid-column: 1;
         grid-row: auto;
         min-width: 0;
