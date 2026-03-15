@@ -47,7 +47,7 @@
  *
  * Design tokens
  *   --font-*              Typography stacks
- *   --space-{2..17}       Fluid spacing scale (0.25 rem – 8 rem, clamp + vi)
+ *   --space-{xs..5xl}     Fluid spacing scale (0.25 rem – 8 rem, 9 steps)
  *   --page-pad-*          Page shell padding (y / x / b)
  *   --text-*              Fluid font-size scale (0.68 rem – 2.5 rem)
  *   --color-*             Foreground / background / accent colours
@@ -122,23 +122,17 @@
     --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
 
     /* Spacing — fixed */
-    --space-2:  0.25rem;
-    --space-4:  0.5rem;
+    --space-xs: 0.25rem;
+    --space-s:  0.5rem;
 
     /* Spacing — fluid (scale with viewport) */
-    --space-5:  clamp(0.6rem,  0.5rem + 0.25vi,  0.85rem);
-    --space-6:  clamp(0.85rem, 0.7rem + 0.4vi,   1rem);
-    --space-7:  clamp(1rem,    0.8rem + 0.5vi,    1.25rem);
-    --space-8:  clamp(1.25rem, 1rem + 0.6vi,      1.5rem);
-    --space-9:  clamp(1.5rem,  1.1rem + 0.8vi,    1.8rem);
-    --space-10: clamp(1.75rem, 1.25rem + 1vi,     2rem);
-    --space-11: clamp(2rem,    1.4rem + 1.2vi,    2.5rem);
-    --space-12: clamp(2.5rem,  1.5rem + 1.5vi,    3rem);
-    --space-13: clamp(2.5rem,  1.5rem + 2vi,      3.5rem);
-    --space-14: clamp(3rem,    1.75rem + 2.5vi,   4rem);
-    --space-15: clamp(3rem,    1.5rem + 3vi,      5rem);
-    --space-16: clamp(3rem,    1.25rem + 3.5vi,   6rem);
-    --space-17: clamp(3rem,    1rem + 4vi,        8rem);
+    --space-m:   clamp(0.7rem,  0.55rem + 0.35vi, 1rem);
+    --space-l:   clamp(1.1rem,  0.85rem + 0.6vi,  1.5rem);
+    --space-xl:  clamp(1.6rem,  1.15rem + 1vi,    2rem);
+    --space-2xl: clamp(2.25rem, 1.45rem + 1.5vi,  3rem);
+    --space-3xl: clamp(3rem,    1.75rem + 2.5vi,  4rem);
+    --space-4xl: clamp(3rem,    1.35rem + 3.25vi, 5.5rem);
+    --space-5xl: clamp(3rem,    1rem + 4vi,       8rem);
 
     /* Page shell padding */
     --page-pad-y: clamp(1.5rem, 1rem + 1.2vi,     3rem);
@@ -254,7 +248,7 @@ a:visited {
     text-transform: uppercase;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--space-16);
+    margin-bottom: var(--space-4xl);
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.2s forwards;
 }
@@ -263,7 +257,7 @@ a:visited {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    margin-bottom: var(--space-14);
+    margin-bottom: var(--space-3xl);
     gap: 0.3rem;
 }
 
@@ -289,7 +283,7 @@ h1 {
     font-weight: 400;
     letter-spacing: -0.01em;
     line-height: 1.2;
-    margin: 0 0 var(--space-14) 0;
+    margin: 0 0 var(--space-3xl) 0;
     color: var(--color-heading);
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.3s forwards;
@@ -300,8 +294,8 @@ h2 {
     font-weight: 400;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    margin: var(--space-14) 0 var(--space-10) 0;
-    padding-bottom: var(--space-5);
+    margin: var(--space-3xl) 0 var(--space-xl) 0;
+    padding-bottom: var(--space-m);
     border-bottom: 1px solid var(--color-subtle);
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.4s forwards;
@@ -315,7 +309,7 @@ h2:first-of-type {
 .intro {
     font-size: var(--text-intro);
     line-height: 1.75;
-    margin: 0 0 var(--space-14) 0;
+    margin: 0 0 var(--space-3xl) 0;
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.35s forwards;
 }
@@ -327,9 +321,9 @@ h2:first-of-type {
 .article-grid {
     display: grid;
     grid-template-columns: 200px 1fr auto;
-    column-gap: var(--space-11);
+    column-gap: var(--space-2xl);
     align-items: start;
-    margin-top: var(--space-17);
+    margin-top: var(--space-5xl);
 }
 
 .author-col {
@@ -342,7 +336,7 @@ h2:first-of-type {
 .title-col {
     grid-column: 2;
     grid-row: 1;
-    margin-bottom: var(--space-14);
+    margin-bottom: var(--space-3xl);
     gap: 0.3rem;
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.4s forwards;
@@ -384,7 +378,7 @@ h2:first-of-type {
     letter-spacing: 0.14em;
     text-transform: uppercase;
     font-weight: 700;
-    margin-bottom: var(--space-2);
+    margin-bottom: var(--space-xs);
     color: var(--color-heading);
 }
 
@@ -399,7 +393,7 @@ h2:first-of-type {
     font-size: var(--text-sm);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    margin-top: var(--space-10);
+    margin-top: var(--space-xl);
 }
 
 /* Title column */
@@ -408,7 +402,7 @@ h2:first-of-type {
     font-size: var(--text-h1);
     font-weight: 400;
     line-height: 1.25;
-    margin: 0 0 var(--space-7) 0;
+    margin: 0 0 var(--space-l) 0;
     color: var(--color-heading);
     letter-spacing: -0.01em;
 }
@@ -423,7 +417,7 @@ h2:first-of-type {
 
 .sidebar-label {
     position: fixed;
-    right: var(--space-11);
+    right: var(--space-2xl);
     top: 50%;
     writing-mode: vertical-rl;
     font-size: var(--text-xs);
@@ -432,7 +426,7 @@ h2:first-of-type {
     color: var(--color-subtle);
     display: flex;
     align-items: flex-start;
-    gap: var(--space-5);
+    gap: var(--space-m);
 }
 
 .sidebar-arrow {
@@ -495,7 +489,7 @@ mark {
 .prose p {
     font-size: var(--text-prose);
     line-height: 1.85;
-    margin: 0 0 var(--space-9) 0;
+    margin: 0 0 var(--space-xl) 0;
     color: var(--color-fg);
 }
 
@@ -511,8 +505,8 @@ mark {
     font-family: var(--font-mono); /* override prose serif */
     font-weight: 400;
     font-size: var(--text-prose-h);
-    margin: var(--space-14) 0 var(--space-8) 0;
-    padding-top: var(--space-11);
+    margin: var(--space-3xl) 0 var(--space-l) 0;
+    padding-top: var(--space-2xl);
     color: var(--color-heading);
     letter-spacing: -0.01em;
     text-transform: none;
@@ -539,9 +533,9 @@ mark {
 .prose ul.takeaway {
     background: var(--surface-callout);
     border-left: 3px solid var(--color-accent);
-    padding: var(--space-8) var(--space-8) var(--space-8) var(--space-11);
+    padding: var(--space-l) var(--space-l) var(--space-l) var(--space-2xl);
     border-radius: 2px;
-    margin: var(--space-10) 0;
+    margin: var(--space-xl) 0;
 }
 
 .prose ul.takeaway li {
@@ -557,16 +551,16 @@ mark {
 
 .prose ol.footnotes {
     list-style: decimal;
-    padding-left: var(--space-9);
-    margin-top: var(--space-12);
-    padding-top: var(--space-8);
+    padding-left: var(--space-xl);
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-l);
     border-top: 1px solid var(--color-subtle);
     font-size: var(--text-fn);
 }
 
 .prose ol.footnotes li {
-    padding-left: var(--space-4);
-    margin-bottom: var(--space-6);
+    padding-left: var(--space-s);
+    margin-bottom: var(--space-m);
 }
 
 .prose ol.footnotes li::before {
@@ -595,8 +589,8 @@ mark {
     background: var(--surface-callout);
     border: 1px solid var(--color-subtle);
     border-radius: 4px;
-    padding: var(--space-8) var(--space-9);
-    margin: var(--space-10) 0;
+    padding: var(--space-l) var(--space-xl);
+    margin: var(--space-xl) 0;
     overflow-x: auto;
     font-size: var(--text-code);
     line-height: 1.65;
@@ -629,13 +623,13 @@ mark {
     list-style: none;
     padding-left: 0;
     font-size: var(--text-prose);
-    margin: 0 0 var(--space-9) 0;
+    margin: 0 0 var(--space-xl) 0;
 }
 
 .prose li {
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-m);
     line-height: 1.85;
-    padding-left: var(--space-9);
+    padding-left: var(--space-xl);
     position: relative;
     color: var(--color-fg);
 }
@@ -658,8 +652,8 @@ mark {
     color: color-mix(in oklch, var(--color-fg) 50%, var(--color-subtle));
     letter-spacing: 0.01em;
     line-height: 1.7;
-    margin-top: calc(-1 * var(--space-4));
-    padding-bottom: var(--space-11);
+    margin-top: calc(-1 * var(--space-s));
+    padding-bottom: var(--space-2xl);
 }
 
 .role-skills:last-of-type {
@@ -672,7 +666,7 @@ mark {
 
 .post-list {
     padding: 0;
-    margin: 0 0 var(--space-12) 0;
+    margin: 0 0 var(--space-2xl) 0;
 }
 
 .project-list,
@@ -686,7 +680,7 @@ mark {
 .project-item {
     position: relative;
     margin-bottom: 0;
-    padding: var(--space-10) 0;
+    padding: var(--space-xl) 0;
     border-bottom: 1px solid var(--color-subtle);
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.5s forwards;
@@ -766,7 +760,7 @@ mark {
 /* Thoughts/tweets listing */
 
 .tweet-item {
-    padding: var(--space-10) 0;
+    padding: var(--space-xl) 0;
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.5s forwards;
 }
@@ -800,7 +794,7 @@ mark {
     color: color-mix(in oklch, var(--color-subtle), var(--color-fg) 35%);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-bottom: var(--space-2);
+    margin-bottom: var(--space-xs);
     display: block;
 }
 
@@ -809,8 +803,8 @@ mark {
    ========================================================================== */
 
 .site-footer {
-    margin-top: var(--space-15);
-    padding-top: var(--space-11);
+    margin-top: var(--space-4xl);
+    padding-top: var(--space-2xl);
     border-top: 1px solid var(--color-subtle);
     letter-spacing: 0.06em;
     opacity: 0;
@@ -819,7 +813,7 @@ mark {
 
 .site-footer p {
     line-height: 1.75;
-    margin: 0 0 var(--space-11) 0;
+    margin: 0 0 var(--space-2xl) 0;
     letter-spacing: 0;
     font-size: var(--text-note);
 }
@@ -864,7 +858,7 @@ article .site-footer {
 }
 
 .album-item {
-    padding: var(--space-13) 0;
+    padding: var(--space-2xl) 0;
     border-bottom: 1px solid var(--color-subtle);
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.5s forwards;
@@ -886,7 +880,7 @@ article .site-footer {
 .album-covers {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: var(--space-4);
+    gap: var(--space-s);
 }
 
 .album-cover {
@@ -898,7 +892,7 @@ article .site-footer {
 }
 
 .album-info {
-    margin-top: var(--space-8);
+    margin-top: var(--space-l);
 }
 
 .album-title {
@@ -913,7 +907,7 @@ article .site-footer {
     font-size: var(--text-meta);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    margin: var(--space-4) 0 0 0;
+    margin: var(--space-s) 0 0 0;
     color: color-mix(in oklch, var(--color-subtle), var(--color-fg) 35%);
 }
 
@@ -921,7 +915,7 @@ article .site-footer {
     font-family: var(--font-serif);
     font-size: var(--text-code);
     line-height: 1.6;
-    margin: var(--space-5) 0 0 0;
+    margin: var(--space-m) 0 0 0;
 }
 
 /* ==========================================================================
@@ -930,11 +924,11 @@ article .site-footer {
 
 .photo-grid {
     columns: 3;
-    column-gap: var(--space-6);
+    column-gap: var(--space-m);
 }
 
 .photo-item {
-    margin: 0 0 var(--space-6) 0;
+    margin: 0 0 var(--space-m) 0;
     break-inside: avoid;
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.5s forwards;
@@ -962,7 +956,7 @@ article .site-footer {
     line-height: 1.7;
     max-width: 600px;
     text-align: center;
-    margin: var(--space-7) auto 0;
+    margin: var(--space-l) auto 0;
     font-family: var(--font-serif);
     letter-spacing: 0.01em;
     min-height: calc(2 * 1.7 * 1.05rem);
@@ -1017,14 +1011,14 @@ article .site-footer {
 
 .lightbox-close {
     position: absolute;
-    top: var(--space-8);
-    right: var(--space-8);
+    top: var(--space-l);
+    right: var(--space-l);
     background: none;
     border: none;
     color: var(--color-fg);
     font-size: 2rem;
     cursor: pointer;
-    padding: var(--space-4);
+    padding: var(--space-s);
     line-height: 1;
     z-index: 1001;
     transition:
@@ -1047,7 +1041,7 @@ article .site-footer {
     color: var(--color-fg);
     font-size: 1.5rem;
     cursor: pointer;
-    padding: var(--space-6);
+    padding: var(--space-m);
     z-index: 1001;
     font-family: inherit;
     letter-spacing: 0.08em;
@@ -1067,16 +1061,16 @@ article .site-footer {
 }
 
 .lightbox-prev {
-    left: var(--space-6);
+    left: var(--space-m);
 }
 
 .lightbox-next {
-    right: var(--space-6);
+    right: var(--space-m);
 }
 
 .lightbox-counter {
     position: absolute;
-    bottom: var(--space-8);
+    bottom: var(--space-l);
     left: 50%;
     transform: translateX(-50%);
     color: var(--color-fg);
@@ -1189,8 +1183,8 @@ pre code.hljs {
     .author-col {
         display: flex;
         align-items: flex-start;
-        gap: var(--space-7);
-        margin-bottom: var(--space-9);
+        gap: var(--space-l);
+        margin-bottom: var(--space-xl);
     }
 
     .avatar {
@@ -1210,7 +1204,7 @@ pre code.hljs {
     .date-col {
         text-align: left;
         order: -1;
-        margin-bottom: var(--space-7);
+        margin-bottom: var(--space-l);
     }
 
     .sidebar-label {
