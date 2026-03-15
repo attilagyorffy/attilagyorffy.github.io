@@ -693,7 +693,7 @@ mark {
 
 .tweet-date {
     font-size: 0.7rem;
-    color: var(--color-subtle);
+    color: color-mix(in oklch, var(--color-subtle), var(--color-fg) 35%);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 0.35rem;
