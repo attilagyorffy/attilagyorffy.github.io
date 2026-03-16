@@ -917,6 +917,7 @@ article .site-footer {
 
 .photo-thumb {
     width: 100%;
+    height: auto;
     display: block;
     border-radius: 2px;
     cursor: pointer;
