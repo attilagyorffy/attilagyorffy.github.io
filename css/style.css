@@ -32,7 +32,7 @@
  *
  * Item cards              Listing-page entries
  *   .post-item            Blog post card (stretched-link pattern)
- *   .project-item         Project card
+ *   (project cards reuse .post-item)
  *   .tweet-item           Tweet/quote card
  *   .album-item           Photo album card with cover grid
  *
@@ -698,23 +698,21 @@ mark {
     margin: 0 0 var(--space-xl) 0;
 }
 
-.project-list,
 .tweet-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.post-item,
-.project-item {
+.post-item {
     position: relative;
     margin-bottom: 0;
     padding: var(--space-l) 0;
     border-bottom: 1px solid var(--color-subtle);
+    transition: transform 0.2s ease;
 }
 
-.post-item:last-of-type,
-.project-item:last-child {
+.post-item:last-of-type {
     border-bottom: none;
 }
 
@@ -731,20 +729,10 @@ mark {
 }
 
 .post-item:hover {
-    transform: translateX(4px);
-    transition: transform 0.2s ease;
+    transform: translateX(8px);
 }
 
-.project-link {
-    display: block;
-    transition: transform 0.2s ease;
-}
-
-.project-link:hover {
-    transform: translateX(4px);
-}
-
-/* Blog listing */
+/* Blog & project listings */
 
 .post-title {
     font-size: var(--text-card);
@@ -755,29 +743,6 @@ mark {
 }
 
 .post-summary {
-    font-family: var(--font-serif);
-    font-size: var(--text-code);
-    line-height: 1.6;
-    margin: 0.3rem 0 0 0;
-}
-
-/* Projects listing */
-
-.project-name {
-    font-size: var(--text-card);
-    font-weight: 400;
-    line-height: 1.4;
-    color: var(--color-accent);
-    margin: 0;
-}
-
-.project-meta {
-    font-size: var(--text-meta);
-    letter-spacing: 0.06em;
-    margin: 0.2rem 0 0 0;
-}
-
-.project-summary {
     font-family: var(--font-serif);
     font-size: var(--text-code);
     line-height: 1.6;
@@ -1167,6 +1132,11 @@ pre code.hljs {
     }
 }
 
+@keyframes fadeInOnly {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
 /* ==========================================================================
    Motion: fade-in animations as progressive enhancement
    Content is visible by default. The .js-animated class is added by a
@@ -1211,10 +1181,9 @@ pre code.hljs {
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.6s forwards;
 }
-.js-animated .post-item,
-.js-animated .project-item {
+.js-animated .post-item {
     opacity: 0;
-    animation: fadeIn 0.6s ease-out 0.5s forwards;
+    animation: fadeInOnly 0.6s ease-out 0.5s forwards;
 }
 .js-animated .tweet-item {
     opacity: 0;
