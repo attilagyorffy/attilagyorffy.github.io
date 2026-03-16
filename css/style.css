@@ -880,6 +880,10 @@ article .site-footer {
     color: var(--color-heading);
     line-height: 1.4;
     margin: 0;
+    text-transform: none;
+    letter-spacing: normal;
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 .album-meta {
