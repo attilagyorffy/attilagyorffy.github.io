@@ -173,7 +173,7 @@
     --color-fg: #1a1a1a;
     --color-heading: var(--color-fg);
     --color-subtle: color-mix(in oklch, var(--color-bg), black 5%);
-    --color-accent: #c9ada7;
+    --color-accent: #8a6a64;
 
     --surface-callout: color-mix(in oklch, var(--color-bg), black 5%);
     --highlight-bg: color-mix(in srgb, var(--color-accent), transparent 60%);
@@ -185,7 +185,7 @@
         --color-fg: #b1b1b1;
         --color-heading: white;
         --color-subtle: color-mix(in oklch, var(--color-bg), white 15%);
-        --color-accent: rgba(136, 126, 255, 0.7);
+        --color-accent: #a89cff;
 
         --surface-callout: color-mix(in oklch, var(--color-bg), white 3%);
         --highlight-bg: color-mix(
