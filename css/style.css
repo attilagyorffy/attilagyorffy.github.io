@@ -409,6 +409,51 @@ h2:first-of-type {
     margin: 0;
 }
 
+/* Topic tags */
+
+.topic-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-s);
+}
+
+.topic-tag {
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2em 0.6em;
+    border: 1px solid var(--color-subtle);
+    border-radius: 2px;
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.topic-tag:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+/* Topic filter bar (blog listing) */
+
+.topic-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-xl);
+}
+
+.topic-filter .topic-tag {
+    cursor: pointer;
+}
+
+.topic-filter .topic-tag[aria-pressed="true"] {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-bg);
+}
+
 /* Sidebar label */
 
 .sidebar-label {
@@ -1141,6 +1186,10 @@ pre code.hljs {
 .js-animated .intro {
     opacity: 0;
     animation: fadeIn 0.6s ease-out 0.35s forwards;
+}
+.js-animated .topic-filter {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.38s forwards;
 }
 .js-animated h2 {
     opacity: 0;

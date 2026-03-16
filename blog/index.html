@@ -39,9 +39,22 @@
                 stick around. You've already made worse decisions today.
             </p>
 
+            <nav class="topic-filter" aria-label="Filter by topic">
+                <button class="topic-tag" data-topic="go" aria-pressed="false">Go</button>
+                <button class="topic-tag" data-topic="ruby-on-rails" aria-pressed="false">Ruby on Rails</button>
+                <button class="topic-tag" data-topic="javascript" aria-pressed="false">JavaScript</button>
+                <button class="topic-tag" data-topic="freebsd" aria-pressed="false">FreeBSD</button>
+                <button class="topic-tag" data-topic="testing" aria-pressed="false">Testing</button>
+                <button class="topic-tag" data-topic="security" aria-pressed="false">Security</button>
+                <button class="topic-tag" data-topic="performance" aria-pressed="false">Performance</button>
+                <button class="topic-tag" data-topic="developer-tools" aria-pressed="false">Developer Tools</button>
+                <button class="topic-tag" data-topic="infrastructure" aria-pressed="false">Infrastructure</button>
+                <button class="topic-tag" data-topic="privacy" aria-pressed="false">Privacy</button>
+            </nav>
+
             <section class="post-list">
                 <h2>2026</h2>
-                <article class="post-item">
+                <article class="post-item" data-topics="go">
                     <h3 class="post-title">
                         <a href="/blog/stop-naming-go-constructors-new/" class="post-link">
                             Stop Naming Your Go Constructors New
@@ -57,7 +70,7 @@
 
             <section class="post-list">
                 <h2>2025</h2>
-                <article class="post-item">
+                <article class="post-item" data-topics="privacy">
                     <h3 class="post-title">
                         <a href="/blog/the-day-viktor-orban-messaged-me/" class="post-link">
                             The Day &ldquo;Viktor Orb&aacute;n&rdquo; Messaged Me
@@ -69,7 +82,7 @@
                             automated, the GDPR violations are artisanal.
                     </p>
                 </article>
-                <article class="post-item">
+                <article class="post-item" data-topics="infrastructure">
                     <h3 class="post-title">
                         <a href="/blog/when-one-company-breaks-half-the-internet-goes-with-it/" class="post-link">
                             When One Company Breaks, Half the Internet Goes with It
@@ -85,7 +98,7 @@
 
             <section class="post-list">
                 <h2>2022</h2>
-                <article class="post-item">
+                <article class="post-item" data-topics="privacy">
                     <h3 class="post-title">
                         <a href="/blog/the-quiet-revolt-of-the-digital-self/" class="post-link">
                             The Quiet Revolt of the Digital Self
@@ -102,7 +115,7 @@
 
             <section class="post-list">
                 <h2>2017</h2>
-                <article class="post-item">
+                <article class="post-item" data-topics="ruby-on-rails performance">
                     <h3 class="post-title">
                         <a href="/blog/stop-shipping-desktop-images-to-phones/" class="post-link">
                             Stop Shipping Desktop Images to Phones
@@ -118,7 +131,7 @@
 
             <section class="post-list">
                 <h2>2016</h2>
-                <article class="post-item">
+                <article class="post-item" data-topics="freebsd infrastructure">
                     <h3 class="post-title">
                         <a href="/blog/ansible-hangs-on-freebsd-and-nobody-tells-you/" class="post-link">
                             Ansible Hangs on FreeBSD and Nobody Tells You
@@ -130,7 +143,7 @@
                             hanging forever.
                     </p>
                 </article>
-                <article class="post-item">
+                <article class="post-item" data-topics="developer-tools">
                     <h3 class="post-title">
                         <a href="/blog/stop-typing-full-git-urls/" class="post-link">
                             Stop Typing Full Git URLs
@@ -142,7 +155,7 @@
                             cloning with gh:user/repo.
                     </p>
                 </article>
-                <article class="post-item">
+                <article class="post-item" data-topics="freebsd security">
                     <h3 class="post-title">
                         <a href="/blog/replacing-openssl-with-libressl-on-freebsd/" class="post-link">
                             Replacing OpenSSL with LibreSSL on FreeBSD
@@ -155,7 +168,7 @@
                             it out.
                     </p>
                 </article>
-                <article class="post-item">
+                <article class="post-item" data-topics="ruby-on-rails">
                     <h3 class="post-title">
                         <a href="/blog/postgres-refuses-your-not-null-migration/" class="post-link">
                             Postgres Refuses Your NOT NULL Migration
@@ -167,7 +180,7 @@
                             backfill, then add the constraint.
                     </p>
                 </article>
-                <article class="post-item">
+                <article class="post-item" data-topics="javascript">
                     <h3 class="post-title">
                         <a href="/blog/every-ember-phoenix-tutorial-was-wrong/" class="post-link">
                             Every Ember-Phoenix Tutorial Was Wrong
@@ -179,7 +192,7 @@
                             So I built one from scratch.
                     </p>
                 </article>
-                <article class="post-item">
+                <article class="post-item" data-topics="javascript performance">
                     <h3 class="post-title">
                         <a href="/blog/npm-progress-bar-halves-your-install-speed/" class="post-link">
                             npm's Progress Bar Halves Your Install Speed
@@ -191,7 +204,7 @@
                             fast and half as annoying.
                     </p>
                 </article>
-                <article class="post-item">
+                <article class="post-item" data-topics="freebsd security">
                     <h3 class="post-title">
                         <a href="/blog/your-freebsd-files-are-readable-by-everyone/" class="post-link">
                             Your FreeBSD Files Are Readable by Everyone
@@ -203,7 +216,7 @@
                             in one config file fix it. You're welcome.
                     </p>
                 </article>
-                <article class="post-item">
+                <article class="post-item" data-topics="testing developer-tools">
                     <h3 class="post-title">
                         <a href="/blog/run-the-w3c-validator-locally-with-docker/" class="post-link">
                             Run the W3C Validator Locally with Docker
@@ -219,7 +232,7 @@
 
             <section class="post-list">
                 <h2>2015</h2>
-                <article class="post-item">
+                <article class="post-item" data-topics="javascript">
                     <h3 class="post-title">
                         <a href="/blog/stop-naming-all-your-callbacks-cb/" class="post-link">
                             Stop Naming All Your Callbacks cb
@@ -231,7 +244,7 @@
                             words fix it. You're looking for "next."
                     </p>
                 </article>
-                <article class="post-item">
+                <article class="post-item" data-topics="ruby-on-rails testing">
                     <h3 class="post-title">
                         <a href="/blog/testing-activemodel-serializer-with-rspec/" class="post-link">
                             Testing ActiveModel::Serializer with RSpec
@@ -247,7 +260,7 @@
 
             <section class="post-list">
                 <h2>2014</h2>
-                <article class="post-item">
+                <article class="post-item" data-topics="testing developer-tools">
                     <h3 class="post-title">
                         <a href="/blog/zero-config-mobile-testing-with-pow-and-bonjour/" class="post-link">
                             Zero-Config Mobile Testing with Pow and Bonjour
@@ -259,7 +272,7 @@
                             made mDNS do it for me.
                     </p>
                 </article>
-                <article class="post-item">
+                <article class="post-item" data-topics="javascript testing">
                     <h3 class="post-title">
                         <a href="/blog/debugging-ember-apps-in-end-to-end-tests/" class="post-link">
                             Debugging Ember Apps in End-to-End Tests
@@ -272,7 +285,7 @@
                             everything.
                     </p>
                 </article>
-                <article class="post-item">
+                <article class="post-item" data-topics="javascript">
                     <h3 class="post-title">
                         <a href="/blog/why-your-ember-promises-fail-silently/" class="post-link">
                             Why Your Ember Promises Fail Silently
@@ -284,7 +297,7 @@
                             descent into madness. Four lines fix it.
                     </p>
                 </article>
-                <article class="post-item">
+                <article class="post-item" data-topics="developer-tools">
                     <h3 class="post-title">
                         <a href="/blog/when-brew-install-node-required-5-5gb-of-xcode/" class="post-link">
                             When brew install node required 5.5GB of Xcode
@@ -305,6 +318,7 @@
             </footer>
         </main>
 
+        <script src="/js/topics.js" defer></script>
         <script src="/js/favicon.js" defer></script>
     </body>
 </html>
