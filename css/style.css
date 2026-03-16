@@ -260,8 +260,6 @@ a:visited {
     justify-content: space-between;
     align-items: center;
     margin-bottom: var(--space-2xl);
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out 0.2s forwards;
 }
 
 .top-bar--stacked {
@@ -296,8 +294,6 @@ h1 {
     line-height: 1.2;
     margin: 0 0 var(--space-2xl) 0;
     color: var(--color-heading);
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out 0.3s forwards;
 }
 
 h2 {
@@ -308,8 +304,6 @@ h2 {
     margin: var(--space-2xl) 0 var(--space-l) 0;
     padding-bottom: var(--space-s);
     border-bottom: 1px solid var(--color-subtle);
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out 0.4s forwards;
 }
 
 h2:first-of-type {
@@ -320,8 +314,6 @@ h2:first-of-type {
     font-size: var(--text-intro);
     line-height: 1.75;
     margin: 0 0 var(--space-2xl) 0;
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out 0.35s forwards;
 }
 
 /* ==========================================================================
@@ -340,15 +332,11 @@ h2:first-of-type {
     align-items: flex-start;
     gap: var(--space-m);
     margin-bottom: var(--space-l);
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out 0.4s forwards;
 }
 
 .title-col {
     margin-bottom: var(--space-2xl);
     gap: 0.3rem;
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out 0.4s forwards;
 }
 
 .date-col {
@@ -356,8 +344,6 @@ h2:first-of-type {
     order: -1;
     margin-bottom: var(--space-m);
     padding-top: 0.45rem;
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out 0.4s forwards;
 }
 
 .date-col time {
@@ -481,8 +467,6 @@ mark {
     max-width: 720px;
     min-width: 0;
     position: relative;
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out 0.6s forwards;
 }
 
 .prose p {
@@ -682,8 +666,6 @@ mark {
     margin-bottom: 0;
     padding: var(--space-l) 0;
     border-bottom: 1px solid var(--color-subtle);
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out 0.5s forwards;
 }
 
 .post-item:last-of-type,
@@ -761,8 +743,6 @@ mark {
 
 .tweet-item {
     padding: var(--space-l) 0;
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out 0.5s forwards;
 }
 
 .tweet-item:first-child {
@@ -807,8 +787,6 @@ mark {
     padding-top: var(--space-xl);
     border-top: 1px solid var(--color-subtle);
     letter-spacing: 0.06em;
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out 0.6s forwards;
 }
 
 .site-footer p {
@@ -859,8 +837,6 @@ article .site-footer {
 .album-item {
     padding: var(--space-xl) 0;
     border-bottom: 1px solid var(--color-subtle);
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out 0.5s forwards;
 }
 
 .album-item:last-child {
@@ -933,8 +909,6 @@ article .site-footer {
 .photo-item {
     margin: 0 0 var(--space-s) 0;
     break-inside: avoid;
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out 0.5s forwards;
 }
 
 .photo-thumb {
@@ -1141,6 +1115,68 @@ pre code.hljs {
         opacity: 1;
         transform: translate(0, 0);
     }
+}
+
+/* ==========================================================================
+   Motion: fade-in animations as progressive enhancement
+   Content is visible by default. The .js-animated class is added by a
+   small inline script after the DOM is ready, so elements only go invisible
+   (opacity: 0) once JavaScript is available to animate them back in.
+   This guarantees first contentful paint is never blocked by animations.
+   ========================================================================== */
+
+.js-animated .top-bar {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.2s forwards;
+}
+.js-animated h1 {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.3s forwards;
+}
+.js-animated .intro {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.35s forwards;
+}
+.js-animated h2 {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.4s forwards;
+}
+.js-animated .author-col {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.4s forwards;
+}
+.js-animated .title-col {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.4s forwards;
+}
+.js-animated .date-col {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.4s forwards;
+}
+.js-animated .prose {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.6s forwards;
+}
+.js-animated .post-item,
+.js-animated .project-item {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.5s forwards;
+}
+.js-animated .tweet-item {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.5s forwards;
+}
+.js-animated .site-footer {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.6s forwards;
+}
+.js-animated .album-item {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.5s forwards;
+}
+.js-animated .photo-item {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.5s forwards;
 }
 
 /* ==========================================================================
