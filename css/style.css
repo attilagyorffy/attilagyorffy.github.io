@@ -63,6 +63,15 @@
    ========================================================================== */
 
 @font-face {
+    font-family: "IBM Plex Mono Fallback";
+    src: local("Menlo"), local("Consolas"), local("Courier New");
+    size-adjust: 100.7%;
+    ascent-override: 99%;
+    descent-override: 26%;
+    line-gap-override: 0%;
+}
+
+@font-face {
     font-family: "IBM Plex Mono";
     src: url("/fonts/ibm-plex-mono.woff2") format("woff2");
     font-weight: 400;
