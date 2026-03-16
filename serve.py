@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Development server with cache-busting headers."""
 
-from http.server import SimpleHTTPRequestHandler, HTTPServer
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
 
 class NoCacheHandler(SimpleHTTPRequestHandler):
@@ -13,6 +13,6 @@ class NoCacheHandler(SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    server = HTTPServer(("localhost", 8000), NoCacheHandler)
+    server = ThreadingHTTPServer(("localhost", 8000), NoCacheHandler)
     print("Serving on http://localhost:8000 (no-cache)")
     server.serve_forever()
