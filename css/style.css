@@ -194,6 +194,12 @@
             transparent 60%
         );
     }
+
+    .topic-tag {
+        background: transparent;
+        border-color: color-mix(in oklch, var(--color-subtle), transparent 40%);
+        color: var(--color-subtle);
+    }
 }
 
 /* ==========================================================================
