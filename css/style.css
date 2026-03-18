@@ -196,7 +196,6 @@
     }
 
     .topic-tag {
-        background: transparent;
         border-color: color-mix(in oklch, var(--color-subtle), transparent 40%);
         color: var(--color-subtle);
     }
@@ -425,6 +424,7 @@ h2:first-of-type {
 }
 
 .topic-tag {
+    background: transparent;
     font-size: var(--text-xs);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -1139,8 +1139,12 @@ pre code.hljs {
 }
 
 @keyframes fadeInOnly {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* ==========================================================================
