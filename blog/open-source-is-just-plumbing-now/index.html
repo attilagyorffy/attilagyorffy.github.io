@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Open Source Is Just Plumbing Now — Attila Györffy</title>
+        <meta
+            name="description"
+            content="It's not idealism. It's the infrastructure under every bank, hospital, and government system you depend on."
+        />
+        <meta name="author" content="Attila Györffy" />
+        <meta name="keywords" content="Infrastructure, Security" />
+        <meta name="fediverse:creator" content="@attila@fosstodon.org" />
+        <link
+            rel="canonical"
+            href="https://www.attilagyorffy.com/blog/open-source-is-just-plumbing-now/"
+        />
+        <meta property="og:title" content="Open Source Is Just Plumbing Now" />
+        <meta
+            property="og:description"
+            content="It's not idealism. It's the infrastructure under every bank, hospital, and government system you depend on."
+        />
+        <meta property="og:type" content="article" />
+        <meta
+            property="og:url"
+            content="https://www.attilagyorffy.com/blog/open-source-is-just-plumbing-now/"
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            id="favicon"
+            href="/images/favicon-active.svg"
+        />
+        <link
+            rel="preload"
+            href="/fonts/source-serif-4-latin.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/fonts/ibm-plex-mono.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+        <link rel="stylesheet" href="/css/style.css" />
+        <script>
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    if (
+                        !window.matchMedia("(prefers-reduced-motion:reduce)")
+                            .matches
+                    )
+                        document.documentElement.classList.add("js-animated");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <svg width="0" height="0" aria-hidden="true" style="position: absolute">
+            <filter id="highlighter">
+                <feTurbulence
+                    type="fractalNoise"
+                    baseFrequency="0.03 0.06"
+                    numOctaves="5"
+                    seed="2"
+                    result="noise"
+                />
+                <feDisplacementMap
+                    in="SourceGraphic"
+                    in2="noise"
+                    scale="4"
+                    xChannelSelector="R"
+                    yChannelSelector="G"
+                />
+            </filter>
+        </svg>
+        <main class="page page--wide">
+            <nav class="top-bar top-bar--stacked">
+                <a href="/" class="nav-home">&larr; Home</a>
+                <a href="/blog/" class="nav-writings">&larr; Writings</a>
+            </nav>
+
+            <article
+                class="article-grid"
+                itemscope
+                itemtype="https://schema.org/BlogPosting"
+            >
+                <div class="author-col">
+                    <div class="avatar">
+                        <img
+                            src="/images/avatar.webp"
+                            alt="Attila Györffy"
+                            width="52"
+                            height="52"
+                        />
+                    </div>
+                    <div class="author-meta">
+                        <span class="author-name" itemprop="author">
+                            Attila Györffy
+                        </span>
+                        <span class="author-role">Product Engineer</span>
+                        <div class="post-label">3 min read</div>
+                    </div>
+                </div>
+                <div class="title-col">
+                    <h1 itemprop="headline">
+                        Open Source Is Just Plumbing Now
+                    </h1>
+                    <p class="subtitle">
+                        It&rsquo;s not idealism. It&rsquo;s the infrastructure
+                        under every bank, hospital, and government system you
+                        depend on.
+                    </p>
+                    <div class="topic-tags">
+                        <a href="/blog/?topic=infrastructure" class="topic-tag"
+                            >Infrastructure</a
+                        >
+                        <a href="/blog/?topic=security" class="topic-tag"
+                            >Security</a
+                        >
+                    </div>
+                </div>
+                <div class="date-col">
+                    <time datetime="2026-03-18" itemprop="datePublished"
+                        >Mar 18</time
+                    >
+                </div>
+
+                <div class="prose" itemprop="articleBody">
+                    <p class="lead">
+                        People keep asking me, &ldquo;Why does open source
+                        matter in 2026?&rdquo; And I go, &ldquo;Come on,
+                        it&rsquo;s 2026. Everything you use runs on it.
+                        That&rsquo;s like asking why plumbing matters. You
+                        don&rsquo;t think about plumbing until shit&rsquo;s
+                        literally coming up through the floor.&rdquo;
+                    </p>
+
+                    <p>
+                        That&rsquo;s what open source is now.
+                        <mark
+                            >It&rsquo;s not some hippie developer thing where
+                            blokes in sandals share code because they believe in
+                            the commons or whatever. It is the
+                            infrastructure.</mark
+                        >
+                        The Linux Foundation &mdash; and look, I know,
+                        foundations, very sexy &mdash; they put out research
+                        saying open source is the backbone of mission-critical
+                        systems.<sup><a href="#fn1" id="ref1">1</a></sup> Banks,
+                        hospitals, governments, all of it.
+                    </p>
+
+                    <p>
+                        And the companies that actually have proper open source
+                        programs? They report better software, happier
+                        developers, and more control over the stuff they depend
+                        on. Funny how that works. You pay attention to the thing
+                        holding your house up, the house stays up. Revolutionary
+                        concept.
+                    </p>
+
+                    <h2>Europe figured it out</h2>
+
+                    <p>
+                        Now here&rsquo;s where it gets properly interesting.
+                        Europe &mdash; and say what you want about us Europeans,
+                        at least we&rsquo;re thinking about this &mdash; Europe
+                        has figured out that if five American companies control
+                        all your digital infrastructure, you might be a bit
+                        f*cked. &ldquo;Digital sovereignty&rdquo; as we call it.
+                        Sounds fancy but what it actually means is:
+                        &ldquo;We&rsquo;d rather not have our entire
+                        country&rsquo;s IT collapse because some billionaire in
+                        The White House had a weird Tuesday.&rdquo;
+                    </p>
+
+                    <p>
+                        The EU is pushing open source specifically because we
+                        don&rsquo;t want to be completely dependent on a handful
+                        of foreign tech giants.<sup
+                            ><a href="#fn2" id="ref2">2</a></sup
+                        >
+                        And honestly? I think this is the way. That&rsquo;s not
+                        ideology, it&rsquo;s just not being stupid.
+                    </p>
+
+                    <h2>AI needs an audit trail</h2>
+
+                    <p>
+                        And then there&rsquo;s AI. Oh, AI. Everyone&rsquo;s
+                        favorite topic that nobody actually understands (me
+                        neither). Here&rsquo;s the thing with open source and AI
+                        &mdash; when the code is open, you can actually look at
+                        what the bloody thing is doing. You can inspect it. You
+                        can reproduce results. You can adapt it to your own
+                        situation instead of just trusting that the black box is
+                        doing something reasonable in there.<sup
+                            ><a href="#fn3" id="ref3">3</a></sup
+                        >
+                    </p>
+
+                    <p>
+                        Does open source automatically make AI
+                        &ldquo;safe&rdquo;? No. Of course not. Don&rsquo;t be
+                        silly. But it does mean that when someone says
+                        &ldquo;trust us, our AI-driven thingy is fine,&rdquo;
+                        other people can go, &ldquo;Alright, let&rsquo;s have a
+                        look then.&rdquo; And that&rsquo;s worth something.
+                        That&rsquo;s worth a lot, actually, when governments are
+                        writing regulations and everyone&rsquo;s worried about
+                        AI doing weird shit.
+                    </p>
+
+                    <h2>The bloke in Nebraska</h2>
+
+                    <p>
+                        People love to go, &ldquo;Oh, open source, anyone can
+                        see the code, that means hackers can find the
+                        vulnerabilities!&rdquo; Yeah, and so can the people
+                        trying to fix them, you absolute walnut.
+                    </p>
+
+                    <p>
+                        The real question in 2026 isn&rsquo;t whether we rely on
+                        open source &mdash; we do, massively, it&rsquo;s settled
+                        &mdash; it&rsquo;s whether we&rsquo;re actually funding
+                        it and maintaining it properly. Because for years,
+                        critical infrastructure has been running on code
+                        maintained by like one guy in Nebraska in his spare
+                        time. OpenSSF &mdash; that&rsquo;s the Open Source
+                        Security Foundation, keep up &mdash; they&rsquo;ve been
+                        banging on about this,<sup
+                            ><a href="#fn4" id="ref4">4</a></sup
+                        >
+                        and there&rsquo;s real industry money going into it now.
+                    </p>
+
+                    <p>
+                        Plus with AI helping find vulnerabilities, open
+                        ecosystems are both the attack surface and the defense
+                        surface. It cuts both ways. So maybe, just maybe, we
+                        should pay the bloke in Nebraska.
+                    </p>
+
+                    <h2>The suits want numbers</h2>
+
+                    <p>
+                        And finally &mdash; and this is the bit that shuts up
+                        the suits &mdash; open source makes money. Not in a
+                        &ldquo;let&rsquo;s hold hands and sing about
+                        freedom&rdquo; way. In an actual, measurable, &ldquo;our
+                        quarterly numbers are better&rdquo; way.
+                    </p>
+
+                    <p>
+                        The Linux Foundation found that commercial open source
+                        companies are outperforming their closed-source
+                        competitors on multiple business outcomes.<sup
+                            ><a href="#fn5" id="ref5">5</a></sup
+                        >
+                        Especially in infrastructure software. Lower lock-in,
+                        faster iteration, better leverage over your own stack.
+                        Companies love saying they want those things. Open
+                        source is how you actually get them.
+                        <mark
+                            >Turns out the pragmatic choice and the principled
+                            choice are the same choice.</mark
+                        >
+                        How about that.
+                    </p>
+
+                    <h2 class="conclusion">The 2026 answer</h2>
+
+                    <p>
+                        So look, the 2026 answer is dead simple: open source
+                        matters because it&rsquo;s the practical foundation for
+                        control, resilience, transparency, and not getting
+                        completely stitched up &mdash; in a world that&rsquo;s
+                        increasingly run by cloud monopolies, geopolitical chess
+                        matches, and AI that nobody fully understands.
+                    </p>
+
+                    <p>
+                        It&rsquo;s not idealism anymore. It&rsquo;s just common
+                        sense. And if you still don&rsquo;t get it, I
+                        can&rsquo;t help you. Go ask your plumber.
+                    </p>
+
+                    <ol class="footnotes">
+                        <li id="fn1">
+                            The Linux Foundation surveyed hundreds of companies
+                            in 2025 and found that the ones with dedicated open
+                            source teams build better software, have happier
+                            developers, and get more say in the tools they
+                            depend on. Turns out &ldquo;paying attention to the
+                            foundations&rdquo; is a strategy, not a hobby. (<a
+                                href="https://www.linuxfoundation.org/research/ospo-2025"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >report</a
+                            >)
+                            <a href="#ref1">&uarr;</a>
+                        </li>
+                        <li id="fn2">
+                            The European Commission published a study in 2025
+                            arguing that open-source AI gives Europe a way to
+                            build its own technology instead of renting it from
+                            American giants. Their words: it offers
+                            &ldquo;transparent, reusable and cost-effective
+                            tools&rdquo; that let organisations deploy AI on
+                            their own terms, rather than on Silicon
+                            Valley&rsquo;s. (<a
+                                href="https://digital-strategy.ec.europa.eu/en/library/europes-open-source-ai-landscape-lever-innovation-and-sovereignty"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >report</a
+                            >)
+                            <a href="#ref2">&uarr;</a>
+                        </li>
+                        <li id="fn3">
+                            The 2026 International AI Safety Report acknowledges
+                            that openly available AI models are a huge benefit
+                            &mdash; especially for smaller players who
+                            can&rsquo;t build their own from scratch. But it
+                            also flags the obvious trade-off: once you release a
+                            model into the wild, you can&rsquo;t take it back,
+                            and its safety guardrails are easier to strip out.
+                            The whole report is basically one long argument
+                            about where to draw that line. (<a
+                                href="https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >report</a
+                            >)
+                            <a href="#ref3">&uarr;</a>
+                        </li>
+                        <li id="fn4">
+                            The Open Source Security Foundation &mdash; backed
+                            by the likes of Google, Microsoft, and Amazon
+                            &mdash; published their 2025 annual report detailing
+                            how they&rsquo;re spending real money on finding
+                            vulnerabilities, training developers to write safer
+                            code, and building tools that make the whole
+                            ecosystem harder to break. It&rsquo;s the closest
+                            thing we have to an industry-wide admission that
+                            ignoring open source security was a terrible idea.
+                            (<a
+                                href="https://openssf.org/download-the-2025-openssf-annual-report/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >report</a
+                            >)
+                            <a href="#ref4">&uarr;</a>
+                        </li>
+                        <li id="fn5">
+                            The Linux Foundation looked at how commercial open
+                            source companies perform compared to their
+                            closed-source competitors and &mdash; surprise
+                            &mdash; the open ones are worth more, raise money
+                            faster, and have better exit outcomes. Especially in
+                            infrastructure software, which is most of the boring
+                            stuff that actually keeps everything running. (<a
+                                href="https://www.linuxfoundation.org/research/2025-state-of-commercial-open-source"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >report</a
+                            >)
+                            <a href="#ref5">&uarr;</a>
+                        </li>
+                    </ol>
+                </div>
+
+                <footer class="site-footer">
+                    <p>
+                        If any of this made you reconsider what&rsquo;s actually
+                        holding up your production systems, come argue about it.
+                        I&rsquo;m on
+                        <a
+                            href="https://bsky.app/profile/attilagyorffy.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Bluesky</a
+                        >,
+                        <a
+                            href="https://fosstodon.org/@attila"
+                            target="_blank"
+                            rel="me noopener noreferrer"
+                            >Mastodon</a
+                        >,
+                        <a
+                            href="https://twitter.com/attilagyorffy"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            ><s>Twitter</s>&nbsp;X</a
+                        >, and technically
+                        <a
+                            href="https://linkedin.com/in/attilagyorffy"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >LinkedIn</a
+                        >, where &ldquo;open source advocate&rdquo; is
+                        apparently a job title you can give yourself. The code I
+                        actually contribute is on
+                        <a
+                            href="https://github.com/attilagyorffy"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >GitHub</a
+                        >, where at least when the plumbing breaks, it&rsquo;s
+                        my own fault.
+                    </p>
+                </footer>
+            </article>
+
+            <aside class="sidebar-label" aria-hidden="true">
+                <span>Essay</span>
+                <span class="sidebar-arrow">&darr;</span>
+            </aside>
+        </main>
+
+        <script src="/js/highlights.js"></script>
+        <script>
+            // Smooth-scroll footnote links with custom easing
+            document.querySelectorAll('a[href^="#"]').forEach((a) => {
+                a.addEventListener("click", (e) => {
+                    const target = document.getElementById(
+                        a.getAttribute("href").slice(1),
+                    );
+                    if (!target) return;
+                    e.preventDefault();
+                    const start = window.scrollY;
+                    const end = target.getBoundingClientRect().top + start - 24;
+                    const distance = end - start;
+                    const duration = 1800;
+                    let t0;
+                    function step(ts) {
+                        if (!t0) t0 = ts;
+                        const p = Math.min((ts - t0) / duration, 1);
+                        // ease-in-out quintic — slow start, gentle peak, long settle
+                        const ease =
+                            p < 0.5
+                                ? 16 * p * p * p * p * p
+                                : 1 - Math.pow(-2 * p + 2, 5) / 2;
+                        window.scrollTo(0, start + distance * ease);
+                        if (p < 1) requestAnimationFrame(step);
+                        else history.pushState(null, "", "#" + target.id);
+                    }
+                    requestAnimationFrame(step);
+                });
+            });
+        </script>
+        <script src="/js/favicon.js" defer></script>
+    </body>
+</html>
