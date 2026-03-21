@@ -1201,7 +1201,7 @@ pre code.hljs {
 }
 .js-animated .post-item {
     opacity: 0;
-    animation: fadeInOnly 0.6s ease-out 0.5s forwards;
+    animation: fadeIn 0.6s ease-out 0.5s forwards;
 }
 .js-animated .tweet-item {
     opacity: 0;
