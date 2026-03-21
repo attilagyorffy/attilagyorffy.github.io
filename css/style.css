@@ -992,7 +992,6 @@ article .site-footer {
 
 .lightbox-content {
     max-width: 90vw;
-    max-height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1006,7 +1005,7 @@ article .site-footer {
 .lightbox-img {
     grid-area: 1 / 1;
     max-width: 90vw;
-    max-height: 75vh;
+    max-height: calc(90vh - 8rem);
     object-fit: contain;
     border-radius: 10px;
     will-change: opacity, transform;
@@ -1076,14 +1075,12 @@ article .site-footer {
 }
 
 .lightbox-counter {
-    position: absolute;
-    bottom: var(--space-m);
-    left: 50%;
-    transform: translateX(-50%);
     color: var(--color-fg);
     font-size: var(--text-meta);
     letter-spacing: 0.08em;
     font-family: var(--font-mono);
+    text-align: center;
+    margin-top: var(--space-xs);
 }
 
 /* ==========================================================================
