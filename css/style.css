@@ -718,7 +718,15 @@ mark {
     transition: transform 0.2s ease;
 }
 
-.post-item:last-of-type {
+.post-item.hidden {
+    display: none;
+}
+
+.post-list.hidden {
+    display: none;
+}
+
+.post-item:not(.hidden):not(:has(~ .post-item:not(.hidden))) {
     border-bottom: none;
 }
 

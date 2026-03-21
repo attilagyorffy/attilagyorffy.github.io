@@ -17,13 +17,13 @@
         posts.forEach(function (post) {
             var topics = post.dataset.topics.split(" ");
             var match = !active || topics.indexOf(active) !== -1;
-            post.style.display = match ? "" : "none";
+            post.classList.toggle("hidden", !match);
         });
 
         // Hide year sections that have no visible posts
         sections.forEach(function (section) {
-            var visible = section.querySelectorAll(".post-item:not([style*='display: none'])");
-            section.style.display = visible.length ? "" : "none";
+            var visible = section.querySelectorAll(".post-item:not(.hidden)");
+            section.classList.toggle("hidden", !visible.length);
         });
 
         // Update URL without reload
