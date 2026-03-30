@@ -196,7 +196,6 @@
     }
 
     .topic-tag {
-        border-color: color-mix(in oklch, var(--color-subtle), transparent 40%);
         color: var(--color-subtle);
     }
 }
@@ -425,19 +424,25 @@ h2:first-of-type {
 
 .topic-tag {
     background: transparent;
-    font-size: var(--text-xs);
-    letter-spacing: 0.1em;
+    font-size: var(--text-section);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 0.4em 0.6em;
-    border: 1px solid var(--color-subtle);
-    border-radius: 2px;
-    transition:
-        border-color 0.2s ease,
-        color 0.2s ease;
+    border: none;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+.topic-tag::before {
+    content: "#";
+    color: var(--color-subtle);
+    transition: color 0.2s ease;
 }
 
 .topic-tag:hover {
-    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.topic-tag:hover::before {
     color: var(--color-accent);
 }
 
@@ -454,10 +459,9 @@ h2:first-of-type {
     cursor: pointer;
 }
 
-.topic-filter .topic-tag[aria-pressed="true"] {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-    color: var(--color-bg);
+.topic-filter .topic-tag[aria-pressed="true"],
+.topic-filter .topic-tag[aria-pressed="true"]::before {
+    color: var(--color-accent);
 }
 
 /* Sidebar label */
