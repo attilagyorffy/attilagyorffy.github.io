@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {{- template "partials/head.html" . }}
+        <title>Blog — Attila Györffy</title>
+        <meta
+            name="description"
+            content="Writing about software engineering, Go, Ruby, FreeBSD, and whatever else seems worth arguing about. Opinionated, occasionally useful, never mass-produced."
+        />
+        <meta property="og:title" content="Blog — Attila Györffy" />
+        <meta property="og:description" content="Writing about software engineering, Go, Ruby, FreeBSD, and whatever else seems worth arguing about. Opinionated, occasionally useful, never mass-produced." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.attilagyorffy.com/blog/" />
+        <meta property="og:image" content="https://www.attilagyorffy.com/images/og-default.png" />
+        <meta property="og:site_name" content="Attila Györffy" />
+        <meta property="og:locale" content="en_GB" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="@attilagyorffy" />
+        <link rel="stylesheet" href="/css/pages/blog-listing.css" />
+        <script>requestAnimationFrame(()=>{requestAnimationFrame(()=>{if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')})})</script>
+    </head>
+    <body>
+        <main class="page">
+            {{ template "nav-home" . }}
+
+            <h1>Writing (and rants)</h1>
+
+            <p class="intro">
+                I write about the things that annoy me until I figure them out,
+                which is basically all of software engineering. Go, Ruby,
+                FreeBSD, infrastructure, API design, the occasional JavaScript
+                when I can't avoid it. If you're here for hot takes on naming
+                conventions and operating systems that most people forgot exist,
+                you're in the right place. If you're here by accident, honestly,
+                stick around. You've already made worse decisions today.
+            </p>
+
+            <nav class="topic-filter" aria-label="Filter by topic">
+                {{- range .AllTopics }}
+                <button class="topic-tag" data-topic="{{ topicSlug . }}" aria-pressed="false">{{ . }}</button>
+                {{- end }}
+            </nav>
+
+            {{- range .YearGroups }}
+            <section class="post-list">
+                <h2>{{ .Year }}</h2>
+                {{- range .Posts }}
+                <article class="post-item" data-topics="{{ .TopicsJoined }}">
+                    <h3 class="post-title">
+                        <a href="{{ .URL }}" class="post-link">
+                            {{ .Title }}
+                        </a>
+                    </h3>
+                    <p class="post-summary">
+                        {{ .Summary }}
+                    </p>
+                </article>
+                {{- end }}
+            </section>
+            {{- end }}
+
+            {{ template "site-footer" . }}
+        </main>
+
+        <script src="/js/topics.js" defer></script>
+        <script src="/js/favicon.js" defer></script>
+    </body>
+</html>

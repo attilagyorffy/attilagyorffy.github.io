@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {{- template "partials/head.html" . }}
+        <title>{{ .Title }} — Attila Györffy</title>
+        <meta name="description" content="{{ .Description }}" />
+        <meta property="og:title" content="{{ .Title }} — Attila Györffy" />
+        <meta property="og:description" content="{{ .Description }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.attilagyorffy.com{{ .URL }}" />
+        <meta property="og:image" content="https://www.attilagyorffy.com/images/og-default.png" />
+        <meta property="og:site_name" content="Attila Györffy" />
+        <meta property="og:locale" content="en_GB" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="@attilagyorffy" />
+        <link rel="stylesheet" href="/css/typography.css" />
+        <script>requestAnimationFrame(()=>{requestAnimationFrame(()=>{if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')})})</script>
+        <script src="/js/favicon.js" defer></script>
+    </head>
+    <body>
+        <main class="page{{ if .PageClass }} {{ .PageClass }}{{ end }}">
+            {{ template "nav-home" . }}
+
+            <h1>{{ .Title }}</h1>
+
+            <div class="prose">
+                {{ .Body }}
+            </div>
+
+            {{ template "site-footer" . }}
+        </main>
+
+    </body>
+</html>

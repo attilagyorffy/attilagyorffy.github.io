@@ -1,33 +1,25 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head><meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="author" content="Attila Györffy" />
+<meta name="fediverse:creator" content="@attila@fosstodon.org" />
+<link rel="icon" type="image/svg+xml" id="favicon" href="/images/favicon-active.svg" />
+<link rel="preload" href="/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/css/tokens.css" />
+<link rel="stylesheet" href="/css/fonts.css" />
+<link rel="stylesheet" href="/css/reset.css" />
+<link rel="stylesheet" href="/css/layout.css" />
+<link rel="stylesheet" href="/css/theme.css" />
         <title>When One Company Breaks, Half the Internet Goes with It — Attila Györffy</title>
-        <meta
-            name="description"
-            content="Cloudflare had a bad day and half the internet went dark. When your security layer blocks legitimate users, you are not protecting anything. You are the outage."
-        />
-        <meta name="author" content="Attila Györffy" />
+        <meta name="description" content="Cloudflare had a bad day and half the internet went dark. When your security layer blocks legitimate users, you are not protecting anything. You are the outage." />
         <meta name="keywords" content="Infrastructure" />
-        <meta name="fediverse:creator" content="@attila@fosstodon.org" />
-        <link
-            rel="canonical"
-            href="https://www.attilagyorffy.com/blog/when-one-company-breaks-half-the-internet-goes-with-it/"
-        />
-        <meta
-            property="og:title"
-            content="When One Company Breaks, Half the Internet Goes with It"
-        />
-        <meta
-            property="og:description"
-            content="Cloudflare had a bad day and half the internet went dark. When your security layer blocks legitimate users, you are not protecting anything. You are the outage."
-        />
+        <link rel="canonical" href="https://www.attilagyorffy.com/blog/when-one-company-breaks-half-the-internet-goes-with-it/" />
+        <meta property="og:title" content="When One Company Breaks, Half the Internet Goes with It" />
+        <meta property="og:description" content="Cloudflare had a bad day and half the internet went dark. When your security layer blocks legitimate users, you are not protecting anything. You are the outage." />
         <meta property="og:type" content="article" />
-        <meta
-            property="og:url"
-            content="https://www.attilagyorffy.com/blog/when-one-company-breaks-half-the-internet-goes-with-it/"
-        />
+        <meta property="og:url" content="https://www.attilagyorffy.com/blog/when-one-company-breaks-half-the-internet-goes-with-it/" />
         <meta property="og:image" content="https://www.attilagyorffy.com/blog/when-one-company-breaks-half-the-internet-goes-with-it/og.png" />
         <meta property="og:site_name" content="Attila Györffy" />
         <meta property="og:locale" content="en_GB" />
@@ -35,31 +27,24 @@
         <meta property="article:author" content="https://www.attilagyorffy.com/about/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@attilagyorffy" />
-        <link
-            rel="icon"
-            type="image/svg+xml"
-            id="favicon"
-            href="/images/favicon-active.svg"
-        />
-        <link rel="preload" href="/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
-        <link rel="preload" href="/fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin />
-        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/typography.css" />
+        <link rel="stylesheet" href="/css/pages/blog-listing.css" />
+        <link rel="stylesheet" href="/css/pages/blog-post.css" />
         <script>requestAnimationFrame(()=>{requestAnimationFrame(()=>{if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')})})</script>
-        <script src="/js/highlights.js" defer></script>
         <script src="/js/favicon.js" defer></script>
     </head>
     <body>
         <svg width="0" height="0" aria-hidden="true" style="position:absolute">
-            <filter id="highlighter">
-                <feTurbulence type="fractalNoise" baseFrequency="0.03 0.06" numOctaves="5" seed="2" result="noise" />
-                <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
-            </filter>
-        </svg>
+    <filter id="highlighter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.03 0.06" numOctaves="5" seed="2" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+</svg>
         <main class="page page--wide">
             <nav class="top-bar top-bar--stacked">
-                <a href="/" class="nav-home">&larr; Home</a>
-                <a href="/blog/" class="nav-writings">&larr; Writings</a>
-            </nav>
+    <a href="/" class="nav-home">&larr; Home</a>
+    <a href="/blog/" class="nav-writings">&larr; Writings</a>
+</nav>
 
             <article class="article-grid" itemscope itemtype="https://schema.org/BlogPosting">
                     <div class="author-col">
@@ -84,10 +69,7 @@
                             When One Company Breaks, Half the Internet Goes with It
                         </h1>
                         <p class="subtitle">
-                            Cloudflare&rsquo;s security systems malfunctioned,
-                            blocking legitimate users alongside malicious
-                            traffic, exposing how Internet infrastructure
-                            depends on a handful of companies.
+                            Cloudflare&#39;s security systems malfunctioned, blocking legitimate users alongside malicious traffic, exposing how Internet infrastructure depends on a handful of companies.
                         </p>
                         <div class="topic-tags">
                             <a href="/blog/?topic=infrastructure" class="topic-tag">Infrastructure</a>
@@ -100,123 +82,26 @@
                     </div>
 
                 <div class="prose" itemprop="articleBody">
-                    <p class="lead">
-                        You may have noticed that a large part of the Internet
-                        broke down recently, and many websites simply refused to
-                        load. The name Cloudflare might ring a bell &mdash; it
-                        shows up on more and more sites these days. Moments like
-                        this usually trigger a wave of conspiracy theories
-                        online, and even the experts quoted in the news often
-                        fail to explain clearly what actually happened. So here
-                        is a short, human-readable summary.
-                    </p>
+                    <p class="lead">You may have noticed that a large part of the Internet broke down recently, and many websites simply refused to load. The name Cloudflare might ring a bell --- it shows up on more and more sites these days. Moments like this usually trigger a wave of conspiracy theories online, and even the experts quoted in the news often fail to explain clearly what actually happened. So here is a short, human-readable summary.</p>
+<p>Think of Cloudflare as a security guard standing in front of many websites. Its job is to keep out unwanted or &quot;suspicious&quot; visitors so the sites don't collapse under too much traffic. It acts as a shield in front of big services like Twitter (X), ChatGPT, Spotify, and more.</p>
+<p>This time, a human or technical error broke the part of Cloudflare's system that decides who is a real user and who might be a robot. It was as if the security guard received a guest list full of mistakes --- unable to understand it, the safest choice was to send everyone away.</p>
+<p>And because Cloudflare stands in front of so many major websites, this failure meant that a huge number of sites suddenly blocked all visitors. From the outside, it looked as though a significant part of the Internet had gone down. <mark>When so many sites rely on the same service, a disruption like this is similar to shutting down one of the world's busiest highway intersections: everything connected to it becomes unreachable at once.</mark></p>
+<p>This is not a unique case, nor is it limited to Cloudflare. Amazon, Google, and many other companies have caused Internet-wide outages through their own mistakes in the past. While we can never completely rule out the possibility of a cyberattack, this incident highlights how fragile the Internet has become --- the place where much of our daily life now happens.</p>
+<p><mark>A large portion of the online world rests in the hands of a small group of giant companies.</mark> When so much power is concentrated in so few places, even a single error can cause massive disruption. This is no longer just a technical issue; it is also an economic one --- a natural consequence of today's capitalist model.</p>
+<h2>A few recent examples</h2>
+<p>These large-scale failures happen more often than most people realize. A few recent examples:</p>
+<ul>
+<li><strong>Cloudflare --- June 2025:</strong> A global outage lasting over two hours blocked access to major services around the world.</li>
+<li><strong>Cloudflare --- November 2025:</strong> Another widespread failure temporarily took down platforms like X, ChatGPT, Spotify and many news sites.</li>
+<li><strong>Google Cloud --- June 2025:</strong> A broken internal update crashed a core system, causing disruptions across services that rely on Google's infrastructure.</li>
+<li><strong>Amazon Web Services --- October 2025:</strong> A software bug in AWS automation tools triggered outages for thousands of apps and websites.</li>
+</ul>
+<p>These incidents show how much of the Internet now depends on a handful of companies --- and how a single mistake in any of them can ripple across the entire web.</p>
 
-                    <p>
-                        Think of Cloudflare as a security guard standing in
-                        front of many websites. Its job is to keep out unwanted
-                        or &ldquo;suspicious&rdquo; visitors so the sites
-                        don&rsquo;t collapse under too much traffic. It acts as
-                        a shield in front of big services like Twitter (X),
-                        ChatGPT, Spotify, and more.
-                    </p>
-
-                    <p>
-                        This time, a human or technical error broke the part of
-                        Cloudflare&rsquo;s system that decides who is a real
-                        user and who might be a robot. It was as if the security
-                        guard received a guest list full of mistakes &mdash;
-                        unable to understand it, the safest choice was to send
-                        everyone away.
-                    </p>
-
-                    <p>
-                        And because Cloudflare stands in front of so many major
-                        websites, this failure meant that a huge number of sites
-                        suddenly blocked all visitors. From the outside, it
-                        looked as though a significant part of the Internet had
-                        gone down. <mark>When so many sites rely on the same
-                        service, a disruption like this is similar to shutting
-                        down one of the world&rsquo;s busiest highway
-                        intersections: everything connected to it becomes
-                        unreachable at once.</mark>
-                    </p>
-
-                    <p>
-                        This is not a unique case, nor is it limited to
-                        Cloudflare. Amazon, Google, and many other companies
-                        have caused Internet-wide outages through their own
-                        mistakes in the past. While we can never completely rule
-                        out the possibility of a cyberattack, this incident
-                        highlights how fragile the Internet has become &mdash;
-                        the place where much of our daily life now happens.
-                    </p>
-
-                    <p>
-                        <mark>A large portion of the online world rests in the
-                        hands of a small group of giant companies.</mark> When
-                        so much power is concentrated in so few places, even a
-                        single error can cause massive disruption. This is no
-                        longer just a technical issue; it is also an economic
-                        one &mdash; a natural consequence of today&rsquo;s
-                        capitalist model.
-                    </p>
-
-                    <h2>A few recent examples</h2>
-
-                    <p>
-                        These large-scale failures happen more often than most
-                        people realize. A few recent examples:
-                    </p>
-
-                    <ul>
-                        <li>
-                            <strong>Cloudflare &mdash; June 2025:</strong> A
-                            global outage lasting over two hours blocked access
-                            to major services around the world.
-                        </li>
-                        <li>
-                            <strong>Cloudflare &mdash; November 2025:</strong>
-                            Another widespread failure temporarily took down
-                            platforms like X, ChatGPT, Spotify and many news
-                            sites.
-                        </li>
-                        <li>
-                            <strong>Google Cloud &mdash; June 2025:</strong> A
-                            broken internal update crashed a core system,
-                            causing disruptions across services that rely on
-                            Google&rsquo;s infrastructure.
-                        </li>
-                        <li>
-                            <strong>Amazon Web Services &mdash; October
-                            2025:</strong> A software bug in AWS automation
-                            tools triggered outages for thousands of apps and
-                            websites.
-                        </li>
-                    </ul>
-
-                    <p>
-                        These incidents show how much of the Internet now
-                        depends on a handful of companies &mdash; and how a
-                        single mistake in any of them can ripple across the
-                        entire web.
-                    </p>
                 </div>
 
                 <footer class="site-footer">
-                    <p>
-                        If you&rsquo;ve made it this far without Cloudflare
-                        blocking you, congratulations. Come find me on
-                        <a href="https://bsky.app/profile/attilagyorffy.com" target="_blank" rel="noopener noreferrer">Bluesky</a>,
-                        <a href="https://fosstodon.org/@attila" target="_blank" rel="me noopener noreferrer">Mastodon</a>,
-                        <a href="https://twitter.com/attilagyorffy" target="_blank" rel="noopener noreferrer"><s>Twitter</s>&nbsp;X</a>,
-                        or
-                        <a href="https://linkedin.com/in/attilagyorffy" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                        if you fancy discussing internet fragility in a place
-                        that somehow runs on its own infrastructure. Code lives
-                        on
-                        <a href="https://github.com/attilagyorffy" target="_blank" rel="noopener noreferrer">GitHub</a>,
-                        where at least the outages are my own fault.
-                    </p>
+                    <p>If you've made it this far without Cloudflare blocking you, congratulations. Come find me on <a href="https://bsky.app/profile/attilagyorffy.com" target="_blank" rel="noopener noreferrer">Bluesky</a>, <a href="https://fosstodon.org/@attila" target="_blank" rel="noopener noreferrer">Mastodon</a>, <a href="https://twitter.com/attilagyorffy" target="_blank" rel="noopener noreferrer"><del>Twitter</del> X</a>, or <a href="https://linkedin.com/in/attilagyorffy" target="_blank" rel="noopener noreferrer">LinkedIn</a> if you fancy discussing internet fragility in a place that somehow runs on its own infrastructure. Code lives on <a href="https://github.com/attilagyorffy" target="_blank" rel="noopener noreferrer">GitHub</a>, where at least the outages are my own fault.</p>
                 </footer>
             </article>
 

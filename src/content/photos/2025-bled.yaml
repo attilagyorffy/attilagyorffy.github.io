@@ -1,0 +1,38 @@
+title: "Bled"
+slug: "2025-bled"
+date: "2025-08"
+description: "Twenty photographs from Lake Bled, Slovenia, August 2025. Alpine light, still water, and a church on an island. Shot on a Canon EOS 100D with kit lens."
+country_flag: "\U0001F1F8\U0001F1EE"
+intro: |
+  August 2025. Slovenia is a country of two million people that somehow has a
+  medieval castle on a cliff, glacial water so clear you can count the fish, and
+  blokes rowing tourists around in wooden boats like it's the 1800s. The whole
+  place looks like someone colour-graded reality and forgot to tell anyone. You
+  walk around the lake, eat a cream cake that has no business being that good,
+  watch the Julian Alps turn pink at sunset, and quietly start googling property
+  prices. 20 frames. Canon EOS 100D.
+cover_images:
+  - { src: "web/thumb/018.webp", alt: "Lake Bled with the island church" }
+  - { src: "web/thumb/005.webp", alt: "Alpine peaks above Bled" }
+  - { src: "web/thumb/012.webp", alt: "Vintgar Gorge near Bled" }
+photos:
+  - { file: "001", w: 500, h: 333, caption: "A manhole cover. In Slovenia. Because I photograph everything, apparently." }
+  - { file: "002", w: 500, h: 333, caption: "Water so clear you can see the bottom. And your life choices." }
+  - { file: "003", w: 333, h: 500, caption: "Church on an island. In a lake. In the Alps. Slovenia's just showing off now." }
+  - { file: "004", w: 333, h: 500, caption: "Tourists doing the lake walk. Everyone pretending they're not tired." }
+  - { file: "005", w: 333, h: 500, caption: "Bled Castle on a cliff. Built there so the neighbours couldn't complain about the noise." }
+  - { file: "006", w: 500, h: 333, caption: "More lake walking. The Slovenians put paths everywhere and honestly, good for them." }
+  - { file: "007", w: 500, h: 333, caption: "Castle on the left, church on the right. Slovenia squeezed a whole postcard into one frame." }
+  - { file: "008", w: 500, h: 333, caption: "A mint-green Vespa. Parked on cobblestones. Next to ivy. It's so European it hurts." }
+  - { file: "009", w: 333, h: 500, caption: "Lake Bled through a gap between buildings. Like nature's giving you a sneaky peek." }
+  - { file: "010", w: 333, h: 500, caption: "Bled Castle framed by leaves. I didn't plan this. The tree did." }
+  - { file: "011", w: 500, h: 333, caption: "The Julian Alps behind the lake. Mountains that make everything else look like a speed bump." }
+  - { file: "012", w: 500, h: 333, caption: "Wide shot of the lake. That tiny boat in the middle is having the best day of its life." }
+  - { file: "013", w: 500, h: 333, caption: "People swimming, bikes parked, everyone relaxed. Slovenia on a Tuesday." }
+  - { file: "014", w: 500, h: 333, caption: "Bled on a cloudy day. Still gorgeous. Annoyingly gorgeous." }
+  - { file: "015", w: 500, h: 333, caption: "Bled Island from the water. The pletna boats look like they've been doing this since before electricity." }
+  - { file: "016", w: 500, h: 333, caption: "A duck. Near some fishing rods. Both completely unbothered by the stunning Alpine scenery behind them." }
+  - { file: "017", w: 500, h: 333, caption: "Autumn leaves over the lake. The kind of shot that makes people you went to school with hit the like button." }
+  - { file: "018", w: 500, h: 333, caption: "A pletna boat doing its thing. Someone's rowing tourists to a church on an island for a living. Not bad." }
+  - { file: "019", w: 500, h: 333, caption: "Golden hour on the lake. The light's so warm you could heat your flat with it." }
+  - { file: "020", w: 500, h: 333, caption: "Bled Castle at sunset with the Alps behind it. The final shot. Because you can't end on a manhole cover." }

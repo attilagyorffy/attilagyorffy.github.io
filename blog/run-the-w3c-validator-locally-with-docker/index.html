@@ -1,33 +1,25 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head><meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="author" content="Attila Györffy" />
+<meta name="fediverse:creator" content="@attila@fosstodon.org" />
+<link rel="icon" type="image/svg+xml" id="favicon" href="/images/favicon-active.svg" />
+<link rel="preload" href="/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/css/tokens.css" />
+<link rel="stylesheet" href="/css/fonts.css" />
+<link rel="stylesheet" href="/css/reset.css" />
+<link rel="stylesheet" href="/css/layout.css" />
+<link rel="stylesheet" href="/css/theme.css" />
         <title>Run the W3C Validator Locally with Docker — Attila Györffy</title>
-        <meta
-            name="description"
-            content="The W3C markup validator is indispensable, but depending on a remote service for your test suite is fragile. Run it locally in a Docker container instead."
-        />
-        <meta name="author" content="Attila Györffy" />
+        <meta name="description" content="The W3C markup validator is indispensable, but depending on a remote service for your test suite is fragile. Run it locally in a Docker container instead." />
         <meta name="keywords" content="Testing, Developer Tools" />
-        <meta name="fediverse:creator" content="@attila@fosstodon.org" />
-        <link
-            rel="canonical"
-            href="https://www.attilagyorffy.com/blog/run-the-w3c-validator-locally-with-docker/"
-        />
-        <meta
-            property="og:title"
-            content="Run the W3C Validator Locally with Docker"
-        />
-        <meta
-            property="og:description"
-            content="The W3C markup validator is indispensable, but depending on a remote service for your test suite is fragile. Run it locally in a Docker container instead."
-        />
+        <link rel="canonical" href="https://www.attilagyorffy.com/blog/run-the-w3c-validator-locally-with-docker/" />
+        <meta property="og:title" content="Run the W3C Validator Locally with Docker" />
+        <meta property="og:description" content="The W3C markup validator is indispensable, but depending on a remote service for your test suite is fragile. Run it locally in a Docker container instead." />
         <meta property="og:type" content="article" />
-        <meta
-            property="og:url"
-            content="https://www.attilagyorffy.com/blog/run-the-w3c-validator-locally-with-docker/"
-        />
+        <meta property="og:url" content="https://www.attilagyorffy.com/blog/run-the-w3c-validator-locally-with-docker/" />
         <meta property="og:image" content="https://www.attilagyorffy.com/blog/run-the-w3c-validator-locally-with-docker/og.png" />
         <meta property="og:site_name" content="Attila Györffy" />
         <meta property="og:locale" content="en_GB" />
@@ -35,15 +27,9 @@
         <meta property="article:author" content="https://www.attilagyorffy.com/about/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@attilagyorffy" />
-        <link
-            rel="icon"
-            type="image/svg+xml"
-            id="favicon"
-            href="/images/favicon-active.svg"
-        />
-        <link rel="preload" href="/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
-        <link rel="preload" href="/fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin />
-        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/typography.css" />
+        <link rel="stylesheet" href="/css/pages/blog-listing.css" />
+        <link rel="stylesheet" href="/css/pages/blog-post.css" />
         <script>requestAnimationFrame(()=>{requestAnimationFrame(()=>{if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')})})</script>
         <script src="/js/vendor/highlight.min.js" defer></script>
         <script src="/js/highlights.js" defer></script>
@@ -51,16 +37,16 @@
     </head>
     <body>
         <svg width="0" height="0" aria-hidden="true" style="position:absolute">
-            <filter id="highlighter">
-                <feTurbulence type="fractalNoise" baseFrequency="0.03 0.06" numOctaves="5" seed="2" result="noise" />
-                <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
-            </filter>
-        </svg>
+    <filter id="highlighter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.03 0.06" numOctaves="5" seed="2" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+</svg>
         <main class="page page--wide">
             <nav class="top-bar top-bar--stacked">
-                <a href="/" class="nav-home">&larr; Home</a>
-                <a href="/blog/" class="nav-writings">&larr; Writings</a>
-            </nav>
+    <a href="/" class="nav-home">&larr; Home</a>
+    <a href="/blog/" class="nav-writings">&larr; Writings</a>
+</nav>
 
             <article class="article-grid" itemscope itemtype="https://schema.org/BlogPosting">
                     <div class="author-col">
@@ -85,10 +71,7 @@
                             Run the W3C Validator Locally with Docker
                         </h1>
                         <p class="subtitle">
-                            The W3C markup validator is indispensable, but
-                            depending on a remote service for your test suite
-                            is fragile. Run it locally in a Docker container
-                            instead.
+                            The W3C markup validator is indispensable, but depending on a remote service for your test suite is fragile. Run it locally in a Docker container instead.
                         </p>
                         <div class="topic-tags">
                             <a href="/blog/?topic=testing" class="topic-tag">Testing</a>
@@ -102,120 +85,32 @@
                     </div>
 
                 <div class="prose" itemprop="articleBody">
-                    <p class="lead">
-                        Browsers are enablers. They look at your mangled
-                        nightmare of a document, quietly fix it behind your
-                        back, and render something that looks close enough.
-                        Not a word of complaint. Which is exactly why <mark>invalid HTML tends to
-                        hide real bugs</mark>: forms that silently bin your
-                        users' data, nesting so broken it looks fine in Chrome
-                        but implodes in Safari, unclosed tags that swallow
-                        entire sections on mobile. If your markup doesn't
-                        validate, something is wrong, and you really want
-                        to find that out in your test suite, not when a
-                        customer emails you a screenshot at 2am.
-                    </p>
+                    <p class="lead">Browsers are enablers. They look at your mangled nightmare of a document, quietly fix it behind your back, and render something that looks close enough. Not a word of complaint. Which is exactly why <mark>invalid HTML tends to hide real bugs</mark>: forms that silently bin your users' data, nesting so broken it looks fine in Chrome but implodes in Safari, unclosed tags that swallow entire sections on mobile. If your markup doesn't validate, something is wrong, and you really want to find that out in your test suite, not when a customer emails you a screenshot at 2am.</p>
+<p>In the Rails world, the <a href="https://github.com/unboxed/be_valid_asset" target="_blank" rel="noopener noreferrer"><code>be_valid_asset</code></a> gem does the right thing here: it ships your rendered markup off to the official W3C validator and fails your spec if it comes back dodgy. Brilliant idea, one tiny problem: <mark>it depends on a live internet connection to a remote service you do not control</mark>. So you're on a train, or a coffee shop with Wi-Fi held together by prayers, or a plane where the internet costs twelve dollars and doesn't actually work, and suddenly your entire test suite is red for reasons that have absolutely nothing to do with your code. Lovely.</p>
+<p>Now, the W3C Validator Service <a href="https://validator.w3.org/docs/install.html" target="_blank" rel="noopener noreferrer">can be installed locally</a>, but getting it running natively on macOS is the kind of afternoon you don't get back. Docker, on the other hand, makes it stupidly easy.</p>
+<h2>Running the validator in Docker</h2>
+<p>Peter Mescalchin, absolute legend, has already done the hard work and packaged the whole thing into a ready-made <a href="https://hub.docker.com/r/magnetikonline/html5validator/" target="_blank" rel="noopener noreferrer">html5validator Docker container</a>. Just fire it up with a port forward so your test suite can talk to it:</p>
+<pre><code class="language-bash">$ docker run -d -p 8888:80 magnetikonline/html5validator
+</code></pre>
+<p>That pulls the image (first time only, relax), starts the container in the background, and maps port 8888 on your machine to the Apache service inside. Once it's up, open <code>http://localhost:8888</code> in your browser and bask in the glory of a W3C validator that lives on your own bloody laptop. The API endpoint you actually care about is at the <code>/check</code> path:</p>
+<p><code>http://localhost:8888/check</code></p>
+<h2>Configure BeValidAsset to use the local container</h2>
+<p>Here's the beautiful part: <code>be_valid_asset</code> already accepts a custom validator host, so pointing it at your shiny local container is literally one line of configuration. One. Line.</p>
+<pre><code class="language-ruby"># in spec/support/be_valid_asset.rb
+BeValidAsset::Configuration.markup_validator_host = 'http://192.168.99.100:32770'
+</code></pre>
+<p>If you want to get fancy with more configuration, knock yourself out and check the <a href="https://github.com/unboxed/be_valid_asset" target="_blank" rel="noopener noreferrer">README</a>.</p>
+<ul class="takeaway">
+<li>Run the W3C validator locally with <code>docker run -d -p 8888:80 magnetikonline/html5validator</code></li>
+<li>Point <code>be_valid_asset</code> at <code>localhost:8888</code> to remove the internet dependency from your test suite</li>
+<li>Your tests should never break because of someone else's server</li>
+</ul>
+<p><em>Full disclosure, because I'm not a monster: <code>be_valid_asset</code> was built by yours truly and my colleagues at <a href="http://unboxed.co/" target="_blank" rel="noopener noreferrer">Unboxed</a>. The Docker container was built by Peter Mescalchin (<a href="http://magnetikonline.com/" target="_blank" rel="noopener noreferrer">@magnetikonline</a>), who saved us all from a very boring afternoon.</em></p>
 
-                    <p>
-                        In the Rails world, the
-                        <a href="https://github.com/unboxed/be_valid_asset" target="_blank" rel="noopener noreferrer"><code>be_valid_asset</code></a>
-                        gem does the right thing here: it ships your rendered
-                        markup off to the official W3C validator and fails your
-                        spec if it comes back dodgy. Brilliant idea, one tiny
-                        problem: <mark>it depends
-                        on a live internet connection to a remote service you
-                        do not control</mark>. So you're on a train, or a coffee
-                        shop with Wi-Fi held together by prayers, or a plane
-                        where the internet costs twelve dollars and doesn't
-                        actually work, and suddenly your entire test suite is
-                        red for reasons that have absolutely nothing to do with
-                        your code. Lovely.
-                    </p>
-
-                    <p>
-                        Now, the W3C Validator Service
-                        <a href="https://validator.w3.org/docs/install.html" target="_blank" rel="noopener noreferrer">can be installed locally</a>,
-                        but getting it running natively on macOS is the kind
-                        of afternoon you don't get back. Docker, on the other
-                        hand, makes it stupidly easy.
-                    </p>
-
-                    <h2>Running the validator in Docker</h2>
-
-                    <p>
-                        Peter Mescalchin, absolute legend, has already done
-                        the hard work and packaged the whole thing into a
-                        ready-made
-                        <a href="https://hub.docker.com/r/magnetikonline/html5validator/" target="_blank" rel="noopener noreferrer">html5validator Docker container</a>.
-                        Just fire it up with a port forward so your test
-                        suite can talk to it:
-                    </p>
-
-                    <pre><code class="language-bash">$ docker run -d -p 8888:80 magnetikonline/html5validator</code></pre>
-
-                    <p>
-                        That pulls the image (first time only, relax), starts
-                        the container in the background, and maps port 8888 on
-                        your machine to the Apache service inside. Once it's
-                        up, open <code>http://localhost:8888</code> in your
-                        browser and bask in the glory of a W3C validator that
-                        lives on your own bloody laptop. The API endpoint you
-                        actually care about is at the <code>/check</code> path:
-                    </p>
-
-                    <p>
-                        <code>http://localhost:8888/check</code>
-                    </p>
-
-                    <h2>Configure BeValidAsset to use the local container</h2>
-
-                    <p>
-                        Here's the beautiful part: <code>be_valid_asset</code>
-                        already accepts a custom validator host, so pointing
-                        it at your shiny local container is literally one line
-                        of configuration. One. Line.
-                    </p>
-
-                    <pre><code class="language-ruby"># in spec/support/be_valid_asset.rb
-BeValidAsset::Configuration.markup_validator_host = 'http://192.168.99.100:32770'</code></pre>
-
-                    <p>
-                        If you want to get fancy with more configuration,
-                        knock yourself out and check the
-                        <a href="https://github.com/unboxed/be_valid_asset" target="_blank" rel="noopener noreferrer">README</a>.
-                    </p>
-
-                    <ul class="takeaway">
-                        <li>Run the W3C validator locally with <code>docker run -d -p 8888:80 magnetikonline/html5validator</code></li>
-                        <li>Point <code>be_valid_asset</code> at <code>localhost:8888</code> to remove the internet dependency from your test suite</li>
-                        <li>Your tests should never break because of someone else's server</li>
-                    </ul>
-
-                    <p>
-                        <em>Full disclosure, because I'm not a monster:
-                        <code>be_valid_asset</code> was built by yours truly
-                        and my colleagues at
-                        <a href="http://unboxed.co/" target="_blank" rel="noopener noreferrer">Unboxed</a>.
-                        The Docker container was built by Peter Mescalchin
-                        (<a href="http://magnetikonline.com/" target="_blank" rel="noopener noreferrer">@magnetikonline</a>),
-                        who saved us all from a very boring afternoon.</em>
-                    </p>
                 </div>
 
                 <footer class="site-footer">
-                    <p>
-                        If valid markup matters to you as much as it does
-                        to me, let's talk about it. Find me on
-                        <a href="https://bsky.app/profile/attilagyorffy.com" target="_blank" rel="noopener noreferrer">Bluesky</a>,
-                        <a href="https://fosstodon.org/@attila" target="_blank" rel="me noopener noreferrer">Mastodon</a>,
-                        <a href="https://twitter.com/attilagyorffy" target="_blank" rel="noopener noreferrer"><s>Twitter</s>&nbsp;X</a>,
-                        or
-                        <a href="https://linkedin.com/in/attilagyorffy" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
-                        You can also browse my other projects on
-                        <a href="https://github.com/attilagyorffy" target="_blank" rel="noopener noreferrer">GitHub</a>,
-                        where I occasionally validate things
-                        before pushing them.
-                    </p>
+                    <p>If valid markup matters to you as much as it does to me, let's talk about it. Find me on <a href="https://bsky.app/profile/attilagyorffy.com" target="_blank" rel="noopener noreferrer">Bluesky</a>, <a href="https://fosstodon.org/@attila" target="_blank" rel="noopener noreferrer">Mastodon</a>, <a href="https://twitter.com/attilagyorffy" target="_blank" rel="noopener noreferrer"><del>Twitter</del> X</a>, or <a href="https://linkedin.com/in/attilagyorffy" target="_blank" rel="noopener noreferrer">LinkedIn</a>. You can also browse my other projects on <a href="https://github.com/attilagyorffy" target="_blank" rel="noopener noreferrer">GitHub</a>, where I occasionally validate things before pushing them.</p>
                 </footer>
             </article>
 

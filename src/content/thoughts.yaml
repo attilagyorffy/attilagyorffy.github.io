@@ -1,0 +1,26 @@
+description: "Opinions, observations, and the occasional moment of clarity. Rescued from Twitter before the building caught fire, now living somewhere more dignified."
+sections:
+  - heading: "Shots fired (aka 'Hot takes')"
+    items:
+      - { date: "March 2019", text: "You don't have Facebook's problems. You just don't. But you convinced yourself you did, and now you've over-engineered your app so hard that — congratulations — now you actually do have problems. Self-fulfilling prophecy, that." }
+      - { date: "July 2017", text: "Most software is already broken, right? Like, properly broken. And now we're going \"you know what this needs? A massive A.I. dependency.\" Brilliant. Can't wait." }
+      - { date: "July 2017", text: "I love how some people call total effin' chaos 'AN AGILE ENVIRONMENT'." }
+      - { date: "March 2017", text: "Controversial to the urban legend: Pairing code reviews aren't slowing down a team, it's often a lot faster to discuss stuff live." }
+      - { date: "January 2017", text: "Here's the thing about the internet. We built it to give everyone a voice. And then we handed editorial control to algorithms that — unlike an actual human editor — don't even have the concept of ethics installed. Wat." }
+      - { date: "January 2017", text: "People love \"free\" software. \"It's free!\" No it isn't, mate. You're paying for it. Just not with money. You're paying with every scrap of privacy you've got, and you didn't even read the receipt." }
+      - { date: "December 2016", text: "etcd, flannel, fleet, kubernetes, pod, container, image, layer, volume, swarm, kitematic... Modern software development has never been easier." }
+      - { date: "November 2016", text: "A friendly reminder that your email inbox is a public writable todo list." }
+  - heading: "No one asked"
+    items:
+      - { date: "December 2023", text: "Fun fact: I used to work with a guy called David Singleton. Despite what his name says, it turns out that there's another David Singleton, the CTO of Stripe. I'm not going to lie, I'm feeling slightly cheated on." }
+      - { date: "February 2021", text: "The cats follow me everywhere — they've even learned to open doors to get into the bathroom. Since they've completely eliminated any notion of privacy, the only logical move is to rename them Google and Facebook." }
+      - { date: "August 2020", text: "Today I worked on a Nodejs application for the first time in years and it drew some remarkable results: I'm getting the Ruby logo tattooed on my leg." }
+      - { date: "July 2016", text: "One day I'll cheekily squeeze in a file into your repository without you knowing about it. It will be called bourne.json." }
+      - { date: "March 2015", text: "Hungarians don't say 'Bullshit!'. They say 'Lofasz!' (Horse dick!) The more you know." }
+      - { date: "February 2015", text: "If you're looking to hire a JavaScript ninja, don't be surprised if your candidate never shows up on the interview." }
+  - heading: "Moments of clarity"
+    items:
+      - { date: "August 2023", text: "Deleted every social app off my phone. Turns out boredom is brilliant. Your brain works when you stop feeding it garbage." }
+      - { date: "June 2022", text: "Pairing with a new developer on the team, he goes: 'I've never seen someone actually doing TDD like this, most people write the implementation and then back them up with tests'. Oh dear, we have a lot to talk about..." }
+      - { date: "July 2017", text: "This is your regular reminder that 'fail, learn, repeat' is a lot less useful if you skip the second step." }
+      - { date: "December 2016", text: "In 2016 I stopped being scared of what I don't know. Turns out that's all you need — just stop being a coward about it." }

@@ -1,4 +1,7 @@
-.PHONY: serve photos
+.PHONY: serve build photos
+
+build:
+	cd build && go run .
 
 serve:
 	uv run serve.py

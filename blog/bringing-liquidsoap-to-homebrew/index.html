@@ -1,49 +1,35 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head><meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="author" content="Attila Györffy" />
+<meta name="fediverse:creator" content="@attila@fosstodon.org" />
+<link rel="icon" type="image/svg+xml" id="favicon" href="/images/favicon-active.svg" />
+<link rel="preload" href="/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/css/tokens.css" />
+<link rel="stylesheet" href="/css/fonts.css" />
+<link rel="stylesheet" href="/css/reset.css" />
+<link rel="stylesheet" href="/css/layout.css" />
+<link rel="stylesheet" href="/css/theme.css" />
         <title>Bringing Liquidsoap to Homebrew: A Formula for Community Radio — Attila Györffy</title>
-        <meta
-            name="description"
-            content="Liquidsoap is a programming language for audio streaming with no Homebrew formula. Here is how I packaged it for macOS — OCaml, OPAM, and all."
-        />
-        <meta name="author" content="Attila Györffy" />
+        <meta name="description" content="Liquidsoap is a programming language for audio streaming with no Homebrew formula. Here is how I packaged it for macOS — OCaml, OPAM, and all." />
         <meta name="keywords" content="Developer Tools, Infrastructure" />
-        <meta name="fediverse:creator" content="@attila@fosstodon.org" />
-        <link
-            rel="canonical"
-            href="https://www.attilagyorffy.com/blog/bringing-liquidsoap-to-homebrew/"
-        />
-        <meta
-            property="og:title"
-            content="Bringing Liquidsoap to Homebrew: A Formula for Community Radio"
-        />
-        <meta
-            property="og:description"
-            content="Liquidsoap is a programming language for audio streaming with no Homebrew formula. Here is how I packaged it for macOS — OCaml, OPAM, and all."
-        />
+        <link rel="canonical" href="https://www.attilagyorffy.com/blog/bringing-liquidsoap-to-homebrew/" />
+        <meta property="og:title" content="Bringing Liquidsoap to Homebrew: A Formula for Community Radio" />
+        <meta property="og:description" content="Liquidsoap is a programming language for audio streaming with no Homebrew formula. Here is how I packaged it for macOS — OCaml, OPAM, and all." />
         <meta property="og:type" content="article" />
-        <meta
-            property="og:url"
-            content="https://www.attilagyorffy.com/blog/bringing-liquidsoap-to-homebrew/"
-        />
-        <meta property="og:image" content="https://www.attilagyorffy.com/blog/bringing-liquidsoap-to-homebrew/og.png" />
+        <meta property="og:url" content="https://www.attilagyorffy.com/blog/bringing-liquidsoap-to-homebrew/" />
+        <meta property="og:image" content="https://www.attilagyorffy.com/images/og-default.png" />
         <meta property="og:site_name" content="Attila Györffy" />
         <meta property="og:locale" content="en_GB" />
         <meta property="article:published_time" content="2026-03-22T00:00:00Z" />
         <meta property="article:author" content="https://www.attilagyorffy.com/about/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@attilagyorffy" />
-        <link
-            rel="icon"
-            type="image/svg+xml"
-            id="favicon"
-            href="/images/favicon-active.svg"
-        />
-        <link rel="preload" href="/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
-        <link rel="preload" href="/fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin />
-        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/typography.css" />
+        <link rel="stylesheet" href="/css/pages/blog-listing.css" />
+        <link rel="stylesheet" href="/css/pages/blog-post.css" />
         <script>requestAnimationFrame(()=>{requestAnimationFrame(()=>{if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')})})</script>
         <script src="/js/vendor/highlight.min.js" defer></script>
         <script src="/js/highlights.js" defer></script>
@@ -51,16 +37,16 @@
     </head>
     <body>
         <svg width="0" height="0" aria-hidden="true" style="position:absolute">
-            <filter id="highlighter">
-                <feTurbulence type="fractalNoise" baseFrequency="0.03 0.06" numOctaves="5" seed="2" result="noise" />
-                <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
-            </filter>
-        </svg>
+    <filter id="highlighter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.03 0.06" numOctaves="5" seed="2" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+</svg>
         <main class="page page--wide">
             <nav class="top-bar top-bar--stacked">
-                <a href="/" class="nav-home">&larr; Home</a>
-                <a href="/blog/" class="nav-writings">&larr; Writings</a>
-            </nav>
+    <a href="/" class="nav-home">&larr; Home</a>
+    <a href="/blog/" class="nav-writings">&larr; Writings</a>
+</nav>
 
             <article class="article-grid" itemscope itemtype="https://schema.org/BlogPosting">
                     <div class="author-col">
@@ -85,8 +71,7 @@
                             Bringing Liquidsoap to Homebrew: A Formula for Community Radio
                         </h1>
                         <p class="subtitle">
-                            A twenty-year-old streaming language with no
-                            Homebrew formula. That seemed worth fixing.
+                            A twenty-year-old streaming language with no Homebrew formula. That seemed worth fixing.
                         </p>
                         <div class="topic-tags">
                             <a href="/blog/?topic=developer-tools" class="topic-tag">Developer Tools</a>
@@ -95,277 +80,59 @@
                     </div>
                     <div class="date-col">
                         <time datetime="2026-03-22" itemprop="datePublished"
-                            >Mar 22</time
+                            >Mar 22, 2026</time
                         >
                     </div>
 
                 <div class="prose" itemprop="articleBody">
-                    <p class="lead">
-                        If you have ever tried to run an internet radio
-                        station, you have probably hit the same wall. You
-                        start with a playlist &mdash; maybe a folder of MP3s
-                        and a script that feeds them to Icecast. It works,
-                        until it does not. The stream dies at 3 AM and nobody
-                        notices. Two tracks play back-to-back with wildly
-                        different volumes. There is no crossfade, no jingles,
-                        no way to cut to a live input when a DJ shows up. You
-                        bolt on more scripts, more cron jobs, more glue. It
-                        gets ugly fast.
-                    </p>
-
-                    <p>
-                        This is the problem Liquidsoap solves.
-                    </p>
-
-                    <h2>What Liquidsoap is</h2>
-
-                    <p>
-                        Liquidsoap is a programming language designed
-                        specifically for audio and video streaming. Not a
-                        playlist manager. Not a config file for a streaming
-                        server. An actual statically typed language where
-                        sources of audio are first-class values that you can
-                        compose, transform, and route.
-                    </p>
-
-                    <p>
-                        The idea started at the &Eacute;cole Normale
-                        Sup&eacute;rieure de Lyon around 2004, when a group
-                        of students wanted a better way to run their campus
-                        radio. Twenty years later, it powers Radio France,
-                        AzuraCast, Radionomy, and countless community
-                        stations. The language has grown to handle video, HLS
-                        output, SRT ingest, speech synthesis, YouTube
-                        streaming, and more &mdash; but the core philosophy
-                        has not changed: simple things should be simple,
-                        complex things should be possible.
-                    </p>
-
-                    <p>
-                        A basic Liquidsoap script reads like a description of
-                        what you want your radio to do:
-                    </p>
-
-                    <pre><code class="language-plaintext">music = playlist("~/Music")
-jingles = playlist("~/Jingles")
+                    <p class="lead">If you have ever tried to run an internet radio station, you have probably hit the same wall. You start with a playlist — maybe a folder of MP3s and a script that feeds them to Icecast. It works, until it does not. The stream dies at 3 AM and nobody notices. Two tracks play back-to-back with wildly different volumes. There is no crossfade, no jingles, no way to cut to a live input when a DJ shows up. You bolt on more scripts, more cron jobs, more glue. It gets ugly fast.</p>
+<p>This is the problem Liquidsoap solves.</p>
+<h2>What Liquidsoap is</h2>
+<p>Liquidsoap is a programming language designed specifically for audio and video streaming. Not a playlist manager. Not a config file for a streaming server. An actual statically typed language where sources of audio are first-class values that you can compose, transform, and route.</p>
+<p>The idea started at the Ecole Normale Superieure de Lyon around 2004, when a group of students wanted a better way to run their campus radio. Twenty years later, it powers Radio France, AzuraCast, Radionomy, and countless community stations. The language has grown to handle video, HLS output, SRT ingest, speech synthesis, YouTube streaming, and more — but the core philosophy has not changed: simple things should be simple, complex things should be possible.</p>
+<p>A basic Liquidsoap script reads like a description of what you want your radio to do:</p>
+<pre><code class="language-plaintext">music = playlist(&quot;~/Music&quot;)
+jingles = playlist(&quot;~/Jingles&quot;)
 s = rotate(weights=[1, 4], [jingles, music])
 s = crossfade(s)
-output.icecast(%mp3, host="localhost", port=8000, password="hackme", mount="/stream", s)</code></pre>
+output.icecast(%mp3, host=&quot;localhost&quot;, port=8000, password=&quot;hackme&quot;, mount=&quot;/stream&quot;, s)
+</code></pre>
+<p>That is a radio station. Jingles every four tracks, crossfaded transitions, streaming to Icecast in MP3. If any of these sources fail — say the music directory gets unmounted — Liquidsoap detects it at type-check time, before the script even runs. If you want a live input that takes priority over the playlist, you add a <code>fallback</code>. If you want time-based scheduling, there is <code>switch</code>. The type system ensures you cannot accidentally create a stream that might go silent.</p>
+<p>This is fundamentally different from chaining together ffmpeg commands, cron jobs, and shell scripts. <mark>Liquidsoap understands audio at a semantic level — clocks, synchronisation, fallibility, track boundaries — and handles the hard parts so you do not have to.</mark></p>
+<p>I have been building custom audio pipelines and wanted to iterate on <code>.liq</code> scripts locally — test the playlist logic, tweak fallback chains, verify encoding settings. The kind of thing you want a fast feedback loop for. So I reached for <code>brew install</code> and found nothing. No formula. Your options were wrestling with OPAM directly (slow, fragile, leaves a <code>.opam</code> directory in your home) or running the Docker image. <mark>Every friction point in installation is a potential community radio builder who gives up before writing their first script.</mark> I decided to fix that.</p>
+<h2>Bringing it to Homebrew</h2>
+<p>Liquidsoap is written in OCaml, which makes packaging non-trivial. It uses OPAM to pull in dozens of OCaml libraries at build time, dune as its build system, and has a complex relationship with system libraries like ffmpeg and libcurl. The build process is not a simple <code>./configure &amp;&amp; make</code> — it is closer to bootstrapping a small OCaml ecosystem inside a temporary directory, compiling everything, then extracting the binary and its runtime files. The binary also needs to find its standard library (<code>.liq</code> scripts) and unicode data at runtime, and the default build mode bakes in paths that assume a Linux FHS layout. Not exactly the kind of thing <code>brew create</code> handles for you.</p>
+<p>The formula follows the same OPAM-based pattern that the handful of other OCaml formulas in homebrew-core (semgrep, flow, zero-install) use, with some liquidsoap-specific adaptations. Liquidsoap has three build modes for resolving runtime paths. The &quot;posix&quot; mode hardcodes paths like <code>/usr/share/liquidsoap/libs</code> — obviously wrong for Homebrew. The formula patches these at build time to point to Homebrew's prefix, then builds with <code>LIQUIDSOAP_BUILD_TARGET=posix</code>. Instead of building the OCaml compiler from source (which takes 10+ minutes), the formula uses Homebrew's OCaml package directly via <code>--compiler=ocaml-system</code>. OPAM gets a temporary root inside the build directory — nothing touches your home directory or persists after install.</p>
+<p><strong>The build steps boil down to:</strong></p>
+<ol>
+<li>Patch runtime paths and a vendored library's dune file (the <code>cry</code> module references <code>bytes</code>, a compat library removed in OCaml 5.x)</li>
+<li>Initialize OPAM with the system compiler</li>
+<li>Install OCaml dependencies from the project's opam files</li>
+<li>Install the ffmpeg OCaml bindings</li>
+<li>Build with dune</li>
+<li>Install, relocate man pages and stdlib files to Homebrew-conventional locations</li>
+<li>Copy camomile unicode data from the OPAM switch before it is cleaned up</li>
+</ol>
+<p>The whole thing builds in about 2.5 minutes on an M1 Max.</p>
+<h2>Room to grow</h2>
+<p>The current formula is intentionally minimal — ffmpeg covers the most important use case. But there are bindings that ffmpeg does not replace: <strong>LADSPA/Lilv</strong> for external audio effect plugins, <strong>OSC</strong> for real-time control from hardware or apps, <strong>Prometheus</strong> for production monitoring, and <strong>sqlite3</strong> for persistent metadata-driven playlists. These get compiled into the binary at build time — there is no runtime plugin system, and homebrew-core does not support <code>--with-foo</code> build options. If you need them today, install via OPAM directly or use a third-party tap. They are on my list to explore adding as default dependencies in future updates.</p>
+<p>Note that the formula does not output audio to your speakers directly — <code>output()</code> falls back to <code>output.dummy</code> without a native audio backend. For local testing, write to a file and play it back:</p>
+<pre><code class="language-bash">liquidsoap 'output.file(%wav, fallible=true, &quot;/tmp/test.wav&quot;, sine(duration=3.))'
+afplay /tmp/test.wav
+</code></pre>
+<p>One thing that bothered me about the formula was the source patching. The posix build target hardcodes its runtime paths in a static OCaml file, so the formula had to <code>inreplace</code> six paths before building — fragile, version-sensitive, and the kind of thing that breaks silently on upgrades. The right fix was upstream: I <a href="https://github.com/savonet/liquidsoap/pull/5045" target="_blank" rel="noopener noreferrer">sent a patch to Liquidsoap</a> that replaces the static file with a dune generation rule, so packagers can set paths through environment variables instead. The defaults stay identical, but the Homebrew formula can now just set <code>LIQUIDSOAP_LIBS_DIR</code> and friends instead of rewriting source code. That PR has been accepted, so future formula updates will be considerably cleaner.</p>
+<h2 class="conclusion">Three words from your own radio</h2>
+<p>The <a href="https://github.com/Homebrew/homebrew-core/pull/273636" target="_blank" rel="noopener noreferrer">PR is up on homebrew-core</a>. Once merged, anyone on macOS is three words from building their own radio. If you have been curious about internet radio, the <a href="http://www.liquidsoap.info/book/" target="_blank" rel="noopener noreferrer">Liquidsoap book</a> and the <a href="https://discord.gg/rsay42QJYU" target="_blank" rel="noopener noreferrer">community Discord</a> are good places to start.</p>
+<ul class="takeaway">
+<li><code>brew install liquidsoap</code> gives you a working binary with ffmpeg support — encode, decode, and stream in virtually any format</li>
+<li>The formula builds from source in about 2.5 minutes using your system OCaml — nothing persists in your home directory</li>
+<li>LADSPA, OSC, Prometheus, and sqlite3 support are candidates for future updates</li>
+</ul>
 
-                    <p>
-                        That is a radio station. Jingles every four tracks,
-                        crossfaded transitions, streaming to Icecast in MP3.
-                        If any of these sources fail &mdash; say the music
-                        directory gets unmounted &mdash; Liquidsoap detects
-                        it at type-check time, before the script even runs.
-                        If you want a live input that takes priority over the
-                        playlist, you add a <code>fallback</code>. If you
-                        want time-based scheduling, there is
-                        <code>switch</code>. The type system ensures you
-                        cannot accidentally create a stream that might go
-                        silent.
-                    </p>
-
-                    <p>
-                        This is fundamentally different from chaining together
-                        ffmpeg commands, cron jobs, and shell scripts.
-                        <mark>Liquidsoap understands audio at a semantic
-                        level &mdash; clocks, synchronisation, fallibility,
-                        track boundaries &mdash; and handles the hard parts
-                        so you do not have to.</mark>
-                    </p>
-
-                    <p>
-                        I have been building custom audio pipelines and
-                        wanted to iterate on <code>.liq</code> scripts
-                        locally &mdash; test the playlist logic, tweak
-                        fallback chains, verify encoding settings. The kind
-                        of thing you want a fast feedback loop for. So I
-                        reached for <code>brew install</code> and found
-                        nothing. No formula. Your options were wrestling
-                        with OPAM directly (slow, fragile, leaves a
-                        <code>.opam</code> directory in your home) or
-                        running the Docker image. <mark>Every friction
-                        point in installation is a potential community radio
-                        builder who gives up before writing their first
-                        script.</mark> I decided to fix that.
-                    </p>
-
-                    <h2>Bringing it to Homebrew</h2>
-
-                    <p>
-                        Liquidsoap is written in OCaml, which makes
-                        packaging non-trivial. It uses OPAM to pull in
-                        dozens of OCaml libraries at build time, dune as its
-                        build system, and has a complex relationship with
-                        system libraries like ffmpeg and libcurl. The build
-                        process is not a simple
-                        <code>./configure &amp;&amp; make</code> &mdash; it
-                        is closer to bootstrapping a small OCaml ecosystem
-                        inside a temporary directory, compiling everything,
-                        then extracting the binary and its runtime files.
-                        The binary also needs to find its standard library
-                        (<code>.liq</code> scripts) and unicode data at
-                        runtime, and the default build mode bakes in paths
-                        that assume a Linux FHS layout. Not exactly the kind
-                        of thing <code>brew create</code> handles for you.
-                    </p>
-
-                    <p>
-                        The formula follows the same OPAM-based pattern that
-                        the handful of other OCaml formulas in homebrew-core
-                        (semgrep, flow, zero-install) use, with some
-                        liquidsoap-specific adaptations. Liquidsoap has
-                        three build modes for resolving runtime paths. The
-                        &ldquo;posix&rdquo; mode hardcodes paths like
-                        <code>/usr/share/liquidsoap/libs</code> &mdash;
-                        obviously wrong for Homebrew. The formula patches
-                        these at build time to point to Homebrew&rsquo;s
-                        prefix, then builds with
-                        <code>LIQUIDSOAP_BUILD_TARGET=posix</code>. Instead
-                        of building the OCaml compiler from source (which
-                        takes 10+ minutes), the formula uses Homebrew&rsquo;s
-                        OCaml package directly via
-                        <code>--compiler=ocaml-system</code>. OPAM gets a
-                        temporary root inside the build directory &mdash;
-                        nothing touches your home directory or persists after
-                        install.
-                    </p>
-
-                    <p>
-                        <strong>The build steps boil down to:</strong>
-                    </p>
-
-                    <ol>
-                        <li>
-                            Patch runtime paths and a vendored library&rsquo;s
-                            dune file (the <code>cry</code> module references
-                            <code>bytes</code>, a compat library removed in
-                            OCaml 5.x)
-                        </li>
-                        <li>
-                            Initialize OPAM with the system compiler
-                        </li>
-                        <li>
-                            Install OCaml dependencies from the project&rsquo;s
-                            opam files
-                        </li>
-                        <li>
-                            Install the ffmpeg OCaml bindings
-                        </li>
-                        <li>
-                            Build with dune
-                        </li>
-                        <li>
-                            Install, relocate man pages and stdlib files to
-                            Homebrew-conventional locations
-                        </li>
-                        <li>
-                            Copy camomile unicode data from the OPAM switch
-                            before it is cleaned up
-                        </li>
-                    </ol>
-
-                    <p>
-                        The whole thing builds in about 2.5 minutes on an M1
-                        Max.
-                    </p>
-
-                    <h2>Room to grow</h2>
-
-                    <p>
-                        The current formula is intentionally minimal &mdash;
-                        ffmpeg covers the most important use case. But
-                        there are bindings that ffmpeg does not replace:
-                        <strong>LADSPA/Lilv</strong> for external audio
-                        effect plugins, <strong>OSC</strong> for real-time
-                        control from hardware or apps,
-                        <strong>Prometheus</strong> for production
-                        monitoring, and <strong>sqlite3</strong> for
-                        persistent metadata-driven playlists. These get
-                        compiled into the binary at build time &mdash;
-                        there is no runtime plugin system, and homebrew-core
-                        does not support <code>--with-foo</code> build
-                        options. If you need them today, install via OPAM
-                        directly or use a third-party tap. They are on my
-                        list to explore adding as default dependencies in
-                        future updates.
-                    </p>
-
-                    <p>
-                        Note that the formula does not output audio to your
-                        speakers directly &mdash; <code>output()</code>
-                        falls back to <code>output.dummy</code> without a
-                        native audio backend. For local testing, write to a
-                        file and play it back:
-                    </p>
-
-                    <pre><code class="language-bash">liquidsoap 'output.file(%wav, fallible=true, "/tmp/test.wav", sine(duration=3.))'
-afplay /tmp/test.wav</code></pre>
-
-                    <p>
-                        One thing that bothered me about the formula was
-                        the source patching. The posix build target
-                        hardcodes its runtime paths in a static OCaml file,
-                        so the formula had to <code>inreplace</code> six
-                        paths before building &mdash; fragile, version-
-                        sensitive, and the kind of thing that breaks
-                        silently on upgrades. The right fix was upstream: I
-                        <a href="https://github.com/savonet/liquidsoap/pull/5045" target="_blank" rel="noopener noreferrer">sent a patch to Liquidsoap</a>
-                        that replaces the static file with a dune generation
-                        rule, so packagers can set paths through environment
-                        variables instead. The defaults stay identical, but
-                        the Homebrew formula can now just set
-                        <code>LIQUIDSOAP_LIBS_DIR</code> and friends
-                        instead of rewriting source code. That PR has been
-                        accepted, so future formula updates will be
-                        considerably cleaner.
-                    </p>
-
-                    <h2 class="conclusion">Three words from your own radio</h2>
-
-                    <p>
-                        The
-                        <a href="https://github.com/Homebrew/homebrew-core/pull/273636" target="_blank" rel="noopener noreferrer">PR is up on homebrew-core</a>.
-                        Once merged, anyone on macOS is three words from
-                        building their own radio. If you have been curious
-                        about internet radio, the
-                        <a href="http://www.liquidsoap.info/book/" target="_blank" rel="noopener noreferrer">Liquidsoap book</a>
-                        and the
-                        <a href="https://discord.gg/rsay42QJYU" target="_blank" rel="noopener noreferrer">community Discord</a>
-                        are good places to start.
-                    </p>
-
-                    <ul class="takeaway">
-                        <li>
-                            <code>brew install liquidsoap</code> gives you a
-                            working binary with ffmpeg support &mdash; encode,
-                            decode, and stream in virtually any format
-                        </li>
-                        <li>
-                            The formula builds from source in about 2.5
-                            minutes using your system OCaml &mdash; nothing
-                            persists in your home directory
-                        </li>
-                        <li>
-                            LADSPA, OSC, Prometheus, and sqlite3 support are
-                            candidates for future updates
-                        </li>
-                    </ul>
                 </div>
 
                 <footer class="site-footer">
-                    <p>
-                        If you have ever lost an evening to crossfade
-                        timing or codec arguments, come say hello. I am on
-                        <a href="https://bsky.app/profile/attilagyorffy.com" target="_blank" rel="noopener noreferrer">Bluesky</a>,
-                        <a href="https://fosstodon.org/@attila" target="_blank" rel="me noopener noreferrer">Mastodon</a>,
-                        <a href="https://twitter.com/attilagyorffy" target="_blank" rel="noopener noreferrer"><s>Twitter</s>&nbsp;X</a>,
-                        and technically
-                        <a href="https://linkedin.com/in/attilagyorffy" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
-                        though discussing OCaml packaging there feels like
-                        bringing vinyl to a networking event.
-                    </p>
+                    <p>If you have ever lost an evening to crossfade timing or codec arguments, come say hello. I am on <a href="https://bsky.app/profile/attilagyorffy.com" target="_blank" rel="noopener noreferrer">Bluesky</a>, <a href="https://fosstodon.org/@attila" target="_blank" rel="noopener noreferrer">Mastodon</a>, <a href="https://twitter.com/attilagyorffy" target="_blank" rel="noopener noreferrer"><del>Twitter</del> X</a>, and technically <a href="https://linkedin.com/in/attilagyorffy" target="_blank" rel="noopener noreferrer">LinkedIn</a>, though discussing OCaml packaging there feels like bringing vinyl to a networking event.</p>
                 </footer>
             </article>
 

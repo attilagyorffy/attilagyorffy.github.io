@@ -1,33 +1,25 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head><meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="author" content="Attila Györffy" />
+<meta name="fediverse:creator" content="@attila@fosstodon.org" />
+<link rel="icon" type="image/svg+xml" id="favicon" href="/images/favicon-active.svg" />
+<link rel="preload" href="/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/css/tokens.css" />
+<link rel="stylesheet" href="/css/fonts.css" />
+<link rel="stylesheet" href="/css/reset.css" />
+<link rel="stylesheet" href="/css/layout.css" />
+<link rel="stylesheet" href="/css/theme.css" />
         <title>When brew install node required 5.5GB of Xcode — Attila Györffy</title>
-        <meta
-            name="description"
-            content="On the Yosemite beta, Homebrew's build patches hadn't caught up yet. Installing Node.js meant downloading the entire Xcode beta — all 5.5 gigabytes of it."
-        />
-        <meta name="author" content="Attila Györffy" />
+        <meta name="description" content="On the Yosemite beta, Homebrew&#39;s build patches hadn&#39;t caught up yet. Installing Node.js meant downloading the entire Xcode beta — all 5.5 gigabytes of it." />
         <meta name="keywords" content="Developer Tools" />
-        <meta name="fediverse:creator" content="@attila@fosstodon.org" />
-        <link
-            rel="canonical"
-            href="https://www.attilagyorffy.com/blog/when-brew-install-node-required-5-5gb-of-xcode/"
-        />
-        <meta
-            property="og:title"
-            content="When brew install node required 5.5GB of Xcode"
-        />
-        <meta
-            property="og:description"
-            content="On the Yosemite beta, Homebrew's build patches hadn't caught up yet. Installing Node.js meant downloading the entire Xcode beta — all 5.5 gigabytes of it."
-        />
+        <link rel="canonical" href="https://www.attilagyorffy.com/blog/when-brew-install-node-required-5-5gb-of-xcode/" />
+        <meta property="og:title" content="When brew install node required 5.5GB of Xcode" />
+        <meta property="og:description" content="On the Yosemite beta, Homebrew&#39;s build patches hadn&#39;t caught up yet. Installing Node.js meant downloading the entire Xcode beta — all 5.5 gigabytes of it." />
         <meta property="og:type" content="article" />
-        <meta
-            property="og:url"
-            content="https://www.attilagyorffy.com/blog/when-brew-install-node-required-5-5gb-of-xcode/"
-        />
+        <meta property="og:url" content="https://www.attilagyorffy.com/blog/when-brew-install-node-required-5-5gb-of-xcode/" />
         <meta property="og:image" content="https://www.attilagyorffy.com/blog/when-brew-install-node-required-5-5gb-of-xcode/og.png" />
         <meta property="og:site_name" content="Attila Györffy" />
         <meta property="og:locale" content="en_GB" />
@@ -35,15 +27,9 @@
         <meta property="article:author" content="https://www.attilagyorffy.com/about/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@attilagyorffy" />
-        <link
-            rel="icon"
-            type="image/svg+xml"
-            id="favicon"
-            href="/images/favicon-active.svg"
-        />
-        <link rel="preload" href="/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
-        <link rel="preload" href="/fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin />
-        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/typography.css" />
+        <link rel="stylesheet" href="/css/pages/blog-listing.css" />
+        <link rel="stylesheet" href="/css/pages/blog-post.css" />
         <script>requestAnimationFrame(()=>{requestAnimationFrame(()=>{if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')})})</script>
         <script src="/js/vendor/highlight.min.js" defer></script>
         <script src="/js/highlights.js" defer></script>
@@ -51,16 +37,16 @@
     </head>
     <body>
         <svg width="0" height="0" aria-hidden="true" style="position:absolute">
-            <filter id="highlighter">
-                <feTurbulence type="fractalNoise" baseFrequency="0.03 0.06" numOctaves="5" seed="2" result="noise" />
-                <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
-            </filter>
-        </svg>
+    <filter id="highlighter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.03 0.06" numOctaves="5" seed="2" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+</svg>
         <main class="page page--wide">
             <nav class="top-bar top-bar--stacked">
-                <a href="/" class="nav-home">&larr; Home</a>
-                <a href="/blog/" class="nav-writings">&larr; Writings</a>
-            </nav>
+    <a href="/" class="nav-home">&larr; Home</a>
+    <a href="/blog/" class="nav-writings">&larr; Writings</a>
+</nav>
 
             <article class="article-grid" itemscope itemtype="https://schema.org/BlogPosting">
                     <div class="author-col">
@@ -85,9 +71,7 @@
                             When brew install node required 5.5GB of Xcode
                         </h1>
                         <p class="subtitle">
-                            A snapshot from the Yosemite beta era, when
-                            Homebrew's build patches hadn't caught up and
-                            installing Node meant downloading all of Xcode.
+                            A snapshot from the Yosemite beta era, when Homebrew&#39;s build patches hadn&#39;t caught up and installing Node meant downloading all of Xcode.
                         </p>
                         <div class="topic-tags">
                             <a href="/blog/?topic=developer-tools" class="topic-tag">Developer Tools</a>
@@ -100,102 +84,30 @@
                     </div>
 
                 <div class="prose" itemprop="articleBody">
-                    <p>
-                        <em>This post is from July 2014, when OS X Yosemite was
-                        still in beta and everything was on fire. The specific
-                        disaster described here was patched ages ago. I'm
-                        keeping it as a monument to the suffering &mdash; a
-                        love letter to the era when Apple's development
-                        toolchain would casually ruin your afternoon.</em>
-                    </p>
+                    <p class="lead"><em>This post is from July 2014, when OS X Yosemite was still in beta and everything was on fire. The specific disaster described here was patched ages ago. I'm keeping it as a monument to the suffering — a love letter to the era when Apple's development toolchain would casually ruin your afternoon.</em></p>
+<p>So there I was, fresh Yosemite beta install, feeling like a pioneer. I typed <code>brew install node</code> and waited for the magic to happen. It did not. No missing dependency, no network hiccup — just a straight-up compilation error, like the computer was personally offended. Homebrew builds Node.js from source, and the community patches that kept things working on Mavericks hadn't been updated for Yosemite yet. The Command Line Tools — normally all Homebrew needs — just stood there and shrugged.</p>
+<p>The fix? Oh, you'll love this: <mark>download the entire Xcode Beta 3 — all 5.5 gigabytes of it — just so that <code>brew install node</code> could compile a JavaScript runtime</mark>. Five and a half gigs. To run JavaScript. On the server. That's like buying a house because you needed a screwdriver. Xcode ships a full SDK with headers and libraries that the standalone Command Line Tools don't bother to include, and during the Yosemite beta, those missing bits were exactly what Node.js demanded like some kind of entitled houseguest.</p>
+<h2>The workaround</h2>
+<p>The steps are almost insultingly simple once you've made peace with downloading half a DVD's worth of IDE:</p>
+<ul>
+<li>Download the Xcode beta from the Apple Developer site</li>
+<li>Launch Xcode once to accept the license agreement and let it install its components</li>
+<li>Run <code>brew install node</code></li>
+</ul>
+<pre><code class="language-bash">brew install node
+</code></pre>
+<p>That's it. Three steps. One of which involves downloading a full-blown IDE you will literally never open again, just so a package manager can compile a dependency. This was the cutting edge, folks. The pinnacle of developer experience on a brand-new Apple operating system in the year of our lord 2014.</p>
+<p>The underlying <a href="https://github.com/Homebrew/homebrew/issues/25294" target="_blank" rel="noopener noreferrer">compilation issue</a> was a well-known ritual that happened with every major macOS release, like clockwork, like taxes, like your build breaking the one day you actually need it. The Homebrew community always caught up eventually, but <mark>in the gap between a new OS beta and updated build patches, you were on your own</mark> — and the answer was always the same: &quot;just install all of Xcode, mate.&quot; Every. Single. Time.</p>
+<ul class="takeaway">
+<li>On new macOS betas, Homebrew's build patches lag behind — expect compilation failures</li>
+<li>The Command Line Tools alone may not be enough; sometimes you need the full Xcode SDK</li>
+<li>This class of problem surfaced with every major macOS release — budget time for toolchain breakage on day one</li>
+</ul>
 
-                    <p class="lead">
-                        So there I was, fresh Yosemite beta install, feeling
-                        like a pioneer. I typed
-                        <code>brew install node</code> and waited for the
-                        magic to happen. It did not. No missing dependency, no
-                        network hiccup &mdash; just a straight-up compilation
-                        error, like the computer was personally offended.
-                        Homebrew builds Node.js from source, and the community
-                        patches that kept things working on Mavericks hadn't
-                        been updated for Yosemite yet. The Command Line Tools
-                        &mdash; normally all Homebrew needs &mdash; just stood
-                        there and shrugged.
-                    </p>
-
-                    <p>
-                        The fix? Oh, you'll love this: <mark>download the entire Xcode Beta 3
-                        &mdash; all 5.5 gigabytes of it &mdash; just so that
-                        <code>brew install node</code> could compile a
-                        JavaScript runtime</mark>. Five and a half gigs. To run
-                        JavaScript. On the server. That's like buying a house
-                        because you needed a screwdriver. Xcode ships a full
-                        SDK with headers and libraries that the standalone
-                        Command Line Tools don't bother to include, and
-                        during the Yosemite beta, those missing bits were
-                        exactly what Node.js demanded like some kind of
-                        entitled houseguest.
-                    </p>
-
-                    <h2>The workaround</h2>
-
-                    <p>
-                        The steps are almost insultingly simple once you've
-                        made peace with downloading half a DVD's worth of IDE:
-                    </p>
-
-                    <ul>
-                        <li>Download the Xcode beta from the Apple Developer site</li>
-                        <li>Launch Xcode once to accept the license agreement and let it install its components</li>
-                        <li>Run <code>brew install node</code></li>
-                    </ul>
-
-                    <pre><code class="language-bash">brew install node</code></pre>
-
-                    <p>
-                        That's it. Three steps. One of which involves
-                        downloading a full-blown IDE you will literally never
-                        open again, just so a package manager can compile a
-                        dependency. This was the cutting edge, folks. The
-                        pinnacle of developer experience on a brand-new Apple
-                        operating system in the year of our lord 2014.
-                    </p>
-
-                    <p>
-                        The underlying
-                        <a href="https://github.com/Homebrew/homebrew/issues/25294" target="_blank" rel="noopener noreferrer">compilation issue</a>
-                        was a well-known ritual that happened with every major
-                        macOS release, like clockwork, like taxes, like your
-                        build breaking the one day you actually need it. The
-                        Homebrew community always caught up eventually, but
-                        <mark>in the gap between a new OS
-                        beta and updated build patches, you were on your own</mark>
-                        &mdash; and the answer was always the same: "just
-                        install all of Xcode, mate." Every. Single. Time.
-                    </p>
-
-                    <ul class="takeaway">
-                        <li>On new macOS betas, Homebrew's build patches lag behind — expect compilation failures</li>
-                        <li>The Command Line Tools alone may not be enough; sometimes you need the full Xcode SDK</li>
-                        <li>This class of problem surfaced with every major macOS release — budget time for toolchain breakage on day one</li>
-                    </ul>
                 </div>
 
                 <footer class="site-footer">
-                    <p>
-                        If you've made it through a Node.js install guide
-                        from 2014, you deserve a medal. Come reminisce
-                        about the good old days with me on
-                        <a href="https://bsky.app/profile/attilagyorffy.com" target="_blank" rel="noopener noreferrer">Bluesky</a>,
-                        <a href="https://fosstodon.org/@attila" target="_blank" rel="me noopener noreferrer">Mastodon</a>,
-                        <a href="https://twitter.com/attilagyorffy" target="_blank" rel="noopener noreferrer"><s>Twitter</s>&nbsp;X</a>,
-                        or even
-                        <a href="https://linkedin.com/in/attilagyorffy" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
-                        You can also find what I'm building these days on
-                        <a href="https://github.com/attilagyorffy" target="_blank" rel="noopener noreferrer">GitHub</a>,
-                        where the tooling has thankfully improved
-                        since the Yosemite era.
-                    </p>
+                    <p>If you've made it through a Node.js install guide from 2014, you deserve a medal. Come reminisce about the good old days with me on <a href="https://bsky.app/profile/attilagyorffy.com" target="_blank" rel="noopener noreferrer">Bluesky</a>, <a href="https://fosstodon.org/@attila" target="_blank" rel="noopener noreferrer">Mastodon</a>, <a href="https://twitter.com/attilagyorffy" target="_blank" rel="noopener noreferrer"><del>Twitter</del> X</a>, or even <a href="https://linkedin.com/in/attilagyorffy" target="_blank" rel="noopener noreferrer">LinkedIn</a>. You can also find what I'm building these days on <a href="https://github.com/attilagyorffy" target="_blank" rel="noopener noreferrer">GitHub</a>, where the tooling has thankfully improved since the Yosemite era.</p>
                 </footer>
             </article>
 

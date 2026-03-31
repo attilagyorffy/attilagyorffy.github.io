@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {{- template "partials/head.html" . }}
+        <title>{{ .Title }} — Attila Györffy</title>
+        <meta name="description" content="{{ .Description }}" />
+        <meta name="keywords" content="{{ join .Topics ", " }}" />
+        <link rel="canonical" href="https://www.attilagyorffy.com{{ .URL }}" />
+        <meta property="og:title" content="{{ .Title }}" />
+        <meta property="og:description" content="{{ .Description }}" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://www.attilagyorffy.com{{ .URL }}" />
+        <meta property="og:image" content="{{ .OGImageURL }}" />
+        <meta property="og:site_name" content="Attila Györffy" />
+        <meta property="og:locale" content="en_GB" />
+        <meta property="article:published_time" content="{{ .DateISO }}T00:00:00Z" />
+        <meta property="article:author" content="https://www.attilagyorffy.com/about/" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="@attilagyorffy" />
+        <link rel="stylesheet" href="/css/typography.css" />
+        <link rel="stylesheet" href="/css/pages/blog-listing.css" />
+        <link rel="stylesheet" href="/css/pages/blog-post.css" />
+        <script>requestAnimationFrame(()=>{requestAnimationFrame(()=>{if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')})})</script>
+        {{- if eq .Type "Code" }}
+        <script src="/js/vendor/highlight.min.js" defer></script>
+        <script src="/js/highlights.js" defer></script>
+        {{- end }}
+        <script src="/js/favicon.js" defer></script>
+    </head>
+    <body>
+        {{ template "svg-filter" . }}
+        <main class="page page--wide">
+            {{ template "nav-stacked" . }}
+
+            <article class="article-grid" itemscope itemtype="https://schema.org/BlogPosting">
+                    <div class="author-col">
+                        <div class="avatar">
+                            <img
+                                src="/images/avatar.webp"
+                                alt="Attila Györffy"
+                                width="52"
+                                height="52"
+                            />
+                        </div>
+                        <div class="author-meta">
+                            <span class="author-name" itemprop="author">
+                                Attila Györffy
+                            </span>
+                            <span class="author-role">Product Engineer</span>
+                            <div class="post-label">{{ .ReadTime }}</div>
+                        </div>
+                    </div>
+                    <div class="title-col">
+                        <h1 itemprop="headline">
+                            {{ .Title }}
+                        </h1>
+                        {{- if .Subtitle }}
+                        <p class="subtitle">
+                            {{ .Subtitle }}
+                        </p>
+                        {{- end }}
+                        <div class="topic-tags">
+                            {{- range .Topics }}
+                            <a href="/blog/?topic={{ topicSlug . }}" class="topic-tag">{{ . }}</a>
+                            {{- end }}
+                        </div>
+                    </div>
+                    <div class="date-col">
+                        <time datetime="{{ .DateISO }}" itemprop="datePublished"
+                            >{{ .DateFormatted }}</time
+                        >
+                    </div>
+
+                <div class="prose" itemprop="articleBody">
+                    {{ .Body }}
+                </div>
+
+                <footer class="site-footer">
+                    {{- if .Footer }}
+                    <p>{{ safeHTML .Footer }}</p>
+                    {{- else }}
+                    <p>Written by <a href="/about/">Attila Gy&ouml;rffy</a>.</p>
+                    {{- end }}
+                </footer>
+            </article>
+
+            <aside class="sidebar-label" aria-hidden="true">
+                <span>{{ .Type }}</span>
+                <span class="sidebar-arrow">&darr;</span>
+            </aside>
+        </main>
+
+    </body>
+</html>
