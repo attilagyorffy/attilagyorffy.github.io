@@ -1,7 +1,7 @@
 .PHONY: serve photos
 
 serve:
-	python3 serve.py
+	uv run serve.py
 
 photos:
 	./scripts/optimize-photos.sh photos/2025-sicily --html
