@@ -137,7 +137,7 @@
         monospace;
     --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
 
-    /* Spacing */
+    /* Spacing — scale */
     --space-xs: 0.5rem;
     --space-s: clamp(0.7rem, 0.55rem + 0.35vi, 1rem);
     --space-m: clamp(1.1rem, 0.85rem + 0.6vi, 1.5rem);
@@ -145,31 +145,32 @@
     --space-xl: clamp(2.25rem, 1.45rem + 1.5vi, 3rem);
     --space-2xl: clamp(3rem, 1.5rem + 3vi, 6rem);
 
-    /* Page shell padding */
+    /* Spacing — semantic */
     --page-pad-y: clamp(1.5rem, 1rem + 1.2vi, 3rem);
     --page-pad-x: clamp(1.25rem, 0.75rem + 1.5vi, 3.5rem);
     --page-pad-b: clamp(2.5rem, 1.5rem + 2vi, 5rem);
 
-    /* Typography — fixed small sizes */
-    --text-size-xs: 0.68rem;
-    --text-size-sm: 0.72rem;
-    --text-size-meta: 0.75rem;
-    --text-size-ui: 0.85rem;
-    --text-size-note: 0.9rem;
-    --text-size-fn: 0.92rem;
-    --text-size-code: 0.95rem;
+    /* Type scale — raw values */
+    --scale-xs: clamp(0.68rem, 0.64rem + 0.1vi, 0.76rem);
+    --scale-sm: clamp(0.82rem, 0.78rem + 0.12vi, 0.9rem);
+    --scale-md: clamp(0.9rem, 0.86rem + 0.12vi, 0.96rem);
+    --scale-base: clamp(1rem, 0.94rem + 0.18vi, 1.08rem);
+    --scale-lg: clamp(1.08rem, 0.98rem + 0.25vi, 1.18rem);
+    --scale-xl: clamp(1.15rem, 1rem + 0.35vi, 1.3rem);
+    --scale-2xl: clamp(1.5rem, 1.3rem + 0.5vi, 1.7rem);
+    --scale-3xl: clamp(1.65rem, 1.2rem + 1.5vi, 2.5rem);
+
+    /* Type scale — semantic */
+    --text-size-sm: var(--scale-xs);
+    --text-size-ui: var(--scale-sm);
+    --text-size-code: var(--scale-md);
+    --text-size-body: var(--scale-base);
+    --text-size-prose: var(--scale-lg);
+    --text-size-lead: var(--scale-xl);
+    --text-size-prose-h: var(--scale-2xl);
+    --text-size-h1: var(--scale-3xl);
     --text-size-icon: 1.5rem;
     --text-size-icon-lg: 2rem;
-
-    /* Typography — fluid */
-    --text-size-body: clamp(1rem, 0.95rem + 0.15vi, 1.05rem);
-    --text-size-prose: clamp(1.05rem, 0.95rem + 0.25vi, 1.15rem);
-    --text-size-lead: clamp(1.15rem, 1rem + 0.35vi, 1.3rem);
-    --text-size-intro: clamp(1rem, 0.9rem + 0.25vi, 1.1rem);
-    --text-size-card: clamp(1.1rem, 1rem + 0.25vi, 1.2rem);
-    --text-size-section: clamp(1rem, 0.95rem + 0.2vi, 1.1rem);
-    --text-size-prose-h: clamp(1.5rem, 1.3rem + 0.5vi, 1.7rem);
-    --text-size-h1: clamp(1.65rem, 1.2rem + 1.5vi, 2.5rem);
 
     /* Palette — light */
     --palette-warm-grey: #f7f7f7;
@@ -309,7 +310,7 @@ h1 {
 }
 
 h2 {
-    font-size: var(--text-size-section);
+    font-size: var(--text-size-body);
     font-weight: 400;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -323,7 +324,7 @@ h2:first-of-type {
 }
 
 .intro {
-    font-size: var(--text-size-intro);
+    font-size: var(--text-size-body);
     line-height: 1.75;
     margin: 0 0 var(--space-2xl) 0;
 }
@@ -416,7 +417,7 @@ h2:first-of-type {
 }
 
 .subtitle {
-    font-size: var(--text-size-card);
+    font-size: var(--text-size-prose);
     line-height: 1.6;
     margin: 0;
 }
@@ -432,7 +433,7 @@ h2:first-of-type {
 
 .topic-tag {
     background: transparent;
-    font-size: var(--text-size-section);
+    font-size: var(--text-size-body);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     border: none;
@@ -598,7 +599,7 @@ mark {
     margin-top: var(--space-xl);
     padding-top: var(--space-m);
     border-top: 1px solid var(--color-subtle);
-    font-size: var(--text-size-fn);
+    font-size: var(--text-size-code);
 }
 
 .prose ol.footnotes li {
@@ -761,7 +762,7 @@ mark {
 /* Blog & project listings */
 
 .post-title {
-    font-size: var(--text-size-card);
+    font-size: var(--text-size-prose);
     font-weight: 400;
     line-height: 1.4;
     color: var(--color-heading);
@@ -829,7 +830,7 @@ mark {
     line-height: 1.75;
     margin: 0;
     letter-spacing: 0;
-    font-size: var(--text-size-note);
+    font-size: var(--text-size-code);
 }
 
 .site-footer p,
@@ -911,7 +912,7 @@ article .site-footer {
 }
 
 .album-title {
-    font-size: var(--text-size-card);
+    font-size: var(--text-size-prose);
     font-weight: 400;
     color: var(--color-heading);
     line-height: 1.4;
@@ -923,7 +924,7 @@ article .site-footer {
 }
 
 .album-meta {
-    font-size: var(--text-size-meta);
+    font-size: var(--text-size-sm);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     margin: var(--space-xs) 0 0 0;
@@ -1088,7 +1089,7 @@ article .site-footer {
 
 .lightbox-counter {
     color: var(--color-fg);
-    font-size: var(--text-size-meta);
+    font-size: var(--text-size-sm);
     letter-spacing: 0.08em;
     font-family: var(--font-mono);
     text-align: center;
@@ -1322,7 +1323,7 @@ pre code.hljs {
         right: var(--space-xl);
         top: 50%;
         writing-mode: vertical-rl;
-        font-size: var(--text-size-xs);
+        font-size: var(--text-size-sm);
         letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--color-subtle);

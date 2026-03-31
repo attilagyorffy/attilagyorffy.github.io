@@ -51,7 +51,7 @@
             }
             .sg-swatch-label code {
                 display: block;
-                font-size: var(--text-size-xs);
+                font-size: var(--text-size-sm);
                 color: var(--color-mid);
             }
 
@@ -73,7 +73,7 @@
             .sg-type-value {
                 grid-column: 2;
                 font-family: var(--font-mono);
-                font-size: var(--text-size-xs);
+                font-size: var(--text-size-sm);
                 color: var(--color-mid);
             }
             .sg-type-sample-mono {
@@ -253,94 +253,59 @@
                 </div>
             </section>
 
-            <!-- Type scale -->
+            <!-- Type scale — raw -->
             <section class="sg-section">
                 <h2>Type scale</h2>
 
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-size-h1</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-h1)">Page title</span>
+                    <span class="sg-type-label">--scale-3xl</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--scale-3xl)">Page title</span>
                     <span class="sg-type-value">clamp(1.65rem, 1.2rem + 1.5vi, 2.5rem)</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-size-prose-h</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-prose-h)">Section heading</span>
+                    <span class="sg-type-label">--scale-2xl</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--scale-2xl)">Section heading</span>
                     <span class="sg-type-value">clamp(1.5rem, 1.3rem + 0.5vi, 1.7rem)</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-size-lead</span>
-                    <span class="sg-type-sample-serif" style="font-size: var(--text-size-lead)">Lead paragraph text</span>
+                    <span class="sg-type-label">--scale-xl</span>
+                    <span class="sg-type-sample-serif" style="font-size: var(--scale-xl)">Lead paragraph text</span>
                     <span class="sg-type-value">clamp(1.15rem, 1rem + 0.35vi, 1.3rem)</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-size-card</span>
-                    <span class="sg-type-sample-serif" style="font-size: var(--text-size-card)">Card title text</span>
-                    <span class="sg-type-value">clamp(1.1rem, 1rem + 0.25vi, 1.2rem)</span>
+                    <span class="sg-type-label">--scale-lg</span>
+                    <span class="sg-type-sample-serif" style="font-size: var(--scale-lg)">Article prose, card titles</span>
+                    <span class="sg-type-value">clamp(1.08rem, 0.98rem + 0.25vi, 1.18rem)</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-size-prose</span>
-                    <span class="sg-type-sample-serif" style="font-size: var(--text-size-prose)">Prose body text</span>
-                    <span class="sg-type-value">clamp(1.05rem, 0.95rem + 0.25vi, 1.15rem)</span>
+                    <span class="sg-type-label">--scale-base</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--scale-base)">Body text, section labels</span>
+                    <span class="sg-type-value">clamp(1rem, 0.94rem + 0.18vi, 1.08rem)</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-size-intro</span>
-                    <span class="sg-type-sample-serif" style="font-size: var(--text-size-intro)">Intro paragraph text</span>
-                    <span class="sg-type-value">clamp(1rem, 0.9rem + 0.25vi, 1.1rem)</span>
+                    <span class="sg-type-label">--scale-md</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--scale-md)">Code, footnotes, notes</span>
+                    <span class="sg-type-value">clamp(0.9rem, 0.86rem + 0.12vi, 0.96rem)</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-size-section</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-section)">Section label text</span>
-                    <span class="sg-type-value">clamp(1rem, 0.95rem + 0.2vi, 1.1rem)</span>
+                    <span class="sg-type-label">--scale-sm</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--scale-sm)">UI chrome, nav, code blocks</span>
+                    <span class="sg-type-value">clamp(0.82rem, 0.78rem + 0.12vi, 0.9rem)</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-size-body</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-body)">Body text</span>
-                    <span class="sg-type-value">clamp(1rem, 0.95rem + 0.15vi, 1.05rem)</span>
-                </div>
-                <div class="sg-type-row">
-                    <span class="sg-type-label">--text-size-code</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-code)">Code block text</span>
-                    <span class="sg-type-value">0.95rem</span>
-                </div>
-                <div class="sg-type-row">
-                    <span class="sg-type-label">--text-size-fn</span>
-                    <span class="sg-type-sample-serif" style="font-size: var(--text-size-fn)">Footnote text</span>
-                    <span class="sg-type-value">0.92rem</span>
-                </div>
-                <div class="sg-type-row">
-                    <span class="sg-type-label">--text-size-note</span>
-                    <span class="sg-type-sample-serif" style="font-size: var(--text-size-note)">Note text</span>
-                    <span class="sg-type-value">0.9rem</span>
-                </div>
-                <div class="sg-type-row">
-                    <span class="sg-type-label">--text-size-ui</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-ui)">UI element text</span>
-                    <span class="sg-type-value">0.85rem</span>
-                </div>
-                <div class="sg-type-row">
-                    <span class="sg-type-label">--text-size-meta</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-meta)">Meta / date text</span>
-                    <span class="sg-type-value">0.75rem</span>
-                </div>
-                <div class="sg-type-row">
-                    <span class="sg-type-label">--text-size-sm</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-sm)">Small label text</span>
-                    <span class="sg-type-value">0.72rem</span>
-                </div>
-                <div class="sg-type-row">
-                    <span class="sg-type-label">--text-size-xs</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-xs)">Extra-small text</span>
-                    <span class="sg-type-value">0.68rem</span>
+                    <span class="sg-type-label">--scale-xs</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--scale-xs)">Small labels, meta, dates</span>
+                    <span class="sg-type-value">clamp(0.68rem, 0.64rem + 0.1vi, 0.76rem)</span>
                 </div>
                 <div class="sg-type-row">
                     <span class="sg-type-label">--text-size-icon-lg</span>
                     <span class="sg-type-sample-mono" style="font-size: var(--text-size-icon-lg)">&times;</span>
-                    <span class="sg-type-value">2rem</span>
+                    <span class="sg-type-value">2rem (fixed)</span>
                 </div>
                 <div class="sg-type-row">
                     <span class="sg-type-label">--text-size-icon</span>
                     <span class="sg-type-sample-mono" style="font-size: var(--text-size-icon)">&larr; &rarr;</span>
-                    <span class="sg-type-value">1.5rem</span>
+                    <span class="sg-type-value">1.5rem (fixed)</span>
                 </div>
             </section>
 
