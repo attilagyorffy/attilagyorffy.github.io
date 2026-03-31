@@ -67,6 +67,26 @@ type YearGroup struct {
 	Posts []BlogPost
 }
 
+// ProjectsData holds the parsed projects.yaml.
+type ProjectsData struct {
+	Title       string            `yaml:"title"`
+	Description string            `yaml:"description"`
+	Intro       string            `yaml:"intro"`
+	Footer      string            `yaml:"footer"`
+	Categories  []ProjectCategory `yaml:"categories"`
+}
+
+type ProjectCategory struct {
+	Name     string    `yaml:"name"`
+	Projects []Project `yaml:"projects"`
+}
+
+type Project struct {
+	Title   string `yaml:"title"`
+	URL     string `yaml:"url"`
+	Summary string `yaml:"summary"`
+}
+
 // ThoughtsData holds the parsed thoughts.yaml.
 type ThoughtsData struct {
 	Title       string           `yaml:"title"`
@@ -118,7 +138,12 @@ func main() {
 		fatal("building thoughts: %v", err)
 	}
 
-	fmt.Printf("Built %d blog posts, 1 listing, standalone pages, and thoughts.\n", len(posts))
+	// Build projects page.
+	if err := buildProjects(srcDir, root, tmpl); err != nil {
+		fatal("building projects: %v", err)
+	}
+
+	fmt.Printf("Built %d blog posts, 1 listing, standalone pages, thoughts, and projects.\n", len(posts))
 }
 
 // findRoot returns the repository root (parent of build/).
@@ -403,6 +428,32 @@ func buildPages(srcDir, root string, tmpl *template.Template) error {
 	}
 
 	return nil
+}
+
+func buildProjects(srcDir, root string, tmpl *template.Template) error {
+	dataPath := filepath.Join(srcDir, "content", "projects.yaml")
+	raw, err := os.ReadFile(dataPath)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return nil
+		}
+		return err
+	}
+
+	var data ProjectsData
+	if err := yaml.Unmarshal(raw, &data); err != nil {
+		return fmt.Errorf("yaml: %w", err)
+	}
+
+	outDir := filepath.Join(root, "projects")
+	os.MkdirAll(outDir, 0o755)
+	outPath := filepath.Join(outDir, "index.html")
+
+	var buf bytes.Buffer
+	if err := tmpl.ExecuteTemplate(&buf, "projects.html", data); err != nil {
+		return fmt.Errorf("rendering projects: %w", err)
+	}
+	return os.WriteFile(outPath, buf.Bytes(), 0o644)
 }
 
 func buildThoughts(srcDir, root string, tmpl *template.Template) error {

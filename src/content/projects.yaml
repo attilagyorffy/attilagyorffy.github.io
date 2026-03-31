@@ -1,4 +1,7 @@
+title: "Projects"
 description: "Open source projects, homelab experiments, and the occasional act of mass stubbornness preserved in code. Mostly Go, some Ruby, all of it opinionated."
+intro: "A curated selection of things I've built, patched, ported, or stubbornly maintained long after the world moved on. Some solve real problems. Others exist purely because I was annoyed enough to write code about it."
+footer: "These are the ones that survived. There's a whole graveyard of abandoned prototypes and questionable decisions on <a href=\"https://github.com/attilagyorffy\">GitHub</a>. Dig through it if you like. Don't say I didn't warn you."
 categories:
   - name: "Music & Audio"
     projects:
