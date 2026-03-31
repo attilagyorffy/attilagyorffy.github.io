@@ -1,4 +1,7 @@
+title: "Things I said on the internet"
 description: "Opinions, observations, and the occasional moment of clarity. Rescued from Twitter before the building caught fire, now living somewhere more dignified."
+intro: "A curated selection of tweets rescued from the platform formerly known as Twitter, before it was rebranded by a man who names his children after password validation errors. Some of these aged well. Some of them didn't. All of them were typed with conviction and zero editorial oversight."
+footer: "These were pulled from a Twitter archive spanning 2009\u20132025 and roughly 10,000 tweets. Most of them were garbage. These maybe weren't. If you want to find out what I'm saying now, I'm on <a href=\"https://bsky.app/profile/attilagyorffy.com\" target=\"_blank\" rel=\"noopener noreferrer\">Bluesky</a> and <a href=\"https://fosstodon.org/@attila\" target=\"_blank\" rel=\"me noopener noreferrer\">Mastodon</a>, where the character limits are more generous and the ownership is less questionable."
 sections:
   - heading: "Shots fired (aka 'Hot takes')"
     items:
@@ -15,7 +18,7 @@ sections:
       - { date: "December 2023", text: "Fun fact: I used to work with a guy called David Singleton. Despite what his name says, it turns out that there's another David Singleton, the CTO of Stripe. I'm not going to lie, I'm feeling slightly cheated on." }
       - { date: "February 2021", text: "The cats follow me everywhere — they've even learned to open doors to get into the bathroom. Since they've completely eliminated any notion of privacy, the only logical move is to rename them Google and Facebook." }
       - { date: "August 2020", text: "Today I worked on a Nodejs application for the first time in years and it drew some remarkable results: I'm getting the Ruby logo tattooed on my leg." }
-      - { date: "July 2016", text: "One day I'll cheekily squeeze in a file into your repository without you knowing about it. It will be called bourne.json." }
+      - { date: "July 2016", text: "One day I'll cheekily squeeze in a file into your repository without you knowing about it. It will be called <code>bourne.json</code>." }
       - { date: "March 2015", text: "Hungarians don't say 'Bullshit!'. They say 'Lofasz!' (Horse dick!) The more you know." }
       - { date: "February 2015", text: "If you're looking to hire a JavaScript ninja, don't be surprised if your candidate never shows up on the interview." }
   - heading: "Moments of clarity"

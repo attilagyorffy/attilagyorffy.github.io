@@ -67,6 +67,25 @@ type YearGroup struct {
 	Posts []BlogPost
 }
 
+// ThoughtsData holds the parsed thoughts.yaml.
+type ThoughtsData struct {
+	Title       string           `yaml:"title"`
+	Description string           `yaml:"description"`
+	Intro       string           `yaml:"intro"`
+	Footer      string           `yaml:"footer"`
+	Sections    []ThoughtSection `yaml:"sections"`
+}
+
+type ThoughtSection struct {
+	Heading string        `yaml:"heading"`
+	Items   []ThoughtItem `yaml:"items"`
+}
+
+type ThoughtItem struct {
+	Date string `yaml:"date"`
+	Text string `yaml:"text"`
+}
+
 func main() {
 	root := findRoot()
 	srcDir := filepath.Join(root, "src")
@@ -94,7 +113,12 @@ func main() {
 		fatal("building pages: %v", err)
 	}
 
-	fmt.Printf("Built %d blog posts, 1 listing, and standalone pages.\n", len(posts))
+	// Build thoughts page.
+	if err := buildThoughts(srcDir, root, tmpl); err != nil {
+		fatal("building thoughts: %v", err)
+	}
+
+	fmt.Printf("Built %d blog posts, 1 listing, standalone pages, and thoughts.\n", len(posts))
 }
 
 // findRoot returns the repository root (parent of build/).
@@ -379,6 +403,32 @@ func buildPages(srcDir, root string, tmpl *template.Template) error {
 	}
 
 	return nil
+}
+
+func buildThoughts(srcDir, root string, tmpl *template.Template) error {
+	dataPath := filepath.Join(srcDir, "content", "thoughts.yaml")
+	raw, err := os.ReadFile(dataPath)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return nil
+		}
+		return err
+	}
+
+	var data ThoughtsData
+	if err := yaml.Unmarshal(raw, &data); err != nil {
+		return fmt.Errorf("yaml: %w", err)
+	}
+
+	outDir := filepath.Join(root, "thoughts")
+	os.MkdirAll(outDir, 0o755)
+	outPath := filepath.Join(outDir, "index.html")
+
+	var buf bytes.Buffer
+	if err := tmpl.ExecuteTemplate(&buf, "thoughts.html", data); err != nil {
+		return fmt.Errorf("rendering thoughts: %w", err)
+	}
+	return os.WriteFile(outPath, buf.Bytes(), 0o644)
 }
 
 // --- Helpers ---

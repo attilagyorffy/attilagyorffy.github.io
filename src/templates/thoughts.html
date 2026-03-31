@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {{- template "partials/head.html" . }}
+        <title>Thoughts — Attila Györffy</title>
+        <meta
+            name="description"
+            content="{{ .Description }}"
+        />
+        <link rel="stylesheet" href="/css/pages/thoughts.css" />
+        <script>requestAnimationFrame(()=>{requestAnimationFrame(()=>{if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')})})</script>
+    </head>
+    <body>
+        <main class="page">
+            {{ template "nav-home" . }}
+
+            <h1>{{ .Title }}</h1>
+
+            <p class="intro">
+                {{ .Intro }}
+            </p>
+
+            {{- range .Sections }}
+            <h2>{{ .Heading }}</h2>
+            <ul class="tweet-list">
+                {{- range .Items }}
+                <li class="tweet-item">
+                    <span class="tweet-date">{{ .Date }}</span>
+                    <blockquote class="tweet-text">
+                        <p>
+                            {{ safeHTML .Text }}
+                        </p>
+                    </blockquote>
+                </li>
+                {{- end }}
+            </ul>
+            {{- end }}
+
+            <footer class="site-footer">
+                <p>
+                    {{ safeHTML .Footer }}
+                </p>
+            </footer>
+        </main>
+
+        <script src="/js/favicon.js" defer></script>
+    </body>
+</html>
