@@ -21,7 +21,7 @@ const (
 // directory into web-optimised WebP files under public/photos/<slug>/web/.
 // It shells out to ImageMagick's `magick` command for the actual conversion.
 func optimizePhotos(root, albumSlug string) error {
-	srcDir := filepath.Join(root, "photos", albumSlug)
+	srcDir := filepath.Join(root, "src", "photos", albumSlug)
 	outDir := filepath.Join(root, "public", "photos", albumSlug, "web")
 	thumbDir := filepath.Join(outDir, "thumb")
 	fullDir := filepath.Join(outDir, "full")

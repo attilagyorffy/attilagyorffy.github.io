@@ -11,9 +11,9 @@ public/thoughts/
 build/build
 
 # Original photo exports (too large for git)
-photos/*/*.jpeg
-photos/*/*.jpg
-photos/*/*.png
+src/photos/*/*.jpeg
+src/photos/*/*.jpg
+src/photos/*/*.png
 
 # macOS
 .DS_Store
