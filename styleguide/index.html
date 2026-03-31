@@ -20,7 +20,7 @@
             .sg-section h2 {
                 font-family: var(--font-mono);
                 font-weight: 400;
-                font-size: var(--text-prose-h);
+                font-size: var(--text-size-prose-h);
                 margin: 0 0 var(--space-l) 0;
                 padding-bottom: var(--space-xs);
                 border-bottom: 1px solid var(--color-subtle);
@@ -46,12 +46,12 @@
             .sg-swatch-label {
                 padding: var(--space-xs) var(--space-s);
                 font-family: var(--font-mono);
-                font-size: var(--text-sm);
+                font-size: var(--text-size-sm);
                 line-height: 1.6;
             }
             .sg-swatch-label code {
                 display: block;
-                font-size: var(--text-xs);
+                font-size: var(--text-size-xs);
                 color: var(--color-mid);
             }
 
@@ -65,7 +65,7 @@
             }
             .sg-type-label {
                 font-family: var(--font-mono);
-                font-size: var(--text-sm);
+                font-size: var(--text-size-sm);
                 color: var(--color-mid);
                 white-space: nowrap;
                 align-self: baseline;
@@ -73,7 +73,7 @@
             .sg-type-value {
                 grid-column: 2;
                 font-family: var(--font-mono);
-                font-size: var(--text-xs);
+                font-size: var(--text-size-xs);
                 color: var(--color-mid);
             }
             .sg-type-sample-mono {
@@ -98,7 +98,7 @@
             }
             .sg-space-label {
                 font-family: var(--font-mono);
-                font-size: var(--text-sm);
+                font-size: var(--text-size-sm);
                 color: var(--color-mid);
                 white-space: nowrap;
                 min-width: 100px;
@@ -113,7 +113,63 @@
 
             <h1>Style Guide</h1>
 
-            <!-- Colors -->
+            <!-- Palette -->
+            <section class="sg-section">
+                <h2>Palette</h2>
+                <div class="sg-colors">
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--palette-warm-grey)"></div>
+                        <div class="sg-swatch-label">
+                            --palette-warm-grey
+                            <code>#f7f7f7</code>
+                        </div>
+                    </div>
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--palette-ink)"></div>
+                        <div class="sg-swatch-label">
+                            --palette-ink
+                            <code>#1a1a1a</code>
+                        </div>
+                    </div>
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--palette-clay)"></div>
+                        <div class="sg-swatch-label">
+                            --palette-clay
+                            <code>#8a6a64</code>
+                        </div>
+                    </div>
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--palette-night)"></div>
+                        <div class="sg-swatch-label">
+                            --palette-night
+                            <code>oklch(19% 0.012 269)</code>
+                        </div>
+                    </div>
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--palette-silver)"></div>
+                        <div class="sg-swatch-label">
+                            --palette-silver
+                            <code>#b1b1b1</code>
+                        </div>
+                    </div>
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--palette-lavender)"></div>
+                        <div class="sg-swatch-label">
+                            --palette-lavender
+                            <code>#a89cff</code>
+                        </div>
+                    </div>
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--palette-white); border: 1px solid var(--color-subtle)"></div>
+                        <div class="sg-swatch-label">
+                            --palette-white
+                            <code>white</code>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Semantic colors -->
             <section class="sg-section">
                 <h2>Colours</h2>
                 <div class="sg-colors">
@@ -167,16 +223,16 @@
                         </div>
                     </div>
                     <div class="sg-swatch">
-                        <div class="sg-swatch-color" style="background: var(--highlight-bg)"></div>
+                        <div class="sg-swatch-color" style="background: var(--color-highlight)"></div>
                         <div class="sg-swatch-label">
-                            --highlight-bg
+                            --color-highlight
                             <code>Mark highlight</code>
                         </div>
                     </div>
                     <div class="sg-swatch">
-                        <div class="sg-swatch-color" style="background: var(--surface-backdrop)"></div>
+                        <div class="sg-swatch-color" style="background: var(--color-backdrop)"></div>
                         <div class="sg-swatch-label">
-                            --surface-backdrop
+                            --color-backdrop
                             <code>Lightbox overlay</code>
                         </div>
                     </div>
@@ -189,11 +245,11 @@
 
                 <div class="sg-type-row">
                     <span class="sg-type-label">--font-mono</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-body)">IBM Plex Mono &mdash; ABCDEFGHIJKLM abcdefghijklm 0123456789</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-body)">IBM Plex Mono &mdash; ABCDEFGHIJKLM abcdefghijklm 0123456789</span>
                 </div>
                 <div class="sg-type-row">
                     <span class="sg-type-label">--font-serif</span>
-                    <span class="sg-type-sample-serif" style="font-size: var(--text-body)">Source Serif 4 &mdash; ABCDEFGHIJKLM abcdefghijklm 0123456789</span>
+                    <span class="sg-type-sample-serif" style="font-size: var(--text-size-body)">Source Serif 4 &mdash; ABCDEFGHIJKLM abcdefghijklm 0123456789</span>
                 </div>
             </section>
 
@@ -202,88 +258,88 @@
                 <h2>Type scale</h2>
 
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-h1</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-h1)">Page title</span>
+                    <span class="sg-type-label">--text-size-h1</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-h1)">Page title</span>
                     <span class="sg-type-value">clamp(1.65rem, 1.2rem + 1.5vi, 2.5rem)</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-prose-h</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-prose-h)">Section heading</span>
+                    <span class="sg-type-label">--text-size-prose-h</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-prose-h)">Section heading</span>
                     <span class="sg-type-value">clamp(1.5rem, 1.3rem + 0.5vi, 1.7rem)</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-lead</span>
-                    <span class="sg-type-sample-serif" style="font-size: var(--text-lead)">Lead paragraph text</span>
+                    <span class="sg-type-label">--text-size-lead</span>
+                    <span class="sg-type-sample-serif" style="font-size: var(--text-size-lead)">Lead paragraph text</span>
                     <span class="sg-type-value">clamp(1.15rem, 1rem + 0.35vi, 1.3rem)</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-card</span>
-                    <span class="sg-type-sample-serif" style="font-size: var(--text-card)">Card title text</span>
+                    <span class="sg-type-label">--text-size-card</span>
+                    <span class="sg-type-sample-serif" style="font-size: var(--text-size-card)">Card title text</span>
                     <span class="sg-type-value">clamp(1.1rem, 1rem + 0.25vi, 1.2rem)</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-prose</span>
-                    <span class="sg-type-sample-serif" style="font-size: var(--text-prose)">Prose body text</span>
+                    <span class="sg-type-label">--text-size-prose</span>
+                    <span class="sg-type-sample-serif" style="font-size: var(--text-size-prose)">Prose body text</span>
                     <span class="sg-type-value">clamp(1.05rem, 0.95rem + 0.25vi, 1.15rem)</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-intro</span>
-                    <span class="sg-type-sample-serif" style="font-size: var(--text-intro)">Intro paragraph text</span>
+                    <span class="sg-type-label">--text-size-intro</span>
+                    <span class="sg-type-sample-serif" style="font-size: var(--text-size-intro)">Intro paragraph text</span>
                     <span class="sg-type-value">clamp(1rem, 0.9rem + 0.25vi, 1.1rem)</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-section</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-section)">Section label text</span>
+                    <span class="sg-type-label">--text-size-section</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-section)">Section label text</span>
                     <span class="sg-type-value">clamp(1rem, 0.95rem + 0.2vi, 1.1rem)</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-body</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-body)">Body text</span>
+                    <span class="sg-type-label">--text-size-body</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-body)">Body text</span>
                     <span class="sg-type-value">clamp(1rem, 0.95rem + 0.15vi, 1.05rem)</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-code</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-code)">Code block text</span>
+                    <span class="sg-type-label">--text-size-code</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-code)">Code block text</span>
                     <span class="sg-type-value">0.95rem</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-fn</span>
-                    <span class="sg-type-sample-serif" style="font-size: var(--text-fn)">Footnote text</span>
+                    <span class="sg-type-label">--text-size-fn</span>
+                    <span class="sg-type-sample-serif" style="font-size: var(--text-size-fn)">Footnote text</span>
                     <span class="sg-type-value">0.92rem</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-note</span>
-                    <span class="sg-type-sample-serif" style="font-size: var(--text-note)">Note text</span>
+                    <span class="sg-type-label">--text-size-note</span>
+                    <span class="sg-type-sample-serif" style="font-size: var(--text-size-note)">Note text</span>
                     <span class="sg-type-value">0.9rem</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-ui</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-ui)">UI element text</span>
+                    <span class="sg-type-label">--text-size-ui</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-ui)">UI element text</span>
                     <span class="sg-type-value">0.85rem</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-meta</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-meta)">Meta / date text</span>
+                    <span class="sg-type-label">--text-size-meta</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-meta)">Meta / date text</span>
                     <span class="sg-type-value">0.75rem</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-sm</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-sm)">Small label text</span>
+                    <span class="sg-type-label">--text-size-sm</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-sm)">Small label text</span>
                     <span class="sg-type-value">0.72rem</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-xs</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-xs)">Extra-small text</span>
+                    <span class="sg-type-label">--text-size-xs</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-xs)">Extra-small text</span>
                     <span class="sg-type-value">0.68rem</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-icon-lg</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-icon-lg)">&times;</span>
+                    <span class="sg-type-label">--text-size-icon-lg</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-icon-lg)">&times;</span>
                     <span class="sg-type-value">2rem</span>
                 </div>
                 <div class="sg-type-row">
-                    <span class="sg-type-label">--text-icon</span>
-                    <span class="sg-type-sample-mono" style="font-size: var(--text-icon)">&larr; &rarr;</span>
+                    <span class="sg-type-label">--text-size-icon</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-size-icon)">&larr; &rarr;</span>
                     <span class="sg-type-value">1.5rem</span>
                 </div>
             </section>

@@ -151,51 +151,56 @@
     --page-pad-b: clamp(2.5rem, 1.5rem + 2vi, 5rem);
 
     /* Typography — fixed small sizes */
-    --text-xs: 0.68rem;
-    --text-sm: 0.72rem;
-    --text-meta: 0.75rem;
-    --text-ui: 0.85rem;
-    --text-note: 0.9rem;
-    --text-fn: 0.92rem;
-    --text-code: 0.95rem;
-    --text-icon: 1.5rem;
-    --text-icon-lg: 2rem;
+    --text-size-xs: 0.68rem;
+    --text-size-sm: 0.72rem;
+    --text-size-meta: 0.75rem;
+    --text-size-ui: 0.85rem;
+    --text-size-note: 0.9rem;
+    --text-size-fn: 0.92rem;
+    --text-size-code: 0.95rem;
+    --text-size-icon: 1.5rem;
+    --text-size-icon-lg: 2rem;
 
     /* Typography — fluid */
-    --text-body: clamp(1rem, 0.95rem + 0.15vi, 1.05rem);
-    --text-prose: clamp(1.05rem, 0.95rem + 0.25vi, 1.15rem);
-    --text-lead: clamp(1.15rem, 1rem + 0.35vi, 1.3rem);
-    --text-intro: clamp(1rem, 0.9rem + 0.25vi, 1.1rem);
-    --text-card: clamp(1.1rem, 1rem + 0.25vi, 1.2rem);
-    --text-section: clamp(1rem, 0.95rem + 0.2vi, 1.1rem);
-    --text-prose-h: clamp(1.5rem, 1.3rem + 0.5vi, 1.7rem);
-    --text-h1: clamp(1.65rem, 1.2rem + 1.5vi, 2.5rem);
+    --text-size-body: clamp(1rem, 0.95rem + 0.15vi, 1.05rem);
+    --text-size-prose: clamp(1.05rem, 0.95rem + 0.25vi, 1.15rem);
+    --text-size-lead: clamp(1.15rem, 1rem + 0.35vi, 1.3rem);
+    --text-size-intro: clamp(1rem, 0.9rem + 0.25vi, 1.1rem);
+    --text-size-card: clamp(1.1rem, 1rem + 0.25vi, 1.2rem);
+    --text-size-section: clamp(1rem, 0.95rem + 0.2vi, 1.1rem);
+    --text-size-prose-h: clamp(1.5rem, 1.3rem + 0.5vi, 1.7rem);
+    --text-size-h1: clamp(1.65rem, 1.2rem + 1.5vi, 2.5rem);
 
-    --color-bg: #f7f7f7;
-    --color-fg: #1a1a1a;
+    /* Palette — light */
+    --palette-warm-grey: #f7f7f7;
+    --palette-ink: #1a1a1a;
+    --palette-clay: #8a6a64;
+
+    /* Palette — dark */
+    --palette-night: oklch(19% 0.012 269);
+    --palette-silver: #b1b1b1;
+    --palette-lavender: #a89cff;
+    --palette-white: white;
+
+    /* Semantic — colours */
+    --color-bg: var(--palette-warm-grey);
+    --color-fg: var(--palette-ink);
     --color-heading: var(--color-fg);
     --color-subtle: color-mix(in oklch, var(--color-bg), black 5%);
-    --color-accent: #8a6a64;
-
-    --highlight-bg: color-mix(in srgb, var(--color-accent), transparent 60%);
+    --color-accent: var(--palette-clay);
+    --color-highlight: color-mix(in srgb, var(--color-accent), transparent 60%);
     --color-muted: color-mix(in oklch, var(--color-subtle), var(--color-fg) 35%);
     --color-mid: color-mix(in oklch, var(--color-fg) 50%, var(--color-subtle));
-    --surface-backdrop: color-mix(in oklch, var(--color-bg) 95%, transparent);
+    --color-backdrop: color-mix(in oklch, var(--color-bg) 95%, transparent);
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --color-bg: oklch(19% 0.012 269);
-        --color-fg: #b1b1b1;
-        --color-heading: white;
+        --color-bg: var(--palette-night);
+        --color-fg: var(--palette-silver);
+        --color-heading: var(--palette-white);
         --color-subtle: color-mix(in oklch, var(--color-bg), white 15%);
-        --color-accent: #a89cff;
-
-        --highlight-bg: color-mix(
-            in srgb,
-            var(--color-accent),
-            transparent 60%
-        );
+        --color-accent: var(--palette-lavender);
     }
 
     .topic-tag {
@@ -261,7 +266,7 @@ a:visited {
 
 .top-bar {
     display: flex;
-    font-size: var(--text-ui);
+    font-size: var(--text-size-ui);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     justify-content: space-between;
@@ -295,7 +300,7 @@ a:visited {
    ========================================================================== */
 
 h1 {
-    font-size: var(--text-h1);
+    font-size: var(--text-size-h1);
     font-weight: 400;
     letter-spacing: -0.01em;
     line-height: 1.2;
@@ -304,7 +309,7 @@ h1 {
 }
 
 h2 {
-    font-size: var(--text-section);
+    font-size: var(--text-size-section);
     font-weight: 400;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -318,7 +323,7 @@ h2:first-of-type {
 }
 
 .intro {
-    font-size: var(--text-intro);
+    font-size: var(--text-size-intro);
     line-height: 1.75;
     margin: 0 0 var(--space-2xl) 0;
 }
@@ -354,7 +359,7 @@ h2:first-of-type {
 }
 
 .date-col time {
-    font-size: var(--text-body);
+    font-size: var(--text-size-body);
 }
 
 /* Author column */
@@ -377,7 +382,7 @@ h2:first-of-type {
 
 .author-name {
     display: block;
-    font-size: var(--text-sm);
+    font-size: var(--text-size-sm);
     letter-spacing: 0.14em;
     text-transform: uppercase;
     font-weight: 700;
@@ -386,14 +391,14 @@ h2:first-of-type {
 }
 
 .author-role {
-    font-size: var(--text-sm);
+    font-size: var(--text-size-sm);
     letter-spacing: 0.14em;
     text-transform: uppercase;
     line-height: 1.5;
 }
 
 .post-label {
-    font-size: var(--text-sm);
+    font-size: var(--text-size-sm);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-top: 0;
@@ -402,7 +407,7 @@ h2:first-of-type {
 /* Title column */
 
 .title-col h1 {
-    font-size: var(--text-h1);
+    font-size: var(--text-size-h1);
     font-weight: 400;
     line-height: 1.25;
     margin: 0 0 var(--space-m) 0;
@@ -411,7 +416,7 @@ h2:first-of-type {
 }
 
 .subtitle {
-    font-size: var(--text-card);
+    font-size: var(--text-size-card);
     line-height: 1.6;
     margin: 0;
 }
@@ -427,7 +432,7 @@ h2:first-of-type {
 
 .topic-tag {
     background: transparent;
-    font-size: var(--text-section);
+    font-size: var(--text-size-section);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     border: none;
@@ -474,7 +479,7 @@ h2:first-of-type {
 }
 
 .sidebar-arrow {
-    font-size: var(--text-ui);
+    font-size: var(--text-size-ui);
     letter-spacing: 0;
 }
 
@@ -498,7 +503,7 @@ h2:first-of-type {
 
 .prose sup a {
     border-bottom: none;
-    background: var(--highlight-bg);
+    background: var(--color-highlight);
     padding: 0.1em 0.35em;
     border-radius: 2px;
     text-decoration: none;
@@ -513,7 +518,7 @@ mark {
 
 .highlight-stroke {
     position: absolute;
-    background: var(--highlight-bg);
+    background: var(--color-highlight);
     filter: url(#highlighter);
     pointer-events: none;
 }
@@ -528,14 +533,14 @@ mark {
 }
 
 .prose p {
-    font-size: var(--text-prose);
+    font-size: var(--text-size-prose);
     line-height: 1.85;
     margin: 0 0 var(--space-l) 0;
     color: var(--color-fg);
 }
 
 .prose p.lead {
-    font-size: var(--text-lead);
+    font-size: var(--text-size-lead);
     line-height: 1.7;
     color: var(--color-fg);
 }
@@ -545,7 +550,7 @@ mark {
 .prose h2 {
     font-family: var(--font-mono); /* override prose serif */
     font-weight: 400;
-    font-size: var(--text-prose-h);
+    font-size: var(--text-size-prose-h);
     margin: var(--space-2xl) 0 var(--space-m) 0;
     padding-top: var(--space-xl);
     color: var(--color-heading);
@@ -558,7 +563,7 @@ mark {
 }
 
 .prose h2.conclusion {
-    font-size: var(--text-prose-h);
+    font-size: var(--text-size-prose-h);
 }
 
 .prose h2 + .role-period {
@@ -593,7 +598,7 @@ mark {
     margin-top: var(--space-xl);
     padding-top: var(--space-m);
     border-top: 1px solid var(--color-subtle);
-    font-size: var(--text-fn);
+    font-size: var(--text-size-fn);
 }
 
 .prose ol.footnotes li {
@@ -634,7 +639,7 @@ mark {
     margin-left: -0.25rem;
     margin-right: -0.25rem;
     overflow-x: auto;
-    font-size: var(--text-ui);
+    font-size: var(--text-size-ui);
     line-height: 1.65;
     -webkit-overflow-scrolling: touch;
 }
@@ -664,7 +669,7 @@ mark {
 .prose ul {
     list-style: none;
     padding-left: 0;
-    font-size: var(--text-prose);
+    font-size: var(--text-size-prose);
     margin: 0 0 var(--space-l) 0;
 }
 
@@ -690,7 +695,7 @@ mark {
 /* CV: role metadata */
 
 .prose p.role-skills {
-    font-size: var(--text-body);
+    font-size: var(--text-size-body);
     color: color-mix(in oklch, var(--color-fg) 50%, var(--color-subtle));
     letter-spacing: 0.01em;
     line-height: 1.7;
@@ -756,7 +761,7 @@ mark {
 /* Blog & project listings */
 
 .post-title {
-    font-size: var(--text-card);
+    font-size: var(--text-size-card);
     font-weight: 400;
     line-height: 1.4;
     color: var(--color-heading);
@@ -765,7 +770,7 @@ mark {
 
 .post-summary {
     font-family: var(--font-serif);
-    font-size: var(--text-code);
+    font-size: var(--text-size-code);
     line-height: 1.6;
     margin: 0.3rem 0 0 0;
 }
@@ -788,7 +793,7 @@ mark {
 
 .tweet-text p {
     font-family: var(--font-serif);
-    font-size: var(--text-prose);
+    font-size: var(--text-size-prose);
     line-height: 1.7;
     margin: 0;
 }
@@ -801,7 +806,7 @@ mark {
 }
 
 .tweet-date {
-    font-size: var(--text-sm);
+    font-size: var(--text-size-sm);
     color: var(--color-muted);
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -824,7 +829,7 @@ mark {
     line-height: 1.75;
     margin: 0;
     letter-spacing: 0;
-    font-size: var(--text-note);
+    font-size: var(--text-size-note);
 }
 
 .site-footer p,
@@ -851,7 +856,7 @@ mark {
 
 article .site-footer {
     max-width: 720px;
-    font-size: var(--text-ui);
+    font-size: var(--text-size-ui);
     animation-delay: 0.8s;
 }
 
@@ -906,7 +911,7 @@ article .site-footer {
 }
 
 .album-title {
-    font-size: var(--text-card);
+    font-size: var(--text-size-card);
     font-weight: 400;
     color: var(--color-heading);
     line-height: 1.4;
@@ -918,7 +923,7 @@ article .site-footer {
 }
 
 .album-meta {
-    font-size: var(--text-meta);
+    font-size: var(--text-size-meta);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     margin: var(--space-xs) 0 0 0;
@@ -927,7 +932,7 @@ article .site-footer {
 
 .album-summary {
     font-family: var(--font-serif);
-    font-size: var(--text-code);
+    font-size: var(--text-size-code);
     line-height: 1.6;
     margin: var(--space-s) 0 0 0;
 }
@@ -965,7 +970,7 @@ article .site-footer {
 
 .lightbox-caption {
     color: var(--color-fg);
-    font-size: var(--text-prose);
+    font-size: var(--text-size-prose);
     line-height: 1.7;
     max-width: 600px;
     text-align: center;
@@ -986,7 +991,7 @@ article .site-footer {
     position: fixed;
     inset: 0;
     z-index: 1000;
-    background: var(--surface-backdrop);
+    background: var(--color-backdrop);
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(7px);
     justify-content: center;
@@ -1028,7 +1033,7 @@ article .site-footer {
     background: none;
     border: none;
     color: var(--color-fg);
-    font-size: var(--text-icon-lg);
+    font-size: var(--text-size-icon-lg);
     cursor: pointer;
     padding: var(--space-xs);
     line-height: 1;
@@ -1052,7 +1057,7 @@ article .site-footer {
     background: none;
     border: none;
     color: var(--color-fg);
-    font-size: var(--text-icon);
+    font-size: var(--text-size-icon);
     cursor: pointer;
     padding: var(--space-s);
     z-index: 1001;
@@ -1083,7 +1088,7 @@ article .site-footer {
 
 .lightbox-counter {
     color: var(--color-fg);
-    font-size: var(--text-meta);
+    font-size: var(--text-size-meta);
     letter-spacing: 0.08em;
     font-family: var(--font-mono);
     text-align: center;
@@ -1245,7 +1250,7 @@ pre code.hljs {
         border-radius: 4px;
         margin-left: 0;
         margin-right: 0;
-        font-size: var(--text-code);
+        font-size: var(--text-size-code);
     }
 
     .prose ul.takeaway {
@@ -1317,7 +1322,7 @@ pre code.hljs {
         right: var(--space-xl);
         top: 50%;
         writing-mode: vertical-rl;
-        font-size: var(--text-xs);
+        font-size: var(--text-size-xs);
         letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--color-subtle);
