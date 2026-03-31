@@ -253,13 +253,18 @@ func watchFiles(ctx context.Context, root string, hub *sseHub) {
 	}
 	defer watcher.Close()
 
-	for _, dir := range []string{
-		filepath.Join(root, "src"),
-		filepath.Join(root, "public", "stylesheets"),
-		filepath.Join(root, "public", "javascripts"),
-	} {
-		addWatchDirs(watcher, dir)
-	}
+	// Watch source files recursively — changes trigger a rebuild.
+	addWatchDirs(watcher, filepath.Join(root, "src"))
+
+	// Watch public asset directories recursively — changes hot-reload.
+	addWatchDirs(watcher, filepath.Join(root, "public", "stylesheets"))
+	addWatchDirs(watcher, filepath.Join(root, "public", "javascripts"))
+
+	// Watch hand-crafted HTML locations (non-recursive, single directory).
+	// We avoid watching all of public/ recursively because the build writes
+	// generated HTML there, which would race with the post-build reload.
+	watcher.Add(filepath.Join(root, "public"))
+	watcher.Add(filepath.Join(root, "public", "styleguide"))
 
 	var (
 		debounceTimer *time.Timer
