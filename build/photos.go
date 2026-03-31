@@ -7,7 +7,8 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
-	"sync"
+
+	"golang.org/x/sync/errgroup"
 )
 
 const (
@@ -33,7 +34,6 @@ func optimizePhotos(root, albumSlug string) error {
 		return fmt.Errorf("creating full dir: %w", err)
 	}
 
-	// Collect source images (JPEG/PNG).
 	sources, err := collectSourcePhotos(srcDir)
 	if err != nil {
 		return fmt.Errorf("collecting photos from %s: %w", srcDir, err)
@@ -43,47 +43,26 @@ func optimizePhotos(root, albumSlug string) error {
 		return nil
 	}
 
-	// Process images concurrently (up to 4 at a time).
-	var (
-		wg      sync.WaitGroup
-		sem     = make(chan struct{}, 4)
-		mu      sync.Mutex
-		firstErr error
-	)
+	g := new(errgroup.Group)
+	g.SetLimit(4)
 
 	for i, src := range sources {
 		padded := fmt.Sprintf("%03d", i+1)
-
-		wg.Add(1)
-		go func(src, padded string) {
-			defer wg.Done()
-			sem <- struct{}{}
-			defer func() { <-sem }()
-
+		g.Go(func() error {
 			fmt.Printf("  \033[36m[photos]\033[0m [%s] %s\n", padded, filepath.Base(src))
 
 			if err := convertImage(src, filepath.Join(thumbDir, padded+".webp"), thumbSize, thumbQuality); err != nil {
-				mu.Lock()
-				if firstErr == nil {
-					firstErr = fmt.Errorf("thumb %s: %w", padded, err)
-				}
-				mu.Unlock()
-				return
+				return fmt.Errorf("thumb %s: %w", padded, err)
 			}
-
 			if err := convertImage(src, filepath.Join(fullDir, padded+".webp"), fullSize, fullQuality); err != nil {
-				mu.Lock()
-				if firstErr == nil {
-					firstErr = fmt.Errorf("full %s: %w", padded, err)
-				}
-				mu.Unlock()
+				return fmt.Errorf("full %s: %w", padded, err)
 			}
-		}(src, padded)
+			return nil
+		})
 	}
 
-	wg.Wait()
-	if firstErr != nil {
-		return firstErr
+	if err := g.Wait(); err != nil {
+		return err
 	}
 
 	fmt.Printf("  \033[32m[photos]\033[0m %s: %d images optimised\n", albumSlug, len(sources))

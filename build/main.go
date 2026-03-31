@@ -17,12 +17,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-// Site-wide constants.
-const (
-	siteTitle  = "Attila Györffy"
-	siteURL    = "https://www.attilagyorffy.com"
-	siteAuthor = "Attila Györffy"
-)
+const siteURL = "https://www.attilagyorffy.com"
 
 // BlogPost holds parsed frontmatter and rendered body for a blog post.
 type BlogPost struct {
