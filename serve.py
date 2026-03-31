@@ -189,8 +189,8 @@ if __name__ == "__main__":
     observer.start()
 
     LiveReloadHandler.watcher = watcher
-    server = ThreadingHTTPServer(("localhost", 8000), LiveReloadHandler)
-    print("Serving on http://localhost:8000 (live-reload enabled)")
+    server = ThreadingHTTPServer(("0.0.0.0", 8000), LiveReloadHandler)
+    print("Serving on http://0.0.0.0:8000 (live-reload enabled)")
 
     try:
         server.serve_forever()
