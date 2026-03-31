@@ -498,7 +498,8 @@ func buildPages(srcDir, root string, tmpl *template.Template) error {
 }
 
 func buildPhotos(srcDir, root string, tmpl *template.Template) error {
-	photosDir := filepath.Join(srcDir, "content", "photos")
+	// Photos live at src/photos/<slug>/<slug>.yaml alongside raw exports.
+	photosDir := filepath.Join(srcDir, "photos")
 	entries, err := os.ReadDir(photosDir)
 	if err != nil {
 		if os.IsNotExist(err) {
@@ -510,12 +511,16 @@ func buildPhotos(srcDir, root string, tmpl *template.Template) error {
 	var albums []GalleryData
 
 	for _, entry := range entries {
-		if entry.IsDir() || !strings.HasSuffix(entry.Name(), ".yaml") {
+		if !entry.IsDir() {
 			continue
 		}
-
-		raw, err := os.ReadFile(filepath.Join(photosDir, entry.Name()))
+		slug := entry.Name()
+		yamlPath := filepath.Join(photosDir, slug, slug+".yaml")
+		raw, err := os.ReadFile(yamlPath)
 		if err != nil {
+			if os.IsNotExist(err) {
+				continue
+			}
 			return err
 		}
 
