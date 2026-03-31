@@ -3,19 +3,19 @@
    ========================================================================== */
 
 .page {
-    max-width: 720px;
+    max-width: 45rem;
     margin: 0 auto;
     padding: var(--page-pad-y) var(--page-pad-x) var(--page-pad-b);
 }
 
 .page--wide {
-    max-width: 1100px;
+    max-width: 68.75rem;
     position: relative;
     overflow-x: hidden;
 }
 
 .page--gallery {
-    max-width: 1400px;
+    max-width: 87.5rem;
     position: relative;
     overflow-x: hidden;
 }
