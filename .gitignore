@@ -1,3 +1,15 @@
+# Generated output (built by `make build`)
+public/about/
+public/blog/
+public/cv/
+public/photos/*/index.html
+public/photos/index.html
+public/projects/
+public/thoughts/
+
+# Compiled build binary
+build/build
+
 # Original photo exports (too large for git)
 photos/*/*.jpeg
 photos/*/*.jpg
