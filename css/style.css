@@ -177,6 +177,10 @@
 
     --surface-callout: color-mix(in oklch, var(--color-bg), black 5%);
     --highlight-bg: color-mix(in srgb, var(--color-accent), transparent 60%);
+    --color-muted: color-mix(in oklch, var(--color-subtle), var(--color-fg) 35%);
+    --color-mid: color-mix(in oklch, var(--color-fg) 50%, var(--color-subtle));
+    --surface-backdrop: color-mix(in oklch, var(--color-bg) 95%, transparent);
+    --color-comment: color-mix(in oklch, var(--color-fg) 40%, var(--color-bg));
 }
 
 @media (prefers-color-scheme: dark) {
@@ -563,7 +567,7 @@ mark {
 }
 
 .prose p.role-period {
-    color: color-mix(in oklch, var(--color-fg) 50%, var(--color-subtle));
+    color: var(--color-mid);
 }
 
 /* Takeaway callout */
@@ -799,7 +803,7 @@ mark {
 
 .tweet-date {
     font-size: 0.7rem;
-    color: color-mix(in oklch, var(--color-subtle), var(--color-fg) 35%);
+    color: var(--color-muted);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: var(--space-xs);
@@ -826,7 +830,7 @@ mark {
 
 .site-footer p,
 .site-footer p a {
-    color: color-mix(in oklch, var(--color-subtle), var(--color-fg) 35%);
+    color: var(--color-muted);
 }
 
 .site-footer p a {
@@ -919,7 +923,7 @@ article .site-footer {
     letter-spacing: 0.06em;
     text-transform: uppercase;
     margin: var(--space-xs) 0 0 0;
-    color: color-mix(in oklch, var(--color-subtle), var(--color-fg) 35%);
+    color: var(--color-muted);
 }
 
 .album-summary {
@@ -983,7 +987,7 @@ article .site-footer {
     position: fixed;
     inset: 0;
     z-index: 1000;
-    background: color-mix(in oklch, var(--color-bg) 95%, transparent);
+    background: var(--surface-backdrop);
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(7px);
     justify-content: center;
@@ -1097,7 +1101,7 @@ pre code.hljs {
 }
 
 .hljs-comment {
-    color: color-mix(in oklch, var(--color-fg) 40%, var(--color-bg));
+    color: var(--color-comment);
 }
 
 .hljs-title {

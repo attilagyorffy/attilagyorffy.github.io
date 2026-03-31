@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Style Guide — Attila Györffy</title>
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            id="favicon"
+            href="/images/favicon-active.svg"
+        />
+        <link rel="preload" href="/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="/fonts/ibm-plex-mono.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="stylesheet" href="/css/style.css" />
+        <style>
+            .sg-section {
+                margin-bottom: var(--space-2xl);
+            }
+            .sg-section h2 {
+                font-family: var(--font-mono);
+                font-weight: 400;
+                font-size: var(--text-prose-h);
+                margin: 0 0 var(--space-l) 0;
+                padding-bottom: var(--space-xs);
+                border-bottom: 1px solid var(--color-subtle);
+                color: var(--color-heading);
+                letter-spacing: -0.01em;
+            }
+
+            /* Color swatches */
+            .sg-colors {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: var(--space-m);
+            }
+            .sg-swatch {
+                border: 1px solid var(--color-subtle);
+                border-radius: 4px;
+                overflow: hidden;
+            }
+            .sg-swatch-color {
+                height: 80px;
+                border-bottom: 1px solid var(--color-subtle);
+            }
+            .sg-swatch-label {
+                padding: var(--space-xs) var(--space-s);
+                font-family: var(--font-mono);
+                font-size: var(--text-sm);
+                line-height: 1.6;
+            }
+            .sg-swatch-label code {
+                display: block;
+                font-size: var(--text-xs);
+                color: var(--color-mid);
+            }
+
+            /* Typography samples */
+            .sg-type-row {
+                display: grid;
+                grid-template-columns: 160px 1fr;
+                gap: 0 var(--space-s);
+                padding: var(--space-s) 0;
+                border-bottom: 1px solid var(--color-subtle);
+            }
+            .sg-type-label {
+                font-family: var(--font-mono);
+                font-size: var(--text-sm);
+                color: var(--color-mid);
+                white-space: nowrap;
+                align-self: baseline;
+            }
+            .sg-type-value {
+                grid-column: 2;
+                font-family: var(--font-mono);
+                font-size: var(--text-xs);
+                color: var(--color-mid);
+            }
+            .sg-type-sample-mono {
+                font-family: var(--font-mono);
+            }
+            .sg-type-sample-serif {
+                font-family: var(--font-serif);
+            }
+
+            /* Spacing scale */
+            .sg-space-row {
+                display: flex;
+                align-items: center;
+                gap: var(--space-m);
+                padding: var(--space-xs) 0;
+            }
+            .sg-space-bar {
+                height: 1rem;
+                background: var(--color-accent);
+                border-radius: 2px;
+                flex-shrink: 0;
+            }
+            .sg-space-label {
+                font-family: var(--font-mono);
+                font-size: var(--text-sm);
+                color: var(--color-mid);
+                white-space: nowrap;
+                min-width: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <main class="page">
+            <nav class="top-bar">
+                <a href="/" class="nav-home">&larr; Home</a>
+            </nav>
+
+            <h1>Style Guide</h1>
+
+            <!-- Colors -->
+            <section class="sg-section">
+                <h2>Colours</h2>
+                <div class="sg-colors">
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--color-bg)"></div>
+                        <div class="sg-swatch-label">
+                            --color-bg
+                            <code>Background</code>
+                        </div>
+                    </div>
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--color-fg)"></div>
+                        <div class="sg-swatch-label">
+                            --color-fg
+                            <code>Body text</code>
+                        </div>
+                    </div>
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--color-heading)"></div>
+                        <div class="sg-swatch-label">
+                            --color-heading
+                            <code>Headings</code>
+                        </div>
+                    </div>
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--color-subtle)"></div>
+                        <div class="sg-swatch-label">
+                            --color-subtle
+                            <code>Borders, secondary UI</code>
+                        </div>
+                    </div>
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--color-accent)"></div>
+                        <div class="sg-swatch-label">
+                            --color-accent
+                            <code>Links, accents</code>
+                        </div>
+                    </div>
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--color-muted)"></div>
+                        <div class="sg-swatch-label">
+                            --color-muted
+                            <code>Tags, footer, captions</code>
+                        </div>
+                    </div>
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--color-mid)"></div>
+                        <div class="sg-swatch-label">
+                            --color-mid
+                            <code>Dates, role periods</code>
+                        </div>
+                    </div>
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--color-comment)"></div>
+                        <div class="sg-swatch-label">
+                            --color-comment
+                            <code>Code comments</code>
+                        </div>
+                    </div>
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--surface-callout)"></div>
+                        <div class="sg-swatch-label">
+                            --surface-callout
+                            <code>Callout background</code>
+                        </div>
+                    </div>
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--highlight-bg)"></div>
+                        <div class="sg-swatch-label">
+                            --highlight-bg
+                            <code>Mark highlight</code>
+                        </div>
+                    </div>
+                    <div class="sg-swatch">
+                        <div class="sg-swatch-color" style="background: var(--surface-backdrop)"></div>
+                        <div class="sg-swatch-label">
+                            --surface-backdrop
+                            <code>Lightbox overlay</code>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Typography -->
+            <section class="sg-section">
+                <h2>Typography</h2>
+
+                <div class="sg-type-row">
+                    <span class="sg-type-label">--font-mono</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-body)">IBM Plex Mono &mdash; ABCDEFGHIJKLM abcdefghijklm 0123456789</span>
+                </div>
+                <div class="sg-type-row">
+                    <span class="sg-type-label">--font-serif</span>
+                    <span class="sg-type-sample-serif" style="font-size: var(--text-body)">Source Serif 4 &mdash; ABCDEFGHIJKLM abcdefghijklm 0123456789</span>
+                </div>
+            </section>
+
+            <!-- Type scale -->
+            <section class="sg-section">
+                <h2>Type scale</h2>
+
+                <div class="sg-type-row">
+                    <span class="sg-type-label">--text-h1</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-h1)">Page title</span>
+                    <span class="sg-type-value">clamp(1.65rem, 1.2rem + 1.5vi, 2.5rem)</span>
+                </div>
+                <div class="sg-type-row">
+                    <span class="sg-type-label">--text-prose-h</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-prose-h)">Section heading</span>
+                    <span class="sg-type-value">clamp(1.5rem, 1.3rem + 0.5vi, 1.7rem)</span>
+                </div>
+                <div class="sg-type-row">
+                    <span class="sg-type-label">--text-lead</span>
+                    <span class="sg-type-sample-serif" style="font-size: var(--text-lead)">Lead paragraph text</span>
+                    <span class="sg-type-value">clamp(1.15rem, 1rem + 0.35vi, 1.3rem)</span>
+                </div>
+                <div class="sg-type-row">
+                    <span class="sg-type-label">--text-card</span>
+                    <span class="sg-type-sample-serif" style="font-size: var(--text-card)">Card title text</span>
+                    <span class="sg-type-value">clamp(1.1rem, 1rem + 0.25vi, 1.2rem)</span>
+                </div>
+                <div class="sg-type-row">
+                    <span class="sg-type-label">--text-prose</span>
+                    <span class="sg-type-sample-serif" style="font-size: var(--text-prose)">Prose body text</span>
+                    <span class="sg-type-value">clamp(1.05rem, 0.95rem + 0.25vi, 1.15rem)</span>
+                </div>
+                <div class="sg-type-row">
+                    <span class="sg-type-label">--text-intro</span>
+                    <span class="sg-type-sample-serif" style="font-size: var(--text-intro)">Intro paragraph text</span>
+                    <span class="sg-type-value">clamp(1rem, 0.9rem + 0.25vi, 1.1rem)</span>
+                </div>
+                <div class="sg-type-row">
+                    <span class="sg-type-label">--text-section</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-section)">Section label text</span>
+                    <span class="sg-type-value">clamp(1rem, 0.95rem + 0.2vi, 1.1rem)</span>
+                </div>
+                <div class="sg-type-row">
+                    <span class="sg-type-label">--text-body</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-body)">Body text</span>
+                    <span class="sg-type-value">clamp(1rem, 0.95rem + 0.15vi, 1.05rem)</span>
+                </div>
+                <div class="sg-type-row">
+                    <span class="sg-type-label">--text-code</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-code)">Code block text</span>
+                    <span class="sg-type-value">0.95rem</span>
+                </div>
+                <div class="sg-type-row">
+                    <span class="sg-type-label">--text-fn</span>
+                    <span class="sg-type-sample-serif" style="font-size: var(--text-fn)">Footnote text</span>
+                    <span class="sg-type-value">0.92rem</span>
+                </div>
+                <div class="sg-type-row">
+                    <span class="sg-type-label">--text-note</span>
+                    <span class="sg-type-sample-serif" style="font-size: var(--text-note)">Note text</span>
+                    <span class="sg-type-value">0.9rem</span>
+                </div>
+                <div class="sg-type-row">
+                    <span class="sg-type-label">--text-ui</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-ui)">UI element text</span>
+                    <span class="sg-type-value">0.85rem</span>
+                </div>
+                <div class="sg-type-row">
+                    <span class="sg-type-label">--text-meta</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-meta)">Meta / date text</span>
+                    <span class="sg-type-value">0.75rem</span>
+                </div>
+                <div class="sg-type-row">
+                    <span class="sg-type-label">--text-sm</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-sm)">Small label text</span>
+                    <span class="sg-type-value">0.72rem</span>
+                </div>
+                <div class="sg-type-row">
+                    <span class="sg-type-label">--text-xs</span>
+                    <span class="sg-type-sample-mono" style="font-size: var(--text-xs)">Extra-small text</span>
+                    <span class="sg-type-value">0.68rem</span>
+                </div>
+            </section>
+
+            <!-- Spacing -->
+            <section class="sg-section">
+                <h2>Spacing</h2>
+
+                <div class="sg-space-row">
+                    <span class="sg-space-label">--space-xs</span>
+                    <div class="sg-space-bar" style="width: var(--space-xs)"></div>
+                </div>
+                <div class="sg-space-row">
+                    <span class="sg-space-label">--space-s</span>
+                    <div class="sg-space-bar" style="width: var(--space-s)"></div>
+                </div>
+                <div class="sg-space-row">
+                    <span class="sg-space-label">--space-m</span>
+                    <div class="sg-space-bar" style="width: var(--space-m)"></div>
+                </div>
+                <div class="sg-space-row">
+                    <span class="sg-space-label">--space-l</span>
+                    <div class="sg-space-bar" style="width: var(--space-l)"></div>
+                </div>
+                <div class="sg-space-row">
+                    <span class="sg-space-label">--space-xl</span>
+                    <div class="sg-space-bar" style="width: var(--space-xl)"></div>
+                </div>
+                <div class="sg-space-row">
+                    <span class="sg-space-label">--space-2xl</span>
+                    <div class="sg-space-bar" style="width: var(--space-2xl)"></div>
+                </div>
+            </section>
+
+            <footer class="site-footer">
+                <p>
+                    Find me on
+                    <a href="https://twitter.com/attilagyorffy"><s>Twitter</s> X</a>,
+                    <a href="https://fosstodon.org/@attila" rel="me">Mastodon</a>,
+                    <a href="https://bsky.app/profile/attilagyorffy.com">Bluesky</a>,
+                    <a href="https://linkedin.com/in/attilagyorffy">LinkedIn</a>,
+                    <a href="https://github.com/attilagyorffy">GitHub</a>.
+                </p>
+            </footer>
+        </main>
+
+        <script src="/js/favicon.js" defer></script>
+        <script>
+            document.querySelectorAll('.sg-type-value').forEach(function(el) {
+                var sample = el.previousElementSibling;
+                var px = parseFloat(getComputedStyle(sample).fontSize);
+                el.textContent += ' \u2009\u2192\u2009 ' + Math.round(px * 100) / 100 + 'px';
+            });
+        </script>
+    </body>
+</html>
