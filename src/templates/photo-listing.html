@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {{- template "partials/head.html" . }}
+        <title>Photos — Attila Györffy</title>
+        <meta
+            name="description"
+            content="Travel photography from around Europe and wherever the camera wanders next. Lipari Islands, Lake Bled, and whatever catches the light. Shot on Canon EOS 100D."
+        />
+        <link rel="stylesheet" href="/css/pages/photos.css" />
+        <script>requestAnimationFrame(()=>{requestAnimationFrame(()=>{if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')})})</script>
+    </head>
+    <body>
+        <main class="page">
+            {{ template "nav-home" . }}
+
+            <h1>Photos</h1>
+
+            <p class="intro">
+                Places I've been, things I saw, moments I pointed a camera
+                at instead of just being present. Shot on a Canon EOS 100D that
+                refuses to die.
+            </p>
+
+            <ul class="album-list">
+                {{- range .Albums }}
+                <li class="album-item">
+                    <a href="/photos/{{ .Slug }}/" class="album-link">
+                        <div class="album-covers">
+                            {{- $albumSlug := .Slug }}
+                            {{- range .CoverImages }}
+                            <img
+                                src="/photos/{{ $albumSlug }}/{{ .Src }}"
+                                alt="{{ .Alt }}"
+                                class="album-cover"
+                                loading="lazy"
+                            />
+                            {{- end }}
+                        </div>
+                        <div class="album-info">
+                            <h2 class="album-title">{{ .Title }} {{ .CountryFlag }} {{ .DateDisplay }}</h2>
+                            <div class="album-summary">
+                                {{ .AlbumSummary }}
+                            </div>
+                            <div class="album-meta">{{ .PhotoCount }} photos</div>
+                        </div>
+                    </a>
+                </li>
+                {{- end }}
+            </ul>
+
+            <footer class="site-footer">
+                <p>
+                    All photos shot on film-era glass and edited with patience.
+                    No AI upscaling, no filters, no presets named after cities
+                    I've never been to.
+                </p>
+            </footer>
+        </main>
+
+        <script src="/js/favicon.js" defer></script>
+    </body>
+</html>

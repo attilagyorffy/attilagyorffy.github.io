@@ -67,6 +67,38 @@ type YearGroup struct {
 	Posts []BlogPost
 }
 
+// GalleryData holds the parsed photo gallery YAML.
+type GalleryData struct {
+	Title        string       `yaml:"title"`
+	Slug         string       `yaml:"slug"`
+	Date         string       `yaml:"date"`
+	DateDisplay  string       `yaml:"date_display"`
+	Description  string       `yaml:"description"`
+	CountryFlag  string       `yaml:"country_flag"`
+	AlbumSummary string       `yaml:"album_summary"`
+	Intro        string       `yaml:"intro"`
+	CoverImages  []CoverImage `yaml:"cover_images"`
+	Photos       []Photo      `yaml:"photos"`
+	PhotoCount   int
+}
+
+type CoverImage struct {
+	Src string `yaml:"src"`
+	Alt string `yaml:"alt"`
+}
+
+type Photo struct {
+	File    string `yaml:"file"`
+	W       int    `yaml:"w"`
+	H       int    `yaml:"h"`
+	Caption string `yaml:"caption"`
+}
+
+// PhotoListingData is passed to the photo-listing template.
+type PhotoListingData struct {
+	Albums []GalleryData
+}
+
 // ProjectsData holds the parsed projects.yaml.
 type ProjectsData struct {
 	Title       string            `yaml:"title"`
@@ -143,7 +175,12 @@ func main() {
 		fatal("building projects: %v", err)
 	}
 
-	fmt.Printf("Built %d blog posts, 1 listing, standalone pages, thoughts, and projects.\n", len(posts))
+	// Build photo galleries and listing.
+	if err := buildPhotos(srcDir, root, tmpl); err != nil {
+		fatal("building photos: %v", err)
+	}
+
+	fmt.Printf("Built %d blog posts, 1 listing, standalone pages, thoughts, projects, and photos.\n", len(posts))
 }
 
 // findRoot returns the repository root (parent of build/).
@@ -428,6 +465,66 @@ func buildPages(srcDir, root string, tmpl *template.Template) error {
 	}
 
 	return nil
+}
+
+func buildPhotos(srcDir, root string, tmpl *template.Template) error {
+	photosDir := filepath.Join(srcDir, "content", "photos")
+	entries, err := os.ReadDir(photosDir)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return nil
+		}
+		return err
+	}
+
+	var albums []GalleryData
+
+	for _, entry := range entries {
+		if entry.IsDir() || !strings.HasSuffix(entry.Name(), ".yaml") {
+			continue
+		}
+
+		raw, err := os.ReadFile(filepath.Join(photosDir, entry.Name()))
+		if err != nil {
+			return err
+		}
+
+		var gallery GalleryData
+		if err := yaml.Unmarshal(raw, &gallery); err != nil {
+			return fmt.Errorf("yaml %s: %w", entry.Name(), err)
+		}
+		gallery.PhotoCount = len(gallery.Photos)
+
+		// Render individual gallery page.
+		outDir := filepath.Join(root, "photos", gallery.Slug)
+		os.MkdirAll(outDir, 0o755)
+		outPath := filepath.Join(outDir, "index.html")
+
+		var buf bytes.Buffer
+		if err := tmpl.ExecuteTemplate(&buf, "photo-gallery.html", gallery); err != nil {
+			return fmt.Errorf("rendering gallery %s: %w", gallery.Slug, err)
+		}
+		if err := os.WriteFile(outPath, buf.Bytes(), 0o644); err != nil {
+			return fmt.Errorf("writing %s: %w", outPath, err)
+		}
+
+		albums = append(albums, gallery)
+	}
+
+	// Sort albums by date descending.
+	sort.Slice(albums, func(i, j int) bool {
+		return albums[i].Date > albums[j].Date
+	})
+
+	// Render photo listing page.
+	listData := PhotoListingData{Albums: albums}
+	outPath := filepath.Join(root, "photos", "index.html")
+
+	var buf bytes.Buffer
+	if err := tmpl.ExecuteTemplate(&buf, "photo-listing.html", listData); err != nil {
+		return fmt.Errorf("rendering photo listing: %w", err)
+	}
+	return os.WriteFile(outPath, buf.Bytes(), 0o644)
 }
 
 func buildProjects(srcDir, root string, tmpl *template.Template) error {

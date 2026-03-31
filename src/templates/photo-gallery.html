@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {{- template "partials/head.html" . }}
+        <title>{{ .Title }} 2025 — Photos — Attila Györffy</title>
+        <meta
+            name="description"
+            content="{{ .Description }}"
+        />
+        <meta property="og:title" content="{{ .Title }} 2025 — Photos" />
+        <meta property="og:description" content="{{ .Description }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.attilagyorffy.com/photos/{{ .Slug }}/" />
+        <meta property="og:image" content="https://www.attilagyorffy.com/images/og-default.png" />
+        <meta property="og:site_name" content="Attila Györffy" />
+        <meta property="og:locale" content="en_GB" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="@attilagyorffy" />
+        <link rel="stylesheet" href="/css/pages/gallery.css" />
+        <script>requestAnimationFrame(()=>{requestAnimationFrame(()=>{if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')})})</script>
+    </head>
+    <body>
+        <main class="page page--gallery">
+            <nav class="top-bar top-bar--stacked">
+                <a href="/">&larr; Home</a>
+                <a href="/photos/">&larr; Photos</a>
+            </nav>
+
+            <h1>{{ .Title }}</h1>
+
+            <p class="intro">
+                {{ .Intro }}
+            </p>
+
+            <div class="photo-grid" role="list">
+                {{- range $i, $photo := .Photos }}
+                            <figure class="photo-item" role="listitem">
+                                <a href="/photos/{{ $.Slug }}/web/full/{{ $photo.File }}.webp" class="photo-link" aria-label="View photo: {{ $photo.Caption }}" data-index="{{ $i }}">
+                                    <img src="/photos/{{ $.Slug }}/web/thumb/{{ $photo.File }}.webp" alt="" width="{{ $photo.W }}" height="{{ $photo.H }}" loading="lazy" class="photo-thumb" />
+                                </a>
+                                <figcaption class="photo-caption">{{ $photo.Caption }}</figcaption>
+                            </figure>
+                {{- end }}
+            </div>
+        </main>
+
+        <div
+            class="lightbox"
+            id="lightbox"
+            role="dialog"
+            aria-label="Photo viewer"
+            aria-hidden="true"
+        >
+            <button class="lightbox-close" aria-label="Close">
+                &times;
+            </button>
+            <button class="lightbox-prev" aria-label="Previous photo">
+                &larr;
+            </button>
+            <button class="lightbox-next" aria-label="Next photo">
+                &rarr;
+            </button>
+            <div class="lightbox-content">
+                <div class="lightbox-stage" id="lightbox-stage">
+                    <img src="" alt="" class="lightbox-img" id="lightbox-img-a" />
+                    <img src="" alt="" class="lightbox-img" id="lightbox-img-b" />
+                </div>
+                <div class="lightbox-caption" id="lightbox-caption"></div>
+                <div class="lightbox-counter" id="lightbox-counter"></div>
+            </div>
+        </div>
+
+        <script src="/js/favicon.js" defer></script>
+        <script src="/js/lightbox.js" defer></script>
+    </body>
+</html>
