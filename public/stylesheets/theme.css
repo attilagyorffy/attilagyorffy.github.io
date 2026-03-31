@@ -1,0 +1,17 @@
+/* ==========================================================================
+   Dark mode
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-bg: var(--palette-night);
+        --color-fg: var(--palette-silver);
+        --color-heading: var(--palette-white);
+        --color-subtle: color-mix(in oklch, var(--color-bg), white 15%);
+        --color-accent: var(--palette-lavender);
+    }
+
+    .topic-tag {
+        color: var(--color-subtle);
+    }
+}

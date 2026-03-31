@@ -1,0 +1,122 @@
+/* ==========================================================================
+   Blog & project listing — post cards, topic filter
+   ========================================================================== */
+
+.post-list {
+    padding: 0;
+    margin: 0 0 var(--space-xl) 0;
+}
+
+.post-item {
+    position: relative;
+    margin-bottom: 0;
+    padding: var(--space-l) 0;
+    border-bottom: 1px solid var(--color-subtle);
+    transition: transform 0.2s ease;
+}
+
+.post-item.hidden {
+    display: none;
+}
+
+.post-list.hidden {
+    display: none;
+}
+
+.post-item:not(.hidden):not(:has(~ .post-item:not(.hidden))) {
+    border-bottom: none;
+}
+
+.post-link,
+.post-link:visited {
+    color: var(--color-accent);
+    transition: color 0.2s ease;
+}
+
+.post-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.post-item:hover {
+    transform: translateX(8px);
+}
+
+.post-title {
+    font-size: var(--text-size-prose);
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--color-heading);
+    margin: 0;
+}
+
+.post-summary {
+    font-family: var(--font-serif);
+    font-size: var(--text-size-code);
+    line-height: 1.6;
+    margin: 0.3rem 0 0 0;
+}
+
+/* Topic tags (shared with blog posts) */
+
+.topic-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-s);
+}
+
+.topic-tag {
+    background: transparent;
+    font-size: var(--text-size-body);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: none;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+.topic-tag::before {
+    content: "#";
+    color: var(--color-subtle);
+    transition: color 0.2s ease;
+}
+
+.topic-tag:hover {
+    color: var(--color-accent);
+}
+
+.topic-tag:hover::before {
+    color: var(--color-accent);
+}
+
+/* Topic filter bar */
+
+.topic-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-xl);
+}
+
+.topic-filter .topic-tag {
+    cursor: pointer;
+}
+
+.topic-filter .topic-tag[aria-pressed="true"],
+.topic-filter .topic-tag[aria-pressed="true"]::before {
+    color: var(--color-accent);
+}
+
+/* Animations */
+
+.js-animated .topic-filter {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.38s forwards;
+}
+
+.js-animated .post-item {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.5s forwards;
+}

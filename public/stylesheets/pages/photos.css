@@ -1,0 +1,95 @@
+/* ==========================================================================
+   Photos — album listing cards
+   ========================================================================== */
+
+.album-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.album-item {
+    padding: var(--space-xl) 0;
+    border-bottom: 1px solid var(--color-subtle);
+}
+
+.album-item:last-child {
+    border-bottom: none;
+}
+
+.album-link {
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.album-link:hover {
+    transform: translateX(4px);
+}
+
+.album-covers {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+}
+
+.album-covers .album-cover:nth-child(n + 2) {
+    display: none;
+}
+
+.album-cover {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: 2px;
+    display: block;
+}
+
+.album-info {
+    margin-top: var(--space-m);
+}
+
+.album-title {
+    font-size: var(--text-size-prose);
+    font-weight: 400;
+    color: var(--color-heading);
+    line-height: 1.4;
+    margin: 0;
+    text-transform: none;
+    letter-spacing: normal;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.album-meta {
+    font-size: var(--text-size-sm);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: var(--space-xs) 0 0 0;
+    color: var(--color-muted);
+}
+
+.album-summary {
+    font-family: var(--font-serif);
+    font-size: var(--text-size-code);
+    line-height: 1.6;
+    margin: var(--space-s) 0 0 0;
+}
+
+/* Animations */
+
+.js-animated .album-item {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.5s forwards;
+}
+
+/* Responsive: tablet and up */
+
+@media (min-width: 541px) {
+    .album-covers {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .album-covers .album-cover:nth-child(n + 2) {
+        display: block;
+    }
+}

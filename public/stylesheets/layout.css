@@ -1,0 +1,187 @@
+/* ==========================================================================
+   Layout shells
+   ========================================================================== */
+
+.page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--page-pad-y) var(--page-pad-x) var(--page-pad-b);
+}
+
+.page--wide {
+    max-width: 1100px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.page--gallery {
+    max-width: 1400px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+
+.top-bar {
+    display: flex;
+    font-size: var(--text-size-ui);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-2xl);
+}
+
+.top-bar--stacked {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: var(--space-2xl);
+    gap: 0.3rem;
+}
+
+.top-bar a {
+    border-bottom: 1px dotted var(--color-subtle);
+    padding-bottom: 2px;
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.top-bar a:hover {
+    border-bottom-color: var(--color-heading);
+    color: var(--color-heading);
+}
+
+/* ==========================================================================
+   Page header
+   ========================================================================== */
+
+h1 {
+    font-size: var(--text-size-h1);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 0 0 var(--space-2xl) 0;
+    color: var(--color-heading);
+}
+
+h2 {
+    font-size: var(--text-size-body);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: var(--space-2xl) 0 var(--space-l) 0;
+    padding-bottom: var(--space-s);
+    border-bottom: 1px solid var(--color-subtle);
+}
+
+h2:first-of-type {
+    margin-top: 0;
+}
+
+.intro {
+    font-size: var(--text-size-body);
+    line-height: 1.75;
+    margin: 0 0 var(--space-2xl) 0;
+}
+
+/* ==========================================================================
+   Site footer
+   ========================================================================== */
+
+.site-footer {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-subtle);
+    letter-spacing: 0.06em;
+}
+
+.site-footer p {
+    line-height: 1.75;
+    margin: 0;
+    letter-spacing: 0;
+    font-size: var(--text-size-code);
+}
+
+.site-footer p,
+.site-footer p a {
+    color: var(--color-muted);
+}
+
+.site-footer p a {
+    text-decoration: underline;
+    text-decoration-color: var(--color-subtle);
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+    transition:
+        text-decoration-color 0.4s ease,
+        color 0.2s ease;
+}
+
+.site-footer p a:hover {
+    color: var(--color-fg);
+    text-decoration-color: var(--color-fg);
+}
+
+/* ==========================================================================
+   Utilities & animations
+   ========================================================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate(-20px, 20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes fadeInOnly {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ==========================================================================
+   Motion: fade-in animations as progressive enhancement
+   ========================================================================== */
+
+.js-animated .top-bar {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.2s forwards;
+}
+.js-animated h1 {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.3s forwards;
+}
+.js-animated .intro {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.35s forwards;
+}
+.js-animated h2 {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.4s forwards;
+}
+.js-animated .site-footer {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.6s forwards;
+}

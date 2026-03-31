@@ -1,0 +1,217 @@
+/* ==========================================================================
+   Blog article — grid, author, sidebar, syntax highlighting
+   ========================================================================== */
+
+.article-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+    margin-top: var(--space-2xl);
+}
+
+.author-col {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-m);
+    margin-bottom: var(--space-l);
+}
+
+.title-col {
+    margin-bottom: var(--space-2xl);
+    gap: 0.3rem;
+}
+
+.date-col {
+    text-align: left;
+    order: -1;
+    margin-bottom: var(--space-m);
+    padding-top: 0.45rem;
+}
+
+.date-col time {
+    font-size: var(--text-size-body);
+}
+
+/* Author column */
+
+.avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.author-name {
+    display: block;
+    font-size: var(--text-size-sm);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+    color: var(--color-heading);
+}
+
+.author-role {
+    font-size: var(--text-size-sm);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.5;
+}
+
+.post-label {
+    font-size: var(--text-size-sm);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0;
+}
+
+/* Title column */
+
+.title-col h1 {
+    font-size: var(--text-size-h1);
+    font-weight: 400;
+    line-height: 1.25;
+    margin: 0 0 var(--space-m) 0;
+    color: var(--color-heading);
+    letter-spacing: -0.01em;
+}
+
+.subtitle {
+    font-size: var(--text-size-prose);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Sidebar label */
+
+.sidebar-label {
+    display: none;
+}
+
+.sidebar-arrow {
+    font-size: var(--text-size-ui);
+    letter-spacing: 0;
+}
+
+/* Footer in article grid context */
+
+article .site-footer {
+    max-width: 720px;
+    font-size: var(--text-size-ui);
+    animation-delay: 0.8s;
+}
+
+/* Syntax highlighting */
+
+pre code.hljs {
+    background: transparent;
+    padding: 0;
+}
+
+.hljs-comment {
+    color: var(--color-muted);
+}
+
+.hljs-title {
+    color: var(--color-accent);
+}
+
+.hljs-keyword {
+    color: var(--color-accent);
+}
+
+.hljs-number,
+.hljs-literal {
+    color: var(--color-accent);
+}
+
+.hljs-punctuation {
+    color: var(--color-subtle);
+}
+
+.hljs-operator {
+    color: var(--color-fg);
+}
+
+/* Animations */
+
+.js-animated .author-col {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.4s forwards;
+}
+.js-animated .title-col {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.4s forwards;
+}
+.js-animated .date-col {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.4s forwards;
+}
+
+/* Responsive: desktop */
+
+@media (min-width: 921px) {
+    .article-grid {
+        grid-template-columns: 200px 1fr auto;
+        column-gap: var(--space-xl);
+    }
+
+    .author-col {
+        display: block;
+        grid-column: 1;
+        grid-row: 1;
+        margin-bottom: 0;
+    }
+
+    .avatar {
+        margin-bottom: 0.85rem;
+    }
+
+    .title-col {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .date-col {
+        grid-column: 3;
+        grid-row: 1;
+        text-align: right;
+        order: unset;
+        margin-bottom: 0;
+    }
+
+    .post-label {
+        margin-top: var(--space-l);
+    }
+
+    .prose {
+        grid-column: 2;
+    }
+
+    article .site-footer {
+        grid-column: 2;
+    }
+
+    .sidebar-label {
+        display: flex;
+        position: fixed;
+        right: var(--space-xl);
+        top: 50%;
+        writing-mode: vertical-rl;
+        font-size: var(--text-size-sm);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--color-subtle);
+        align-items: flex-start;
+        gap: var(--space-s);
+    }
+}
