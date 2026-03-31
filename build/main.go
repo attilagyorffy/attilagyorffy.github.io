@@ -154,6 +154,11 @@ func main() {
 				fatal("%v", err)
 			}
 			return
+		case "og":
+			if err := generateOGImages(root); err != nil {
+				fatal("%v", err)
+			}
+			return
 		}
 	}
 
