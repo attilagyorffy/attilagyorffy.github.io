@@ -7,5 +7,5 @@ serve:
 	cd build && go run . serve
 
 photos:
-	./scripts/optimize-photos.sh photos/2025-sicily --html
-	./scripts/optimize-photos.sh photos/2025-slovenia --html
+	cd build && go run . photos 2025-lipari
+	cd build && go run . photos 2025-bled

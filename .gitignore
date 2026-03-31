@@ -1,7 +1,7 @@
 # Original photo exports (too large for git)
 photos/*/*.jpeg
+photos/*/*.jpg
 photos/*/*.png
-photos/*/fragment.html
 
 # macOS
 .DS_Store
