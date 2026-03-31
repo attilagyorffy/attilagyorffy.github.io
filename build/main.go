@@ -140,47 +140,54 @@ type ThoughtItem struct {
 
 func main() {
 	root := findRoot()
+
+	if len(os.Args) > 1 && os.Args[1] == "serve" {
+		runServe(root)
+		return
+	}
+
+	if err := buildAll(root); err != nil {
+		fatal("%v", err)
+	}
+}
+
+func buildAll(root string) error {
+	start := time.Now()
 	srcDir := filepath.Join(root, "src")
 	tmplDir := filepath.Join(srcDir, "templates")
 
-	// Load templates.
 	tmpl, err := loadTemplates(tmplDir)
 	if err != nil {
-		fatal("loading templates: %v", err)
+		return fmt.Errorf("loading templates: %v", err)
 	}
 
-	// Build blog posts.
 	posts, err := buildBlogPosts(srcDir, root, tmpl)
 	if err != nil {
-		fatal("building blog posts: %v", err)
+		return fmt.Errorf("building blog posts: %v", err)
 	}
 
-	// Build blog listing.
 	if err := buildBlogListing(posts, root, tmpl); err != nil {
-		fatal("building blog listing: %v", err)
+		return fmt.Errorf("building blog listing: %v", err)
 	}
 
-	// Build standalone pages.
 	if err := buildPages(srcDir, root, tmpl); err != nil {
-		fatal("building pages: %v", err)
+		return fmt.Errorf("building pages: %v", err)
 	}
 
-	// Build thoughts page.
 	if err := buildThoughts(srcDir, root, tmpl); err != nil {
-		fatal("building thoughts: %v", err)
+		return fmt.Errorf("building thoughts: %v", err)
 	}
 
-	// Build projects page.
 	if err := buildProjects(srcDir, root, tmpl); err != nil {
-		fatal("building projects: %v", err)
+		return fmt.Errorf("building projects: %v", err)
 	}
 
-	// Build photo galleries and listing.
 	if err := buildPhotos(srcDir, root, tmpl); err != nil {
-		fatal("building photos: %v", err)
+		return fmt.Errorf("building photos: %v", err)
 	}
 
-	fmt.Printf("Built %d blog posts, 1 listing, standalone pages, thoughts, projects, and photos.\n", len(posts))
+	fmt.Printf("  \033[32m[build]\033[0m %d posts + pages in %dms\n", len(posts), time.Since(start).Milliseconds())
+	return nil
 }
 
 // findRoot returns the repository root (parent of build/).

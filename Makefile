@@ -4,7 +4,7 @@ build:
 	cd build && go run .
 
 serve:
-	uv run serve.py
+	cd build && go run . serve
 
 photos:
 	./scripts/optimize-photos.sh photos/2025-sicily --html
