@@ -1,15 +1,17 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"io"
-	"log"
 	"mime"
 	"net/http"
 	"os"
+	"os/signal"
 	"path/filepath"
 	"strings"
 	"sync"
+	"syscall"
 	"time"
 
 	"github.com/fsnotify/fsnotify"
@@ -78,18 +80,25 @@ func (h *sseHub) broadcast(data string) {
 }
 
 func runServe(root string) {
+	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+	defer stop()
+
 	hub := newSSEHub()
 
 	// Initial build.
 	fmt.Println("  \033[33m[init]\033[0m building site...")
 	if err := buildAll(root); err != nil {
-		log.Printf("  \033[31m[error]\033[0m build failed: %v", err)
+		fmt.Fprintf(os.Stderr, "  \033[31m[error]\033[0m build failed: %v\n", err)
 	}
 
-	// Start file watcher.
-	go watchFiles(root, hub)
+	// Start file watcher with cancellation support.
+	watchDone := make(chan struct{})
+	go func() {
+		defer close(watchDone)
+		watchFiles(ctx, root, hub)
+	}()
 
-	// HTTP server.
+	// HTTP server with graceful shutdown.
 	mux := http.NewServeMux()
 	mux.HandleFunc("/__livereload", func(w http.ResponseWriter, r *http.Request) {
 		handleSSE(w, r, hub)
@@ -99,11 +108,33 @@ func runServe(root string) {
 	})
 
 	addr := "0.0.0.0:8000"
-	fmt.Printf("Serving on http://%s (live-reload enabled)\n", addr)
+	srv := &http.Server{Addr: addr, Handler: mux}
 
-	if err := http.ListenAndServe(addr, mux); err != nil {
+	// Start server in a goroutine.
+	srvErr := make(chan error, 1)
+	go func() {
+		fmt.Printf("Serving on http://%s (live-reload enabled)\n", addr)
+		if err := srv.ListenAndServe(); err != http.ErrServerClosed {
+			srvErr <- err
+		}
+		close(srvErr)
+	}()
+
+	// Wait for shutdown signal or server error.
+	select {
+	case <-ctx.Done():
+		fmt.Println("\nShutting down...")
+	case err := <-srvErr:
 		fatal("server: %v", err)
 	}
+
+	// Graceful shutdown with 5s timeout.
+	shutdownCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+	srv.Shutdown(shutdownCtx)
+
+	// Wait for watcher to finish.
+	<-watchDone
 }
 
 func handleSSE(w http.ResponseWriter, r *http.Request, hub *sseHub) {
@@ -121,7 +152,6 @@ func handleSSE(w http.ResponseWriter, r *http.Request, hub *sseHub) {
 	ch := hub.subscribe()
 	defer hub.unsubscribe(ch)
 
-	// Send keepalive immediately so the connection is established.
 	fmt.Fprintf(w, ": connected\n\n")
 	flusher.Flush()
 
@@ -146,12 +176,14 @@ func handleSSE(w http.ResponseWriter, r *http.Request, hub *sseHub) {
 }
 
 func handleFile(w http.ResponseWriter, r *http.Request, root string) {
-	urlPath := r.URL.Path
+	// Resolve and sanitise the path to prevent traversal.
+	cleaned := filepath.Clean(filepath.FromSlash(r.URL.Path))
+	fpath := filepath.Join(root, cleaned)
+	if !strings.HasPrefix(fpath, root) {
+		http.NotFound(w, r)
+		return
+	}
 
-	// Map URL path to filesystem.
-	fpath := filepath.Join(root, filepath.FromSlash(urlPath))
-
-	// Directory: redirect to trailing slash, then look for index.html.
 	info, err := os.Stat(fpath)
 	if err != nil {
 		http.NotFound(w, r)
@@ -159,8 +191,8 @@ func handleFile(w http.ResponseWriter, r *http.Request, root string) {
 	}
 
 	if info.IsDir() {
-		if !strings.HasSuffix(urlPath, "/") {
-			http.Redirect(w, r, urlPath+"/", http.StatusMovedPermanently)
+		if !strings.HasSuffix(r.URL.Path, "/") {
+			http.Redirect(w, r, r.URL.Path+"/", http.StatusMovedPermanently)
 			return
 		}
 		indexPath := filepath.Join(fpath, "index.html")
@@ -171,19 +203,16 @@ func handleFile(w http.ResponseWriter, r *http.Request, root string) {
 		fpath = indexPath
 	}
 
-	// Detect content type.
 	ext := filepath.Ext(fpath)
 	ctype := mime.TypeByExtension(ext)
 	if ctype == "" {
 		ctype = "application/octet-stream"
 	}
 
-	// No-cache headers for development.
 	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 	w.Header().Set("Pragma", "no-cache")
 	w.Header().Set("Expires", "0")
 
-	// For HTML files, inject the live-reload script.
 	if strings.HasPrefix(ctype, "text/html") {
 		serveHTMLWithLiveReload(w, fpath, ctype)
 		return
@@ -206,7 +235,6 @@ func serveHTMLWithLiveReload(w http.ResponseWriter, fpath, ctype string) {
 		return
 	}
 
-	// Inject live-reload script before </body>.
 	injected := strings.Replace(string(content), "</body>", livereloadScript+"</body>", 1)
 
 	w.Header().Set("Content-Type", ctype)
@@ -215,16 +243,15 @@ func serveHTMLWithLiveReload(w http.ResponseWriter, fpath, ctype string) {
 	io.WriteString(w, injected)
 }
 
-// watchFiles monitors src/ and css/ for changes and triggers rebuilds.
-func watchFiles(root string, hub *sseHub) {
+// watchFiles monitors src/, css/, and js/ for changes. It returns when ctx is cancelled.
+func watchFiles(ctx context.Context, root string, hub *sseHub) {
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {
-		log.Printf("  \033[31m[error]\033[0m watcher: %v", err)
+		fmt.Fprintf(os.Stderr, "  \033[31m[error]\033[0m watcher: %v\n", err)
 		return
 	}
 	defer watcher.Close()
 
-	// Recursively add directories under src/ and css/.
 	for _, dir := range []string{
 		filepath.Join(root, "src"),
 		filepath.Join(root, "css"),
@@ -233,7 +260,6 @@ func watchFiles(root string, hub *sseHub) {
 		addWatchDirs(watcher, dir)
 	}
 
-	// Debounce: collect events and rebuild after a quiet period.
 	var (
 		debounceTimer *time.Timer
 		lastEvents    = make(map[string]time.Time)
@@ -242,6 +268,12 @@ func watchFiles(root string, hub *sseHub) {
 
 	for {
 		select {
+		case <-ctx.Done():
+			if debounceTimer != nil {
+				debounceTimer.Stop()
+			}
+			return
+
 		case event, ok := <-watcher.Events:
 			if !ok {
 				return
@@ -253,10 +285,8 @@ func watchFiles(root string, hub *sseHub) {
 			path := event.Name
 			ext := strings.ToLower(filepath.Ext(path))
 
-			// Skip irrelevant files.
 			switch ext {
 			case ".md", ".yaml", ".yml", ".html", ".css", ".js":
-				// Relevant.
 			default:
 				continue
 			}
@@ -264,33 +294,40 @@ func watchFiles(root string, hub *sseHub) {
 			// Debounce: ignore duplicate events within 100ms.
 			mu.Lock()
 			now := time.Now()
-			if last, ok := lastEvents[path]; ok && now.Sub(last) < 100*time.Millisecond {
+			if last, exists := lastEvents[path]; exists && now.Sub(last) < 100*time.Millisecond {
 				mu.Unlock()
 				continue
 			}
 			lastEvents[path] = now
+
+			// Prune stale entries to prevent unbounded growth.
+			if len(lastEvents) > 200 {
+				for k, v := range lastEvents {
+					if now.Sub(v) > 10*time.Second {
+						delete(lastEvents, k)
+					}
+				}
+			}
 			mu.Unlock()
 
-			// Determine if this is a source file change or a public asset change.
 			relPath, _ := filepath.Rel(root, path)
-			isSource := strings.HasPrefix(relPath, "src/") || strings.HasPrefix(relPath, "src\\")
+			isSource := strings.HasPrefix(relPath, "src"+string(filepath.Separator))
 
 			if isSource {
-				// Source file changed: rebuild, then notify.
 				if debounceTimer != nil {
 					debounceTimer.Stop()
 				}
+				// Capture relPath for the closure.
+				changedFile := relPath
 				debounceTimer = time.AfterFunc(150*time.Millisecond, func() {
-					fmt.Printf("  \033[36m[watch]\033[0m %s changed, rebuilding...\n", relPath)
+					fmt.Printf("  \033[36m[watch]\033[0m %s changed, rebuilding...\n", changedFile)
 					if err := buildAll(root); err != nil {
-						log.Printf("  \033[31m[error]\033[0m rebuild failed: %v", err)
+						fmt.Fprintf(os.Stderr, "  \033[31m[error]\033[0m rebuild failed: %v\n", err)
 						return
 					}
-					// After rebuild, tell browsers to reload.
 					hub.broadcast(`{"type":"reload"}`)
 				})
 			} else {
-				// Public CSS/JS changed directly — notify without rebuild.
 				webPath := "/" + filepath.ToSlash(relPath)
 				switch ext {
 				case ".css":
@@ -309,18 +346,18 @@ func watchFiles(root string, hub *sseHub) {
 			if !ok {
 				return
 			}
-			log.Printf("  \033[31m[error]\033[0m watcher: %v", err)
+			fmt.Fprintf(os.Stderr, "  \033[31m[error]\033[0m watcher: %v\n", err)
 		}
 	}
 }
 
 // addWatchDirs recursively adds a directory and all subdirectories to the watcher.
 func addWatchDirs(watcher *fsnotify.Watcher, dir string) {
-	filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
+	filepath.WalkDir(dir, func(path string, d os.DirEntry, err error) error {
 		if err != nil {
 			return nil
 		}
-		if info.IsDir() {
+		if d.IsDir() {
 			watcher.Add(path)
 		}
 		return nil

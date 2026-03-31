@@ -158,32 +158,32 @@ func buildAll(root string) error {
 
 	tmpl, err := loadTemplates(tmplDir)
 	if err != nil {
-		return fmt.Errorf("loading templates: %v", err)
+		return fmt.Errorf("loading templates: %w", err)
 	}
 
 	posts, err := buildBlogPosts(srcDir, root, tmpl)
 	if err != nil {
-		return fmt.Errorf("building blog posts: %v", err)
+		return fmt.Errorf("building blog posts: %w", err)
 	}
 
 	if err := buildBlogListing(posts, root, tmpl); err != nil {
-		return fmt.Errorf("building blog listing: %v", err)
+		return fmt.Errorf("building blog listing: %w", err)
 	}
 
 	if err := buildPages(srcDir, root, tmpl); err != nil {
-		return fmt.Errorf("building pages: %v", err)
+		return fmt.Errorf("building pages: %w", err)
 	}
 
 	if err := buildThoughts(srcDir, root, tmpl); err != nil {
-		return fmt.Errorf("building thoughts: %v", err)
+		return fmt.Errorf("building thoughts: %w", err)
 	}
 
 	if err := buildProjects(srcDir, root, tmpl); err != nil {
-		return fmt.Errorf("building projects: %v", err)
+		return fmt.Errorf("building projects: %w", err)
 	}
 
 	if err := buildPhotos(srcDir, root, tmpl); err != nil {
-		return fmt.Errorf("building photos: %v", err)
+		return fmt.Errorf("building photos: %w", err)
 	}
 
 	fmt.Printf("  \033[32m[build]\033[0m %d posts + pages in %dms\n", len(posts), time.Since(start).Milliseconds())
@@ -275,14 +275,18 @@ func buildBlogPosts(srcDir, root string, tmpl *template.Template) ([]BlogPost, e
 		if _, err := os.Stat(ogSrc); err == nil {
 			post.HasOGImage = true
 			post.OGImageURL = siteURL + "/blog/" + slug + "/og.png"
-			copyFile(ogSrc, ogDst)
+			if err := copyFile(ogSrc, ogDst); err != nil {
+				return nil, fmt.Errorf("copying og.png for %s: %w", slug, err)
+			}
 		} else {
 			post.OGImageURL = siteURL + "/images/og-default.png"
 		}
 
 		// Render to HTML.
 		outDir := filepath.Join(root, "blog", slug)
-		os.MkdirAll(outDir, 0o755)
+		if err := os.MkdirAll(outDir, 0o755); err != nil {
+			return nil, fmt.Errorf("creating dir %s: %w", outDir, err)
+		}
 		outPath := filepath.Join(outDir, "index.html")
 
 		var buf bytes.Buffer
@@ -459,7 +463,9 @@ func buildPages(srcDir, root string, tmpl *template.Template) error {
 		page.URL = "/" + slug + "/"
 
 		outDir := filepath.Join(root, slug)
-		os.MkdirAll(outDir, 0o755)
+		if err := os.MkdirAll(outDir, 0o755); err != nil {
+			return fmt.Errorf("creating dir %s: %w", outDir, err)
+		}
 		outPath := filepath.Join(outDir, "index.html")
 
 		var out bytes.Buffer
@@ -504,7 +510,9 @@ func buildPhotos(srcDir, root string, tmpl *template.Template) error {
 
 		// Render individual gallery page.
 		outDir := filepath.Join(root, "photos", gallery.Slug)
-		os.MkdirAll(outDir, 0o755)
+		if err := os.MkdirAll(outDir, 0o755); err != nil {
+			return fmt.Errorf("creating dir %s: %w", outDir, err)
+		}
 		outPath := filepath.Join(outDir, "index.html")
 
 		var buf bytes.Buffer
@@ -550,7 +558,9 @@ func buildProjects(srcDir, root string, tmpl *template.Template) error {
 	}
 
 	outDir := filepath.Join(root, "projects")
-	os.MkdirAll(outDir, 0o755)
+	if err := os.MkdirAll(outDir, 0o755); err != nil {
+		return fmt.Errorf("creating dir %s: %w", outDir, err)
+	}
 	outPath := filepath.Join(outDir, "index.html")
 
 	var buf bytes.Buffer
@@ -576,7 +586,9 @@ func buildThoughts(srcDir, root string, tmpl *template.Template) error {
 	}
 
 	outDir := filepath.Join(root, "thoughts")
-	os.MkdirAll(outDir, 0o755)
+	if err := os.MkdirAll(outDir, 0o755); err != nil {
+		return fmt.Errorf("creating dir %s: %w", outDir, err)
+	}
 	outPath := filepath.Join(outDir, "index.html")
 
 	var buf bytes.Buffer
@@ -656,13 +668,15 @@ func formatDate(dateStr string) string {
 	return t.Format("Jan 2, 2006")
 }
 
-func copyFile(src, dst string) {
+func copyFile(src, dst string) error {
 	data, err := os.ReadFile(src)
 	if err != nil {
-		return
+		return fmt.Errorf("reading %s: %w", src, err)
 	}
-	os.MkdirAll(filepath.Dir(dst), 0o755)
-	os.WriteFile(dst, data, 0o644)
+	if err := os.MkdirAll(filepath.Dir(dst), 0o755); err != nil {
+		return fmt.Errorf("creating dir for %s: %w", dst, err)
+	}
+	return os.WriteFile(dst, data, 0o644)
 }
 
 func fatal(format string, args ...any) {
