@@ -158,6 +158,8 @@
     --text-note: 0.9rem;
     --text-fn: 0.92rem;
     --text-code: 0.95rem;
+    --text-icon: 1.5rem;
+    --text-icon-lg: 2rem;
 
     /* Typography — fluid */
     --text-body: clamp(1rem, 0.95rem + 0.15vi, 1.05rem);
@@ -175,12 +177,10 @@
     --color-subtle: color-mix(in oklch, var(--color-bg), black 5%);
     --color-accent: #8a6a64;
 
-    --surface-callout: color-mix(in oklch, var(--color-bg), black 5%);
     --highlight-bg: color-mix(in srgb, var(--color-accent), transparent 60%);
     --color-muted: color-mix(in oklch, var(--color-subtle), var(--color-fg) 35%);
     --color-mid: color-mix(in oklch, var(--color-fg) 50%, var(--color-subtle));
     --surface-backdrop: color-mix(in oklch, var(--color-bg) 95%, transparent);
-    --color-comment: color-mix(in oklch, var(--color-fg) 40%, var(--color-bg));
 }
 
 @media (prefers-color-scheme: dark) {
@@ -191,7 +191,6 @@
         --color-subtle: color-mix(in oklch, var(--color-bg), white 15%);
         --color-accent: #a89cff;
 
-        --surface-callout: color-mix(in oklch, var(--color-bg), white 3%);
         --highlight-bg: color-mix(
             in srgb,
             var(--color-accent),
@@ -559,7 +558,7 @@ mark {
 }
 
 .prose h2.conclusion {
-    font-size: clamp(1.6rem, 1.4rem + 0.55vi, 1.85rem);
+    font-size: var(--text-prose-h);
 }
 
 .prose h2 + .role-period {
@@ -625,7 +624,7 @@ mark {
 /* Code blocks */
 
 .prose pre {
-    background: var(--surface-callout);
+    background: var(--color-subtle);
     border: 1px solid var(--color-subtle);
     border-left: none;
     border-right: none;
@@ -789,7 +788,7 @@ mark {
 
 .tweet-text p {
     font-family: var(--font-serif);
-    font-size: 1.05rem;
+    font-size: var(--text-prose);
     line-height: 1.7;
     margin: 0;
 }
@@ -802,7 +801,7 @@ mark {
 }
 
 .tweet-date {
-    font-size: 0.7rem;
+    font-size: var(--text-sm);
     color: var(--color-muted);
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -966,7 +965,7 @@ article .site-footer {
 
 .lightbox-caption {
     color: var(--color-fg);
-    font-size: 1.05rem;
+    font-size: var(--text-prose);
     line-height: 1.7;
     max-width: 600px;
     text-align: center;
@@ -1029,7 +1028,7 @@ article .site-footer {
     background: none;
     border: none;
     color: var(--color-fg);
-    font-size: 2rem;
+    font-size: var(--text-icon-lg);
     cursor: pointer;
     padding: var(--space-xs);
     line-height: 1;
@@ -1053,7 +1052,7 @@ article .site-footer {
     background: none;
     border: none;
     color: var(--color-fg);
-    font-size: 1.5rem;
+    font-size: var(--text-icon);
     cursor: pointer;
     padding: var(--space-s);
     z-index: 1001;
@@ -1101,7 +1100,7 @@ pre code.hljs {
 }
 
 .hljs-comment {
-    color: var(--color-comment);
+    color: var(--color-muted);
 }
 
 .hljs-title {
@@ -1250,7 +1249,7 @@ pre code.hljs {
     }
 
     .prose ul.takeaway {
-        background: var(--surface-callout);
+        background: var(--color-subtle);
         border-left: 3px solid var(--color-accent);
         padding: var(--space-m) var(--space-m) var(--space-m) var(--space-xl);
         border-radius: 2px;
