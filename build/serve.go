@@ -98,13 +98,14 @@ func runServe(root string) {
 		watchFiles(ctx, root, hub)
 	}()
 
-	// HTTP server with graceful shutdown.
+	// HTTP server serves from public/.
+	publicDir := filepath.Join(root, "public")
 	mux := http.NewServeMux()
 	mux.HandleFunc("/__livereload", func(w http.ResponseWriter, r *http.Request) {
 		handleSSE(w, r, hub)
 	})
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		handleFile(w, r, root)
+		handleFile(w, r, publicDir)
 	})
 
 	addr := "0.0.0.0:8000"
@@ -243,7 +244,7 @@ func serveHTMLWithLiveReload(w http.ResponseWriter, fpath, ctype string) {
 	io.WriteString(w, injected)
 }
 
-// watchFiles monitors src/, css/, and js/ for changes. It returns when ctx is cancelled.
+// watchFiles monitors src/ and public/ assets for changes. It returns when ctx is cancelled.
 func watchFiles(ctx context.Context, root string, hub *sseHub) {
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {
@@ -254,8 +255,8 @@ func watchFiles(ctx context.Context, root string, hub *sseHub) {
 
 	for _, dir := range []string{
 		filepath.Join(root, "src"),
-		filepath.Join(root, "css"),
-		filepath.Join(root, "js"),
+		filepath.Join(root, "public", "stylesheets"),
+		filepath.Join(root, "public", "javascripts"),
 	} {
 		addWatchDirs(watcher, dir)
 	}
@@ -317,7 +318,6 @@ func watchFiles(ctx context.Context, root string, hub *sseHub) {
 				if debounceTimer != nil {
 					debounceTimer.Stop()
 				}
-				// Capture relPath for the closure.
 				changedFile := relPath
 				debounceTimer = time.AfterFunc(150*time.Millisecond, func() {
 					fmt.Printf("  \033[36m[watch]\033[0m %s changed, rebuilding...\n", changedFile)
@@ -328,7 +328,10 @@ func watchFiles(ctx context.Context, root string, hub *sseHub) {
 					hub.broadcast(`{"type":"reload"}`)
 				})
 			} else {
-				webPath := "/" + filepath.ToSlash(relPath)
+				// Public asset: strip "public/" prefix for the web path.
+				publicDir := filepath.Join(root, "public")
+				webRel, _ := filepath.Rel(publicDir, path)
+				webPath := "/" + filepath.ToSlash(webRel)
 				switch ext {
 				case ".css":
 					fmt.Printf("  \033[36m[reload]\033[0m css: %s\n", webPath)

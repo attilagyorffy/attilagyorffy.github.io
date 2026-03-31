@@ -17,15 +17,15 @@
         <meta property="article:author" content="https://www.attilagyorffy.com/about/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@attilagyorffy" />
-        <link rel="stylesheet" href="/css/typography.css" />
-        <link rel="stylesheet" href="/css/pages/blog-listing.css" />
-        <link rel="stylesheet" href="/css/pages/blog-post.css" />
+        <link rel="stylesheet" href="/stylesheets/typography.css" />
+        <link rel="stylesheet" href="/stylesheets/pages/blog-listing.css" />
+        <link rel="stylesheet" href="/stylesheets/pages/blog-post.css" />
         <script>requestAnimationFrame(()=>{requestAnimationFrame(()=>{if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')})})</script>
         {{- if eq .Type "Code" }}
-        <script src="/js/vendor/highlight.min.js" defer></script>
-        <script src="/js/highlights.js" defer></script>
+        <script src="/javascripts/vendor/highlight.min.js" defer></script>
+        <script src="/javascripts/highlights.js" defer></script>
         {{- end }}
-        <script src="/js/favicon.js" defer></script>
+        <script src="/javascripts/favicon.js" defer></script>
     </head>
     <body>
         {{ template "svg-filter" . }}

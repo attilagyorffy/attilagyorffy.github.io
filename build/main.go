@@ -141,9 +141,20 @@ type ThoughtItem struct {
 func main() {
 	root := findRoot()
 
-	if len(os.Args) > 1 && os.Args[1] == "serve" {
-		runServe(root)
-		return
+	if len(os.Args) > 1 {
+		switch os.Args[1] {
+		case "serve":
+			runServe(root)
+			return
+		case "photos":
+			if len(os.Args) < 3 {
+				fatal("usage: build photos <album-slug>")
+			}
+			if err := optimizePhotos(root, os.Args[2]); err != nil {
+				fatal("%v", err)
+			}
+			return
+		}
 	}
 
 	if err := buildAll(root); err != nil {
@@ -154,6 +165,7 @@ func main() {
 func buildAll(root string) error {
 	start := time.Now()
 	srcDir := filepath.Join(root, "src")
+	outDir := filepath.Join(root, "public")
 	tmplDir := filepath.Join(srcDir, "templates")
 
 	tmpl, err := loadTemplates(tmplDir)
@@ -161,28 +173,28 @@ func buildAll(root string) error {
 		return fmt.Errorf("loading templates: %w", err)
 	}
 
-	posts, err := buildBlogPosts(srcDir, root, tmpl)
+	posts, err := buildBlogPosts(srcDir, outDir, tmpl)
 	if err != nil {
 		return fmt.Errorf("building blog posts: %w", err)
 	}
 
-	if err := buildBlogListing(posts, root, tmpl); err != nil {
+	if err := buildBlogListing(posts, outDir, tmpl); err != nil {
 		return fmt.Errorf("building blog listing: %w", err)
 	}
 
-	if err := buildPages(srcDir, root, tmpl); err != nil {
+	if err := buildPages(srcDir, outDir, tmpl); err != nil {
 		return fmt.Errorf("building pages: %w", err)
 	}
 
-	if err := buildThoughts(srcDir, root, tmpl); err != nil {
+	if err := buildThoughts(srcDir, outDir, tmpl); err != nil {
 		return fmt.Errorf("building thoughts: %w", err)
 	}
 
-	if err := buildProjects(srcDir, root, tmpl); err != nil {
+	if err := buildProjects(srcDir, outDir, tmpl); err != nil {
 		return fmt.Errorf("building projects: %w", err)
 	}
 
-	if err := buildPhotos(srcDir, root, tmpl); err != nil {
+	if err := buildPhotos(srcDir, outDir, tmpl); err != nil {
 		return fmt.Errorf("building photos: %w", err)
 	}
 
