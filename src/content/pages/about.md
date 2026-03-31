@@ -3,7 +3,7 @@ title: About
 description: "Product engineer and technologist with two decades of experience. First-principles thinking, the scout mindset, and a remarkably low tolerance for cargo cults."
 ---
 
-I'm Attila Gyorffy, a product engineer with two decades of experience building systems across fintech, infrastructure, and developer platforms. I work primarily with Ruby, Rails, and Go, and I'm currently deepening my work in Rust.
+I'm Attila Györffy, a product engineer with two decades of experience building systems across fintech, infrastructure, and developer platforms. I work primarily with Ruby, Rails, and Go, and I'm currently deepening my work in Rust.
 
 Most of my career has been about stepping into complex systems and understanding them before changing anything. The costliest mistakes I've seen came from acting with an incomplete map -- not from lack of talent. I care about observability, reliability, and mentoring teams to build codebases that get better over years, not just sprints.
 

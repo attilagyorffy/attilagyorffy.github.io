@@ -1,5 +1,5 @@
 ---
-title: "Attila Gyorffy"
+title: "Attila Györffy"
 description: "Product engineer with 20-plus years across fintech, infrastructure, and developer platforms. Ruby, Rails, Go, distributed systems, and opinions about all of it."
 page_class: page--wide
 ---

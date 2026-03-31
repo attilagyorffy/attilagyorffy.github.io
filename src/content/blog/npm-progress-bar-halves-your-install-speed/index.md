@@ -21,7 +21,7 @@ What do I mean by that? Well, let me show you my `~/.npmrc` configuration, the s
 progress=false
 spin=false
 loglevel=error
-init.author.name=Attila Gyorffy
+init.author.name=Attila Györffy
 init.author.email=attila@example.com
 init.author.url=https://attilagyorffy.com
 //registry.npmjs.org/:_password=thisissecret
