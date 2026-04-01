@@ -117,7 +117,7 @@ pre code.hljs {
         right: var(--space-xl);
         top: 50%;
         writing-mode: vertical-rl;
-        font-size: var(--text-size-sm);
+        font-size: var(--text-size-ui);
         letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--color-subtle);
