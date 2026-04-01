@@ -422,6 +422,8 @@ h2:first-of-type {
     margin: 0 0 var(--space-m) 0;
     color: var(--color-heading);
     letter-spacing: -0.01em;
+    max-inline-size: 32ch;
+    text-wrap: balance;
 }
 
 .subtitle {

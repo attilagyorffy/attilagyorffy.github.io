@@ -11,6 +11,8 @@
 .article-header h1 {
     line-height: 1.25;
     margin: 0 0 var(--space-m) 0;
+    max-inline-size: 32ch;
+    text-wrap: balance;
 }
 
 .subtitle {
