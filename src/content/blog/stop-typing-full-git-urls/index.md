@@ -5,7 +5,7 @@ date: 2016-12-12
 description: "How to set up Git URL shortcuts so you can clone from GitHub, Heroku, and Gist without typing full URLs like some kind of animal. One file, permanent fix."
 summary: "Life is too short to type git@github.com: like a caveman. A few lines in .gitconfig and you're cloning with gh:user/repo."
 topics:
-  - Developer Tools
+  - devtools
 type: Code
 read_time: "2 min read"
 footer: "If you've been typing full Git URLs this whole time and you're now feeling personally attacked, good. Come commiserate. I'm on [Bluesky](https://bsky.app/profile/attilagyorffy.com), [Mastodon](https://fosstodon.org/@attila), [~~Twitter~~ X](https://twitter.com/attilagyorffy), and technically [LinkedIn](https://linkedin.com/in/attilagyorffy), though I mostly use that to decline recruiter messages. You can also find my dotfiles and other questionable life choices on [GitHub](https://github.com/attilagyorffy), where I promise every clone starts with `gh:`."

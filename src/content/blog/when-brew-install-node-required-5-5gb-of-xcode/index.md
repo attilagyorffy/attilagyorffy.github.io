@@ -5,7 +5,7 @@ date: 2014-07-09
 description: "On the Yosemite beta, Homebrew's build patches hadn't caught up yet. Installing Node.js meant downloading the entire Xcode beta — all 5.5 gigabytes of it."
 summary: "Apple released Yosemite and broke the compiler. Installing a JavaScript runtime now required downloading an entire IDE. A love letter to 2014."
 topics:
-  - Developer Tools
+  - devtools
 type: Code
 read_time: "2 min read"
 footer: "If you've made it through a Node.js install guide from 2014, you deserve a medal. Come reminisce about the good old days with me on [Bluesky](https://bsky.app/profile/attilagyorffy.com), [Mastodon](https://fosstodon.org/@attila), [~~Twitter~~ X](https://twitter.com/attilagyorffy), or even [LinkedIn](https://linkedin.com/in/attilagyorffy). You can also find what I'm building these days on [GitHub](https://github.com/attilagyorffy), where the tooling has thankfully improved since the Yosemite era."

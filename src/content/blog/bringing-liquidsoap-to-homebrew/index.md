@@ -5,7 +5,7 @@ date: 2026-03-22
 description: "Liquidsoap is a programming language for audio streaming with no Homebrew formula. Here is how I packaged it for macOS — OCaml, OPAM, and all."
 summary: "Liquidsoap has powered community radio for twenty years, but installing it on macOS meant wrestling with OPAM or Docker. A Homebrew formula fixes that."
 topics:
-  - Developer Tools
+  - devtools
   - Infrastructure
 type: Code
 read_time: "5 min read"

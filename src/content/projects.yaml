@@ -30,7 +30,7 @@ categories:
       - title: "AdGuard Home Prometheus Exporter"
         url: "https://github.com/attilagyorffy/prometheus-exporter-adguard-home"
         summary: "A Prometheus exporter that actually follows the official exporter guidelines — which, apparently, was too much to ask of the existing alternatives."
-  - name: "Developer Tools"
+  - name: "devtools"
     projects:
       - title: "Pow Bonjour Advertiser"
         url: "https://github.com/attilagyorffy/pow-mdns"

@@ -6,7 +6,7 @@ description: "The W3C markup validator is indispensable, but depending on a remo
 summary: "The W3C validator requires the internet, which is exactly the thing that isn't working when you need it. So we put a validator in a container."
 topics:
   - Testing
-  - Developer Tools
+  - devtools
 type: Code
 read_time: "3 min read"
 footer: "If valid markup matters to you as much as it does to me, let's talk about it. Find me on [Bluesky](https://bsky.app/profile/attilagyorffy.com), [Mastodon](https://fosstodon.org/@attila), [~~Twitter~~ X](https://twitter.com/attilagyorffy), or [LinkedIn](https://linkedin.com/in/attilagyorffy). You can also browse my other projects on [GitHub](https://github.com/attilagyorffy), where I occasionally validate things before pushing them."

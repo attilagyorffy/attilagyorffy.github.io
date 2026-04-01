@@ -6,7 +6,7 @@ description: "pow-mDNS uses Bonjour to make your Pow apps accessible from phones
 summary: "I wanted to load my Rails app on an iPad without looking up my IP address every five minutes. So I made mDNS do it for me."
 topics:
   - Testing
-  - Developer Tools
+  - devtools
 type: Code
 read_time: "5 min read"
 footer: "If you've read this far and you're as excited about zero-configuration tooling as I am, let's connect. I'm on [Bluesky](https://bsky.app/profile/attilagyorffy.com), [Mastodon](https://fosstodon.org/@attila), [~~Twitter~~ X](https://twitter.com/attilagyorffy), and occasionally [LinkedIn](https://linkedin.com/in/attilagyorffy). You can also find pow-mDNS and my other projects on [GitHub](https://github.com/attilagyorffy), where I continue to build tools that Just Work."
