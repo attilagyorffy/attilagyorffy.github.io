@@ -49,6 +49,7 @@
 }
 
 .album-title {
+    font-family: var(--font-mono);
     font-size: var(--text-size-prose);
     font-weight: 400;
     color: var(--color-heading);
@@ -61,6 +62,7 @@
 }
 
 .album-meta {
+    font-family: var(--font-mono);
     font-size: var(--text-size-sm);
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -69,7 +71,6 @@
 }
 
 .album-summary {
-    font-family: var(--font-serif);
     font-size: var(--text-size-code);
     line-height: 1.6;
     margin: var(--space-s) 0 0 0;

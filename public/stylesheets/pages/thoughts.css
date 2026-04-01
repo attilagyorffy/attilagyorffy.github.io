@@ -23,7 +23,6 @@
 }
 
 .tweet-text p {
-    font-family: var(--font-serif);
     font-size: var(--text-size-prose);
     line-height: 1.7;
     margin: 0;
@@ -37,6 +36,7 @@
 }
 
 .tweet-date {
+    font-family: var(--font-mono);
     font-size: var(--text-size-sm);
     color: var(--color-muted);
     letter-spacing: 0.08em;

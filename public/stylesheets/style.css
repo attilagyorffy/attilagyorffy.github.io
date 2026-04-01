@@ -49,7 +49,7 @@
  *   --font-*              Typography stacks
  *   --space-{xs..2xl}     Fluid spacing scale (0.5 rem – 6 rem, 6 steps)
  *   --page-pad-*          Page shell padding (y / x / b)
- *   --text-*              Fluid font-size scale (0.68 rem – 2.5 rem)
+ *   --text-*              Fluid font-size scale (0.7 rem – 3 rem)
  *   --color-*             Foreground / background / accent colours
  *
  * Scripts (external)
@@ -151,14 +151,14 @@
     --page-pad-b: clamp(2.5rem, 1.5rem + 2vi, 5rem);
 
     /* Type scale — raw values */
-    --scale-xs: clamp(0.68rem, 0.64rem + 0.1vi, 0.76rem);
-    --scale-sm: clamp(0.82rem, 0.78rem + 0.12vi, 0.9rem);
-    --scale-md: clamp(0.9rem, 0.86rem + 0.12vi, 0.96rem);
-    --scale-base: clamp(1rem, 0.94rem + 0.18vi, 1.08rem);
-    --scale-lg: clamp(1.08rem, 0.98rem + 0.25vi, 1.18rem);
-    --scale-xl: clamp(1.15rem, 1rem + 0.35vi, 1.3rem);
-    --scale-2xl: clamp(1.5rem, 1.3rem + 0.5vi, 1.7rem);
-    --scale-3xl: clamp(1.65rem, 1.2rem + 1.5vi, 2.5rem);
+    --scale-xs: clamp(0.7rem, 0.66rem + 0.1vi, 0.78rem);
+    --scale-sm: clamp(0.8rem, 0.76rem + 0.12vi, 0.88rem);
+    --scale-md: clamp(0.88rem, 0.84rem + 0.12vi, 0.95rem);
+    --scale-base: clamp(1rem, 0.96rem + 0.12vi, 1.06rem);
+    --scale-lg: clamp(1rem, 0.98rem + 0.15vi, 1.125rem);
+    --scale-xl: clamp(1.125rem, 1.05rem + 0.35vi, 1.35rem);
+    --scale-2xl: clamp(1.5rem, 1.25rem + 1vi, 2rem);
+    --scale-3xl: clamp(2rem, 1.5rem + 2vi, 3rem);
 
     /* Type scale — semantic */
     --text-size-sm: var(--scale-xs);
@@ -225,7 +225,7 @@ body {
     color: var(--color-fg);
     font-family: var(--font-mono);
     font-size: 1rem;
-    line-height: 1.8;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -325,7 +325,7 @@ h2:first-of-type {
 
 .intro {
     font-size: var(--text-size-body);
-    line-height: 1.75;
+    line-height: 1.7;
     margin: 0 0 var(--space-2xl) 0;
 }
 
@@ -360,7 +360,7 @@ h2:first-of-type {
 }
 
 .date-col time {
-    font-size: var(--text-size-body);
+    font-size: var(--text-size-ui);
 }
 
 /* Author column */
@@ -433,7 +433,7 @@ h2:first-of-type {
 
 .topic-tag {
     background: transparent;
-    font-size: var(--text-size-body);
+    font-size: var(--text-size-ui);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     border: none;
@@ -535,7 +535,7 @@ mark {
 
 .prose p {
     font-size: var(--text-size-prose);
-    line-height: 1.85;
+    line-height: 1.7;
     margin: 0 0 var(--space-l) 0;
     color: var(--color-fg);
 }
@@ -572,6 +572,7 @@ mark {
 }
 
 .prose p.role-period {
+    font-size: var(--text-size-body);
     color: var(--color-mid);
 }
 
@@ -676,7 +677,7 @@ mark {
 
 .prose li {
     margin-bottom: var(--space-s);
-    line-height: 1.85;
+    line-height: 1.7;
     padding-left: var(--space-l);
     position: relative;
     color: var(--color-fg);
@@ -762,7 +763,7 @@ mark {
 /* Blog & project listings */
 
 .post-title {
-    font-size: var(--text-size-prose);
+    font-size: var(--text-size-lead);
     font-weight: 400;
     line-height: 1.4;
     color: var(--color-heading);
@@ -827,7 +828,7 @@ mark {
 }
 
 .site-footer p {
-    line-height: 1.75;
+    line-height: 1.7;
     margin: 0;
     letter-spacing: 0;
     font-size: var(--text-size-code);
