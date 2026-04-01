@@ -145,7 +145,9 @@
     --space-xl: clamp(2.25rem, 1.45rem + 1.5vi, 3rem);
     --space-2xl: clamp(3rem, 1.5rem + 3vi, 6rem);
 
-    /* Spacing — semantic */
+/* Spacing — semantic */
+    /* Use --space-l for default prose rhythm, --space-xl for in-article
+       section breaks, and --space-2xl only for page-level transitions. */
     --page-pad-y: clamp(1.5rem, 1rem + 1.2vi, 3rem);
     --page-pad-x: clamp(1.25rem, 0.75rem + 1.5vi, 3.5rem);
     --page-pad-b: clamp(2.5rem, 1.5rem + 2vi, 5rem);
@@ -219,6 +221,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     background: var(--color-bg);
@@ -237,6 +243,12 @@ a {
 
 a:visited {
     color: var(--color-fg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
 }
 
 /* ==========================================================================
@@ -280,12 +292,12 @@ a:visited {
     align-items: flex-start;
     justify-content: flex-start;
     margin-bottom: var(--space-2xl);
-    gap: 0.3rem;
+    gap: var(--space-xs);
 }
 
 .top-bar a {
     border-bottom: 1px dotted var(--color-subtle);
-    padding-bottom: 2px;
+    padding: var(--space-xs) 0;
     transition:
         border-color 0.2s ease,
         color 0.2s ease;
@@ -540,12 +552,6 @@ mark {
     color: var(--color-fg);
 }
 
-.prose p.lead {
-    font-size: var(--text-size-lead);
-    line-height: 1.7;
-    color: var(--color-fg);
-}
-
 /* Prose headings */
 
 .prose h2 {
@@ -553,14 +559,10 @@ mark {
     font-weight: 400;
     font-size: var(--text-size-prose-h);
     margin: var(--space-2xl) 0 var(--space-m) 0;
-    padding-top: var(--space-xl);
+    scroll-margin-top: var(--space-xl);
     color: var(--color-heading);
     letter-spacing: -0.01em;
     text-transform: none;
-}
-
-.prose h2:first-of-type {
-    padding-top: 0;
 }
 
 .prose h2.conclusion {
@@ -594,22 +596,52 @@ mark {
 
 /* Footnotes */
 
-.prose ol.footnotes {
+.prose .footnotes {
+    margin-top: var(--space-xl);
+    font-size: var(--text-size-code);
+    color: var(--color-muted);
+}
+
+.prose .footnotes hr {
+    margin: 0 0 var(--space-s) 0;
+    border: 0;
+    border-top: 1px solid var(--color-subtle);
+}
+
+.prose .footnotes ol {
     list-style: decimal;
     padding-left: var(--space-l);
-    margin-top: var(--space-xl);
-    padding-top: var(--space-m);
-    border-top: 1px solid var(--color-subtle);
-    font-size: var(--text-size-code);
+    margin: 0;
 }
 
-.prose ol.footnotes li {
+.prose .footnotes p {
+    margin-bottom: 0;
+    color: inherit;
+    font-size: inherit;
+}
+
+.prose .footnotes li {
     padding-left: var(--space-xs);
     margin-bottom: var(--space-s);
+    color: inherit;
 }
 
-.prose ol.footnotes li::before {
+.prose .footnotes li:last-child {
+    margin-bottom: 0;
+}
+
+.prose .footnotes li::before {
     content: none;
+}
+
+.prose .footnotes a {
+    color: inherit;
+    border-bottom-color: var(--color-subtle);
+}
+
+.prose .footnotes a:hover {
+    color: var(--color-fg);
+    border-bottom-color: var(--color-fg);
 }
 
 /* Inline code */
@@ -822,7 +854,7 @@ mark {
 
 .site-footer {
     margin-top: var(--space-2xl);
-    padding-top: var(--space-xl);
+    padding-top: var(--space-m);
     border-top: 1px solid var(--color-subtle);
     letter-spacing: 0.06em;
 }

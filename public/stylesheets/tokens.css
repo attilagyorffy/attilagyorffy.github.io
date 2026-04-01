@@ -17,6 +17,8 @@
     --space-2xl: clamp(3rem, 1.5rem + 3vi, 6rem);
 
     /* Spacing — semantic */
+    /* Use --space-l for default prose rhythm, --space-xl for in-article
+       section breaks, and --space-2xl only for page-level transitions. */
     --page-pad-y: clamp(1.5rem, 1rem + 1.2vi, 3rem);
     --page-pad-x: clamp(1.25rem, 0.75rem + 1.5vi, 3.5rem);
     --page-pad-b: clamp(2.5rem, 1.5rem + 2vi, 5rem);

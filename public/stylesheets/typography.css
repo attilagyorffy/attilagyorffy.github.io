@@ -53,12 +53,6 @@ mark {
     color: var(--color-fg);
 }
 
-.prose p.lead {
-    font-size: var(--text-size-lead);
-    line-height: 1.7;
-    color: var(--color-fg);
-}
-
 /* Prose headings */
 
 .prose h2 {
@@ -67,14 +61,10 @@ mark {
     font-size: var(--text-size-prose-h);
     line-height: 1.2;
     margin: var(--space-2xl) 0 var(--space-m) 0;
-    padding-top: var(--space-xl);
+    scroll-margin-top: var(--space-xl);
     color: var(--color-heading);
     letter-spacing: -0.01em;
     text-transform: none;
-}
-
-.prose h2:first-of-type {
-    padding-top: 0;
 }
 
 .prose h3 {
@@ -112,22 +102,52 @@ mark {
 
 /* Footnotes */
 
-.prose ol.footnotes {
+.prose .footnotes {
+    margin-top: var(--space-xl);
+    font-size: var(--text-size-code);
+    color: var(--color-muted);
+}
+
+.prose .footnotes hr {
+    margin: 0 0 var(--space-s) 0;
+    border: 0;
+    border-top: 1px solid var(--color-subtle);
+}
+
+.prose .footnotes ol {
     list-style: decimal;
     padding-left: var(--space-l);
-    margin-top: var(--space-xl);
-    padding-top: var(--space-m);
-    border-top: 1px solid var(--color-subtle);
-    font-size: var(--text-size-code);
+    margin: 0;
 }
 
-.prose ol.footnotes li {
+.prose .footnotes p {
+    margin-bottom: 0;
+    color: inherit;
+    font-size: inherit;
+}
+
+.prose .footnotes li {
     padding-left: var(--space-xs);
     margin-bottom: var(--space-s);
+    color: inherit;
 }
 
-.prose ol.footnotes li::before {
+.prose .footnotes li:last-child {
+    margin-bottom: 0;
+}
+
+.prose .footnotes li::before {
     content: none;
+}
+
+.prose .footnotes a {
+    color: inherit;
+    border-bottom-color: var(--color-subtle);
+}
+
+.prose .footnotes a:hover {
+    color: var(--color-fg);
+    border-bottom-color: var(--color-fg);
 }
 
 /* Inline code */

@@ -12,7 +12,7 @@ read_time: "3 min read"
 footer: "If any of this made you reconsider what's actually holding up your production systems, come argue about it. I'm on [Bluesky](https://bsky.app/profile/attilagyorffy.com), [Mastodon](https://fosstodon.org/@attila), [~~Twitter~~ X](https://twitter.com/attilagyorffy), and technically [LinkedIn](https://linkedin.com/in/attilagyorffy), where \"open source advocate\" is apparently a job title you can give yourself. The code I actually contribute is on [GitHub](https://github.com/attilagyorffy), where at least when the plumbing breaks, it's my own fault."
 ---
 
-People keep asking me, "Why does open source matter in 2026?" And I go, "Come on, it's 2026. Everything you use runs on it. That's like asking why plumbing matters. You don't think about plumbing until shit's literally coming up through the floor."
+Open source stopped being a nice idea ages ago. Now it's the stuff everything runs on, and we're still funding it like it's a side quest some bloke on the internet will sort out for free.
 
 That's what open source is now. <mark>It's not some hippie developer thing where blokes in sandals share code because they believe in the commons or whatever. It is the infrastructure.</mark> The Linux Foundation — and look, I know, foundations, very sexy — they put out research saying open source is the backbone of mission-critical systems.[^1] Banks, hospitals, governments, all of it.
 

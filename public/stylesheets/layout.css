@@ -30,7 +30,7 @@
     height: 1px;
     overflow: hidden;
     z-index: 100;
-    padding: 0.75rem 1.5rem;
+    padding: var(--space-s) var(--space-l);
     background: var(--color-bg);
     color: var(--color-heading);
     font-family: var(--font-mono);
@@ -42,8 +42,8 @@
 
 .skip-link:focus {
     position: fixed;
-    left: 1rem;
-    top: 1rem;
+    left: var(--space-s);
+    top: var(--space-s);
     width: auto;
     height: auto;
 }
@@ -68,12 +68,12 @@
     align-items: flex-start;
     justify-content: flex-start;
     margin-bottom: var(--space-2xl);
-    gap: 0.3rem;
+    gap: var(--space-xs);
 }
 
 .top-bar a {
     border-bottom: 1px dotted var(--color-subtle);
-    padding: 10px 0;
+    padding: var(--space-xs) 0;
     transition:
         border-color 0.2s ease,
         color 0.2s ease;
@@ -126,7 +126,7 @@ h2:first-of-type {
 .site-footer {
     font-family: var(--font-mono);
     margin-top: var(--space-2xl);
-    padding-top: var(--space-xl);
+    padding-top: var(--space-m);
     border-top: 1px solid var(--color-subtle);
     letter-spacing: 0.06em;
 }

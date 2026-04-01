@@ -344,9 +344,6 @@ func parseBlogPost(mdPath, slug string, md goldmark.Markdown) (BlogPost, error) 
 
 	rendered := buf.String()
 
-	// Post-process: add class="lead" to the first <p>.
-	rendered = addLeadClass(rendered)
-
 	// Add target/rel to external links.
 	rendered = addExternalLinkAttrs(rendered)
 
@@ -649,12 +646,6 @@ func splitFrontmatter(data []byte) ([]byte, []byte, error) {
 	body = strings.TrimLeft(body, "\n\r")
 
 	return []byte(fm), []byte(body), nil
-}
-
-var leadRe = regexp.MustCompile(`^(\s*)<p>`)
-
-func addLeadClass(html string) string {
-	return leadRe.ReplaceAllString(html, `${1}<p class="lead">`)
 }
 
 // addExternalLinkAttrs adds target="_blank" rel="noopener noreferrer" to
