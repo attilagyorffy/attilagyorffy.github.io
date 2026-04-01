@@ -17,8 +17,21 @@
     --space-2xl: clamp(3rem, 1.5rem + 3vi, 6rem);
 
     /* Spacing — semantic */
-    /* Use --space-l for default prose rhythm, --space-xl for in-article
-       section breaks, and --space-2xl only for page-level transitions. */
+    /*
+     * Convention: use --space-* tokens for all layout and rhythm spacing.
+     *   --space-xs  Tight UI gaps (nav links, tag lists, inline groups)
+     *   --space-s   Footnote item gaps, small inset padding, skip-link nudge
+     *   --space-m   Component padding, metadata margins, footer inset
+     *   --space-l   Default prose rhythm (p, ul, pre, between siblings)
+     *   --space-xl  In-article section breaks (h2 top margin, footnotes top)
+     *   --space-2xl Page-level transitions (nav bottom, h1 bottom, header margins, footer top)
+     *
+     * Intentional non-token values (sub-scale micro-details):
+     *   2px            Link underline offset — pixel-precise decorative gap
+     *   0.1em / 0.12em Inline pill padding (sup links, code) — em-relative to local font size
+     *   0.15em         Inline code padding in tweet cards — same rationale
+     *   -0.25rem       pre bleed on mobile (negative offset, no token equivalent)
+     */
     --page-pad-y: clamp(1.5rem, 1rem + 1.2vi, 3rem);
     --page-pad-x: clamp(1.25rem, 0.75rem + 1.5vi, 3.5rem);
     --page-pad-b: clamp(2.5rem, 1.5rem + 2vi, 5rem);
