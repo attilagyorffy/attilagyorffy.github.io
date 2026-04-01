@@ -22,22 +22,33 @@
 /* Article metadata */
 
 .article-meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--space-s);
     font-family: var(--font-mono);
     font-size: var(--text-size-ui);
+    line-height: 1.7;
     color: var(--color-muted);
-    margin-top: var(--space-l);
+    margin: var(--space-l) 0 var(--space-m);
+    overflow-wrap: anywhere;
 }
 
 .article-meta address {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
+    display: inline;
     font-style: normal;
+    color: inherit;
+}
+
+.article-meta address a {
     color: var(--color-heading);
+}
+
+.article-meta .topic-tags {
+    display: inline;
+    margin: 0;
+    color: var(--color-muted);
+}
+
+.article-meta .topic-tag {
+    display: inline;
+    color: inherit;
 }
 
 .avatar {

@@ -23,8 +23,8 @@
         <script>requestAnimationFrame(()=>{requestAnimationFrame(()=>{if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')})})</script>
         {{- if eq .Type "Code" }}
         <script src="/javascripts/vendor/highlight.min.js" defer></script>
-        <script src="/javascripts/highlights.js" defer></script>
         {{- end }}
+        <script src="/javascripts/highlights.js" defer></script>
         <script src="/javascripts/favicon.js" defer></script>
     </head>
     <body>
@@ -40,25 +40,25 @@
                     {{- end }}
 
                     <div class="article-meta">
-                        <address itemprop="author" itemscope itemtype="https://schema.org/Person">
-                            <img
-                                class="avatar"
-                                src="/images/avatar.webp"
-                                alt=""
-                                width="32"
-                                height="32"
-                                itemprop="image"
-                            />
-                            <span itemprop="name">Attila Györffy</span>
+                        <address class="article-meta__author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                            written by
+                            <a href="/about/" rel="author" itemprop="url">
+                                <span itemprop="name">Attila</span>
+                            </a>
                         </address>
+                        on
                         <time datetime="{{ .DateISO }}" itemprop="datePublished">{{ .DateFormatted }}</time>
-                        <span class="read-time">{{ .ReadTime }}</span>
-                    </div>
-
-                    <div class="topic-tags">
-                        {{- range .Topics }}
-                        <a href="/blog/?topic={{ topicSlug . }}" class="topic-tag">{{ . }}</a>
+                        {{- if .Topics }}
+                        , tagged with
+                        <span class="topic-tags article-meta__topics">
+                            {{- range $index, $topic := .Topics -}}
+                            {{- if $index }}, {{ end -}}
+                            <a href="/blog/?topic={{ topicSlug $topic }}" class="topic-tag" rel="tag">{{ $topic }}</a>
+                            {{- end -}}
+                        </span>
                         {{- end }}
+                        .
+                        <span class="read-time">{{ .ReadTime }}</span>
                     </div>
                 </header>
 
