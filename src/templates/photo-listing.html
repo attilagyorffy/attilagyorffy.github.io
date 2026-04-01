@@ -37,14 +37,14 @@
                             />
                             {{- end }}
                         </figure>
-                        <header class="album-info">
+                        <div class="album-text">
                             <h2 class="album-title">{{ .Title }} {{ .CountryFlag }}</h2>
                             <p class="album-meta">
                                 <time datetime="{{ .Date }}">{{ .DateDisplay }}</time>
                                 · {{ .PhotoCount }} photos
                             </p>
-                        </header>
-                        <p class="album-summary">{{ .AlbumSummary }}</p>
+                            <p class="album-summary">{{ .AlbumSummary }}</p>
+                        </div>
                     </a>
                 </article>
                 {{- end }}

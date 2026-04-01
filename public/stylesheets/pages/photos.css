@@ -3,30 +3,27 @@
    ========================================================================== */
 
 .album-list {
+    margin-top: var(--space-xl);
+}
+
+/* Each album card — generous vertical rhythm, no divider lines */
+
+.album-item + .album-item {
     margin-top: var(--space-2xl);
 }
 
-.album-item {
-    padding: var(--space-xl) 0;
-    border-bottom: 1px solid var(--color-subtle);
-}
-
-.album-item:first-child {
-    padding-top: 0;
-}
-
-.album-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
+/* Link wrapper */
 
 .album-link {
     display: block;
-    transition: transform 0.2s ease;
 }
 
-.album-link:hover {
-    transform: translateX(4px);
+.album-link:hover .album-cover {
+    opacity: 0.88;
+}
+
+.album-link:hover .album-title {
+    color: var(--color-accent);
 }
 
 /* Cover images */
@@ -48,26 +45,32 @@
     object-fit: cover;
     border-radius: 2px;
     display: block;
+    transition: opacity 0.3s ease;
 }
 
-/* Album details */
+/* Text group — separated from images */
 
-.album-info {
-    margin-top: var(--space-m);
+.album-text {
+    margin-top: var(--space-l);
 }
+
+/* Title — the dominant text element */
 
 .album-title {
-    font-family: var(--font-mono);
-    font-size: var(--text-size-prose);
-    font-weight: 400;
+    font-family: var(--font-serif);
+    font-size: var(--text-size-prose-h);
+    font-weight: 600;
     color: var(--color-heading);
-    line-height: 1.4;
+    line-height: 1.25;
     margin: 0;
     text-transform: none;
     letter-spacing: normal;
     border-bottom: none;
     padding-bottom: 0;
+    transition: color 0.2s ease;
 }
+
+/* Meta line sits below the title */
 
 .album-meta {
     font-family: var(--font-mono);
@@ -78,11 +81,15 @@
     color: var(--color-muted);
 }
 
+/* Summary — readable prose, clear separation from heading */
+
 .album-summary {
-    font-size: var(--text-size-code);
-    line-height: 1.6;
-    margin: var(--space-s) 0 0 0;
+    font-family: var(--font-serif);
+    font-size: var(--text-size-body);
+    line-height: 1.65;
+    margin: var(--space-m) 0 0 0;
     max-inline-size: 55ch;
+    color: var(--color-mid);
 }
 
 /* Animations */
