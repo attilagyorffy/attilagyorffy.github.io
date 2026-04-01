@@ -22,7 +22,7 @@
     --page-pad-b: clamp(2.5rem, 1.5rem + 2vi, 5rem);
 
     /* Type scale — raw values */
-    --scale-xs: clamp(0.7rem, 0.66rem + 0.1vi, 0.78rem);
+    --scale-xs: clamp(0.75rem, 0.7rem + 0.1vi, 0.82rem);
     --scale-sm: clamp(0.8rem, 0.76rem + 0.12vi, 0.88rem);
     --scale-md: clamp(0.88rem, 0.84rem + 0.12vi, 0.95rem);
     --scale-base: clamp(1rem, 0.96rem + 0.12vi, 1.06rem);
