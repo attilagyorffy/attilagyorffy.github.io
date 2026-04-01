@@ -32,44 +32,35 @@
         <main class="page page--wide">
             {{ template "nav-stacked" . }}
 
-            <article class="article-grid" itemscope itemtype="https://schema.org/BlogPosting">
-                    <div class="author-col">
-                        <div class="avatar">
+            <article itemscope itemtype="https://schema.org/BlogPosting">
+                <header class="article-header">
+                    <h1 itemprop="headline">{{ .Title }}</h1>
+                    {{- if .Subtitle }}
+                    <p class="subtitle">{{ .Subtitle }}</p>
+                    {{- end }}
+
+                    <div class="article-meta">
+                        <address itemprop="author" itemscope itemtype="https://schema.org/Person">
                             <img
+                                class="avatar"
                                 src="/images/avatar.webp"
-                                alt="Attila Györffy"
-                                width="52"
-                                height="52"
+                                alt=""
+                                width="32"
+                                height="32"
+                                itemprop="image"
                             />
-                        </div>
-                        <div class="author-meta">
-                            <span class="author-name" itemprop="author">
-                                Attila Györffy
-                            </span>
-                            <span class="author-role">Product Engineer</span>
-                            <div class="post-label">{{ .ReadTime }}</div>
-                        </div>
+                            <span itemprop="name">Attila Györffy</span>
+                        </address>
+                        <time datetime="{{ .DateISO }}" itemprop="datePublished">{{ .DateFormatted }}</time>
+                        <span class="read-time">{{ .ReadTime }}</span>
                     </div>
-                    <div class="title-col">
-                        <h1 itemprop="headline">
-                            {{ .Title }}
-                        </h1>
-                        {{- if .Subtitle }}
-                        <p class="subtitle">
-                            {{ .Subtitle }}
-                        </p>
+
+                    <div class="topic-tags">
+                        {{- range .Topics }}
+                        <a href="/blog/?topic={{ topicSlug . }}" class="topic-tag">{{ . }}</a>
                         {{- end }}
-                        <div class="topic-tags">
-                            {{- range .Topics }}
-                            <a href="/blog/?topic={{ topicSlug . }}" class="topic-tag">{{ . }}</a>
-                            {{- end }}
-                        </div>
                     </div>
-                    <div class="date-col">
-                        <time datetime="{{ .DateISO }}" itemprop="datePublished"
-                            >{{ .DateFormatted }}</time
-                        >
-                    </div>
+                </header>
 
                 <div class="prose" itemprop="articleBody">
                     {{ .Body }}
