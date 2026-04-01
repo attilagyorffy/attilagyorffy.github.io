@@ -12,7 +12,6 @@
     margin-bottom: 0;
     padding: var(--space-l) 0;
     border-bottom: 1px solid var(--color-subtle);
-    transition: transform 0.2s ease;
 }
 
 .post-item.hidden {
@@ -39,8 +38,8 @@
     inset: 0;
 }
 
-.post-item:hover {
-    transform: translateX(8px);
+.post-item:hover .post-link {
+    color: var(--color-accent);
 }
 
 .post-title {
