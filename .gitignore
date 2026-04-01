@@ -17,3 +17,6 @@ src/photos/*/*.png
 
 # macOS
 .DS_Store
+
+# Local gest task artifacts
+.gest/
