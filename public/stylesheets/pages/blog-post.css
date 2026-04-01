@@ -51,6 +51,12 @@
 .article-meta .topic-tag {
     display: inline;
     color: inherit;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.article-meta .topic-tag::before {
+    content: "#";
 }
 
 .avatar {
