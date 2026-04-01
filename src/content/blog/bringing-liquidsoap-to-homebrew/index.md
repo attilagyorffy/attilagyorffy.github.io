@@ -12,9 +12,7 @@ read_time: "5 min read"
 footer: "If you have ever lost an evening to crossfade timing or codec arguments, come say hello. I am on [Bluesky](https://bsky.app/profile/attilagyorffy.com), [Mastodon](https://fosstodon.org/@attila), [~~Twitter~~ X](https://twitter.com/attilagyorffy), and technically [LinkedIn](https://linkedin.com/in/attilagyorffy), though discussing OCaml packaging there feels like bringing vinyl to a networking event."
 ---
 
-If you have ever tried to run an internet radio station, you have probably hit the same wall. You start with a playlist — maybe a folder of MP3s and a script that feeds them to Icecast. It works, until it does not. The stream dies at 3 AM and nobody notices. Two tracks play back-to-back with wildly different volumes. There is no crossfade, no jingles, no way to cut to a live input when a DJ shows up. You bolt on more scripts, more cron jobs, more glue. It gets ugly fast.
-
-This is the problem Liquidsoap solves.
+If you have ever tried to run an internet radio station, you have probably hit the same wall. You start with a playlist — maybe a folder of MP3s and a script that feeds them to Icecast. It works, until it does not. The stream dies at 3 AM and nobody notices. Two tracks play back-to-back with wildly different volumes. There is no crossfade, no jingles, no way to cut to a live input when a DJ shows up. You bolt on more scripts, more cron jobs, more glue. It gets ugly fast. This is the problem Liquidsoap solves.
 
 ## What Liquidsoap is
 

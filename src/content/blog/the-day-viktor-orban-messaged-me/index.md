@@ -13,7 +13,7 @@ footer: "If a chatbot wearing a politician's face has ever slid into your DMs, I
 
 More and more Hungarian Facebook users are encountering the same phenomenon: they comment under a political post, and within a few moments later they receive a Messenger message from "Viktor Orb&aacute;n" or another politician. The tone is friendly, the intention unmistakable: redirect the user into a new, one-way communication channel. These messages are not written by politicians — nor by the so called "peace warriors"[^1] — the entire process is automated. It is built on classic marketing chatbots, which have now become a key component of domestic campaign infrastructure.
 
-> The problem is that all this directly conflicts with European data-protection and election-integrity rules.
+<mark>The problem is that all this directly conflicts with European data-protection and election-integrity rules.</mark>
 
 Let's expand on that bit: The primary purpose of the message is not conversation but funneling the user into a unidirectional broadcast channel. Meta's Broadcast Channel feature is mass push-notifications from a political actor, without any news-feed filtering. The chatbot system logs everything by design: which narrative the user reacted to, which buttons they clicked, how active they are, what type of content they engage with. This profiling uses the same techniques as commercial marketing — except here, the purpose is political.
 
@@ -23,7 +23,7 @@ Legally, however, this is a grey zone. With the 2024 Regulation on the Transpare
 
 The regulators' goal is simple: the user should understand why they are receiving a particular message. Chatbot systems, however, conceal whether a mass campaign or behavior-based targeting is taking place.
 
-> This creates a direct political communication channel that is more powerful than any advertisement, yet bypasses traditional transparency requirements.
+<mark>This creates a direct political communication channel that is more powerful than any advertisement, yet bypasses traditional transparency requirements.</mark>
 
 ## And what can users do?
 
