@@ -40,6 +40,11 @@
             .page {
                 max-width: clamp(22rem, 55vi, 100rem);
             }
+            .intro {
+                max-inline-size: 34ch;
+                margin-inline: auto;
+                text-wrap: pretty;
+            }
             @media (min-width: 541px) {
                 .page { text-align: center; }
             }
@@ -73,6 +78,11 @@
             .intro + .intro {
                 margin-top: calc(-1 * var(--space-l));
             }
+            .trivia-line {
+                display: block;
+                min-height: 1.4em;
+                margin-top: var(--space-xs);
+            }
             #trivia-text {
                 will-change: contents;
                 transform: translateZ(0);
@@ -97,8 +107,10 @@
             <p class="intro" itemprop="description">
                 Lifelong learner software engineer with the
                 <a href="/about/">scout mindset</a>.
-                <span id="trivia-text">Partially Scandinavian.</span
-                ><span id="cursor" class="cursor">|</span>
+                <span class="trivia-line"
+                    ><span id="trivia-text">Partially Scandinavian.</span
+                    ><span id="cursor" class="cursor">|</span></span
+                >
             </p>
             <p class="intro">
                 I sometimes
