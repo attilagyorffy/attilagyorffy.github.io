@@ -205,10 +205,6 @@
         --color-subtle: color-mix(in oklch, var(--color-bg), white 15%);
         --color-accent: var(--palette-lavender);
     }
-
-    .topic-tag {
-        color: var(--color-subtle);
-    }
 }
 
 /* ==========================================================================
@@ -449,21 +445,17 @@ h2:first-of-type {
     letter-spacing: 0.12em;
     text-transform: uppercase;
     border: none;
+    color: var(--color-muted);
     padding: 0;
     transition: color 0.2s ease;
 }
 
 .topic-tag::before {
     content: "#";
-    color: var(--color-subtle);
     transition: color 0.2s ease;
 }
 
 .topic-tag:hover {
-    color: var(--color-accent);
-}
-
-.topic-tag:hover::before {
     color: var(--color-accent);
 }
 
@@ -480,8 +472,7 @@ h2:first-of-type {
     cursor: pointer;
 }
 
-.topic-filter .topic-tag[aria-pressed="true"],
-.topic-filter .topic-tag[aria-pressed="true"]::before {
+.topic-filter .topic-tag[aria-pressed="true"] {
     color: var(--color-accent);
 }
 
@@ -806,7 +797,7 @@ mark {
     font-family: var(--font-serif);
     font-size: var(--text-size-code);
     line-height: 1.6;
-    margin: 0.3rem 0 0 0;
+    margin: var(--space-xs) 0 0 0;
 }
 
 /* Thoughts/tweets listing */

@@ -16,8 +16,4 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
-
-    .topic-tag {
-        color: var(--color-subtle);
-    }
 }

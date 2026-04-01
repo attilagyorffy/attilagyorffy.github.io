@@ -55,7 +55,7 @@
 .post-summary {
     font-size: var(--text-size-code);
     line-height: 1.6;
-    margin: 0.3rem 0 0 0;
+    margin: var(--space-xs) 0 0 0;
 }
 
 /* Topic tags (shared with blog posts) */
@@ -74,21 +74,17 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     border: none;
+    color: var(--color-muted);
     padding: 0;
     transition: color 0.2s ease;
 }
 
 .topic-tag::before {
     content: "#";
-    color: var(--color-subtle);
     transition: color 0.2s ease;
 }
 
 .topic-tag:hover {
-    color: var(--color-accent);
-}
-
-.topic-tag:hover::before {
     color: var(--color-accent);
 }
 
@@ -105,8 +101,7 @@
     cursor: pointer;
 }
 
-.topic-filter .topic-tag[aria-pressed="true"],
-.topic-filter .topic-tag[aria-pressed="true"]::before {
+.topic-filter .topic-tag[aria-pressed="true"] {
     color: var(--color-accent);
 }
 
