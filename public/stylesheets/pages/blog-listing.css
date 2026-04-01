@@ -29,7 +29,7 @@
 
 .post-link,
 .post-link:visited {
-    color: var(--color-accent);
+    color: var(--color-heading);
     transition: color 0.2s ease;
 }
 
