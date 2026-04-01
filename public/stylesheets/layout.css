@@ -20,6 +20,34 @@
     overflow-x: hidden;
 }
 
+/* Skip navigation */
+
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    z-index: 100;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-bg);
+    color: var(--color-heading);
+    font-family: var(--font-mono);
+    font-size: var(--text-size-ui);
+    text-decoration: none;
+    border: 2px solid var(--color-accent);
+    border-radius: 4px;
+}
+
+.skip-link:focus {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    width: auto;
+    height: auto;
+}
+
 /* ==========================================================================
    Navigation
    ========================================================================== */
@@ -45,7 +73,7 @@
 
 .top-bar a {
     border-bottom: 1px dotted var(--color-subtle);
-    padding-bottom: 2px;
+    padding: 10px 0;
     transition:
         border-color 0.2s ease,
         color 0.2s ease;

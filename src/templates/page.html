@@ -18,7 +18,7 @@
         <script src="/javascripts/favicon.js" defer></script>
     </head>
     <body>
-        <main class="page{{ if .PageClass }} {{ .PageClass }}{{ end }}">
+        <main id="main" class="page{{ if .PageClass }} {{ .PageClass }}{{ end }}">
             {{ template "nav-home" . }}
 
             <h1>{{ .Title }}</h1>
