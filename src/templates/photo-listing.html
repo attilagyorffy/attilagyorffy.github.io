@@ -22,11 +22,11 @@
                 refuses to die.
             </p>
 
-            <ul class="album-list">
+            <section class="album-list" aria-label="Photo albums">
                 {{- range .Albums }}
-                <li class="album-item">
+                <article class="album-item">
                     <a href="/photos/{{ .Slug }}/" class="album-link">
-                        <div class="album-covers">
+                        <figure class="album-covers">
                             {{- $albumSlug := .Slug }}
                             {{- range .CoverImages }}
                             <img
@@ -36,18 +36,19 @@
                                 loading="lazy"
                             />
                             {{- end }}
-                        </div>
-                        <div class="album-info">
-                            <h2 class="album-title">{{ .Title }} {{ .CountryFlag }} {{ .DateDisplay }}</h2>
-                            <div class="album-summary">
-                                {{ .AlbumSummary }}
-                            </div>
-                            <div class="album-meta">{{ .PhotoCount }} photos</div>
-                        </div>
+                        </figure>
+                        <header class="album-info">
+                            <h2 class="album-title">{{ .Title }} {{ .CountryFlag }}</h2>
+                            <p class="album-meta">
+                                <time datetime="{{ .Date }}">{{ .DateDisplay }}</time>
+                                · {{ .PhotoCount }} photos
+                            </p>
+                        </header>
+                        <p class="album-summary">{{ .AlbumSummary }}</p>
                     </a>
-                </li>
+                </article>
                 {{- end }}
-            </ul>
+            </section>
 
             <footer class="site-footer">
                 <p>

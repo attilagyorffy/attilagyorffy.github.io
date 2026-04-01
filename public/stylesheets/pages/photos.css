@@ -1,15 +1,13 @@
 /* ==========================================================================
-   Photos — album listing cards
+   Photos — album listing
    ========================================================================== */
 
 .album-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    margin-top: var(--space-2xl);
 }
 
 .album-item {
-    padding: var(--space-l) 0;
+    padding: var(--space-xl) 0;
     border-bottom: 1px solid var(--color-subtle);
 }
 
@@ -19,6 +17,7 @@
 
 .album-item:last-child {
     border-bottom: none;
+    padding-bottom: 0;
 }
 
 .album-link {
@@ -30,10 +29,13 @@
     transform: translateX(4px);
 }
 
+/* Cover images */
+
 .album-covers {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-xs);
+    margin: 0;
 }
 
 .album-covers .album-cover:nth-child(n + 2) {
@@ -48,8 +50,10 @@
     display: block;
 }
 
+/* Album details */
+
 .album-info {
-    margin-top: var(--space-s);
+    margin-top: var(--space-m);
 }
 
 .album-title {
@@ -77,7 +81,8 @@
 .album-summary {
     font-size: var(--text-size-code);
     line-height: 1.6;
-    margin: var(--space-xs) 0 0 0;
+    margin: var(--space-s) 0 0 0;
+    max-inline-size: 55ch;
 }
 
 /* Animations */
