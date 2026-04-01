@@ -64,7 +64,7 @@
     --color-muted: color-mix(
         in oklch,
         var(--color-subtle),
-        var(--color-fg) 35%
+        var(--color-fg) 55%
     );
     --color-mid: color-mix(in oklch, var(--color-fg) 50%, var(--color-subtle));
     --color-backdrop: color-mix(in oklch, var(--color-bg) 95%, transparent);
