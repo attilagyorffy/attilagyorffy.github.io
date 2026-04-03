@@ -29,7 +29,7 @@
         <link rel="stylesheet" href="/stylesheets/reset.css" />
         <link rel="stylesheet" href="/stylesheets/layout.css" />
         <link rel="stylesheet" href="/stylesheets/theme.css" />
-        <script>requestAnimationFrame(()=>{requestAnimationFrame(()=>{if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')})})</script>
+        <script>if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')</script>
         <style>
             body {
                 display: flex;
@@ -42,11 +42,11 @@
             }
             .intro {
                 max-inline-size: 34ch;
-                margin-inline: auto;
                 text-wrap: pretty;
             }
             @media (min-width: 541px) {
                 .page { text-align: center; }
+                .intro { margin-inline: auto; }
             }
             h1 {
                 text-transform: uppercase;
