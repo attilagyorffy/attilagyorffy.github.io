@@ -53,7 +53,7 @@ This thing did not happen in a vacuum. A few genuinely helpful humans pointed me
 - [Sander Hahn](https://twitter.com/sanderhahn) --- helped debug the Phoenix API with curl, which is the developer equivalent of a doctor saying "let's have a look"
 
 <ul class="takeaway">
-<li>Use what the frameworks give you --- Ember's built-in JSONAPI adapter exists for a reason</li>
-<li>Write idiomatic Elixir --- use pipes, not variable bindings that look like Ruby with a funny accent</li>
-<li>CORS is not magic --- it is six headers and a plug, and you will survive</li>
+<li>Use what the frameworks give you — Ember's built-in JSONAPI adapter exists for a reason</li>
+<li>Write idiomatic Elixir — use pipes, not variable bindings that look like Ruby with a funny accent</li>
+<li>CORS is not magic — it is six headers and a plug, and you will survive</li>
 </ul>

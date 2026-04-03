@@ -12,15 +12,15 @@ read_time: "7 min read"
 footer: "If you care about SSL, FreeBSD, or the security of your stack, I'd love to hear from you. Find me on [Bluesky](https://bsky.app/profile/attilagyorffy.com), [Mastodon](https://fosstodon.org/@attila), [~~Twitter~~ X](https://twitter.com/attilagyorffy), or [LinkedIn](https://linkedin.com/in/attilagyorffy). You can also check out my FreeBSD fork and other projects on [GitHub](https://github.com/attilagyorffy)."
 ---
 
-OpenSSL is that friend who keeps crashing your car and somehow still has your spare keys. Heartbleed in 2014 didn't just leak private keys on roughly 17% of the internet's TLS servers -- it did so because of plain old C memory mismanagement, the programming equivalent of leaving your front door open and acting shocked when someone walks in. The codebase had ballooned to the point where nobody on earth could properly review it, which is exactly how you'd design software if your goal was a security disaster. LibreSSL was the OpenBSD team basically saying "right, give it here," forking the whole thing, gutting the nonsense, and building something a human being could actually audit. On FreeBSD, you can swap it in today.
+OpenSSL is that friend who keeps crashing your car and somehow still has your spare keys. Heartbleed in 2014 didn't just leak private keys on roughly 17% of the internet's TLS servers --- it did so because of plain old C memory mismanagement, the programming equivalent of leaving your front door open and acting shocked when someone walks in. The codebase had ballooned to the point where nobody on earth could properly review it, which is exactly how you'd design software if your goal was a security disaster. LibreSSL was the OpenBSD team basically saying "right, give it here," forking the whole thing, gutting the nonsense, and building something a human being could actually audit. On FreeBSD, you can swap it in today.
 
 ## Replacing OpenSSL with LibreSSL in FreeBSD 10.3 base
 
-Thanks to [Bernard Spil](https://twitter.com/sp1l) and the [HardenedBSD](http://hardenedbsd.org/) team -- people who apparently enjoy doing thankless, unglamorous security work so the rest of us can sleep at night -- jamming LibreSSL into the FreeBSD base system is now surprisingly not-terrible.
+Thanks to [Bernard Spil](https://twitter.com/sp1l) and the [HardenedBSD](http://hardenedbsd.org/) team --- people who apparently enjoy doing thankless, unglamorous security work so the rest of us can sleep at night --- jamming LibreSSL into the FreeBSD base system is now surprisingly not-terrible.
 
-What I did was steal -- sorry, "build upon" -- Bernard's existing patches and make them less painful to use. I branched off from the latest release tree (releng/10.3), dropped the current portable LibreSSL version (2.4.1) into `src/crypto`, and applied Bernard's patches as proper git commits, like a civilised person.
+What I did was steal --- sorry, "build upon" --- Bernard's existing patches and make them less painful to use. I branched off from the latest release tree (releng/10.3), dropped the current portable LibreSSL version (2.4.1) into `src/crypto`, and applied Bernard's patches as proper git commits, like a civilised person.
 
-Doing it this way -- via a git fork instead of lobbing raw patch files at people -- has a few advantages that should be obvious but apparently need spelling out:
+Doing it this way --- via a git fork instead of lobbing raw patch files at people --- has a few advantages that should be obvious but apparently need spelling out:
 
 - You can check out the source that already contains the patches and that is guaranteed to compile
 - I expect this method to be easier to maintain as we are moving towards the release of FreeBSD 11
@@ -62,7 +62,7 @@ There have been conversations about shoving LibreSSL into node, but the idea got
 
 ## How about alternative SSL implementations?
 
-The Core Infrastructure Initiative has been trying to modernise OpenSSL, which is a bit like renovating a house while it's on fire -- technically possible, but the pace is glacial and everyone's still coughing. LibreSSL took the far more satisfying approach: <mark>delete tens of thousands of lines of dead code, rip out the custom allocator that hid Heartbleed from address sanitizers, and enforce modern memory practices</mark>. That's not refactoring, that's an exorcism. And it's exactly why I'd pick LibreSSL over a "reformed" OpenSSL any day of the week.
+The Core Infrastructure Initiative has been trying to modernise OpenSSL, which is a bit like renovating a house while it's on fire --- technically possible, but the pace is glacial and everyone's still coughing. LibreSSL took the far more satisfying approach: <mark>delete tens of thousands of lines of dead code, rip out the custom allocator that hid Heartbleed from address sanitizers, and enforce modern memory practices</mark>. That's not refactoring, that's an exorcism. And it's exactly why I'd pick LibreSSL over a "reformed" OpenSSL any day of the week.
 
 Google's BoringSSL deserves a mention too, but Google being Google, they built it for themselves and then basically put up a sign that says "don't touch this":
 
@@ -72,7 +72,7 @@ So yeah, that rules out BoringSSL unless you fancy chasing an API that changes w
 
 ## Will LibreSSL land in FreeBSD base?
 
-Honestly? Who knows. Some ports still refuse to build against LibreSSL like stubborn toddlers, and FreeBSD 11 is already past code freeze, so it'll ship with good old OpenSSL because that's how these things always go. On the bright side, OpenBSD already ships LibreSSL in base -- because of course they do, they wrote the thing -- and the HardenedBSD team has successfully built FreeBSD 11 with LibreSSL. The groundwork is there. It's a question of when, not whether, the rest of the ecosystem stops dragging its feet.
+Honestly? Who knows. Some ports still refuse to build against LibreSSL like stubborn toddlers, and FreeBSD 11 is already past code freeze, so it'll ship with good old OpenSSL because that's how these things always go. On the bright side, OpenBSD already ships LibreSSL in base --- because of course they do, they wrote the thing --- and the HardenedBSD team has successfully built FreeBSD 11 with LibreSSL. The groundwork is there. It's a question of when, not whether, the rest of the ecosystem stops dragging its feet.
 
 ## Why a git fork instead of patches?
 

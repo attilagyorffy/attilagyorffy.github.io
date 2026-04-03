@@ -631,6 +631,7 @@ func newMarkdown() goldmark.Markdown {
 		goldmark.WithExtensions(
 			extension.Footnote,
 			extension.Strikethrough,
+			extension.Typographer,
 		),
 		goldmark.WithRendererOptions(
 			html.WithUnsafe(), // Allow raw HTML passthrough (<mark>, <ul class="takeaway">, etc.).

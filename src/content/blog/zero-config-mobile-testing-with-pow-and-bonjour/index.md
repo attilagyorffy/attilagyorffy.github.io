@@ -1,8 +1,8 @@
 ---
 title: "Zero-Config Mobile Testing with Pow and Bonjour"
-subtitle: "pow-mDNS uses Bonjour to make your Pow apps accessible from phones, tablets, and other computers on the local network -- no IP addresses, no extra servers."
+subtitle: "pow-mDNS uses Bonjour to make your Pow apps accessible from phones, tablets, and other computers on the local network — no IP addresses, no extra servers."
 date: 2014-12-11
-description: "pow-mDNS uses Bonjour to make your Pow apps accessible from phones, tablets, and other computers on the local network -- no IP addresses, no extra servers."
+description: "pow-mDNS uses Bonjour to make your Pow apps accessible from phones, tablets, and other computers on the local network — no IP addresses, no extra servers."
 summary: "I wanted to load my Rails app on an iPad without looking up my IP address every five minutes. So I made mDNS do it for me."
 topics:
   - Testing
@@ -16,23 +16,23 @@ Here's how testing on real devices usually goes: you look up your IP address, fo
 
 ## The problem
 
-If you've ever touched a Rails app, you probably know Pow -- the beautifully lazy zero-config Rack server where you symlink your app into `$HOME/.pow/` and suddenly it's available at a `.dev` domain. No running `rails server`, no port numbers, no nonsense. You symlink it and it works. It's the closest thing to sorcery that Ruby developers have ever experienced.
+If you've ever touched a Rails app, you probably know Pow --- the beautifully lazy zero-config Rack server where you symlink your app into `$HOME/.pow/` and suddenly it's available at a `.dev` domain. No running `rails server`, no port numbers, no nonsense. You symlink it and it works. It's the closest thing to sorcery that Ruby developers have ever experienced.
 
-Here's the catch, though -- and there's always a catch. Pow's magic relies on a local DNS resolver that routes everything to `127.0.0.1`. That resolver only exists on your machine. So those lovely `.dev` domains? Completely invisible to everything else on the network. Your iPhone can't see them. Your iPad can't see them. Your colleague's laptop certainly can't see them. It's like throwing a party and forgetting to send out the address.
+Here's the catch, though --- and there's always a catch. Pow's magic relies on a local DNS resolver that routes everything to `127.0.0.1`. That resolver only exists on your machine. So those lovely `.dev` domains? Completely invisible to everything else on the network. Your iPhone can't see them. Your iPad can't see them. Your colleague's laptop certainly can't see them. It's like throwing a party and forgetting to send out the address.
 
 Basecamp's [xip.io](http://xip.io/) was one workaround: a clever public wildcard DNS service that lets you hit `myapp.192.168.1.107.xip.io` from any device on the same network. And look, it works. But you need to know your current IP address, which changes every time you switch networks or your DHCP lease decides to renew itself. So now you're running `ifconfig` every twenty minutes like some kind of network archaeologist. That's not zero-config. That's just config with extra steps.
 
 ## How pow-mDNS solves it
 
-The answer was sitting right under our noses the whole time: mDNS -- multicast DNS, the protocol behind Apple's [Bonjour](https://developer.apple.com/bonjour/index.html). mDNS resolves hostnames to IP addresses on local networks without a dedicated name server. It's the same technology that lets your Mac magically find printers, AirPlay devices, and other computers without you lifting a finger. And if it can find a printer -- which, frankly, is a miracle every time -- there's no reason it can't advertise a web app.
+The answer was sitting right under our noses the whole time: mDNS --- multicast DNS, the protocol behind Apple's [Bonjour](https://developer.apple.com/bonjour/index.html). mDNS resolves hostnames to IP addresses on local networks without a dedicated name server. It's the same technology that lets your Mac magically find printers, AirPlay devices, and other computers without you lifting a finger. And if it can find a printer --- which, frankly, is a miracle every time --- there's no reason it can't advertise a web app.
 
-pow-mDNS uses Bonjour to advertise each of your Pow apps as an HTTP service on the local network. Combined with xip.io for the actual DNS resolution, any Bonjour-capable device on the network can discover and access your apps without you ever typing an IP address. The IP lookup, the xip.io domain construction -- all that tedious rubbish you were doing by hand? pow-mDNS does it for you. You're welcome.
+pow-mDNS uses Bonjour to advertise each of your Pow apps as an HTTP service on the local network. Combined with xip.io for the actual DNS resolution, any Bonjour-capable device on the network can discover and access your apps without you ever typing an IP address. The IP lookup, the xip.io domain construction --- all that tedious rubbish you were doing by hand? pow-mDNS does it for you. You're welcome.
 
 Look, I'm not going to stand here and pretend I reinvented networking. Most of the heavy lifting belongs to Pow, xip.io, and mDNS. What pow-mDNS does is wire them together into a single command so that <mark>the developer experience actually matches the promise of zero-configuration</mark>. Because apparently someone had to do the plumbing, and that someone was me.
 
 ## Why not use existing tools?
 
-Yeah, tools like GhostLab and Adobe Edge Inspect exist. They solve the same problem -- synchronized cross-device testing -- and they work fine for a lot of people. But they're closed-source commercial products that want your money, and some of them need a proprietary agent installed on each device, which is roughly as fun as a tax audit. I wanted something open source, stitched together from freely available parts (Pow and xip.io are both open source), that just bloody works out of the box. No license key. No phoning home. No guilt.
+Yeah, tools like GhostLab and Adobe Edge Inspect exist. They solve the same problem --- synchronized cross-device testing --- and they work fine for a lot of people. But they're closed-source commercial products that want your money, and some of them need a proprietary agent installed on each device, which is roughly as fun as a tax audit. I wanted something open source, stitched together from freely available parts (Pow and xip.io are both open source), that just bloody works out of the box. No license key. No phoning home. No guilt.
 
 ## What comes next
 

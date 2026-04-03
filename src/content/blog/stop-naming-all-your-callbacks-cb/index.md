@@ -39,11 +39,11 @@ function doSomething(foo, bar, cb) {
 }
 ```
 
-The outer function takes a `cb`. Every step inside the waterfall also takes a `cb`. They're completely different functions in completely different scopes, wearing the same bloody name like it's a uniform. Sure, the runtime sorts it out through lexical scoping -- it's a computer, that's its whole job. But you're not a computer. You're a person scrolling through code at 4pm on a Friday, and <mark>identical names across nested scopes are exactly the kind of thing that makes you reach for the wrong reference when editing under pressure</mark>.
+The outer function takes a `cb`. Every step inside the waterfall also takes a `cb`. They're completely different functions in completely different scopes, wearing the same bloody name like it's a uniform. Sure, the runtime sorts it out through lexical scoping --- it's a computer, that's its whole job. But you're not a computer. You're a person scrolling through code at 4pm on a Friday, and <mark>identical names across nested scopes are exactly the kind of thing that makes you reach for the wrong reference when editing under pressure</mark>.
 
 The fix is so stupidly simple you'll be annoyed nobody told you sooner: just give each scope a different name. That's it. That's the whole trick.
 
-- The parent function's callback is called `callback` -- those extra six characters cost nothing and immediately signal "this is the outer continuation"
+- The parent function's callback is called `callback` --- those extra six characters cost nothing and immediately signal "this is the outer continuation"
 - Each waterfall step's callback is called `next`, which conveys exactly what it does: advance to the next step in a linear sequence
 
 Same example, now with a shred of self-respect:
@@ -72,9 +72,9 @@ function doSomething(foo, bar, callback) {
 }
 ```
 
-Suddenly, the names actually mean something. `callback` is obviously the outer function's exit door -- no ambiguity, no squinting required. `next` reads like what it does: "move along to the next step, mate." There's no shadowing, no staring at the screen wondering which `cb` is which, and zero chance of accidentally firing the parent's callback from inside a waterfall step and ruining everyone's evening.
+Suddenly, the names actually mean something. `callback` is obviously the outer function's exit door --- no ambiguity, no squinting required. `next` reads like what it does: "move along to the next step, mate." There's no shadowing, no staring at the screen wondering which `cb` is which, and zero chance of accidentally firing the parent's callback from inside a waterfall step and ruining everyone's evening.
 
-These tiny naming decisions add up fast. In callback-heavy Node code -- where five levels of nesting is depressingly normal -- the gap between lazy names and intentional ones is <mark>the difference between code you can maintain and code you can only rewrite</mark>.
+These tiny naming decisions add up fast. In callback-heavy Node code --- where five levels of nesting is depressingly normal --- the gap between lazy names and intentional ones is <mark>the difference between code you can maintain and code you can only rewrite</mark>.
 
 <ul class="takeaway">
 <li>Name the outer function's callback <code>callback</code></li>

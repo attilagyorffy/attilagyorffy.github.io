@@ -13,7 +13,7 @@ As a mentor, I help teams raise engineering standards through thoughtful code re
 
 ## Senior Backend Software Engineer at Qonto
 
-<p class="role-period">March 2022 -- Present · Remote, freelance · Paris, France</p>
+<p class="role-period">March 2022 – Present · Remote, freelance · Paris, France</p>
 
 Qonto is the leading European business finance solution, listed in the French Tech #Next40. It simplifies everything from everyday banking and financing to bookkeeping and spend management.
 
@@ -49,7 +49,7 @@ Qonto is the leading European business finance solution, listed in the French Te
 
 ## Senior Software Engineer at Shinrai
 
-<p class="role-period">June 2021 -- September 2021 · Contract · Budapest, Hungary</p>
+<p class="role-period">June 2021 – September 2021 · Contract · Budapest, Hungary</p>
 
 <ul class="takeaway">
     <li>
@@ -74,7 +74,7 @@ Qonto is the leading European business finance solution, listed in the French Te
 
 ## Senior Software Engineer at Bitrise
 
-<p class="role-period">December 2020 -- June 2021 · Budapest, Hungary</p>
+<p class="role-period">December 2020 – June 2021 · Budapest, Hungary</p>
 
 Bitrise is a global mobile CI/CD platform serving customers from startups to Fortune 500s.
 
@@ -102,7 +102,7 @@ Bitrise is a global mobile CI/CD platform serving customers from startups to For
 
 ## Senior Ruby Developer at Emarsys
 
-<p class="role-period">May 2019 -- October 2020 · Budapest, Hungary</p>
+<p class="role-period">May 2019 – October 2020 · Budapest, Hungary</p>
 
 Emarsys is a global marketing automation platform (now part of SAP) used by thousands of businesses to drive customer engagement and revenue.
 
@@ -130,7 +130,7 @@ Emarsys is a global marketing automation platform (now part of SAP) used by thou
 
 ## Full-stack Freelancer
 
-<p class="role-period">November 2014 -- February 2020 · Budapest, Hungary</p>
+<p class="role-period">November 2014 – February 2020 · Budapest, Hungary</p>
 
 Worked as a full-stack consultant for clients across the UK and US, delivering end-to-end product development in Ruby/Rails and JavaScript. Helped teams ship faster, modernize legacy systems, and adopt maintainable engineering practices.
 
@@ -160,11 +160,11 @@ Worked as a full-stack consultant for clients across the UK and US, delivering e
 
 ## Senior Software Developer at Shinrai
 
-<p class="role-period">December 2017 -- April 2019 · Budapest, Hungary</p>
+<p class="role-period">December 2017 – April 2019 · Budapest, Hungary</p>
 
 Shinrai is a Hungarian fintech company focused on cryptocurrency payment processing and digital asset services for businesses.
 
-Co-authored a fully asynchronous, currency-agnostic background service in Ruby responsible for tracking, validating, and processing crypto assets across multiple exchanges. The system's architecture -- built around strict idempotence, self-correction, and rapid automatic recovery -- delivered core business benefits:
+Co-authored a fully asynchronous, currency-agnostic background service in Ruby responsible for tracking, validating, and processing crypto assets across multiple exchanges. The system's architecture – built around strict idempotence, self-correction, and rapid automatic recovery – delivered core business benefits:
 
 <ul class="takeaway">
     <li>
@@ -188,7 +188,7 @@ Co-authored a fully asynchronous, currency-agnostic background service in Ruby r
 
 ## JavaScript / Ruby on Rails Developer at TerraCycle
 
-<p class="role-period">June 2014 -- December 2014 · Budapest, Hungary</p>
+<p class="role-period">June 2014 – December 2014 · Budapest, Hungary</p>
 
 TerraCycle is an international upcycling and recycling company that collects difficult-to-recycle packaging and repurposes the material into new products.
 
@@ -214,7 +214,7 @@ TerraCycle is an international upcycling and recycling company that collects dif
 
 ## Developer and Ruby/Rails Trainer at Unboxed
 
-<p class="role-period">May 2009 -- May 2014 · London, United Kingdom</p>
+<p class="role-period">May 2009 – May 2014 · London, United Kingdom</p>
 
 Unboxed is a leading Ruby on Rails consultancy in London delivering digital products for government, public sector, and private-sector clients.
 
@@ -247,7 +247,7 @@ Unboxed is a leading Ruby on Rails consultancy in London delivering digital prod
 
 ## Web Developer at BeatThatQuote.com
 
-<p class="role-period">March 2009 -- May 2009 · London, United Kingdom</p>
+<p class="role-period">March 2009 – May 2009 · London, United Kingdom</p>
 
 BeatThatQuote was a UK price-comparison platform for financial products, later acquired by Google.
 
@@ -272,7 +272,7 @@ BeatThatQuote was a UK price-comparison platform for financial products, later a
 
 ## Web Developer at Last.fm
 
-<p class="role-period">November 2007 -- December 2008 · London, United Kingdom</p>
+<p class="role-period">November 2007 – December 2008 · London, United Kingdom</p>
 
 Last.fm is one of the first music discovery services, providing personalised recommendations based on listening history.
 
@@ -302,9 +302,9 @@ Last.fm is one of the first music discovery services, providing personalised rec
 
 ## Web Developer at Webforce Ltd.
 
-<p class="role-period">May 2006 -- September 2007 · Budapest, Hungary</p>
+<p class="role-period">May 2006 – September 2007 · Budapest, Hungary</p>
 
-Webforce was a Budapest-based web development and hosting company. Here I played a pioneering role in introducing Ruby on Rails in Hungary -- likely delivering one of the first fully deployed, production Rails applications in the country.
+Webforce was a Budapest-based web development and hosting company. Here I played a pioneering role in introducing Ruby on Rails in Hungary – likely delivering one of the first fully deployed, production Rails applications in the country.
 
 <ul class="takeaway">
     <li>
@@ -328,7 +328,7 @@ Webforce was a Budapest-based web development and hosting company. Here I played
 
 ## Front-end Developer at Carnation
 
-<p class="role-period">2005 -- 2006 · Budapest, Hungary</p>
+<p class="role-period">2005 – 2006 · Budapest, Hungary</p>
 
 Carnation was a digital agency building marketing and web solutions for major brands. I focused on front-end development, delivering standards-compliant interfaces during an era of highly fragmented browser support.
 

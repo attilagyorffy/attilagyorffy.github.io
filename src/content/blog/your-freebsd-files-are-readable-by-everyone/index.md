@@ -12,7 +12,7 @@ read_time: "3 min read"
 footer: "If you enjoyed this little tour of FreeBSD permissions and want to chat about server hardening, find me on [Bluesky](https://bsky.app/profile/attilagyorffy.com), [Mastodon](https://fosstodon.org/@attila), [~~Twitter~~ X](https://twitter.com/attilagyorffy), or even [LinkedIn](https://linkedin.com/in/attilagyorffy) if you're feeling professional about it. The rest of my tinkering lives on [GitHub](https://github.com/attilagyorffy)."
 ---
 
-<mark>Every file you create on a stock FreeBSD system is readable by every other user on that machine</mark>. Your database credentials, your API keys, your private config -- all of it just sitting there with `-rw-r--r--` permissions like a diary left open on a park bench. On a shared server, that is not a quirky default. It is the operating system actively working against you.
+<mark>Every file you create on a stock FreeBSD system is readable by every other user on that machine</mark>. Your database credentials, your API keys, your private config --- all of it just sitting there with `-rw-r--r--` permissions like a diary left open on a park bench. On a shared server, that is not a quirky default. It is the operating system actively working against you.
 
 Right, quick refresher for those of you who blocked this out after university. UNIX file permissions come in three flavours: the owning user, the owning group, and everyone else (charmingly called "others" or "world," because apparently the whole world deserves to read your production secrets). When you create a file, the system decides what permissions it gets based on something called the umask. Here is what the default looks like:
 
@@ -24,7 +24,7 @@ $ ls -la test.txt
 
 The permissions `-rw-r--r--` mean the owner can read and write, and literally everyone else on the machine can read it too. For some throwaway temp file, sure, who cares. But think about what you actually create on a server: application configs, log files, database dumps, deployment scripts. All of it is world-readable by default. It is like leaving your front door open and calling it a feature.
 
-Now, you could manually `chmod` every single file after you create it, but let's be honest -- you won't. You will forget by the second file. Your scripts definitely will not do it. What you actually need is to fix the default so you stop shooting yourself in the foot. That is what umask does.
+Now, you could manually `chmod` every single file after you create it, but let's be honest --- you won't. You will forget by the second file. Your scripts definitely will not do it. What you actually need is to fix the default so you stop shooting yourself in the foot. That is what umask does.
 
 ## What is umask
 
@@ -49,7 +49,7 @@ default:\
         :umask=022:
 ```
 
-Swap `022` for `027` in your editor, save it, and then -- because nothing on FreeBSD can ever just work without a second step -- rebuild the login capability database:
+Swap `022` for `027` in your editor, save it, and then --- because nothing on FreeBSD can ever just work without a second step --- rebuild the login capability database:
 
 ```bash
 $ sudo cap_mkdb /etc/login.conf
@@ -65,7 +65,7 @@ $ ls -la test2.txt
 -rw-r-----  1 vagrant  vagrant  0 Jan 28 23:19 test2.txt
 ```
 
-Look at that -- the `others` column is blissfully empty. Randos on your system can no longer casually browse your files like it is a public library. If you are feeling particularly paranoid, you can go nuclear with `077` and kill group access too, but `027` strikes a decent balance between security and the practical reality that services often need group-level read access to not fall over.
+Look at that --- the `others` column is blissfully empty. Randos on your system can no longer casually browse your files like it is a public library. If you are feeling particularly paranoid, you can go nuclear with `077` and kill group access too, but `027` strikes a decent balance between security and the practical reality that services often need group-level read access to not fall over.
 
 <ul class="takeaway">
 <li>Change the default umask from <code>022</code> to <code>027</code> in <code>/etc/login.conf</code></li>
