@@ -8,7 +8,7 @@
             content="{{ .Description }}"
         />
         <link rel="stylesheet" href="/stylesheets/pages/thoughts.css" />
-        <script>requestAnimationFrame(()=>{requestAnimationFrame(()=>{if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')})})</script>
+        <script>if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')</script>
     </head>
     <body>
         <main class="page">

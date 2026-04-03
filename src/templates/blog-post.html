@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="/stylesheets/typography.css" />
         <link rel="stylesheet" href="/stylesheets/pages/blog-listing.css" />
         <link rel="stylesheet" href="/stylesheets/pages/blog-post.css" />
-        <script>requestAnimationFrame(()=>{requestAnimationFrame(()=>{if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')})})</script>
+        <script>if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')</script>
         {{- if eq .Type "Code" }}
         <script src="/javascripts/vendor/highlight.min.js" defer></script>
         {{- end }}
