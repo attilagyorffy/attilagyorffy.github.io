@@ -14,8 +14,15 @@
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@attilagyorffy" />
         <link rel="stylesheet" href="/stylesheets/typography.css" />
+        {{- if eq .Slug "about" }}
+        <link rel="stylesheet" href="/stylesheets/lightbox.css" />
+        <link rel="stylesheet" href="/stylesheets/pages/about.css" />
+        {{- end }}
         <script>if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js-animated')</script>
         <script src="/javascripts/favicon.js" defer></script>
+        {{- if eq .Slug "about" }}
+        <script src="/javascripts/youtube-player.js" defer></script>
+        {{- end }}
     </head>
     <body>
         <main id="main" class="page{{ if .PageClass }} {{ .PageClass }}{{ end }}">
@@ -36,5 +43,13 @@
             {{- end }}
         </main>
 
+        {{- if eq .Slug "about" }}
+        <div class="lightbox" id="lightbox" role="dialog" aria-label="Video player" aria-hidden="true">
+            <button class="lightbox-close" aria-label="Close">&times;</button>
+            <div class="lightbox-content">
+                <div class="lightbox-player"></div>
+            </div>
+        </div>
+        {{- end }}
     </body>
 </html>

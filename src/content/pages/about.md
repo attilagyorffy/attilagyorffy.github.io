@@ -9,7 +9,7 @@ Most of my career has been about stepping into complex systems and understanding
 
 ## The Scout Mindset
 
-My approach draws inspiration from [Julia Galef's *scout mindset*](https://www.youtube.com/watch?v=w4RLfVxTGH4&ref=scout.engineer): seeking an accurate map of reality, even when it's inconvenient. Applied to software, it means:
+My approach draws inspiration from <a href="https://www.youtube.com/watch?v=w4RLfVxTGH4" class="yt-trigger" data-video-id="w4RLfVxTGH4" data-video-title="Julia Galef: Why you think you're right — even if you're wrong">Julia Galef's <em>scout mindset</em></a>: seeking an accurate map of reality, even when it's inconvenient. Applied to software, it means:
 
 <ul class="takeaway">
     <li>
