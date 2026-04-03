@@ -4,7 +4,7 @@
 
 .prose p.role-skills {
     font-size: var(--text-size-body);
-    color: var(--color-mid);
+    color: var(--color-muted);
     letter-spacing: 0.01em;
     line-height: 1.7;
     margin-top: calc(-1 * var(--space-xs));

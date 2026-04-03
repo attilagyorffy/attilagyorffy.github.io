@@ -81,7 +81,7 @@ mark {
 
 .prose p.role-period {
     font-size: var(--text-size-body);
-    color: var(--color-mid);
+    color: var(--color-muted);
 }
 
 /* Takeaway callout */
