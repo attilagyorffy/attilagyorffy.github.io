@@ -49,6 +49,7 @@
     line-height: 1.4;
     color: var(--color-heading);
     margin: 0;
+    text-wrap: balance;
 }
 
 .post-summary {
