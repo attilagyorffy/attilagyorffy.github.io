@@ -27,7 +27,7 @@ This architecture forms what's known as the Fediverse: a network of connected bu
 
 A **protocol** is an open language that lets different systems communicate. The web itself runs on one (HTTP); email runs on another (SMTP). Anyone can build software that speaks these languages and instantly connect to everyone else who does. A **platform**, by contrast, is a closed environment controlled by a single company — like Twitter, Facebook, or TikTok — where you can only communicate inside its walls, under its terms.
 
-> A protocol is like a language anyone can learn and use freely. A platform is a private club that requires its own dialect — and can silence anyone who doesn't follow house rules.
+A protocol is like a language anyone can learn and use freely. A platform is a private club that requires its own dialect — and can silence anyone who doesn't follow house rules.
 
 Protocols — being open — grow and improve over time as people build new uses on top of them. Platforms merely accumulate users, until the owner changes direction or the audience leaves. This is the major issue with centralized systems. Mastodon is **decentralized** (many servers) and federated (those servers can talk). This means that your data is not tied to a single company's server.
 
@@ -39,7 +39,7 @@ Freedom online isn't about posting anywhere — it's about owning who you are th
 
 Digital self: your identity — posts, connections, and history — should survive beyond any one company.
 
-> If switching platforms feels like losing your memories, you don't own them. Changing platforms should be as easy as changing email providers — your address, history, and contacts should travel with you.
+If switching platforms feels like losing your memories, you don't own them. Changing platforms should be as easy as changing email providers — your address, history, and contacts should travel with you.
 
 ## The Hidden Burdens
 
@@ -55,13 +55,16 @@ When you build your online life on a corporate platform, that company controls t
 
 You don't have to be an engineer to reclaim that control: use tools built on open standards (email, RSS, Matrix, Mastodon). Back up and export your data regularly. Support projects that let you migrate rather than lock you in.
 
-### What is RSS?
+<details class="toggle">
+<summary>What is RSS?</summary>
 
 Some readers may be too young to even have heard of RSS, so I should clarify a few things. RSS was the gloriously boring, open standard that let anyone publish updates from their site, and anyone else subscribe with any reader they liked. No algorithms, no lock-in, no "we've decided you don't see posts from this friend anymore." Just a feed of what you actually asked for.
 
 In other words, RSS was doing — decades ago — what Facebook Pages pretend to do: let you follow updates from sources you care about. The difference is that RSS didn't throttle your reach, didn't demand payment to "boost" your own audience, and didn't rearrange your feed based on corporate mood swings. It simply delivered what you subscribed to, like a competent postal service that never tried to sell your mail back to you.
 
 Think of RSS as the open, polite version of Facebook Pages — before the platforms realized they could tax attention.
+
+</details>
 
 <mark>Freedom online is less polished than a single app — but it endures.</mark> The web began as a network of protocols. Its future depends on whether we remember how to build and share roads again.
 

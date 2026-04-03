@@ -100,6 +100,57 @@ mark {
     color: var(--color-accent);
 }
 
+/* Toggle card (collapsible section) */
+
+.prose details.toggle {
+    margin: var(--space-l) 0;
+    border: 1px solid var(--color-subtle);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.prose details.toggle summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: var(--space-m) var(--space-l);
+    font-family: var(--font-mono);
+    font-size: var(--text-size-body);
+    font-weight: 400;
+    color: var(--color-heading);
+    list-style: none;
+    user-select: none;
+}
+
+.prose details.toggle summary::-webkit-details-marker {
+    display: none;
+}
+
+.prose details.toggle summary::after {
+    content: "";
+    width: 0.6em;
+    height: 0.6em;
+    border-right: 2px solid var(--color-subtle);
+    border-bottom: 2px solid var(--color-subtle);
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    margin-left: var(--space-m);
+}
+
+.prose details.toggle[open] summary::after {
+    transform: rotate(-135deg);
+}
+
+.prose details.toggle > :not(summary) {
+    padding: 0 var(--space-l);
+}
+
+.prose details.toggle > p:last-child {
+    margin-bottom: var(--space-m);
+}
+
 /* Footnotes */
 
 .prose .footnotes {
