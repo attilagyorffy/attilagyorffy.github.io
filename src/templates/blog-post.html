@@ -41,22 +41,22 @@
 
                     <div class="article-meta">
                         <address class="article-meta__author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                            written by
+                            Written by
                             <a href="/about/" rel="author" itemprop="url">
                                 <span itemprop="name">Attila</span>
                             </a>
                         </address>
                         on
                         <time datetime="{{ .DateISO }}" itemprop="datePublished">{{ .DateFormatted }}</time>
-                        {{- if .Topics }}
-                        , tagged with
+                        {{- if .Topics -}}
+                        , tagged
                         <span class="topic-tags article-meta__topics">
                             {{- range $index, $topic := .Topics -}}
                             {{- if $index }}, {{ end -}}
                             <a href="/blog/?topic={{ topicSlug $topic }}" class="topic-tag" rel="tag">{{ $topic }}</a>
                             {{- end -}}
                         </span>
-                        {{- end }}
+                        {{- end -}}
                         .
                         <span class="read-time">{{ .ReadTime }}</span>
                     </div>
