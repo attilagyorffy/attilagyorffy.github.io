@@ -49,6 +49,7 @@ type Page struct {
 	Description string `yaml:"description"`
 	Layout      string `yaml:"layout"`
 	PageClass   string `yaml:"page_class"`
+	Footer      string `yaml:"footer"`
 
 	// Derived fields.
 	Slug string
@@ -470,6 +471,17 @@ func buildPages(srcDir, root string, tmpl *template.Template) error {
 		page.Slug = slug
 		page.Body = template.HTML(buf.String())
 		page.URL = "/" + slug + "/"
+
+		// Render footer markdown to HTML (strip wrapping <p> tags).
+		if page.Footer != "" {
+			var fbuf bytes.Buffer
+			md.Convert([]byte(page.Footer), &fbuf)
+			footer := addExternalLinkAttrs(fbuf.String())
+			footer = strings.TrimSpace(footer)
+			footer = strings.TrimPrefix(footer, "<p>")
+			footer = strings.TrimSuffix(footer, "</p>")
+			page.Footer = footer
+		}
 
 		outDir := filepath.Join(root, slug)
 		if err := os.MkdirAll(outDir, 0o755); err != nil {

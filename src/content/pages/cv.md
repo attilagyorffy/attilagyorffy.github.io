@@ -2,6 +2,7 @@
 title: "Attila Györffy"
 description: "Product engineer with 20-plus years across fintech, infrastructure, and developer platforms. Ruby, Rails, Go, distributed systems, and opinions about all of it."
 page_class: page--wide
+footer: "Interested in working together? Let's connect on [LinkedIn](https://www.linkedin.com/in/attilagyorffy)."
 ---
 
 Systems-minded product engineer with 20+ years of professional experience designing and delivering robust, scalable software.

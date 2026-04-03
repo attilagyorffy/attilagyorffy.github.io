@@ -27,7 +27,13 @@
                 {{ .Body }}
             </div>
 
+            {{- if .Footer }}
+            <footer class="site-footer">
+                <p>{{ safeHTML .Footer }}</p>
+            </footer>
+            {{- else }}
             {{ template "site-footer" . }}
+            {{- end }}
         </main>
 
     </body>
