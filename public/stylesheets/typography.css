@@ -225,7 +225,7 @@ mark {
     content: "\2014";
     position: absolute;
     left: 0;
-    color: var(--color-subtle);
+    color: var(--color-muted);
 }
 
 .prose em {
