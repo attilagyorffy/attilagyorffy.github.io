@@ -73,7 +73,7 @@
     --color-bg: var(--palette-warm-grey);
     --color-fg: var(--palette-ink);
     --color-heading: var(--color-fg);
-    --color-subtle: color-mix(in oklch, var(--color-bg), black 5%);
+    --color-subtle: color-mix(in oklch, var(--color-bg), black 3%);
     --color-accent: var(--palette-clay);
     --color-highlight: color-mix(in srgb, var(--color-accent), transparent 60%);
     --color-muted: color-mix(

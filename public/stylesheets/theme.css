@@ -7,7 +7,7 @@
         --color-bg: var(--palette-night);
         --color-fg: var(--palette-silver);
         --color-heading: var(--palette-white);
-        --color-subtle: color-mix(in oklch, var(--color-bg), white 15%);
+        --color-subtle: color-mix(in oklch, var(--color-bg), white 5%);
         --color-accent: var(--palette-lavender);
         --color-muted: color-mix(in oklch, var(--color-subtle), var(--color-fg) 70%);
     }
