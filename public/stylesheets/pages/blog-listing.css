@@ -11,7 +11,7 @@
     position: relative;
     margin-bottom: 0;
     padding: var(--space-l) 0;
-    border-bottom: 1px solid var(--color-subtle);
+    border-bottom: 1px solid var(--color-muted);
 }
 
 .post-item.hidden {

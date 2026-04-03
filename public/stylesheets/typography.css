@@ -111,7 +111,7 @@ mark {
 .prose .footnotes hr {
     margin: 0 0 var(--space-s) 0;
     border: 0;
-    border-top: 1px solid var(--color-subtle);
+    border-top: 1px solid var(--color-muted);
 }
 
 .prose .footnotes ol {
@@ -142,7 +142,7 @@ mark {
 
 .prose .footnotes a {
     color: inherit;
-    border-bottom-color: var(--color-subtle);
+    border-bottom-color: var(--color-muted);
 }
 
 .prose .footnotes a:hover {
@@ -157,7 +157,7 @@ mark {
     border-radius: 3px;
     font-size: 0.82em;
     color: var(--color-fg);
-    border: 1px solid var(--color-subtle);
+    border: 1px solid var(--color-muted);
     overflow-wrap: break-word;
     word-break: break-word;
 }
@@ -170,7 +170,7 @@ mark {
 
 .prose pre {
     background: var(--color-subtle);
-    border: 1px solid var(--color-subtle);
+    border: 1px solid var(--color-muted);
     border-left: none;
     border-right: none;
     border-radius: 0;
