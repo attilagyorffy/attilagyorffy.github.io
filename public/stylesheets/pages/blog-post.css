@@ -3,7 +3,6 @@
    ========================================================================== */
 
 .article-header {
-    max-width: 45rem;
     margin-top: var(--space-2xl);
     margin-bottom: var(--space-2xl);
 }
@@ -16,6 +15,7 @@
 }
 
 .subtitle {
+    max-width: 45rem;
     font-size: var(--text-size-prose);
     line-height: 1.6;
     margin: 0;
@@ -24,6 +24,7 @@
 /* Article metadata */
 
 .article-meta {
+    max-width: 45rem;
     font-family: var(--font-mono);
     font-size: var(--text-size-ui);
     line-height: 1.3;
