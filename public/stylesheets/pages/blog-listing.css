@@ -104,6 +104,10 @@
     color: var(--color-accent);
 }
 
+.topic-filter.has-active .topic-tag[aria-pressed="false"] {
+    text-decoration: line-through;
+}
+
 /* Animations */
 
 .js-animated .topic-filter {

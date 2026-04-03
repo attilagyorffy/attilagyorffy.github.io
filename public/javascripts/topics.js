@@ -66,6 +66,7 @@
         buttons.forEach(function (btn) {
             btn.setAttribute("aria-pressed", btn.dataset.topic === active ? "true" : "false");
         });
+        filter.classList.toggle("has-active", !!active);
 
         if (!animate || reducedMotion) {
             setVisibility();
