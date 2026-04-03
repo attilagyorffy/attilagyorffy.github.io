@@ -56,6 +56,7 @@
     display: flex;
     font-family: var(--font-mono);
     font-size: var(--text-size-ui);
+    line-height: 1.2;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     justify-content: space-between;
@@ -102,6 +103,7 @@ h2 {
     font-family: var(--font-mono);
     font-size: var(--text-size-body);
     font-weight: 400;
+    line-height: 1.2;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     margin: var(--space-2xl) 0 var(--space-l) 0;
@@ -132,7 +134,7 @@ h2:first-of-type {
 }
 
 .site-footer p {
-    line-height: 1.7;
+    line-height: 1.4;
     margin: 0;
     letter-spacing: 0;
     font-size: var(--text-size-code);

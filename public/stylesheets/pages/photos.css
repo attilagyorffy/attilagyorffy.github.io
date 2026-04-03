@@ -75,6 +75,7 @@
 .album-meta {
     font-family: var(--font-mono);
     font-size: var(--text-size-sm);
+    line-height: 1.2;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     margin: var(--space-xs) 0 0 0;

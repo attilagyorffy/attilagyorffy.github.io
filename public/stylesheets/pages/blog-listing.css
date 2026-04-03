@@ -70,6 +70,7 @@
     background: transparent;
     font-family: var(--font-mono);
     font-size: var(--text-size-ui);
+    line-height: 1.2;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     border: none;
