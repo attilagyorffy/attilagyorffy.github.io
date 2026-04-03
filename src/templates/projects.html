@@ -47,7 +47,11 @@
             </section>
             {{- end }}
 
-            {{ template "site-footer" . }}
+            <footer class="site-footer">
+                <p>
+                    {{ safeHTML .Footer }}
+                </p>
+            </footer>
         </main>
 
         <script src="/javascripts/favicon.js" defer></script>
