@@ -7,6 +7,10 @@
     margin: 0 0 var(--space-xl) 0;
 }
 
+.post-list h2 {
+    color: var(--color-muted);
+}
+
 .post-item {
     position: relative;
     margin-bottom: 0;
