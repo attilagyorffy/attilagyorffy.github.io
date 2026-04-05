@@ -2,6 +2,10 @@
    Thoughts — tweet/quote cards
    ========================================================================== */
 
+.page h2 {
+    color: var(--color-muted);
+}
+
 .tweet-list {
     list-style: none;
     padding: 0;
