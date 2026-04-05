@@ -60,8 +60,8 @@
 
     /* Palette — light */
     --palette-warm-grey: #f7f7f7;
-    --palette-ink: #1a1a1a;
-    --palette-clay: #8a6a64;
+    --palette-ink: #505050;
+    --palette-clay: #935f4a;
 
     /* Palette — dark */
     --palette-night: oklch(19% 0.012 269);
@@ -79,7 +79,7 @@
     --color-muted: color-mix(
         in oklch,
         var(--color-subtle),
-        var(--color-fg) 35%
+        var(--color-fg) 45%
     );
     --color-backdrop: color-mix(in oklch, var(--color-bg) 95%, transparent);
 }
