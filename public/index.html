@@ -77,11 +77,6 @@
             .intro + .intro {
                 margin-top: calc(-1 * var(--space-l));
             }
-            .trivia-line {
-                display: block;
-                min-height: 1.4em;
-                margin-top: var(--space-xs);
-            }
             #trivia-text {
                 will-change: contents;
                 transform: translateZ(0);
@@ -103,14 +98,10 @@
     <body>
         <main class="page" itemscope itemtype="https://schema.org/Person">
             <h1 itemprop="name">Attila Györffy</h1>
-            <p class="intro" itemprop="description">
-                Software engineer, lifelong learner, with the
-                <a href="/about/">scout mindset</a>.
-                <span class="trivia-line"
-                    ><span id="trivia-text">Partially Scandinavian.</span
-                    ><span id="cursor" class="cursor">|</span></span
-                >
-            </p>
+            <p class="intro" itemprop="description"
+                ><span id="trivia-text">Software engineer, lifelong learner, with the <a href="/about/">scout mindset</a>.</span
+                ><span id="cursor" class="cursor">|</span
+            ></p>
             <p class="intro">
                 I sometimes
                 <a href="/blog/">rant and write</a>, have
@@ -124,7 +115,11 @@
         <script src="/javascripts/favicon.js" defer></script>
         <script>
             // Hardware-accelerated animated typing effect for trivia text
+            const SCOUT_TEXT = "Software engineer, lifelong learner, with the scout mindset.";
+            const SCOUT_HTML = 'Software engineer, lifelong learner, with the <a href="/about/">scout mindset</a>.';
+
             const triviaTexts = [
+                SCOUT_TEXT,
                 "Partially Scandinavian.",
                 "Maker of puns.",
                 "Budapest based.",
@@ -204,7 +199,11 @@
                             triviaElement.textContent = displayedText;
                             lastUpdateTime = timestamp;
                         } else {
-                            // Finished typing, wait before deleting
+                            // Finished typing — restore link if scout mindset
+                            if (currentText === SCOUT_TEXT) {
+                                triviaElement.innerHTML = SCOUT_HTML;
+                            }
+                            // Wait before deleting
                             isPaused = true;
                             pauseDuration = pauseBeforeDelete;
                             isDeleting = true;
